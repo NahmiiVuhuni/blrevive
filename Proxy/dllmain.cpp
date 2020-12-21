@@ -1,11 +1,17 @@
 // dllmain.cpp : Definiert den Einstiegspunkt für die DLL-Anwendung.
 #include "pch.h"
+#include "../SDK/SdkHeaders.h"
 #include "Proxy.h"
+#include "SetEmblemPatch.h"
 
 void OnAttach()
 {
-    LInfo("Basic Info!");
+    LInfo("Dll Injection succeeded.");
     LFlush;
+
+    auto emblemPatch = new BLRevive::Patches::SetEmblemPatch();
+    emblemPatch->Apply();
+    BLRevive::Proxy::GetInstance()->Initialize();
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

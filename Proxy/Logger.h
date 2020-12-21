@@ -8,6 +8,7 @@
 #define LWarn(...) BLRevive::Logger::Get()->warn(__VA_ARGS__)
 #define LError(...) BLRevive::Logger::Get()->error(__VA_ARGS__)
 #define LCritical(...) BLRevive::Logger::Get()->critical(__VA_ARGS__)
+#define LDebug(...) BLRevive::Logger::Get()->debug(__VA_ARGS__)
 #define LFlush BLRevive::Logger::Get()->flush();
 
 namespace BLRevive

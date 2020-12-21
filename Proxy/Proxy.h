@@ -10,13 +10,13 @@ namespace BLRevive
 	public:
 		static Proxy* GetInstance();
 
+		void Initialize();
+
 	protected:
 		Proxy();
-		~Proxy();
 
 	private:
 		static Proxy* pInstance;
-
 	};
 }
 
