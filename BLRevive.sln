@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{5C18FCD6-12C7-4748-A6B1-FFB2217F1468}"
 	ProjectSection(SolutionItems) = preProject
+		SDK\BlrAddresses302.h = SDK\BlrAddresses302.h
 		SDK\SdkHeaders.h = SDK\SdkHeaders.h
 	EndProjectSection
 EndProject
@@ -108,7 +109,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK_HEADERS", "SDK_HEADERS"
 		SDK\SDK_HEADERS\XAudio2_structs.h = SDK\SDK_HEADERS\XAudio2_structs.h
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Proxy", "Proxy\Proxy.vcxproj", "{BF497D1A-F1CB-49E8-861B-2051DA63A409}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bootstrapper", "Bootstrapper\Bootstrapper.vcxproj", "{6B54F78F-EC67-4C91-B33D-768BC29965D8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Debug|x64.ActiveCfg = Debug|x64
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Debug|x64.Build.0 = Debug|x64
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Debug|x86.ActiveCfg = Debug|Win32
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Debug|x86.Build.0 = Debug|Win32
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Release|x64.ActiveCfg = Release|x64
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Release|x64.Build.0 = Release|x64
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Release|x86.ActiveCfg = Release|Win32
+		{BF497D1A-F1CB-49E8-861B-2051DA63A409}.Release|x86.Build.0 = Release|Win32
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Debug|x64.ActiveCfg = Debug|x64
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Debug|x64.Build.0 = Debug|x64
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Debug|x86.Build.0 = Debug|Win32
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Release|x64.ActiveCfg = Release|x64
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Release|x64.Build.0 = Release|x64
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Release|x86.ActiveCfg = Release|Win32
+		{6B54F78F-EC67-4C91-B33D-768BC29965D8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
