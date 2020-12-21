@@ -1,0 +1,3 @@
+[submodule "SDK"]
+	path = SDK
+	url = git@gitlab.com:blrevive/tools/sdk
