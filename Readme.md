@@ -1,6 +1,6 @@
 Play Blacklight:Retribution on PC again!
 
-> NOTE: This project is currently in alpha state and thus the instructions below are not working due to missing files. This will change with the [first realase](https://gitlab.com/blrevive/blrevive/-/milestones/1).
+> NOTE: This project is currently in alpha state and thus the instructions below are not working due to missing files. This will change with the %1.
 
 ## Setup
 
