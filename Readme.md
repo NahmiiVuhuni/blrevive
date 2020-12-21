@@ -1,12 +1,12 @@
 Play Blacklight:Retribution on PC again!
 
-
+> NOTE: This project is currently in alpha state and thus the instructions below are not working due to missing files. This will change with the [first realase](https://gitlab.com/blrevive/blrevive/-/milestones/1).
 
 ## Setup
 
 This will enable local and online play for your client.
 
-1. Download the [latest Client (v3.02)]()
+1. Download the [latest Client (v3.02)](https://gitlab.com/blrevive/docs/-/wikis/Resources)
 2. Download the [latest BLRevive]() release.
 3. Extract  `BLRevive.zip` and copy the contents of `BLRevive` into the base directory of your BL:R client (eg. `C:\\Program Files(x86)\\Steam\\steamapps\\common\\blacklightretribution`)
 4. Verify that the `Binaries\Win32` subdirectory contains a `BLRevive.exe`
