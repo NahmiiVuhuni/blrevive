@@ -9,8 +9,7 @@ void OnAttach()
     LInfo("Dll Injection succeeded.");
     LFlush;
 
-    auto emblemPatch = new BLRevive::Patches::SetEmblemPatch();
-    emblemPatch->Apply();
+    BLRevive::Patch::ApplyAll();
     BLRevive::Proxy::GetInstance()->Initialize();
 }
 

@@ -10,8 +10,8 @@ namespace BLRevive::Patches
         bool Apply() override;
 
     private:
-        static const int PatchAddress;
-        static const char* PatchBytes;
+        static int PatchOffset;
+        inline constexpr static BYTE PatchBytes[] = "\x90\x90\x90\x90";
     };
 
 }
