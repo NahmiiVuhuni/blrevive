@@ -39,6 +39,9 @@
     <ClInclude Include="SetEmblemPatch.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -57,6 +60,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="SetEmblemPatch.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

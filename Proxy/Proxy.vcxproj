@@ -159,6 +159,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Proxy.h" />
     <ClInclude Include="SetEmblemPatch.h" />
+    <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -172,6 +173,7 @@
     </ClCompile>
     <ClCompile Include="Proxy.cpp" />
     <ClCompile Include="SetEmblemPatch.cpp" />
+    <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
