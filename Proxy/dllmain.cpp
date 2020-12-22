@@ -1,5 +1,7 @@
 // dllmain.cpp : Definiert den Einstiegspunkt für die DLL-Anwendung.
 #include "pch.h"
+#include "Tools.h"
+#include "Offsets.h"
 #include "../SDK/SdkHeaders.h"
 #include "Proxy.h"
 #include "SetEmblemPatch.h"

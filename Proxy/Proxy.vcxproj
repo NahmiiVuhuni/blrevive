@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Offsets.h" />
     <ClInclude Include="Patcher.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Proxy.h" />
