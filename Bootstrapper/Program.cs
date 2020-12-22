@@ -14,6 +14,8 @@ namespace Bootstrapper
         [STAThread]
         static void Main()
         {
+            GameLauncher.Prepare();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LauncherEntry());

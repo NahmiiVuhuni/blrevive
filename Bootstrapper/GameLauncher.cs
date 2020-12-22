@@ -21,6 +21,7 @@ namespace Bootstrapper
     class GameLauncher
     {
         static string ServerExe = "FoxGame-win32-Shipping-Server.exe";
+        static string FixedExe = "FoxGame-win32-Shipping_Fixed.exe";
         static string ClientExe = "FoxGame-win32-Shipping.exe";
         static string Injector = "Injector.exe";
 
@@ -76,6 +77,30 @@ namespace Bootstrapper
 
             LaunchInjector();
             LaunchFinishedAction.Invoke();
+        }
+
+
+        public static void Prepare()
+        {
+            string currDir = Directory.GetCurrentDirectory();
+
+            if (!File.Exists(ClientExe))
+            {
+                if (!File.Exists(FixedExe))
+                {
+                    MessageBox.Show("FoxGame-win32-Shipping.exe could not be found. Check your directory.");
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    File.Copy(FixedExe, ClientExe);
+                }
+            } 
+            else if (!File.Exists(ServerExe))
+            {
+                File.Copy(ClientExe, ServerExe);
+            }
+
         }
     }
 }
