@@ -58,8 +58,6 @@ std::shared_ptr<spdlog::logger> BLRevive::Logger::Get()
         }
         logFileName.append(".log");
 
-        MessageBoxA(NULL, logFileName.c_str(), "", MB_OK);
-
         pInstance = spdlog::basic_logger_mt("BLR", logFileName.c_str());
         pInstance->set_level(spdlog::level::debug);
     }
