@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Proxy.h"
+#include "Offsets.h"
+#include "../SDK/SdkHeaders.h"
 
 using namespace BLRevive;
 using namespace std;
