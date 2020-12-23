@@ -19,7 +19,9 @@ namespace Bootstrapper
 
     class GameLauncher
     {
-        static string GameExe = "FoxGame-win32-Shipping.exe";
+        static string GameFile = "FoxGame-win32-Shipping";
+        static string GameExe = $"{GameFile}.exe";
+        static string ServerExe = $"{GameFile}-Server.exe";
         static string Injector = "Injector.exe";
 
         private static Config _Config = null;
@@ -50,7 +52,7 @@ namespace Bootstrapper
         public static Process LaunchServer(string Options)
         {
             Log.Debug("Launching Server with options: " + Options);
-            Process serverProcess = LaunchProcess(GameExe, $"server {Options}");
+            Process serverProcess = LaunchProcess(ServerExe, $"server {Options}");
             if (!WaitForClientStartupComplete(serverProcess, "POP"))
                 return null;
             LaunchInjector(serverProcess);
@@ -133,6 +135,11 @@ namespace Bootstrapper
                 MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
                 Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
                 Environment.Exit(1);
+            }
+
+            if(!File.Exists(ServerExe))
+            {
+                File.Copy(GameExe, ServerExe);
             }
 
         }

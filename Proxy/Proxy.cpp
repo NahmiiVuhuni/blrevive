@@ -108,6 +108,18 @@ void BLRevive::Proxy::Initialize()
 	LDebug("Proxy initialized");
 }
 
+bool BLRevive::Proxy::IsServer()
+{
+	AWorldInfo* wi = UObject::GetInstanceOf<AWorldInfo>();
+	if (!wi) {
+		MessageBoxA(NULL, "WorldInfo not found!", "Error", MB_OK);
+		return false;
+	}
+
+
+	return wi->IsServer();
+}
+
 void BLRevive::Proxy::MakeJMP(BYTE* pAddress, DWORD dwJumpTo, DWORD dwLen)
 {
 	DWORD dwOldProtect, dwBkup, dwRelAddr;

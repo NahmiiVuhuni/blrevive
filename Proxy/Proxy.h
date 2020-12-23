@@ -13,6 +13,8 @@ namespace BLRevive
 
 		void Initialize();
 
+		static bool IsServer();
+
 	protected:
 		Proxy();
 

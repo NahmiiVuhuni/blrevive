@@ -20,7 +20,7 @@ namespace BLRevive
 
 	private:
 		static std::shared_ptr<spdlog::logger> pInstance;
-
+		static std::string LogFileName;
 	};
 }
 
