@@ -44,6 +44,12 @@ namespace Bootstrapper
                     cl.FormClosed += Bl_FormClosed;
                     cl.Show();
                     break;
+                case "Server":
+                    ServerLauncher sl = new ServerLauncher();
+                    Hide();
+                    sl.FormClosed += Bl_FormClosed;
+                    sl.Show();
+                    break;
                 default:
                     MessageBox.Show($"The {(string)netModeSelect.SelectedItem} NetMode is currently not implemented!");
                     break;

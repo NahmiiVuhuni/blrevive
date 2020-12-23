@@ -59,6 +59,12 @@ namespace Bootstrapper
             return serverProcess;
         }
 
+        public static Process LaunchServer(string Map, string GameMode, int BotCount, string additionalArgs)
+        {
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}{additionalArgs}";
+            return LaunchServer(args);
+        }
+
         public static Process LaunchClient(string IP, string Options)
         {
             Log.Debug("Launching Client with: IP={0}; Options={1}", IP, Options);

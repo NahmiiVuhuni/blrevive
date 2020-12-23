@@ -1,6 +1,4 @@
 ﻿{
-  "ServerStartupTime": 10000,
-  "ClientStartupTime": 8000,
   "Maps": [
     "Centre",
     "Containment",
