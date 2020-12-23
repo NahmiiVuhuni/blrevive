@@ -9,7 +9,7 @@ namespace BLRevive
 	{
 	public:
 		static Proxy* GetInstance();
-		inline constexpr static bool LogProcessEventCalls = false;
+		inline static bool LogProcessEventCalls = false;
 
 		void Initialize();
 

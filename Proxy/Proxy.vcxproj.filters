@@ -45,6 +45,9 @@
     <ClInclude Include="Offsets.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -68,8 +71,14 @@
     <ClCompile Include="Tools.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="BLRevive.json">
+      <Filter>Headerdateien</Filter>
+    </None>
   </ItemGroup>
 </Project>

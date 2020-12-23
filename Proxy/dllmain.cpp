@@ -3,12 +3,14 @@
 #include "Tools.h"
 #include "Proxy.h"
 #include "SetEmblemPatch.h"
+#include "Config.h"
 
 void OnAttach()
 {
     LInfo("Dll Injection succeeded.");
     LFlush;
 
+    BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
     BLRevive::Patch::ApplyAll();
     BLRevive::Proxy::GetInstance()->Initialize();
 }

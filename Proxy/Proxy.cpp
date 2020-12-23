@@ -2,6 +2,7 @@
 #include "Proxy.h"
 #include "Offsets.h"
 #include "../SDK/SdkHeaders.h"
+#include "Config.h"
 
 using namespace BLRevive;
 using namespace std;
