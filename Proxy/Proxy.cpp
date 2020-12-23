@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Proxy.h"
-#include "Offsets.h"
-#include "../SDK/SdkHeaders.h"
 
 using namespace BLRevive;
 using namespace std;
@@ -89,11 +87,11 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 		return false;
 	}
 
+
 	if (BLRevive::Proxy::LogProcessEventCalls)
 	{
 		std::string callerName(pCaller->GetName());
 		std::string functionName(pFunction->GetName());
-
 		LDebug("{0}->{1}({2:x})", callerName, functionName, (DWORD)pParams);
 	}
 
@@ -105,6 +103,7 @@ void BLRevive::Proxy::Initialize()
 	LDebug("Initializing Proxy.");
 	MakeJMP((BYTE*)BLInfo.ProcessEventMidHook, (DWORD)hkProcessEvent, 0x5);
 	pProcessEventWrapper = (tProcessEventWrapper)ProcessEventWrapper;
+	LDebug("Proxy initialized");
 }
 
 void BLRevive::Proxy::MakeJMP(BYTE* pAddress, DWORD dwJumpTo, DWORD dwLen)

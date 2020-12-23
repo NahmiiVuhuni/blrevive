@@ -46,12 +46,12 @@ namespace Bootstrapper
             // 
             // netModeSelect
             // 
-            this.netModeSelect.DisplayMember = "awdwd";
             this.netModeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.netModeSelect.FormattingEnabled = true;
             this.netModeSelect.Items.AddRange(new object[] {
-            "Botgame",
-            "Local",
+            "BotGame",
+            "Client",
+            "Server",
             "MasterServer"});
             this.netModeSelect.Location = new System.Drawing.Point(12, 12);
             this.netModeSelect.Name = "netModeSelect";

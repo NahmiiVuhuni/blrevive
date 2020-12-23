@@ -29,21 +29,30 @@ namespace Bootstrapper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(netModeSelect.SelectedIndex == 0)
+
+            switch((string)netModeSelect.SelectedItem)
             {
-                BotgameLauncher bl = new BotgameLauncher();
-                this.Hide();
-                bl.FormClosed += Bl_FormClosed;
-                bl.Show();
-            } else
-            {
-                MessageBox.Show("NetMode " + (string)netModeSelect.SelectedItem + " is currently not implemented!");
+                case "BotGame":
+                    BotgameLauncher bl = new BotgameLauncher();
+                    this.Hide();
+                    bl.FormClosed += Bl_FormClosed;
+                    bl.Show();
+                    break;
+                case "Client":
+                    ClientLauncher cl = new ClientLauncher();
+                    Hide();
+                    cl.FormClosed += Bl_FormClosed;
+                    cl.Show();
+                    break;
+                default:
+                    MessageBox.Show($"The {(string)netModeSelect.SelectedItem} NetMode is currently not implemented!");
+                    break;
             }
         }
 
         private void Bl_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
+            this.Show();
         }
     }
 }

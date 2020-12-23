@@ -7,22 +7,19 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Bootstrapper
 {
     class Config
     {
-        public int ServerStartupTime;
-        public int ClientStartupTime;
         public string[] Maps;
         public string[] GameModes;
     }
 
     class GameLauncher
     {
-        static string ServerExe = "FoxGame-win32-Shipping-Server.exe";
-        static string FixedExe = "FoxGame-win32-Shipping_Fixed.exe";
-        static string ClientExe = "FoxGame-win32-Shipping.exe";
+        static string GameExe = "FoxGame-win32-Shipping.exe";
         static string Injector = "Injector.exe";
 
         private static Config _Config = null;
@@ -35,7 +32,7 @@ namespace Bootstrapper
             return _Config;
         }
 
-        protected static Process LaunchProcess(string FileName, string Args, string WorkDir = "")
+        protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
         {
             if (WorkDir == "")
                 WorkDir = Directory.GetCurrentDirectory();
@@ -44,39 +41,77 @@ namespace Bootstrapper
             process.StartInfo.FileName = FileName;
             process.StartInfo.WorkingDirectory = WorkDir;
             process.StartInfo.Arguments = Args;
+            process.StartInfo.CreateNoWindow = !ShowWindow;
 
             process.Start();
             return process;
         }
 
-        public static void LaunchServer(string Options)
+        public static Process LaunchServer(string Options)
         {
-            LaunchProcess(ServerExe, "server " + Options);
+            Log.Debug("Launching Server with options: " + Options);
+            Process serverProcess = LaunchProcess(GameExe, $"server {Options}");
+            if (!WaitForClientStartupComplete(serverProcess, "POP"))
+                return null;
+            LaunchInjector(serverProcess);
+            return serverProcess;
         }
 
-        public static void LaunchClient(string IP, string Options)
+        public static Process LaunchClient(string IP, string Options)
         {
-            LaunchProcess(ClientExe, IP + Options);
+            Log.Debug("Launching Client with: IP={0}; Options={1}", IP, Options);
+            Process clientProcess = LaunchProcess(GameExe, $"{IP}{Options}");
+            if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
+                return null;
+            Thread.Sleep(2000);
+            LaunchInjector(clientProcess);
+            return clientProcess;
         }
 
-        public static void LaunchInjector()
+        public static Process LaunchInjector(Process target)
         {
-            LaunchProcess(Injector, ClientExe + " Proxy.dll");
+            Log.Debug("Launching Injector for {0}", target.ProcessName);
+            return LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
         }
 
         public static void LaunchBotgame(string Map, string GameMode, Action LaunchFinishedAction)
         {
-            string serverArgs = Map + "?Game=FoxGame.FoxGameMP_" + GameMode + "?SingleMatch?NumBots=10";
+            string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots=10";
+
             LaunchServer(serverArgs);
-
-            Thread.Sleep(GetConfig().ServerStartupTime);
-
             LaunchClient("127.0.0.1", "?Name=Player");
 
-            Thread.Sleep(GetConfig().ClientStartupTime);
-
-            LaunchInjector();
             LaunchFinishedAction.Invoke();
+        }
+
+        private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 20000)
+        {
+            int duration = 0;
+
+            while (true)
+            {
+                duration += 100;
+                process.Refresh();
+
+                if(process.HasExited)
+                {
+                    Log.Error("Process has exited unexpected!");
+                    return false;
+                }
+                if(duration == durationTimeout)
+                {
+                    Log.Error("Timeout exceeded while waiting for client startup");
+                    return false;
+                }
+                if (process.MainWindowTitle.Contains(title))
+                {
+                    Log.Debug("Took {0}ms to startup!", duration);
+                    return true;
+                }
+
+                Log.Verbose("({0}ms) MainWindowTitle: {1} | ModuleCount {2}", duration, process.MainWindowTitle, process.Modules.Count);
+                Thread.Sleep(100);
+            }
         }
 
 
@@ -84,21 +119,20 @@ namespace Bootstrapper
         {
             string currDir = Directory.GetCurrentDirectory();
 
-            if (!File.Exists(ClientExe))
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .WriteTo.File($"{currDir}\\..\\..\\FoxGame\\Logs\\BLReviveLauncher.log",
+                rollingInterval: RollingInterval.Day,
+                rollOnFileSizeLimit: true)
+            .CreateLogger();
+
+            Log.Information("Preparing GameLauncher..");
+
+            if (!File.Exists(GameExe))
             {
-                if (!File.Exists(FixedExe))
-                {
-                    MessageBox.Show("FoxGame-win32-Shipping.exe could not be found. Check your directory.");
-                    Environment.Exit(1);
-                }
-                else
-                {
-                    File.Copy(FixedExe, ClientExe);
-                }
-            } 
-            else if (!File.Exists(ServerExe))
-            {
-                File.Copy(ClientExe, ServerExe);
+                MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
+                Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
+                Environment.Exit(1);
             }
 
         }

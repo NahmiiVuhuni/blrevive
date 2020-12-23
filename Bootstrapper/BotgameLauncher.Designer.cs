@@ -107,7 +107,7 @@ namespace Bootstrapper
             this.Controls.Add(this.GameModesCombo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BotgameLauncher";
-            this.Text = "BotgameLauncher";
+            this.Text = "BLRevive Launcher - Botgame";
             this.Load += new System.EventHandler(this.BotgameLauncher_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

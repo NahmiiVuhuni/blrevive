@@ -26,5 +26,6 @@ bool BLRevive::Patches::SetEmblemPatch::Apply()
 	}
 
 	LDebug("Succesfully applied SetEmblemPatch!");
+	LFlush;
     return true;
 }

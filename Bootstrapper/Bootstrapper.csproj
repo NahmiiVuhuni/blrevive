@@ -35,8 +35,19 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.10.0\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.4.1.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +65,12 @@
     <Compile Include="BotgameLauncher.Designer.cs">
       <DependentUpon>BotgameLauncher.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientLauncher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientLauncher.Designer.cs">
+      <DependentUpon>ClientLauncher.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameLauncher.cs" />
     <Compile Include="LauncherEntry.cs">
       <SubType>Form</SubType>
@@ -65,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BotgameLauncher.resx">
       <DependentUpon>BotgameLauncher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientLauncher.resx">
+      <DependentUpon>ClientLauncher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LauncherEntry.resx">
       <DependentUpon>LauncherEntry.cs</DependentUpon>
