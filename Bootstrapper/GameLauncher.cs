@@ -112,10 +112,11 @@ namespace Bootstrapper
             if (!WaitForClientStartupComplete(serverProcess, "POP"))
             {
                 Log.Error("Server didn't startup in time!");
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, serverProcess.Id, serverProcess.ExitCode);
 
                 if (!serverProcess.HasExited)
                     serverProcess.Kill();
+
+                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, serverProcess.Id, serverProcess.ExitCode);
 
                 return null;
             }
@@ -159,10 +160,12 @@ namespace Bootstrapper
             if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
             {
                 Log.Error("Client didn't startup in time!");
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, clientProcess.Id, clientProcess.ExitCode);
 
                 if (!clientProcess.HasExited)
                     clientProcess.Kill();
+
+                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, clientProcess.Id, clientProcess.ExitCode);
+
 
                 return null;
             }
@@ -237,9 +240,9 @@ namespace Bootstrapper
             Log.Debug("Proces: {0} | PID: {1} | Timeout: {2}", process.ProcessName, process.Id, durationTimeout);
 
 
-            int duration = 0;
             try
             {
+                int duration = 0;
                 while (true)
                 {
                     process.Refresh();
@@ -256,8 +259,14 @@ namespace Bootstrapper
                         return false;
                     }
 
-                    if (process.MainWindowTitle.Contains(title))
+                    /*if (process.MainWindowTitle.Contains(title))
                     {
+                        Log.Debug("Took {0}ms to startup!", duration);
+                        return true;
+                    }*/
+                    if(process.Modules.Count >= 100)
+                    {
+                        Log.Information("Unreal Engine is initialized");
                         Log.Debug("Took {0}ms to startup!", duration);
                         return true;
                     }
