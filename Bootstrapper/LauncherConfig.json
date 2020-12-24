@@ -1,4 +1,5 @@
 ﻿{
+  "LogLevel":  1,
   "ServerStartupOffset": 0,
   "ClientStartupOffset": 4000,
   "Maps": [

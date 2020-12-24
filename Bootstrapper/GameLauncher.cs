@@ -23,8 +23,10 @@ namespace Bootstrapper
         EXIT_PROCESS_NOT_FOUND			= 1006
     }
 
+
     class Config
     {
+        public int LogLevel;
         public int ClientStartupOffset;
         public int ServerStartupOffset;
         public string[] Maps;
@@ -37,41 +39,100 @@ namespace Bootstrapper
         static string GameExe = $"{GameFile}.exe";
         static string ServerExe = $"{GameFile}-Server.exe";
         static string Injector = "Injector.exe";
+        static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
+        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
+        static string LogFileName = $"{LogFileDirectoryAbs}BLReviveLauncher.log";
+        static string[] ConfigFiles = { "LauncherConfig.json", "BLRevive.json" };
+        static string LauncherConfigFile = $"{Directory.GetCurrentDirectory()}\\LauncherConfig.json";
 
         private static Config _Config = null;
 
         public static Config GetConfig()
         {
-            if(_Config == null)
-                _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("LauncherConfig.json"));
+            try
+            {
+                if (_Config == null)
+                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("LauncherConfig.json"));
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Failed to parse LauncherConfig.json!");
+                //Log.Debug(ex.Message);
+                Environment.Exit(1);
+            }
+            
 
             return _Config;
         }
 
         protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
         {
-            if (WorkDir == "")
-                WorkDir = Directory.GetCurrentDirectory();
+            Log.Debug("Launchung process {0} \"{1}\"", FileName, Args);
 
-            Process process = new Process();
-            process.StartInfo.FileName = FileName;
-            process.StartInfo.WorkingDirectory = WorkDir;
-            process.StartInfo.Arguments = Args;
-            process.StartInfo.CreateNoWindow = !ShowWindow;
-            process.StartInfo.UseShellExecute = false;
+            try
+            {
+                if (WorkDir == "")
+                    WorkDir = Directory.GetCurrentDirectory();
 
-            process.Start();
-            return process;
+                Process process = new Process();
+                process.StartInfo.FileName = FileName;
+                process.StartInfo.WorkingDirectory = WorkDir;
+                process.StartInfo.Arguments = Args;
+                process.StartInfo.CreateNoWindow = !ShowWindow;
+                process.StartInfo.UseShellExecute = false;
+
+                process.Start();
+
+                if (process == null || process.StartTime == null)
+                {
+                    Log.Error("Failed to launch process!");
+                    Log.Debug("CLI: {0} {1} | WD: {2}", FileName, Args, WorkDir);
+                    return null;
+                }
+
+                return process;
+            } catch(Exception ex)
+            {
+                Log.Error("Exception on creating process!");
+                Log.Debug("CLI: {0} {1} | WD: {2}", FileName, Args, WorkDir);
+                Log.Debug(ex.Message);
+                return null;
+            }
         }
 
         public static Process LaunchServer(string Options)
         {
-            Log.Debug("Launching Server with options: " + Options);
+            Log.Information("Launching Server");
+            Log.Debug("Options: {0}", Options);
+
             Process serverProcess = LaunchProcess(ServerExe, $"server {Options}");
-            if (!WaitForClientStartupComplete(serverProcess, "POP"))
+
+            if (serverProcess == null)
                 return null;
+
+            if (!WaitForClientStartupComplete(serverProcess, "POP"))
+            {
+                Log.Error("Server didn't startup in time!");
+                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, serverProcess.Id, serverProcess.ExitCode);
+
+                if (!serverProcess.HasExited)
+                    serverProcess.Kill();
+
+                return null;
+            }
+
             Thread.Sleep(GetConfig().ServerStartupOffset);
-            LaunchInjector(serverProcess);
+
+            if(LaunchInjector(serverProcess) == null)
+            {
+                Log.Error("Starting the Injector failed!");
+
+                if (!serverProcess.HasExited)
+                    serverProcess.Kill();
+
+                return null;
+            }
+
+            Log.Information("Server succesfully started and patched!");
             return serverProcess;
         }
 
@@ -83,92 +144,252 @@ namespace Bootstrapper
 
         public static Process LaunchClient(string IP, string Options)
         {
-            Log.Debug("Launching Client with: IP={0}; Options={1}", IP, Options);
+            Log.Information("Launching Client");
+            Log.Debug("IP: {0} | Options: {1}", IP, Options);
+
             Process clientProcess = LaunchProcess(GameExe, $"{IP}{Options}");
-            if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
+
+            if(clientProcess == null)
+            {
+                Log.Error("Failed to launch client!");
+                Log.Debug("CLI: {0} {1}{2}", GameExe, IP, Options);
                 return null;
+            }
+
+            if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
+            {
+                Log.Error("Client didn't startup in time!");
+                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, clientProcess.Id, clientProcess.ExitCode);
+
+                if (!clientProcess.HasExited)
+                    clientProcess.Kill();
+
+                return null;
+            }
+
             Thread.Sleep(GetConfig().ClientStartupOffset);
-            LaunchInjector(clientProcess);
+
+            if(LaunchInjector(clientProcess) == null)
+            {
+                Log.Error("Failed to launch Injector!");
+                return null;
+            }
+
+            Log.Information("Client sucessfully started and patched!");
             return clientProcess;
         }
 
-        public static void LaunchInjector(Process target)
+        public static Process LaunchInjector(Process target, bool bKillTargetOnError = true)
         {
-            Log.Debug("Launching Injector for {0}", target.ProcessName);
-            Process injectorProcess = LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
-            injectorProcess.WaitForExit();
-            if(injectorProcess.ExitCode != 0)
+            Log.Information("Launching Injector.");
+            Log.Verbose("Process: {0} | PID: {1}", target.ProcessName, target.Id);
+
+            try
             {
-                Log.Error("Injection failed. See Injector.log. ExitCode: {0}", injectorProcess.ExitCode);
+                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
+                if (injectorProcess == null)
+                {
+                    Log.Error("Failed to launch the injector.");
+                    if (!target.HasExited && bKillTargetOnError)
+                    {
+                        Log.Verbose("Killing target process {0} ({1}))", target.ProcessName, target.Id);
+                        target.Kill();
+                    }
+                }
+
+                injectorProcess.WaitForExit();
+
+                if (injectorProcess.ExitCode != 0)
+                {
+                    Log.Error("Injection failed. See Injector.log. ExitCode: {0}", injectorProcess.ExitCode);
+                }
+
+                Log.Information("Injection succeeded.");
+
+                return injectorProcess;
+            } catch (Exception ex)
+            {
+                Log.Error("Failed to setup Injector.");
+                Log.Debug(ex.Message);
+                return null;
             }
         }
 
         public static void LaunchBotgame(string Map, string GameMode, Action LaunchFinishedAction)
         {
+            Log.Information("Preparing local botgame.");
+            Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
             string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots=10";
+            string clientArgs = "?Name=Player";
+            Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
-            LaunchServer(serverArgs);
-            LaunchClient("127.0.0.1", "?Name=Player");
+            if (LaunchServer(serverArgs) != null && LaunchClient("127.0.0.1", clientArgs) != null)
+                Log.Information("Botgame has started!");
+            else
+                Log.Error("Failed to launch local botgame!");
 
             LaunchFinishedAction.Invoke();
         }
 
         private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 20000)
         {
+            Log.Information("Start waiting for UE engine to initialize.");
+            Log.Debug("Proces: {0} | PID: {1} | Timeout: {2}", process.ProcessName, process.Id, durationTimeout);
+
+
             int duration = 0;
-
-            while (true)
+            try
             {
-                duration += 100;
-                process.Refresh();
+                while (true)
+                {
+                    process.Refresh();
 
-                if(process.HasExited)
-                {
-                    Log.Error("Process has exited unexpected!");
-                    return false;
-                }
-                if(duration == durationTimeout)
-                {
-                    Log.Error("Timeout exceeded while waiting for client startup");
-                    return false;
-                }
-                if (process.MainWindowTitle.Contains(title))
-                {
-                    Log.Debug("Took {0}ms to startup!", duration);
-                    return true;
-                }
+                    if (process.HasExited)
+                    {
+                        Log.Error("Process has exited unexpected!");
+                        return false;
+                    }
 
-                Log.Verbose("({0}ms) MainWindowTitle: {1} | ModuleCount {2}", duration, process.MainWindowTitle, process.Modules.Count);
-                Thread.Sleep(100);
+                    if (duration >= durationTimeout)
+                    {
+                        Log.Error("Timeout exceeded while waiting for client startup");
+                        return false;
+                    }
+
+                    if (process.MainWindowTitle.Contains(title))
+                    {
+                        Log.Debug("Took {0}ms to startup!", duration);
+                        return true;
+                    }
+
+                    Log.Verbose("({0}ms) MainWindowTitle: {1} | ModuleCount {2}", duration, process.MainWindowTitle, process.Modules.Count);
+
+                    duration += 100;
+                    Thread.Sleep(100);
+                }
+            } catch(Exception ex) 
+            {
+                Log.Error("Exception occured when waiting for UE to initialize!");
+                Log.Debug(ex.Message);
+                return false;
             }
         }
 
-
-        public static void Prepare()
+        protected static bool CheckLogDirectory()
         {
-            string currDir = Directory.GetCurrentDirectory();
-
-            Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .WriteTo.File($"{currDir}\\..\\..\\FoxGame\\Logs\\BLReviveLauncher.log",
-                rollingInterval: RollingInterval.Day,
-                rollOnFileSizeLimit: true)
-            .CreateLogger();
-
-            Log.Information("Preparing GameLauncher..");
-
-            if (!File.Exists(GameExe))
+            if(!Directory.Exists(LogFileDirectoryAbs))
             {
-                MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
-                Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
+                MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist!");
                 Environment.Exit(1);
             }
 
-            if(!File.Exists(ServerExe))
+            try
             {
-                File.Copy(GameExe, ServerExe);
+                System.Security.AccessControl.DirectorySecurity ds = Directory.GetAccessControl(LogFileDirectoryAbs);
+            } catch(Exception ex)
+            {
+                MessageBox.Show($"Logfile directory is not writable!");
+                Environment.Exit(1);
             }
 
+            return true;
+        }
+
+        protected static bool CheckConfigs()
+        {
+            foreach(string configFile in ConfigFiles)
+            {
+                if (!File.Exists($"{Directory.GetCurrentDirectory()}\\{configFile}"))
+                {
+                    MessageBox.Show($"Config file {configFile} not found in {Directory.GetCurrentDirectory()}!");
+                    Environment.Exit(1);
+                }
+            }
+
+            return true;
+        }
+
+        public static bool InitializeLogger()
+        {
+            try
+            {
+                LoggerConfiguration loggerConfig = new LoggerConfiguration();
+                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+
+                switch(GetConfig().LogLevel)
+                {
+                    // verbose
+                    case 0:
+                        loggerConfig.MinimumLevel.Verbose();
+                        break;
+                    case 1:
+                        loggerConfig.MinimumLevel.Debug();
+                        break;
+                    case 2:
+                        loggerConfig.MinimumLevel.Warning();
+                        break;
+                    case 3:
+                        loggerConfig.MinimumLevel.Error();
+                        break;
+                    case 4:
+                        loggerConfig.MinimumLevel.Fatal();
+                        break;
+                }
+
+                Log.Logger = loggerConfig.CreateLogger();
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Failed to initialize logging system!");
+                Environment.Exit(1);
+            }
+
+
+            return true;
+        }
+
+        protected static bool CheckGameFiles()
+        {
+            try
+            { 
+                if (!File.Exists(GameExe))
+                {
+                    MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
+                    Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
+                    Environment.Exit(1);
+                }
+
+                if (!File.Exists(ServerExe))
+                {
+                    File.Copy(GameExe, ServerExe);
+                }
+
+                return true;
+            } catch (Exception ex)
+            {
+                Log.Fatal("Error while cheking game files!");
+                Log.Debug(ex.Message);
+                return false;
+            }
+        }
+
+        public static void Prepare()
+        {
+            if (!CheckConfigs())
+                Environment.Exit(1);
+
+            GetConfig();
+
+            if (!CheckLogDirectory())
+                Environment.Exit(1);
+
+            if (!InitializeLogger())
+                Environment.Exit(1);
+
+            InitializeLogger();
+            Log.Information("Starting GameLauncher");
+
+            if (!CheckGameFiles())
+                Environment.Exit(0);
         }
     }
 }
