@@ -259,11 +259,6 @@ namespace Bootstrapper
                         return false;
                     }
 
-                    /*if (process.MainWindowTitle.Contains(title))
-                    {
-                        Log.Debug("Took {0}ms to startup!", duration);
-                        return true;
-                    }*/
                     if(process.Modules.Count >= 100)
                     {
                         Log.Information("Unreal Engine is initialized");
