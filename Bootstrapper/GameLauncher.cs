@@ -11,8 +11,22 @@ using Serilog;
 
 namespace Bootstrapper
 {
+
+    enum InjectorExitCodes
+    {
+        EXIT_MEMORY_WRITE_FAILED        = 1000,
+        EXIT_MEMORY_ALLOCATION_FAILED	= 1001,
+        EXIT_REMOTE_THREAD_FAILED		= 1002,
+        EXIT_CREATE_LOG_FAILED			= 1003,
+        EXIT_ARGS_MISSING				= 1004,
+        EXIT_DLL_NOT_FOUND				= 1005,
+        EXIT_PROCESS_NOT_FOUND			= 1006
+    }
+
     class Config
     {
+        public int ClientStartupOffset;
+        public int ServerStartupOffset;
         public string[] Maps;
         public string[] GameModes;
     }
@@ -44,6 +58,7 @@ namespace Bootstrapper
             process.StartInfo.WorkingDirectory = WorkDir;
             process.StartInfo.Arguments = Args;
             process.StartInfo.CreateNoWindow = !ShowWindow;
+            process.StartInfo.UseShellExecute = false;
 
             process.Start();
             return process;
@@ -55,6 +70,7 @@ namespace Bootstrapper
             Process serverProcess = LaunchProcess(ServerExe, $"server {Options}");
             if (!WaitForClientStartupComplete(serverProcess, "POP"))
                 return null;
+            Thread.Sleep(GetConfig().ServerStartupOffset);
             LaunchInjector(serverProcess);
             return serverProcess;
         }
@@ -71,15 +87,20 @@ namespace Bootstrapper
             Process clientProcess = LaunchProcess(GameExe, $"{IP}{Options}");
             if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
                 return null;
-            Thread.Sleep(2000);
+            Thread.Sleep(GetConfig().ClientStartupOffset);
             LaunchInjector(clientProcess);
             return clientProcess;
         }
 
-        public static Process LaunchInjector(Process target)
+        public static void LaunchInjector(Process target)
         {
             Log.Debug("Launching Injector for {0}", target.ProcessName);
-            return LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
+            Process injectorProcess = LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
+            injectorProcess.WaitForExit();
+            if(injectorProcess.ExitCode != 0)
+            {
+                Log.Error("Injection failed. See Injector.log. ExitCode: {0}", injectorProcess.ExitCode);
+            }
         }
 
         public static void LaunchBotgame(string Map, string GameMode, Action LaunchFinishedAction)
@@ -128,7 +149,7 @@ namespace Bootstrapper
             string currDir = Directory.GetCurrentDirectory();
 
             Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
+            .MinimumLevel.Debug()
             .WriteTo.File($"{currDir}\\..\\..\\FoxGame\\Logs\\BLReviveLauncher.log",
                 rollingInterval: RollingInterval.Day,
                 rollOnFileSizeLimit: true)

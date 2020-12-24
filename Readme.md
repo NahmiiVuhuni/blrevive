@@ -1,6 +1,22 @@
-Play Blacklight:Retribution on PC again!
+[![Discord](https://img.shields.io/discord/791187711184338954?label=Discord&style=flat-square)](https://discord.gg/2zGhBGED)
 
-> NOTE: This project is currently in alpha state and thus the instructions below are not working due to missing files. This will change with the %1.
+A user-friendly game patcher for Blacklight: Retribution. The long-term goal is to make the latest Steam release playable without limitations.
+
+
+
+> Currently this project is still in alpha and get tested concurrently. If you want a stable version I recommend to check this page weekly or join one of our communities linked below.
+
+
+
+## Installation
+
+- Download the latest Blacklight: Retribution Client (version 3.02) from Steam. 
+
+  > If you don't have BL:R in your Steam library you can get a copy here: [Old Wiki Downloads](https://gitlab.com/blrevive/docs/-/wikis/Resources).
+
+- Download the [latest BLRevive]() release.
+
+
 
 ## Setup
 

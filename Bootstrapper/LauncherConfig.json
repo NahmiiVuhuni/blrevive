@@ -1,4 +1,6 @@
 ﻿{
+  "ServerStartupOffset": 0,
+  "ClientStartupOffset": 4000,
   "Maps": [
     "Centre",
     "Containment",
