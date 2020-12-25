@@ -38,13 +38,15 @@ namespace Bootstrapper
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.CustomUrlTextBox = new System.Windows.Forms.TextBox();
+            this.UseCustomUrlCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // GameModesCombo
             // 
             this.GameModesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameModesCombo.FormattingEnabled = true;
-            this.GameModesCombo.Location = new System.Drawing.Point(174, 12);
+            this.GameModesCombo.Location = new System.Drawing.Point(238, 12);
             this.GameModesCombo.Name = "GameModesCombo";
             this.GameModesCombo.Size = new System.Drawing.Size(121, 21);
             this.GameModesCombo.TabIndex = 0;
@@ -53,7 +55,7 @@ namespace Bootstrapper
             // 
             this.MapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MapsCombo.FormattingEnabled = true;
-            this.MapsCombo.Location = new System.Drawing.Point(174, 39);
+            this.MapsCombo.Location = new System.Drawing.Point(238, 39);
             this.MapsCombo.Name = "MapsCombo";
             this.MapsCombo.Size = new System.Drawing.Size(121, 21);
             this.MapsCombo.TabIndex = 1;
@@ -80,14 +82,14 @@ namespace Bootstrapper
             "14",
             "15",
             "16"});
-            this.BotCountCombo.Location = new System.Drawing.Point(174, 66);
+            this.BotCountCombo.Location = new System.Drawing.Point(238, 66);
             this.BotCountCombo.Name = "BotCountCombo";
             this.BotCountCombo.Size = new System.Drawing.Size(121, 21);
             this.BotCountCombo.TabIndex = 2;
             // 
             // LaunchButton
             // 
-            this.LaunchButton.Location = new System.Drawing.Point(122, 120);
+            this.LaunchButton.Location = new System.Drawing.Point(146, 156);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(75, 23);
             this.LaunchButton.TabIndex = 4;
@@ -97,9 +99,9 @@ namespace Bootstrapper
             // 
             // AdditionalOptionsTextBox
             // 
-            this.AdditionalOptionsTextBox.Location = new System.Drawing.Point(122, 94);
+            this.AdditionalOptionsTextBox.Location = new System.Drawing.Point(146, 94);
             this.AdditionalOptionsTextBox.Name = "AdditionalOptionsTextBox";
-            this.AdditionalOptionsTextBox.Size = new System.Drawing.Size(173, 20);
+            this.AdditionalOptionsTextBox.Size = new System.Drawing.Size(213, 20);
             this.AdditionalOptionsTextBox.TabIndex = 5;
             // 
             // label1
@@ -138,11 +140,32 @@ namespace Bootstrapper
             this.label4.TabIndex = 9;
             this.label4.Text = "Additional Options";
             // 
+            // CustomUrlTextBox
+            // 
+            this.CustomUrlTextBox.Location = new System.Drawing.Point(146, 121);
+            this.CustomUrlTextBox.Name = "CustomUrlTextBox";
+            this.CustomUrlTextBox.Size = new System.Drawing.Size(213, 20);
+            this.CustomUrlTextBox.TabIndex = 10;
+            this.CustomUrlTextBox.Visible = false;
+            // 
+            // UseCustomUrlCheckbox
+            // 
+            this.UseCustomUrlCheckbox.AutoSize = true;
+            this.UseCustomUrlCheckbox.Location = new System.Drawing.Point(16, 124);
+            this.UseCustomUrlCheckbox.Name = "UseCustomUrlCheckbox";
+            this.UseCustomUrlCheckbox.Size = new System.Drawing.Size(86, 17);
+            this.UseCustomUrlCheckbox.TabIndex = 11;
+            this.UseCustomUrlCheckbox.Text = "Custom URL";
+            this.UseCustomUrlCheckbox.UseVisualStyleBackColor = true;
+            this.UseCustomUrlCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // ServerLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 151);
+            this.ClientSize = new System.Drawing.Size(371, 191);
+            this.Controls.Add(this.UseCustomUrlCheckbox);
+            this.Controls.Add(this.CustomUrlTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -172,5 +195,7 @@ namespace Bootstrapper
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox CustomUrlTextBox;
+        private System.Windows.Forms.CheckBox UseCustomUrlCheckbox;
     }
 }

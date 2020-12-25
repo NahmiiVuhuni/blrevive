@@ -27,9 +27,6 @@ namespace Bootstrapper
     class Config
     {
         public int LogLevel;
-        public int ClientStartupModuleCount;
-        public int ServerStartupModuleCount;
-        public int ClientStartupOffset;
         public int ServerStartupOffset;
         public string[] Maps;
         public string[] GameModes;
@@ -45,7 +42,7 @@ namespace Bootstrapper
         static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
         static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
         static string LogFileName = $"{LogFileDirectoryAbs}BLReviveLauncher.log";
-        static string[] ConfigFiles = { "LauncherConfig.json", "BLRevive.json" };
+        static string[] ConfigFiles = { "LauncherConfig.json"};
         static string LauncherConfigFile = $"{Directory.GetCurrentDirectory()}\\LauncherConfig.json";
 
         private static Config _Config = null;
@@ -112,30 +109,6 @@ namespace Bootstrapper
             if (serverProcess == null)
                 return null;
 
-            if (!WaitForClientStartupComplete(serverProcess, "POP"))
-            {
-                Log.Error("Server didn't startup in time!");
-
-                if (!serverProcess.HasExited)
-                    serverProcess.Kill();
-
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, serverProcess.Id, serverProcess.ExitCode);
-
-                return null;
-            }
-
-            /*Thread.Sleep(GetConfig().ServerStartupOffset);
-
-            if(LaunchInjector(serverProcess) == null)
-            {
-                Log.Error("Starting the Injector failed!");
-
-                if (!serverProcess.HasExited)
-                    serverProcess.Kill();
-
-                return null;
-            }*/
-
             Log.Information("Server succesfully started and patched!");
             return serverProcess;
         }
@@ -159,27 +132,6 @@ namespace Bootstrapper
                 Log.Debug("CLI: {0} {1}{2}", PatchedGameExe, IP, Options);
                 return null;
             }
-
-            if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
-            {
-                Log.Error("Client didn't startup in time!");
-
-                if (!clientProcess.HasExited)
-                    clientProcess.Kill();
-
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, clientProcess.Id, clientProcess.ExitCode);
-
-
-                return null;
-            }
-
-            /*Thread.Sleep(GetConfig().ClientStartupOffset);
-
-            if(LaunchInjector(clientProcess) == null)
-            {
-                Log.Error("Failed to launch Injector!");
-                return null;
-            }*/
 
             Log.Information("Client sucessfully started and patched!");
             return clientProcess;
@@ -229,62 +181,26 @@ namespace Bootstrapper
             string clientArgs = "?Name=Player";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
-            if (LaunchServer(serverArgs) != null && LaunchClient("127.0.0.1", clientArgs) != null)
-                Log.Information("Botgame has started!");
-            else
-                Log.Error("Failed to launch local botgame!");
+
+            if (LaunchServer(serverArgs) == null)
+            {
+                Log.Error("Failed to start server!");
+                Environment.Exit(1);
+            }
+
+            Log.Information("Started game server.");
+            Log.Debug("Waiting {0} seconds for server to start", GetConfig().ServerStartupOffset);
+            Thread.Sleep(GetConfig().ServerStartupOffset);
+
+
+            if (LaunchClient("127.0.0.1", clientArgs) == null)
+            {
+                Log.Error("Failed to start client!");
+            }
+
+            Log.Information("Botgame has started!");
 
             LaunchFinishedAction.Invoke();
-        }
-
-        private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 30000)
-        {
-            Log.Information("Start waiting for UE engine to initialize.");
-            Log.Debug("Proces: {0} | PID: {1} | Timeout: {2}", process.ProcessName, process.Id, durationTimeout);
-
-
-            try
-            {
-                int duration = 0;
-                while (true)
-                {
-                    process.Refresh();
-
-                    if (process.HasExited)
-                    {
-                        Log.Error("Process has exited unexpected!");
-                        return false;
-                    }
-
-                    if (duration >= durationTimeout)
-                    {
-                        Log.Error("Timeout exceeded while waiting for client startup");
-                        return false;
-                    }
-
-                    if(process.StartInfo.FileName.Contains("Server") && process.Modules.Count >= GetConfig().ServerStartupModuleCount)
-                    {
-                        Log.Information("Unreal Engine Server is initialized");
-                        Log.Debug("Took {0}ms to startup!", duration);
-                        return true;
-                    }else if(process.Modules.Count >= GetConfig().ClientStartupModuleCount)
-                    {
-                        Log.Information("Unreal Engine Client is initialized");
-                        Log.Debug("Took {0}ms to startup!", duration);
-                        return true;
-                    }
-
-                    Log.Verbose("({0}ms) MainWindowTitle: {1} | ModuleCount {2}", duration, process.MainWindowTitle, process.Modules.Count);
-
-                    duration += 100;
-                    Thread.Sleep(100);
-                }
-            } catch(Exception ex) 
-            {
-                Log.Error("Exception occured when waiting for UE to initialize!");
-                Log.Debug(ex.Message);
-                return false;
-            }
         }
 
         protected static bool CheckLogDirectory()
@@ -361,6 +277,7 @@ namespace Bootstrapper
 
         protected static bool StaticPatchGame(string GameFile)
         {
+            Log.Debug("Begin patching {0}", GameFile);
             try
             {
                 FileStream fs = File.OpenWrite(GameFile);
