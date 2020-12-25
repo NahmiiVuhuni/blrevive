@@ -1,7 +1,9 @@
 ﻿{
   "LogLevel":  1,
   "ServerStartupOffset": 0,
-  "ClientStartupOffset": 4000,
+  "ServerStartupModuleCount": 80,
+  "ClientStartupOffset": 2000,
+  "ClientStartupModuleCount":  100,
   "Maps": [
     "Centre",
     "Containment",

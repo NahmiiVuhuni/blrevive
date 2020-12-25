@@ -27,6 +27,8 @@ namespace Bootstrapper
     class Config
     {
         public int LogLevel;
+        public int ClientStartupModuleCount;
+        public int ServerStartupModuleCount;
         public int ClientStartupOffset;
         public int ServerStartupOffset;
         public string[] Maps;
@@ -189,7 +191,7 @@ namespace Bootstrapper
 
             try
             {
-                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
+                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} \"{Directory.GetCurrentDirectory()}\\Proxy.dll\"", false);
                 if (injectorProcess == null)
                 {
                     Log.Error("Failed to launch the injector.");
@@ -234,7 +236,7 @@ namespace Bootstrapper
             LaunchFinishedAction.Invoke();
         }
 
-        private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 20000)
+        private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 30000)
         {
             Log.Information("Start waiting for UE engine to initialize.");
             Log.Debug("Proces: {0} | PID: {1} | Timeout: {2}", process.ProcessName, process.Id, durationTimeout);
@@ -259,9 +261,14 @@ namespace Bootstrapper
                         return false;
                     }
 
-                    if(process.Modules.Count >= 100)
+                    if(process.StartInfo.FileName.Contains("Server") && process.Modules.Count >= GetConfig().ServerStartupModuleCount)
                     {
-                        Log.Information("Unreal Engine is initialized");
+                        Log.Information("Unreal Engine Server is initialized");
+                        Log.Debug("Took {0}ms to startup!", duration);
+                        return true;
+                    }else if(process.Modules.Count >= GetConfig().ClientStartupModuleCount)
+                    {
+                        Log.Information("Unreal Engine Client is initialized");
                         Log.Debug("Took {0}ms to startup!", duration);
                         return true;
                     }

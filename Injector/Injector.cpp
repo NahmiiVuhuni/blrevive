@@ -1,145 +1,279 @@
-// Injector.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
-//
-#include <iostream>
-#include <string>
-#include <ctype.h>
-#include <Windows.h>
-#include <tlhelp32.h>
-#include <Shlwapi.h>
+#include "Injector.h"
+/// [url]http://en.cppreference.com/w/cpp/header/codecvt[/url]
+#include <codecvt>
+/// [url]http://en.cppreference.com/w/cpp/header/fstream[/url]
+#include <fstream>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
-#include "Tools.h"
-
+#include <Windows.h>
+#include <Shlwapi.h>
+using namespace spdlog;
 //Library needed by Linker to check file existance
 #pragma comment(lib, "Shlwapi.lib")
 
-#define EXIT_MEMORY_WRITE_FAILED		1000
-#define EXIT_MEMORY_ALLOCATION_FAILED	1001
-#define EXIT_REMOTE_THREAD_FAILED		1002
-#define EXIT_CREATE_LOG_FAILED			1003
-#define EXIT_ARGS_MISSING				1004
-#define EXIT_DLL_NOT_FOUND				1005
-#define EXIT_PROCESS_NOT_FOUND			1006
-using ExitCode = int;
-
-using namespace std;
-
-int getProcID(const string& p_name);
-ExitCode InjectDLL(const int& pid, const string& DLL_Path);
-
 static std::shared_ptr<spdlog::logger> Log = NULL;
+
+
+inline std::string unicode_to_string(const std::wstring& unicode_string)
+{
+    static std::wstring_convert<
+        std::codecvt_utf8_utf16<int16_t>, int16_t
+    > conversion;
+    return conversion.to_bytes(reinterpret_cast<const int16_t*>(unicode_string.data()));
+}
+
+bool Injector::inject(const std::string& filename)
+{
+    return inject(m_processId, filename);
+}
+
+bool Injector::inject(const uint32_t pid, const std::string& filename)
+{
+    if (!m_loadLibrary) {
+        auto kernel32 = GetModuleHandleA("kernel32.dll");
+        if (!kernel32) {
+            return false;
+        }
+
+        m_loadLibrary = reinterpret_cast<uintptr_t>(GetProcAddress(kernel32, "LoadLibraryA"));
+        if (!m_loadLibrary) {
+            return false;
+        }
+    }
+
+    /// check if the file exists
+    std::fstream bin(filename, std::ios::in | std::ios_base::binary);
+    if (!bin) {
+        printf("invalid file\n");
+        return false;
+    }
+
+    /// check if the module is loaded
+    auto temp_name = filename;
+    const auto pos = temp_name.find_last_of("");
+    if (pos != std::string::npos) {
+        temp_name.erase(0, pos + 1);
+    }
+
+    if (parse_loaded_modules(pid).count(temp_name) != 0) {
+        return false;
+    }
+
+    HANDLE process_handle = nullptr;
+    void* data = nullptr;
+
+    auto safe_exit = [&process_handle, &data] {
+        if (process_handle) {
+            if (data) {
+                VirtualFreeEx(process_handle, data, 0, MEM_RELEASE);
+                data = nullptr;
+            }
+            CloseHandle(process_handle);
+            process_handle = nullptr;
+        }
+        return false;
+    };
+
+    /// try to open a process handle to the target process id
+    process_handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
+    if (process_handle == INVALID_HANDLE_VALUE) {
+        return safe_exit();
+    }
+
+    /// calculate the length of the filename which gets written
+    /// into the target process
+    const auto data_size = filename.length() + 1;
+    data = VirtualAllocEx(
+        process_handle,
+        nullptr,
+        static_cast<DWORD>(data_size),
+        MEM_RESERVE | MEM_COMMIT,
+        PAGE_READWRITE
+    );
+    if (!data) {
+        return safe_exit();
+    }
+
+    /// write the filename(absolute path) into the target process
+    if (!WriteProcessMemory(
+        process_handle,
+        data,
+        filename.data(),
+        data_size,
+        nullptr
+    )) {
+        return safe_exit();
+    }
+
+    /// create a thread in our target process and try to call
+    /// their LoadLibraryA
+    auto thread_handle = CreateRemoteThread(
+        process_handle,
+        nullptr,
+        0,
+        reinterpret_cast<LPTHREAD_START_ROUTINE>(m_loadLibrary),
+        data,
+        0,
+        nullptr
+    );
+    if (thread_handle == INVALID_HANDLE_VALUE) {
+        return safe_exit();
+    }
+
+    /// Wait unitl DllMain returns something
+    WaitForSingleObject(thread_handle, INFINITE);
+
+    /// free data
+    return !safe_exit();
+}
+
+bool Injector::parse_process_modules()
+{
+    m_loadedModules = parse_loaded_modules();
+    return !m_loadedModules.empty();
+}
+
+bool Injector::find_target_process(const std::string& process_name)
+{
+    for (const auto& kp : parse_running_proccesses()) {
+        if (!process_name.compare(kp.first)) {
+            m_processId = kp.second.th32ProcessID;
+            return true;
+        }
+    }
+    return false;
+}
+
+Injector::ModuleInfo Injector::parse_loaded_modules() const
+{
+    return std::move(parse_loaded_modules(m_processId));
+}
+
+void Injector::eject(const std::string& module_name)
+{
+    if (!m_loadedModules.count(module_name)) {
+        return;
+    }
+
+    auto& mod_data = m_loadedModules.at(module_name);
+    FreeLibrary(mod_data.hModule);
+
+    m_loadedModules.erase(module_name);
+
+    parse_process_modules();
+}
+
+Injector::ProcInfo Injector::parse_running_proccesses()
+{
+    auto snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snap == INVALID_HANDLE_VALUE) {
+        return {};
+    }
+
+    ProcInfo       proc_info;
+    PROCESSENTRY32 proc_entry = { sizeof(PROCESSENTRY32) };
+    if (!!Process32First(snap, &proc_entry)) {
+        do {
+            proc_info.insert(
+#ifdef _UNICODE
+                std::make_pair(unicode_to_string(proc_entry.szExeFile), proc_entry)
+#else
+                std::make_pair(proc_entry.szExeFile, proc_entry)
+#endif
+            );
+        } while (!!Process32Next(snap, &proc_entry));
+    }
+
+    CloseHandle(snap);
+
+    return std::move(proc_info);
+}
+
+Injector::ModuleInfo Injector::parse_loaded_modules(const uint32_t pid)
+{
+    if (!pid) {
+        return {};
+    }
+
+    auto snap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid);
+    if (snap == INVALID_HANDLE_VALUE) {
+        return {};
+    }
+
+    ModuleInfo     module_info;
+    MODULEENTRY32  module_entry = { sizeof(MODULEENTRY32) };
+    if (!!Module32First(snap, &module_entry)) {
+        do {
+            module_info.insert(
+#ifdef _UNICODE
+                std::make_pair(unicode_to_string(module_entry.szModule), module_entry)
+#else
+                std::make_pair(module_entry.szModule, module_entry)
+#endif
+            );
+        } while (!!Module32Next(snap, &module_entry));
+    }
+
+    CloseHandle(snap);
+
+    return std::move(module_info);
+}
+
+std::string Injector::get_directory_file_path(const std::string& file)
+{
+    char buffer[MAX_PATH + 1] = {};
+    GetCurrentDirectoryA(MAX_PATH + 1, buffer);
+
+    std::string directory(buffer);
+    directory.append("");
+
+    if (!file.empty()) {
+        directory.append(file);
+    }
+
+    return directory;
+}
 
 int main(int argc, char** argv)
 {
-	try {
-		Log = spdlog::basic_logger_mt("Injector", "..\\..\\FoxGame\\Logs\\Injector.log");
-		Log->set_level(spdlog::level::debug);
-	}
-	catch (const spdlog::spdlog_ex& ex) {
-		return EXIT_CREATE_LOG_FAILED;
-	}
+    try {
+        Log = spdlog::basic_logger_mt("Injector", "..\\..\\FoxGame\\Logs\\Injector.log");
+        Log->set_level(spdlog::level::debug);
+    }
+    catch (const spdlog::spdlog_ex& ex) {
+        //MessageBoxA(NULL, "Failed to initialize logger!", MB_OK, NULL);
+        return 1;
+    }
 
-	if (argc != 3)
-	{
-		Log->critical("Missing arguments ({0} should be {1})", argc, 3);
-		return EXIT_ARGS_MISSING;
-	}
-	if (PathFileExistsA(argv[2]) == FALSE)
-	{
-		Log->critical("Dll ({0}) was not found!", argv[2]);
-		return EXIT_DLL_NOT_FOUND;
-	}
+    Log->debug("Start injecting {0} into {1}", argv[1], argv[2]);
 
-	if (isdigit(argv[1][0]))
-	{
-		ExitCode result = InjectDLL(atoi(argv[1]), argv[2]);
-		if (result != 0)
-			return result;
+    Injector* inj = new Injector();
+    if (argc != 3)
+    {
+        Log->critical("Missing arguments ({0} should be {1})", argc, 3);
+        return 1;
+    }
+    if (PathFileExistsA(argv[2]) == FALSE)
+    {
+        Log->critical("Dll ({0}) was not found!", argv[2]);
+        return 1;
+    }
 
-	}
-	else {
-		ExitCode result = InjectDLL(getProcID(argv[1]), argv[2]);
-		if (result != 0)
-			return result;
-	}
+    if (isdigit(argv[1][0]))
+    {
+        if (!inj->inject(atoi(argv[1]), argv[2])) {
+            Log->critical("Injection failed!");
+            return 1;
+        }
+    }
+    else {
+        inj->find_target_process(argv[1]);
+        if (!inj->inject(argv[2])) {
+            Log->critical("Injection failed!");
+            return 1;
+        }
+    }
 
-
-	return EXIT_SUCCESS;
-}
-
-//-----------------------------------------------------------
-// Get Process ID by its name
-//-----------------------------------------------------------
-int getProcID(const string& p_name)
-{
-	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-	PROCESSENTRY32 structprocsnapshot = { 0 };
-
-	structprocsnapshot.dwSize = sizeof(PROCESSENTRY32);
-
-	if (snapshot == INVALID_HANDLE_VALUE)return 0;
-	if (Process32First(snapshot, &structprocsnapshot) == FALSE)return 0;
-
-	while (Process32Next(snapshot, &structprocsnapshot))
-	{
-		if (!strcmp(structprocsnapshot.szExeFile, p_name.c_str()))
-		{
-			CloseHandle(snapshot);
-			Log->debug("PID ({0}) found for {1}", structprocsnapshot.th32ProcessID, p_name);
-			return structprocsnapshot.th32ProcessID;
-		}
-	}
-	CloseHandle(snapshot);
-	Log->error("Process for {0} not found!", p_name);
-	return 0;
-
-}
-
-//-----------------------------------------------------------
-// Inject DLL to target process
-//-----------------------------------------------------------
-ExitCode InjectDLL(const int& pid, const string& DLL_Path)
-{
-	long dll_size = DLL_Path.length() + 1;
-	HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-
-	if (hProc == NULL)
-	{
-		Log->error("Failed to open process (PID: {0})", pid);
-		return EXIT_PROCESS_NOT_FOUND;
-	}
-	Log->debug("opening process {0}", pid);
-
-	LPVOID MyAlloc = VirtualAllocEx(hProc, NULL, dll_size, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
-	if (MyAlloc == NULL)
-	{
-		Log->error("Failed to allocate memory");
-		return EXIT_MEMORY_ALLOCATION_FAILED;
-	}
-
-	Log->debug("Allocating memory");
-	int IsWriteOK = WriteProcessMemory(hProc, MyAlloc, DLL_Path.c_str(), dll_size, 0);
-	if (IsWriteOK == 0)
-	{
-		Log->error("Failed to write memory");
-		return EXIT_MEMORY_WRITE_FAILED;
-	}
-	Log->debug("Creating Remote Thread in Target Process");
-
-	DWORD dWord;
-	LPTHREAD_START_ROUTINE addrLoadLibrary = (LPTHREAD_START_ROUTINE)GetProcAddress(LoadLibrary("kernel32"), "LoadLibraryA");
-	HANDLE ThreadReturn = CreateRemoteThread(hProc, NULL, 0, addrLoadLibrary, MyAlloc, 0, &dWord);
-	if (ThreadReturn == NULL)
-	{
-		Log->error("Failed to create remote thread");
-		return EXIT_REMOTE_THREAD_FAILED;
-	}
-
-	if ((hProc != NULL) && (MyAlloc != NULL) && (IsWriteOK != ERROR_INVALID_HANDLE) && (ThreadReturn != NULL))
-	{
-		Log->info("DLL ({0}) succesfully injected into {1}.", DLL_Path, pid);
-		return 0;
-	}
-
-	return EXIT_FAILURE;
+    Log->info("Injection succeeded!");
+    return 0;
 }
