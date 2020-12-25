@@ -39,6 +39,7 @@ namespace Bootstrapper
     {
         static string GameFile = "FoxGame-win32-Shipping";
         static string GameExe = $"{GameFile}.exe";
+        static string PatchedGameExe = $"{GameFile}-Patched.exe";
         static string ServerExe = $"{GameFile}-Server.exe";
         static string Injector = "Injector.exe";
         static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
@@ -123,7 +124,7 @@ namespace Bootstrapper
                 return null;
             }
 
-            Thread.Sleep(GetConfig().ServerStartupOffset);
+            /*Thread.Sleep(GetConfig().ServerStartupOffset);
 
             if(LaunchInjector(serverProcess) == null)
             {
@@ -133,7 +134,7 @@ namespace Bootstrapper
                     serverProcess.Kill();
 
                 return null;
-            }
+            }*/
 
             Log.Information("Server succesfully started and patched!");
             return serverProcess;
@@ -150,12 +151,12 @@ namespace Bootstrapper
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Options);
 
-            Process clientProcess = LaunchProcess(GameExe, $"{IP}{Options}");
+            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}{Options}");
 
             if(clientProcess == null)
             {
                 Log.Error("Failed to launch client!");
-                Log.Debug("CLI: {0} {1}{2}", GameExe, IP, Options);
+                Log.Debug("CLI: {0} {1}{2}", PatchedGameExe, IP, Options);
                 return null;
             }
 
@@ -172,13 +173,13 @@ namespace Bootstrapper
                 return null;
             }
 
-            Thread.Sleep(GetConfig().ClientStartupOffset);
+            /*Thread.Sleep(GetConfig().ClientStartupOffset);
 
             if(LaunchInjector(clientProcess) == null)
             {
                 Log.Error("Failed to launch Injector!");
                 return null;
-            }
+            }*/
 
             Log.Information("Client sucessfully started and patched!");
             return clientProcess;
@@ -358,20 +359,53 @@ namespace Bootstrapper
             return true;
         }
 
+        protected static bool StaticPatchGame(string GameFile)
+        {
+            try
+            {
+                FileStream fs = File.OpenWrite(GameFile);
+                UTF8Encoding utf8 = new UTF8Encoding();
+                BinaryWriter bw = new BinaryWriter(fs, utf8);
+
+                byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
+                bw.Seek(0xB38BA6, SeekOrigin.Begin);
+                bw.Write(patch);
+                bw.Close();
+                fs.Close();
+            } catch (Exception ex)
+            {
+                Log.Error("Failed to patch {0}", GameFile);
+                Log.Debug(ex.Message);
+                return false;
+            }
+            
+
+            Log.Information("Patched file {0}", GameFile);
+
+            return true;
+        }
+
         protected static bool CheckGameFiles()
         {
             try
             { 
-                if (!File.Exists(GameExe))
+                if(!File.Exists(PatchedGameExe))
                 {
-                    MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
-                    Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
-                    Environment.Exit(1);
+                    if(!File.Exists(GameExe))
+                    {
+                        MessageBox.Show("The original game file (FoxGame-win32-Shipping.exe) is missing!");
+                        Log.Fatal("{0} is missing", GameExe);
+                        Environment.Exit(1);
+                    }
+
+                    File.Copy(GameExe, PatchedGameExe);
+                    StaticPatchGame(PatchedGameExe);
+                    File.Copy(PatchedGameExe, ServerExe);
                 }
 
                 if (!File.Exists(ServerExe))
                 {
-                    File.Copy(GameExe, ServerExe);
+                    File.Copy(PatchedGameExe, ServerExe);
                 }
 
                 return true;
