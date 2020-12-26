@@ -37,7 +37,7 @@ namespace Bootstrapper
         static string GameFile = "FoxGame-win32-Shipping";
         static string GameExe = $"{GameFile}.exe";
         static string PatchedGameExe = $"{GameFile}-Patched.exe";
-        static string ServerExe = $"{GameFile}-Server.exe";
+        static string ServerExe = $"{GameFile}-Patched.exe";
         static string Injector = "Injector.exe";
         static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
         static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
@@ -317,14 +317,7 @@ namespace Bootstrapper
 
                     File.Copy(GameExe, PatchedGameExe);
                     StaticPatchGame(PatchedGameExe);
-                    File.Copy(PatchedGameExe, ServerExe);
                 }
-
-                if (!File.Exists(ServerExe))
-                {
-                    File.Copy(PatchedGameExe, ServerExe);
-                }
-
                 return true;
             } catch (Exception ex)
             {
@@ -332,6 +325,29 @@ namespace Bootstrapper
                 Log.Debug(ex.Message);
                 return false;
             }
+        }
+
+        protected static void StaticInjectDLL(string DllName, FileStream fs)
+        {
+            BinaryWriter Bin = new BinaryWriter(fs);
+            // write dll name into unused .data
+            Bin.Seek(0x14D17CC, SeekOrigin.Begin);
+            Bin.Write(Encoding.ASCII.GetBytes(DllName), 0, DllName.Length);
+
+            // calling loadlib from processevent
+            Bin.Seek(0xF7522B, SeekOrigin.Begin);
+
+            byte[] payload =
+            {
+                // pushad (save all registers on stack)
+                0x60,
+                // push 0x014c94d0 ("Proxy")
+                0x68, 0xD0, 0x94, 0x4c, 0x01,
+                // call loadlibrary
+                0xff, 0x15, 0x64, 0xe2, 0x49, 0x01,
+            };
+            Bin.Write(payload);
+            Bin.Close();
         }
 
         public static void Prepare()
@@ -352,6 +368,11 @@ namespace Bootstrapper
 
             if (!CheckGameFiles())
                 Environment.Exit(0);
+
+            File.Copy(PatchedGameExe, $"{GameFile}-Test.exe");
+            FileStream fs = new FileStream($"{GameFile}-Test.exe", FileMode.Open);
+            StaticInjectDLL("Proxy.dll", fs);
+            fs.Close();
         }
     }
 }
