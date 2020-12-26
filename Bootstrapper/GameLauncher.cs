@@ -330,6 +330,11 @@ namespace Bootstrapper
         protected static void StaticInjectDLL(string DllName, FileStream fs)
         {
             BinaryWriter Bin = new BinaryWriter(fs);
+
+            // disable aslr :)
+            Bin.Seek(0x1FE, SeekOrigin.Begin);
+            Bin.Write((byte)0x00);
+
             // write dll name into unused .data
             Bin.Seek(0x14D17CC, SeekOrigin.Begin);
             Bin.Write(Encoding.ASCII.GetBytes(DllName), 0, DllName.Length);
