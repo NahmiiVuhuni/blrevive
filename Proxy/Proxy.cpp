@@ -46,10 +46,10 @@ void __declspec(naked) hkProcessEvent()
 	{
 		XOR		EBX, [ECX + EAX * 4]			// overwritten instruction
 		PUSH	EAX								// save eax
-		/*MOV		EAX, DWORD PTR[EBP + 0x8]		// get decrypted function pointer
-		MOV		pDecryptedFunction, EAX
-		MOV		EAX, DWORD PTR[EBP + 0xC]		// get decrypted params pointer
-		MOV		pDecryptedParams, EAX*/
+		//MOV		EAX, DWORD PTR[EBP + 0x8]		// get decrypted function pointer
+		//MOV		pDecryptedFunction, EAX
+		//MOV		EAX, DWORD PTR[EBP + 0xC]		// get decrypted params pointer
+		//MOV		pDecryptedParams, EAX
 		MOV		pFunction, EDI					// get encrypted function pointer
 		MOV		pParams, EBX					// get encrypted params pointer
 		MOV		EAX, DWORD PTR[EBP - 0x20]
@@ -132,4 +132,3 @@ void BLRevive::Proxy::MakeJMP(BYTE* pAddress, DWORD dwJumpTo, DWORD dwLen)
 	VirtualProtect(pAddress, dwLen, dwOldProtect, &dwBkup);
 	return;
 }
-

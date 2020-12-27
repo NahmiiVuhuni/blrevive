@@ -56,8 +56,8 @@ BLRInfo BLInfo;*/
 #define pProcessEventMidHookEndReturn	0x46180B
 int	ProcessEventIndex = 67;
 
-#define pPEEncryptionBase				0x5508D6C
-#define pPEEncryptionIndex				0x542E93C
+#define pPEEncryptionBase				0x1908D6C
+#define pPEEncryptionIndex				0x182E93C
 
-#define GObjects						0x5523220
-#define GNames							0x55231F0
+#define GObjects						0x1923220
+#define GNames							0x19231F0

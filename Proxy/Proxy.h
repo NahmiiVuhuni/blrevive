@@ -24,4 +24,3 @@ namespace BLRevive
 		static Proxy* pInstance;
 	};
 }
-
