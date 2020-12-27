@@ -274,34 +274,6 @@ namespace Bootstrapper
 
             return true;
         }
-
-        protected static bool StaticPatchGame(string GameFile)
-        {
-            Log.Debug("Begin patching {0}", GameFile);
-            try
-            {
-                FileStream fs = File.OpenWrite(GameFile);
-                UTF8Encoding utf8 = new UTF8Encoding();
-                BinaryWriter bw = new BinaryWriter(fs, utf8);
-
-                byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
-                bw.Seek(0xB38BA6, SeekOrigin.Begin);
-                bw.Write(patch);
-                bw.Close();
-                fs.Close();
-            } catch (Exception ex)
-            {
-                Log.Error("Failed to patch {0}", GameFile);
-                Log.Debug(ex.Message);
-                return false;
-            }
-            
-
-            Log.Information("Patched file {0}", GameFile);
-
-            return true;
-        }
-
         protected static bool CheckGameFiles()
         {
             try
@@ -316,7 +288,9 @@ namespace Bootstrapper
                     }
 
                     File.Copy(GameExe, PatchedGameExe);
-                    StaticPatchGame(PatchedGameExe);
+                    FileStream patchedFile = new FileStream(PatchedGameExe, FileMode.Open);
+                    StaticInjectDLL(patchedFile);
+                    patchedFile.Close();
                 }
                 return true;
             } catch (Exception ex)
@@ -327,7 +301,7 @@ namespace Bootstrapper
             }
         }
 
-        protected static void StaticInjectDLL(string DllName, FileStream fs)
+        protected static void StaticInjectDLL(FileStream fs)
         {
             BinaryWriter Bin = new BinaryWriter(fs);
 
@@ -335,12 +309,13 @@ namespace Bootstrapper
             Bin.Seek(0x1FE, SeekOrigin.Begin);
             Bin.Write((byte)0x00);
 
-            // write dll name into unused .data
-            Bin.Seek(0x14D17CC, SeekOrigin.Begin);
-            Bin.Write(Encoding.ASCII.GetBytes(DllName), 0, DllName.Length);
+            // patch crash issue (setemblem patch)
+            byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
+            Bin.Seek(0xB38BA6, SeekOrigin.Begin);
+            Bin.Write(patch);
 
-            // calling loadlib from processevent
-            Bin.Seek(0xF7522B, SeekOrigin.Begin);
+            // calling loadlib from engine init
+            Bin.Seek(0x27C199, SeekOrigin.Begin);
 
             byte[] payload =
             {
@@ -350,6 +325,9 @@ namespace Bootstrapper
                 0x68, 0xD0, 0x94, 0x4c, 0x01,
                 // call loadlibrary
                 0xff, 0x15, 0x64, 0xe2, 0x49, 0x01,
+                0x61,
+                // restore original code
+                0x5F, 0x5E, 0x8B, 0xE5, 0x5D, 0xC2, 0x0C, 0x00
             };
             Bin.Write(payload);
             Bin.Close();
@@ -373,11 +351,6 @@ namespace Bootstrapper
 
             if (!CheckGameFiles())
                 Environment.Exit(0);
-
-            File.Copy(PatchedGameExe, $"{GameFile}-Test.exe");
-            FileStream fs = new FileStream($"{GameFile}-Test.exe", FileMode.Open);
-            StaticInjectDLL("Proxy.dll", fs);
-            fs.Close();
         }
     }
 }

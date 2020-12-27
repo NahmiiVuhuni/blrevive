@@ -37,8 +37,8 @@ DWORD pCaller = NULL;
 DWORD pFunction = NULL;
 DWORD pParams = NULL;
 
-static DWORD dwProcessEventReturn = BLInfo.ProcessEventMidHookReturn;
-static DWORD dwProcessEventSkip = BLInfo.ProcessEventMidHookEndReturn;
+static DWORD dwProcessEventReturn = (DWORD)pProcessEventMidHookReturn;
+static DWORD dwProcessEventSkip = (DWORD)pProcessEventMidHookEndReturn;
 
 void __declspec(naked) hkProcessEvent()
 {
@@ -104,7 +104,7 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 void BLRevive::Proxy::Initialize()
 {
 	LDebug("Initializing Proxy.");
-	MakeJMP((BYTE*)BLInfo.ProcessEventMidHook, (DWORD)hkProcessEvent, 0x5);
+	MakeJMP((BYTE*)pProcessEventMidHook, (DWORD)hkProcessEvent, 0x5);
 	pProcessEventWrapper = (tProcessEventWrapper)ProcessEventWrapper;
 	LDebug("Proxy initialized");
 }

@@ -8,7 +8,7 @@ std::list<Patch*> Patch::Patches = std::list<Patch*>();
 
 void BLRevive::Patch::Initialize()
 {
-	Patches.push_back(new BLRevive::Patches::SetEmblemPatch());
+	//Patches.push_back(new BLRevive::Patches::SetEmblemPatch());
 }
 
 bool BLRevive::Patch::ApplyAll()

@@ -18,7 +18,7 @@ typedef struct _ENCRYPTIONINDEX
 
 } ENCRYPTIONINDEX, * LPENCRYPTIONINDEX;
 
-struct MPtr
+/*struct MPtr
 {
 private:
 	DWORD mptr;
@@ -47,4 +47,17 @@ public:
 	DWORD GNames = MPtr(0x015231F0);
 };
 
-BLRInfo BLInfo;
+BLRInfo BLInfo;*/
+
+#define pBase							0x400000
+#define pProcessEvent					0x461530
+#define pProcessEventMidHook			0x461586
+#define pProcessEventMidHookReturn		0x46158D
+#define pProcessEventMidHookEndReturn	0x46180B
+int	ProcessEventIndex = 67;
+
+#define pPEEncryptionBase				0x5508D6C
+#define pPEEncryptionIndex				0x542E93C
+
+#define GObjects						0x5523220
+#define GNames							0x55231F0

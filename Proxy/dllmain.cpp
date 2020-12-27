@@ -1,8 +1,8 @@
 // dllmain.cpp : Definiert den Einstiegspunkt für die DLL-Anwendung.
 #include "pch.h"
 #include "Tools.h"
-#include "Proxy.h"
-#include "SetEmblemPatch.h"
+//#include "Proxy.h"
+//#include "SetEmblemPatch.h"
 #include "Config.h"
 
 void OnAttach()
@@ -10,9 +10,9 @@ void OnAttach()
     LInfo("Dll Injection succeeded.");
     LFlush;
 
-    BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
+    /*BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
     BLRevive::Patch::ApplyAll();
-    BLRevive::Proxy::GetInstance()->Initialize();
+    BLRevive::Proxy::GetInstance()->Initialize();*/
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
