@@ -37,7 +37,7 @@ namespace Bootstrapper
         static string GameFile = "FoxGame-win32-Shipping";
         static string GameExe = $"{GameFile}.exe";
         static string PatchedGameExe = $"{GameFile}-Patched.exe";
-        static string ServerExe = $"{GameFile}-Patched.exe";
+        static string ServerExe = $"{GameFile}-Patched-Server.exe";
         static string Injector = "Injector.exe";
         static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
         static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
@@ -277,21 +277,26 @@ namespace Bootstrapper
         protected static bool CheckGameFiles()
         {
             try
-            { 
-                if(!File.Exists(PatchedGameExe))
+            {
+                if (!File.Exists(GameExe))
                 {
-                    if(!File.Exists(GameExe))
-                    {
-                        MessageBox.Show("The original game file (FoxGame-win32-Shipping.exe) is missing!");
-                        Log.Fatal("{0} is missing", GameExe);
-                        Environment.Exit(1);
-                    }
-
-                    File.Copy(GameExe, PatchedGameExe);
-                    FileStream patchedFile = new FileStream(PatchedGameExe, FileMode.Open);
-                    StaticInjectDLL(patchedFile);
-                    patchedFile.Close();
+                    MessageBox.Show("The original game file (FoxGame-win32-Shipping.exe) is missing!");
+                    Log.Fatal("{0} is missing", GameExe);
+                    Environment.Exit(1);
                 }
+
+                if (File.Exists(PatchedGameExe))
+                    File.Delete(PatchedGameExe);
+
+                if (File.Exists(ServerExe))
+                    File.Delete(ServerExe);
+
+                File.Copy(GameExe, PatchedGameExe);
+                FileStream patchedFile = new FileStream(PatchedGameExe, FileMode.Open);
+                StaticInjectDLL(patchedFile);
+                patchedFile.Close();
+                File.Copy(PatchedGameExe, ServerExe);
+
                 return true;
             } catch (Exception ex)
             {

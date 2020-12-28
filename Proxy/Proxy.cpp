@@ -77,6 +77,7 @@ void __declspec(naked) hkProcessEvent()
 }
 #pragma endregion
 
+static AFoxPC* pAPC = NULL;
 bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 {
 	if (!pCaller) {
@@ -90,6 +91,24 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 		return false;
 	}
 
+	if (GetAsyncKeyState(VK_ADD) & 0x8000)
+	{
+		if (!pAPC)
+			pAPC = UObject::GetInstanceOf<AFoxAdmin>();
+
+		if (!pAPC) {
+			LError("AFoxPC not found");
+			LFlush;
+		}
+		else {
+			LDebug("Executing Command!");
+			LFlush;
+			//pAPC->LoginLocal();
+			FString result = pAPC->ConsoleCommand("help", false);
+			LDebug("Executed local login");
+			LFlush;
+		}
+	}
 
 	if (BLRevive::Proxy::LogProcessEventCalls)
 	{
@@ -100,6 +119,16 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 
 	return true;
 }
+
+#pragma region ProcessInternal/CallFunction
+typedef bool(*tProcessInternalWrapper)();
+
+
+
+
+#pragma endregion
+
+
 
 void BLRevive::Proxy::Initialize()
 {
