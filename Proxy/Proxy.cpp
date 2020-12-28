@@ -78,6 +78,10 @@ void __declspec(naked) hkProcessEvent()
 #pragma endregion
 
 static AFoxPC* pAPC = NULL;
+static UFoxUI* pUI = NULL;
+static UConsole* pConsole = NULL;
+static UEngine* pEngine = NULL;
+static ULocalPlayer* pLocalPlayer = NULL;
 bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 {
 	if (!pCaller) {
@@ -91,32 +95,69 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 		return false;
 	}
 
-	if (GetAsyncKeyState(VK_ADD) & 0x8000)
-	{
-		if (!pAPC)
-			pAPC = UObject::GetInstanceOf<AFoxAdmin>();
-
-		if (!pAPC) {
-			LError("AFoxPC not found");
-			LFlush;
-		}
-		else {
-			LDebug("Executing Command!");
-			LFlush;
-			//pAPC->LoginLocal();
-			FString result = pAPC->ConsoleCommand("help", false);
-			LDebug("Executed local login");
-			LFlush;
-		}
-	}
-
-	if (BLRevive::Proxy::LogProcessEventCalls)
-	{
+	try {
 		std::string callerName(pCaller->GetName());
 		std::string functionName(pFunction->GetName());
-		LDebug("{0}->{1}({2:x})", callerName, functionName, (DWORD)pParams);
-	}
+		/*if (callerName == "FoxGameViewportClient" && functionName == "PostRender")
+		{
+			UGameViewportClient_eventPostRender_Parms* parms = reinterpret_cast<UGameViewportClient_eventPostRender_Parms*>(pParams);
+			SHORT addKeyState = GetAsyncKeyState(VK_ADD);
 
+			if (addKeyState & 0x8000 && addKeyState & 1 == 1)
+			{
+
+				 // Working console command!
+
+				if (!pAPC)
+					pAPC = UObject::GetInstanceOf<AFoxPC>();
+
+				if (!pAPC) {
+					LError("AFoxPC not found");
+					LFlush;
+				}
+				else {
+					FString result = pAPC->ConsoleCommand("/help", false);
+					LDebug("Result: {0}", result.ToChar());
+					LFlush;
+				}
+
+			}
+		}*/
+		if (callerName == "FoxChatUI" && functionName == "SubmitChat")
+		{
+			UFoxChatUI_execSubmitChat_Parms* parms = reinterpret_cast<UFoxChatUI_execSubmitChat_Parms*>(pParams);
+			std::string messageText(parms->MessageText.ToChar());
+
+			if (messageText[0] == '!')
+			{
+				auto command = messageText.substr(1, messageText.length());
+
+				if (!pAPC)
+					pAPC = UObject::GetInstanceOf<AFoxPC>();
+
+				FString result = pAPC->ConsoleCommand(FString(command.c_str()), false);
+				LDebug("{0}: {1}", command, result.ToChar());
+				LFlush;
+				UFoxChatUI* chat = reinterpret_cast<UFoxChatUI*>(pCaller);
+				chat->AddNewChatMessage(result);
+				return true;
+			}
+		}
+
+
+		if (BLRevive::Proxy::LogProcessEventCalls)
+		{
+			LDebug("{0}->{1}({2:x})", callerName, functionName, (DWORD)pParams);
+			LFlush;
+		}
+
+
+	}
+	catch (const int ex) {
+		LError("Error {0}", ex);
+		LFlush;
+	}
+	
 	return true;
 }
 
