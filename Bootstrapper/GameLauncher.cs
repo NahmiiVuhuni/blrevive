@@ -113,9 +113,9 @@ namespace Bootstrapper
             return serverProcess;
         }
 
-        public static Process LaunchServer(string Map, string GameMode, int BotCount, string additionalArgs)
+        public static Process LaunchServer(string Map, string GameMode, int BotCount, int MaxPlayers, string additionalArgs)
         {
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}{additionalArgs}";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
             return LaunchServer(args);
         }
 
@@ -173,11 +173,11 @@ namespace Bootstrapper
             }
         }
 
-        public static void LaunchBotgame(string Map, string GameMode, Action LaunchFinishedAction)
+        public static void LaunchBotgame(string Map, string GameMode, int BotCount, Action LaunchFinishedAction)
         {
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
-            string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots=10";
+            string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
             string clientArgs = "?Name=Player";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
