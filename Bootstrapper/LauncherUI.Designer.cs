@@ -43,7 +43,7 @@ namespace Bootstrapper
             this.ClientCustomURLCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientLaunchOptionsLable = new System.Windows.Forms.Label();
             this.ClientPlayerNameLabel = new System.Windows.Forms.Label();
-            this.ClientSeverIPLable = new System.Windows.Forms.Label();
+            this.ClientServerIPLable = new System.Windows.Forms.Label();
             this.ClientLaunchButton = new System.Windows.Forms.Button();
             this.ClientLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
             this.ClientPlayerNameTextBox = new System.Windows.Forms.TextBox();
@@ -188,7 +188,7 @@ namespace Bootstrapper
             this.ClientTab.Controls.Add(this.ClientCustomURLCheckBox);
             this.ClientTab.Controls.Add(this.ClientLaunchOptionsLable);
             this.ClientTab.Controls.Add(this.ClientPlayerNameLabel);
-            this.ClientTab.Controls.Add(this.ClientSeverIPLable);
+            this.ClientTab.Controls.Add(this.ClientServerIPLable);
             this.ClientTab.Controls.Add(this.ClientLaunchButton);
             this.ClientTab.Controls.Add(this.ClientLaunchOptionsTextBox);
             this.ClientTab.Controls.Add(this.ClientPlayerNameTextBox);
@@ -238,14 +238,14 @@ namespace Bootstrapper
             this.ClientPlayerNameLabel.TabIndex = 18;
             this.ClientPlayerNameLabel.Text = "Player Name";
             // 
-            // ClientSeverIPLable
+            // ClientServerIPLable
             // 
-            this.ClientSeverIPLable.AutoSize = true;
-            this.ClientSeverIPLable.Location = new System.Drawing.Point(71, 62);
-            this.ClientSeverIPLable.Name = "ClientSeverIPLable";
-            this.ClientSeverIPLable.Size = new System.Drawing.Size(79, 13);
-            this.ClientSeverIPLable.TabIndex = 17;
-            this.ClientSeverIPLable.Text = "Server Address";
+            this.ClientServerIPLable.AutoSize = true;
+            this.ClientServerIPLable.Location = new System.Drawing.Point(71, 62);
+            this.ClientServerIPLable.Name = "ClientServerIPLable";
+            this.ClientServerIPLable.Size = new System.Drawing.Size(79, 13);
+            this.ClientServerIPLable.TabIndex = 17;
+            this.ClientServerIPLable.Text = "Server Address";
             // 
             // ClientLaunchButton
             // 
@@ -489,7 +489,7 @@ namespace Bootstrapper
         private System.Windows.Forms.CheckBox ClientCustomURLCheckBox;
         private System.Windows.Forms.Label ClientLaunchOptionsLable;
         private System.Windows.Forms.Label ClientPlayerNameLabel;
-        private System.Windows.Forms.Label ClientSeverIPLable;
+        private System.Windows.Forms.Label ClientServerIPLable;
         private System.Windows.Forms.Button ClientLaunchButton;
         private System.Windows.Forms.TextBox ClientLaunchOptionsTextBox;
         private System.Windows.Forms.TextBox ClientPlayerNameTextBox;

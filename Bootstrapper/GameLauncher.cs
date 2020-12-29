@@ -28,8 +28,9 @@ namespace Bootstrapper
     {
         public int LogLevel;
         public int ServerStartupOffset;
+        public string Username;
         public string[] Maps;
-        public string[] GameModes;
+        public string[] Gamemodes;
     }
 
     class GameLauncher
@@ -66,7 +67,7 @@ namespace Bootstrapper
 
         protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
         {
-            Log.Debug("Launchung process {0} \"{1}\"", FileName, Args);
+            Log.Debug("Launching process {0} \"{1}\"", FileName, Args);
 
             try
             {
@@ -178,7 +179,7 @@ namespace Bootstrapper
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
             string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
-            string clientArgs = "?Name=Player";
+            string clientArgs = $"?Name={GetConfig().Username}";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
 

@@ -1,6 +1,7 @@
 ﻿{
   "LogLevel":  1,
   "ServerStartupOffset": 5000,
+  "Username": "Player",
   "Maps": [
     "Centre",
     "Containment",
@@ -24,7 +25,7 @@
     "Vertigo",
     "Vortex"
   ],
-  "GameModes": [
+  "Gamemodes": [
     "DM",
     "TDM",
     "CP",

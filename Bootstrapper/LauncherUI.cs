@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,8 @@ namespace Bootstrapper
 
         private void ClientLaunchButton_Click(object sender, EventArgs e)
         {
+            WriteUsername(ClientPlayerNameTextBox.Text);
+
             if (ClientCustomURLCheckBox.Checked)
             {
                 GameLauncher.LaunchClient("", ClientCustomURLTextBox.Text);
@@ -62,18 +66,28 @@ namespace Bootstrapper
         }
         private void LauncherUI_Load(object sender, EventArgs e)
         {
-            BGGamemodesCombo.DataSource = GameLauncher.GetConfig().GameModes;
+            BGGamemodesCombo.DataSource = GameLauncher.GetConfig().Gamemodes;
             BGGamemodesCombo.SelectedIndex = 1;
             BGMapsCombo.DataSource = GameLauncher.GetConfig().Maps;
             BGMapsCombo.SelectedIndex = 9;
             BGBotCountNum.Value = 10;
 
-            ServerGamemodesCombo.DataSource = GameLauncher.GetConfig().GameModes;
+            ClientPlayerNameTextBox.Text = GameLauncher.GetConfig().Username;
+
+            ServerGamemodesCombo.DataSource = GameLauncher.GetConfig().Gamemodes;
             ServerGamemodesCombo.SelectedIndex = 1;
             ServerMapsCombo.DataSource = GameLauncher.GetConfig().Maps;
             ServerMapsCombo.SelectedIndex = 9;
             ServerBotCountNum.Value = 10;
             ServerPlayerCountNum.Value = 16;
+        }
+
+        private void WriteUsername(string Username)
+        {
+            Config LauncherConfig = GameLauncher.GetConfig();
+            LauncherConfig.Username = Username;
+            string output = JsonConvert.SerializeObject(LauncherConfig, Formatting.Indented);
+            File.WriteAllText("LauncherConfig.json", output);
         }
     }
 }
