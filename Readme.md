@@ -62,9 +62,7 @@ Just request access to the repo and read the sources below.
 
 **Read before contributing**:
 
-- [contribution guidelines]()
-- [code style]()
-- [developer documentation]()
+- [contribution guidelines](-/wikis/code-contribution)
 
 
 
