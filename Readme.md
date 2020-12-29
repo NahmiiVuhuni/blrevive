@@ -62,7 +62,7 @@ Just request access to the repo and read the sources below.
 
 **Read before contributing**:
 
-- [contribution guidelines](-/wikis/code-contribution)
+- [contribution guidelines](https://gitlab.com/blrevive/blrevive/-/wikis/code-contribution)
 
 
 
