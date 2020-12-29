@@ -18,7 +18,7 @@ namespace Bootstrapper
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LauncherEntry());
+            Application.Run(new LauncherUI());
         }
     }
 }
