@@ -31,20 +31,26 @@ namespace Bootstrapper
         {
             this.GameModesCombo = new System.Windows.Forms.ComboBox();
             this.MapsCombo = new System.Windows.Forms.ComboBox();
-            this.BotCountCombo = new System.Windows.Forms.ComboBox();
+            this.BotCountNum = new System.Windows.Forms.NumericUpDown();
             this.LaunchButton = new System.Windows.Forms.Button();
             this.AdditionalOptionsTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.CustomUrlTextBox = new System.Windows.Forms.TextBox();
+            this.UseCustomUrlCheckbox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PlayerCountNum = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.BotCountNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerCountNum)).BeginInit();
             this.SuspendLayout();
             // 
             // GameModesCombo
             // 
             this.GameModesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameModesCombo.FormattingEnabled = true;
-            this.GameModesCombo.Location = new System.Drawing.Point(174, 12);
+            this.GameModesCombo.Location = new System.Drawing.Point(238, 12);
             this.GameModesCombo.Name = "GameModesCombo";
             this.GameModesCombo.Size = new System.Drawing.Size(121, 21);
             this.GameModesCombo.TabIndex = 0;
@@ -53,41 +59,26 @@ namespace Bootstrapper
             // 
             this.MapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MapsCombo.FormattingEnabled = true;
-            this.MapsCombo.Location = new System.Drawing.Point(174, 39);
+            this.MapsCombo.Location = new System.Drawing.Point(238, 39);
             this.MapsCombo.Name = "MapsCombo";
             this.MapsCombo.Size = new System.Drawing.Size(121, 21);
             this.MapsCombo.TabIndex = 1;
             // 
-            // BotCountCombo
+            // BotCountNum
             // 
-            this.BotCountCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BotCountCombo.FormattingEnabled = true;
-            this.BotCountCombo.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16"});
-            this.BotCountCombo.Location = new System.Drawing.Point(174, 66);
-            this.BotCountCombo.Name = "BotCountCombo";
-            this.BotCountCombo.Size = new System.Drawing.Size(121, 21);
-            this.BotCountCombo.TabIndex = 2;
+            this.BotCountNum.Location = new System.Drawing.Point(238, 92);
+            this.BotCountNum.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.BotCountNum.Name = "BotCountNum";
+            this.BotCountNum.Size = new System.Drawing.Size(121, 20);
+            this.BotCountNum.TabIndex = 2;
             // 
             // LaunchButton
             // 
-            this.LaunchButton.Location = new System.Drawing.Point(122, 120);
+            this.LaunchButton.Location = new System.Drawing.Point(146, 180);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(75, 23);
             this.LaunchButton.TabIndex = 4;
@@ -97,9 +88,9 @@ namespace Bootstrapper
             // 
             // AdditionalOptionsTextBox
             // 
-            this.AdditionalOptionsTextBox.Location = new System.Drawing.Point(122, 94);
+            this.AdditionalOptionsTextBox.Location = new System.Drawing.Point(146, 118);
             this.AdditionalOptionsTextBox.Name = "AdditionalOptionsTextBox";
-            this.AdditionalOptionsTextBox.Size = new System.Drawing.Size(173, 20);
+            this.AdditionalOptionsTextBox.Size = new System.Drawing.Size(213, 20);
             this.AdditionalOptionsTextBox.TabIndex = 5;
             // 
             // label1
@@ -123,7 +114,7 @@ namespace Bootstrapper
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 69);
+            this.label3.Location = new System.Drawing.Point(14, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 8;
@@ -132,30 +123,76 @@ namespace Bootstrapper
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 97);
+            this.label4.Location = new System.Drawing.Point(14, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Additional Options";
             // 
+            // CustomUrlTextBox
+            // 
+            this.CustomUrlTextBox.Location = new System.Drawing.Point(146, 144);
+            this.CustomUrlTextBox.Name = "CustomUrlTextBox";
+            this.CustomUrlTextBox.Size = new System.Drawing.Size(213, 20);
+            this.CustomUrlTextBox.TabIndex = 10;
+            this.CustomUrlTextBox.Visible = false;
+            // 
+            // UseCustomUrlCheckbox
+            // 
+            this.UseCustomUrlCheckbox.AutoSize = true;
+            this.UseCustomUrlCheckbox.Location = new System.Drawing.Point(16, 146);
+            this.UseCustomUrlCheckbox.Name = "UseCustomUrlCheckbox";
+            this.UseCustomUrlCheckbox.Size = new System.Drawing.Size(86, 17);
+            this.UseCustomUrlCheckbox.TabIndex = 11;
+            this.UseCustomUrlCheckbox.Text = "Custom URL";
+            this.UseCustomUrlCheckbox.UseVisualStyleBackColor = true;
+            this.UseCustomUrlCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Max Players";
+            // 
+            // PlayerCountNum
+            // 
+            this.PlayerCountNum.Location = new System.Drawing.Point(238, 66);
+            this.PlayerCountNum.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.PlayerCountNum.Name = "PlayerCountNum";
+            this.PlayerCountNum.Size = new System.Drawing.Size(121, 20);
+            this.PlayerCountNum.TabIndex = 13;
+            // 
             // ServerLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 151);
+            this.ClientSize = new System.Drawing.Size(372, 215);
+            this.Controls.Add(this.PlayerCountNum);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.UseCustomUrlCheckbox);
+            this.Controls.Add(this.CustomUrlTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AdditionalOptionsTextBox);
             this.Controls.Add(this.LaunchButton);
-            this.Controls.Add(this.BotCountCombo);
+            this.Controls.Add(this.BotCountNum);
             this.Controls.Add(this.MapsCombo);
             this.Controls.Add(this.GameModesCombo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ServerLauncher";
             this.Text = "BLRevive Launcher - Server";
             this.Load += new System.EventHandler(this.ServerLauncher_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.BotCountNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerCountNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,12 +202,16 @@ namespace Bootstrapper
 
         private System.Windows.Forms.ComboBox GameModesCombo;
         private System.Windows.Forms.ComboBox MapsCombo;
-        private System.Windows.Forms.ComboBox BotCountCombo;
+        private System.Windows.Forms.NumericUpDown BotCountNum;
+        private System.Windows.Forms.NumericUpDown PlayerCountNum;
         private System.Windows.Forms.Button LaunchButton;
         private System.Windows.Forms.TextBox AdditionalOptionsTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox CustomUrlTextBox;
+        private System.Windows.Forms.CheckBox UseCustomUrlCheckbox;
+        private System.Windows.Forms.Label label5;
     }
 }

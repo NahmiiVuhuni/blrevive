@@ -58,7 +58,7 @@ namespace Bootstrapper
 
         private void Bl_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Show();
+            Environment.Exit(0);
         }
     }
 }

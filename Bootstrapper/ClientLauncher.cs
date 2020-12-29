@@ -36,5 +36,10 @@ namespace Bootstrapper
                 GameLauncher.LaunchClient(IPTextBox.Text, options);
             }
         }
+
+        private void ClientLauncher_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

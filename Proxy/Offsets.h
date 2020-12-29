@@ -2,6 +2,9 @@
 #include <Windows.h>
 #include "Tools.h"
 
+/// <summary>
+/// Contains data for ProcessEvent's XOR base.
+/// </summary>
 typedef struct _ENCRYPTIONBASE
 {
 	PDWORD pPParamsBase;
@@ -10,6 +13,9 @@ typedef struct _ENCRYPTIONBASE
 
 } ENCRYPTIONBASE, * LPENCRYPTIONBASE;
 
+/// <summary>
+/// Contains data for ProcessEvent's XOR index.
+/// </summary>
 typedef struct _ENCRYPTIONINDEX
 {
 	DWORD PParamsIndex;
@@ -18,33 +24,15 @@ typedef struct _ENCRYPTIONINDEX
 
 } ENCRYPTIONINDEX, * LPENCRYPTIONINDEX;
 
-struct MPtr
-{
-private:
-	DWORD mptr;
-public:
-	MPtr(DWORD ptr)
-	{
-		this->mptr = (DWORD)GetModuleHandleA(BLRevive::Tools::GetExecFileName().c_str()) + ptr;
-	}
+#define pBase							0x400000
+#define pProcessEvent					0x461530
+#define pProcessEventMidHook			0x461586
+#define pProcessEventMidHookReturn		0x46158D
+#define pProcessEventMidHookEndReturn	0x46180B
+int	ProcessEventIndex = 67;
 
-	operator DWORD() const { return this->mptr; }
-};
+#define pPEEncryptionBase				0x1908D6C
+#define pPEEncryptionIndex				0x182E93C
 
-struct BLRInfo
-{
-public:
-	DWORD ProcessEvent = MPtr(0x61530);
-	DWORD ProcessEventMidHook = MPtr(0x61586);
-	DWORD ProcessEventMidHookReturn = MPtr(0x6158D);
-	DWORD ProcessEventMidHookEndReturn = MPtr(0x6180B);
-	int	ProcessEventIndex = 67;
-
-	DWORD PEEncryptionBase = MPtr(0x1508D6C);
-	DWORD PEEncryptionIndex = MPtr(0x142E93C);
-
-	DWORD GObjects = MPtr(0x01523220);
-	DWORD GNames = MPtr(0x015231F0);
-};
-
-BLRInfo BLInfo;
+#define GObjects						0x1923220
+#define GNames							0x19231F0

@@ -24,7 +24,7 @@ namespace Bootstrapper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GameLauncher.LaunchBotgame((string)MapsCombo.SelectedItem, (string)GameModesCombo.SelectedItem, () => this.Close());
+            GameLauncher.LaunchBotgame((string)MapsCombo.SelectedItem, (string)GameModesCombo.SelectedItem, (int)BotCountNum.Value, () => this.Close());
         }
 
         private void BotgameLauncher_Load(object sender, EventArgs e)
@@ -33,6 +33,7 @@ namespace Bootstrapper
             GameModesCombo.SelectedIndex = 1;
             MapsCombo.DataSource = GameLauncher.GetConfig().Maps;
             MapsCombo.SelectedIndex = 9;
+            BotCountNum.Value = 10;
         }
     }
 }

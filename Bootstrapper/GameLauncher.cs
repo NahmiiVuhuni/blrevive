@@ -27,7 +27,6 @@ namespace Bootstrapper
     class Config
     {
         public int LogLevel;
-        public int ClientStartupOffset;
         public int ServerStartupOffset;
         public string[] Maps;
         public string[] GameModes;
@@ -37,12 +36,13 @@ namespace Bootstrapper
     {
         static string GameFile = "FoxGame-win32-Shipping";
         static string GameExe = $"{GameFile}.exe";
-        static string ServerExe = $"{GameFile}-Server.exe";
+        static string PatchedGameExe = $"{GameFile}-Patched.exe";
+        static string ServerExe = $"{GameFile}-Patched-Server.exe";
         static string Injector = "Injector.exe";
         static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
         static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
         static string LogFileName = $"{LogFileDirectoryAbs}BLReviveLauncher.log";
-        static string[] ConfigFiles = { "LauncherConfig.json", "BLRevive.json" };
+        static string[] ConfigFiles = { "LauncherConfig.json"};
         static string LauncherConfigFile = $"{Directory.GetCurrentDirectory()}\\LauncherConfig.json";
 
         private static Config _Config = null;
@@ -109,37 +109,13 @@ namespace Bootstrapper
             if (serverProcess == null)
                 return null;
 
-            if (!WaitForClientStartupComplete(serverProcess, "POP"))
-            {
-                Log.Error("Server didn't startup in time!");
-
-                if (!serverProcess.HasExited)
-                    serverProcess.Kill();
-
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, serverProcess.Id, serverProcess.ExitCode);
-
-                return null;
-            }
-
-            Thread.Sleep(GetConfig().ServerStartupOffset);
-
-            if(LaunchInjector(serverProcess) == null)
-            {
-                Log.Error("Starting the Injector failed!");
-
-                if (!serverProcess.HasExited)
-                    serverProcess.Kill();
-
-                return null;
-            }
-
             Log.Information("Server succesfully started and patched!");
             return serverProcess;
         }
 
-        public static Process LaunchServer(string Map, string GameMode, int BotCount, string additionalArgs)
+        public static Process LaunchServer(string Map, string GameMode, int BotCount, int MaxPlayers, string additionalArgs)
         {
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}{additionalArgs}";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
             return LaunchServer(args);
         }
 
@@ -148,33 +124,12 @@ namespace Bootstrapper
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Options);
 
-            Process clientProcess = LaunchProcess(GameExe, $"{IP}{Options}");
+            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}{Options}");
 
             if(clientProcess == null)
             {
                 Log.Error("Failed to launch client!");
-                Log.Debug("CLI: {0} {1}{2}", GameExe, IP, Options);
-                return null;
-            }
-
-            if (!WaitForClientStartupComplete(clientProcess, "Blacklight: Retribution"))
-            {
-                Log.Error("Client didn't startup in time!");
-
-                if (!clientProcess.HasExited)
-                    clientProcess.Kill();
-
-                Log.Debug("Timeout: {0} | PID: {1} | ExitCode: {2}", 20000, clientProcess.Id, clientProcess.ExitCode);
-
-
-                return null;
-            }
-
-            Thread.Sleep(GetConfig().ClientStartupOffset);
-
-            if(LaunchInjector(clientProcess) == null)
-            {
-                Log.Error("Failed to launch Injector!");
+                Log.Debug("CLI: {0} {1}{2}", PatchedGameExe, IP, Options);
                 return null;
             }
 
@@ -189,7 +144,7 @@ namespace Bootstrapper
 
             try
             {
-                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} Proxy.dll", false);
+                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} \"{Directory.GetCurrentDirectory()}\\Proxy.dll\"", false);
                 if (injectorProcess == null)
                 {
                     Log.Error("Failed to launch the injector.");
@@ -218,65 +173,34 @@ namespace Bootstrapper
             }
         }
 
-        public static void LaunchBotgame(string Map, string GameMode, Action LaunchFinishedAction)
+        public static void LaunchBotgame(string Map, string GameMode, int BotCount, Action LaunchFinishedAction)
         {
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
-            string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots=10";
+            string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
             string clientArgs = "?Name=Player";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
-            if (LaunchServer(serverArgs) != null && LaunchClient("127.0.0.1", clientArgs) != null)
-                Log.Information("Botgame has started!");
-            else
-                Log.Error("Failed to launch local botgame!");
+
+            if (LaunchServer(serverArgs) == null)
+            {
+                Log.Error("Failed to start server!");
+                Environment.Exit(1);
+            }
+
+            Log.Information("Started game server.");
+            Log.Debug("Waiting {0} seconds for server to start", GetConfig().ServerStartupOffset);
+            Thread.Sleep(GetConfig().ServerStartupOffset);
+
+
+            if (LaunchClient("127.0.0.1", clientArgs) == null)
+            {
+                Log.Error("Failed to start client!");
+            }
+
+            Log.Information("Botgame has started!");
 
             LaunchFinishedAction.Invoke();
-        }
-
-        private static bool WaitForClientStartupComplete(Process process, string title, int durationTimeout = 20000)
-        {
-            Log.Information("Start waiting for UE engine to initialize.");
-            Log.Debug("Proces: {0} | PID: {1} | Timeout: {2}", process.ProcessName, process.Id, durationTimeout);
-
-
-            try
-            {
-                int duration = 0;
-                while (true)
-                {
-                    process.Refresh();
-
-                    if (process.HasExited)
-                    {
-                        Log.Error("Process has exited unexpected!");
-                        return false;
-                    }
-
-                    if (duration >= durationTimeout)
-                    {
-                        Log.Error("Timeout exceeded while waiting for client startup");
-                        return false;
-                    }
-
-                    if(process.Modules.Count >= 100)
-                    {
-                        Log.Information("Unreal Engine is initialized");
-                        Log.Debug("Took {0}ms to startup!", duration);
-                        return true;
-                    }
-
-                    Log.Verbose("({0}ms) MainWindowTitle: {1} | ModuleCount {2}", duration, process.MainWindowTitle, process.Modules.Count);
-
-                    duration += 100;
-                    Thread.Sleep(100);
-                }
-            } catch(Exception ex) 
-            {
-                Log.Error("Exception occured when waiting for UE to initialize!");
-                Log.Debug(ex.Message);
-                return false;
-            }
         }
 
         protected static bool CheckLogDirectory()
@@ -350,22 +274,28 @@ namespace Bootstrapper
 
             return true;
         }
-
         protected static bool CheckGameFiles()
         {
             try
-            { 
+            {
                 if (!File.Exists(GameExe))
                 {
-                    MessageBox.Show("FoxGame-win32-Shipping.exe is missing! Make sure you extracted all files in the correct directory!");
-                    Log.Fatal("FoxGame-win32-Shipping.exe is missing!");
+                    MessageBox.Show("The original game file (FoxGame-win32-Shipping.exe) is missing!");
+                    Log.Fatal("{0} is missing", GameExe);
                     Environment.Exit(1);
                 }
 
-                if (!File.Exists(ServerExe))
-                {
-                    File.Copy(GameExe, ServerExe);
-                }
+                if (File.Exists(PatchedGameExe))
+                    File.Delete(PatchedGameExe);
+
+                if (File.Exists(ServerExe))
+                    File.Delete(ServerExe);
+
+                File.Copy(GameExe, PatchedGameExe);
+                FileStream patchedFile = new FileStream(PatchedGameExe, FileMode.Open);
+                StaticInjectDLL(patchedFile);
+                patchedFile.Close();
+                File.Copy(PatchedGameExe, ServerExe);
 
                 return true;
             } catch (Exception ex)
@@ -374,6 +304,38 @@ namespace Bootstrapper
                 Log.Debug(ex.Message);
                 return false;
             }
+        }
+
+        protected static void StaticInjectDLL(FileStream fs)
+        {
+            BinaryWriter Bin = new BinaryWriter(fs);
+
+            // disable aslr :)
+            Bin.Seek(0x1FE, SeekOrigin.Begin);
+            Bin.Write((byte)0x00);
+
+            // patch crash issue (setemblem patch)
+            byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
+            Bin.Seek(0xB38BA6, SeekOrigin.Begin);
+            Bin.Write(patch);
+
+            // calling loadlib from engine init
+            Bin.Seek(0x27C199, SeekOrigin.Begin);
+
+            byte[] payload =
+            {
+                // pushad (save all registers on stack)
+                0x60,
+                // push 0x014c94d0 ("Proxy")
+                0x68, 0xD0, 0x94, 0x4c, 0x01,
+                // call loadlibrary
+                0xff, 0x15, 0x64, 0xe2, 0x49, 0x01,
+                0x61,
+                // restore original code
+                0x5F, 0x5E, 0x8B, 0xE5, 0x5D, 0xC2, 0x0C, 0x00
+            };
+            Bin.Write(payload);
+            Bin.Close();
         }
 
         public static void Prepare()
