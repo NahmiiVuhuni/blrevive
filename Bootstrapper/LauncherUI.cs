@@ -72,7 +72,10 @@ namespace Bootstrapper
             BGMapsCombo.SelectedIndex = 9;
             BGBotCountNum.Value = 10;
 
-            ClientPlayerNameTextBox.Text = GameLauncher.GetConfig().Username;
+            if (GameLauncher.GetConfig().Username != null)
+                ClientPlayerNameTextBox.Text = GameLauncher.GetConfig().Username;
+            else
+                ClientPlayerNameTextBox.Text = "Player";
 
             ServerGamemodesCombo.DataSource = GameLauncher.GetConfig().Gamemodes;
             ServerGamemodesCombo.SelectedIndex = 1;
