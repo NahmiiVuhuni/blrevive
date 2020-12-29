@@ -37,7 +37,7 @@ namespace Bootstrapper
 
         private void ServerLaunchButton_Click(object sender, EventArgs e)
         {
-            if (ServerCustomUrlCheckbox.Checked)
+            if (ServerCustomURLCheckbox.Checked)
                 GameLauncher.LaunchServer(ServerLaunchOptionsTextBox.Text);
             else
                 GameLauncher.LaunchServer((string)ServerMapsCombo.SelectedItem, (string)ServerGamemodesCombo.SelectedItem, (int)ServerBotCountNum.Value, (int)ServerPlayerCountNum.Value, ServerLaunchOptionsTextBox.Text);
@@ -48,17 +48,17 @@ namespace Bootstrapper
             ClientIPTextBox.Enabled = !ClientIPTextBox.Enabled;
             ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
             ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
-            ClientCustomURLTextBox.Visible = !ClientCustomURLTextBox.Visible;
+            ClientCustomURLTextBox.Enabled = !ClientCustomURLTextBox.Enabled;
         }
 
-        private void ServerCustomUrlCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void ServerCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             ServerGamemodesCombo.Enabled = !ServerGamemodesCombo.Enabled;
             ServerMapsCombo.Enabled = !ServerMapsCombo.Enabled;
             ServerBotCountNum.Enabled = !ServerBotCountNum.Enabled;
             ServerPlayerCountNum.Enabled = !ServerPlayerCountNum.Enabled;
             ServerLaunchOptionsTextBox.Enabled = !ServerLaunchOptionsTextBox.Enabled;
-            ServerCustomURLTextBox.Visible = !ServerCustomURLTextBox.Visible;
+            ServerCustomURLTextBox.Enabled = !ServerCustomURLTextBox.Enabled;
         }
         private void LauncherUI_Load(object sender, EventArgs e)
         {

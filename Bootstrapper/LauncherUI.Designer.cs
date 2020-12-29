@@ -51,7 +51,7 @@ namespace Bootstrapper
             this.ServerTab = new System.Windows.Forms.TabPage();
             this.ServerPlayerCountNum = new System.Windows.Forms.NumericUpDown();
             this.ServerMaxPlayersLabel = new System.Windows.Forms.Label();
-            this.ServerCustomUrlCheckbox = new System.Windows.Forms.CheckBox();
+            this.ServerCustomURLCheckbox = new System.Windows.Forms.CheckBox();
             this.ServerCustomURLTextBox = new System.Windows.Forms.TextBox();
             this.ServerLaunchOptionsLabel = new System.Windows.Forms.Label();
             this.ServerBotCountLabel = new System.Windows.Forms.Label();
@@ -203,11 +203,11 @@ namespace Bootstrapper
             // 
             // ClientCustomURLTextBox
             // 
+            this.ClientCustomURLTextBox.Enabled = false;
             this.ClientCustomURLTextBox.Location = new System.Drawing.Point(192, 147);
             this.ClientCustomURLTextBox.Name = "ClientCustomURLTextBox";
             this.ClientCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientCustomURLTextBox.TabIndex = 21;
-            this.ClientCustomURLTextBox.Visible = false;
             // 
             // ClientCustomURLCheckBox
             // 
@@ -218,6 +218,7 @@ namespace Bootstrapper
             this.ClientCustomURLCheckBox.TabIndex = 20;
             this.ClientCustomURLCheckBox.Text = "Custom URL";
             this.ClientCustomURLCheckBox.UseVisualStyleBackColor = true;
+            this.ClientCustomURLCheckBox.CheckedChanged += new System.EventHandler(this.ClientCustomURLCheckBox_CheckedChanged);
             // 
             // ClientLaunchOptionsLable
             // 
@@ -283,7 +284,7 @@ namespace Bootstrapper
             // 
             this.ServerTab.Controls.Add(this.ServerPlayerCountNum);
             this.ServerTab.Controls.Add(this.ServerMaxPlayersLabel);
-            this.ServerTab.Controls.Add(this.ServerCustomUrlCheckbox);
+            this.ServerTab.Controls.Add(this.ServerCustomURLCheckbox);
             this.ServerTab.Controls.Add(this.ServerCustomURLTextBox);
             this.ServerTab.Controls.Add(this.ServerLaunchOptionsLabel);
             this.ServerTab.Controls.Add(this.ServerBotCountLabel);
@@ -322,23 +323,24 @@ namespace Bootstrapper
             this.ServerMaxPlayersLabel.TabIndex = 25;
             this.ServerMaxPlayersLabel.Text = "Max Players";
             // 
-            // ServerCustomUrlCheckbox
+            // ServerCustomURLCheckbox
             // 
-            this.ServerCustomUrlCheckbox.AutoSize = true;
-            this.ServerCustomUrlCheckbox.Location = new System.Drawing.Point(74, 168);
-            this.ServerCustomUrlCheckbox.Name = "ServerCustomUrlCheckbox";
-            this.ServerCustomUrlCheckbox.Size = new System.Drawing.Size(86, 17);
-            this.ServerCustomUrlCheckbox.TabIndex = 24;
-            this.ServerCustomUrlCheckbox.Text = "Custom URL";
-            this.ServerCustomUrlCheckbox.UseVisualStyleBackColor = true;
+            this.ServerCustomURLCheckbox.AutoSize = true;
+            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(74, 168);
+            this.ServerCustomURLCheckbox.Name = "ServerCustomURLCheckbox";
+            this.ServerCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
+            this.ServerCustomURLCheckbox.TabIndex = 24;
+            this.ServerCustomURLCheckbox.Text = "Custom URL";
+            this.ServerCustomURLCheckbox.UseVisualStyleBackColor = true;
+            this.ServerCustomURLCheckbox.CheckedChanged += new System.EventHandler(this.ServerCustomURLCheckbox_CheckedChanged);
             // 
             // ServerCustomURLTextBox
             // 
+            this.ServerCustomURLTextBox.Enabled = false;
             this.ServerCustomURLTextBox.Location = new System.Drawing.Point(210, 166);
             this.ServerCustomURLTextBox.Name = "ServerCustomURLTextBox";
             this.ServerCustomURLTextBox.Size = new System.Drawing.Size(213, 20);
             this.ServerCustomURLTextBox.TabIndex = 23;
-            this.ServerCustomURLTextBox.Visible = false;
             // 
             // ServerLaunchOptionsLabel
             // 
@@ -494,7 +496,7 @@ namespace Bootstrapper
         private System.Windows.Forms.TextBox ClientIPTextBox;
         private System.Windows.Forms.NumericUpDown ServerPlayerCountNum;
         private System.Windows.Forms.Label ServerMaxPlayersLabel;
-        private System.Windows.Forms.CheckBox ServerCustomUrlCheckbox;
+        private System.Windows.Forms.CheckBox ServerCustomURLCheckbox;
         private System.Windows.Forms.TextBox ServerCustomURLTextBox;
         private System.Windows.Forms.Label ServerLaunchOptionsLabel;
         private System.Windows.Forms.Label ServerBotCountLabel;
