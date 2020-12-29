@@ -1,4 +1,4 @@
-[![Discord](https://img.shields.io/discord/791187711184338954?label=Discord&style=flat-square)](https://discord.gg/2zGhBGED)
+[![Discord](https://img.shields.io/discord/791187711184338954?label=Discord&style=flat-square)](https://discord.gg/WXDM3f2bKa)
 
 A user-friendly game patcher for Blacklight: Retribution. The long-term goal is to make the latest Steam release playable without limitations.
 
