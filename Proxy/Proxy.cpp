@@ -98,60 +98,12 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 	try {
 		std::string callerName(pCaller->GetName());
 		std::string functionName(pFunction->GetName());
-		/*if (callerName == "FoxGameViewportClient" && functionName == "PostRender")
-		{
-			UGameViewportClient_eventPostRender_Parms* parms = reinterpret_cast<UGameViewportClient_eventPostRender_Parms*>(pParams);
-			SHORT addKeyState = GetAsyncKeyState(VK_ADD);
-
-			if (addKeyState & 0x8000 && addKeyState & 1 == 1)
-			{
-
-				 // Working console command!
-
-				if (!pAPC)
-					pAPC = UObject::GetInstanceOf<AFoxPC>();
-
-				if (!pAPC) {
-					LError("AFoxPC not found");
-					LFlush;
-				}
-				else {
-					FString result = pAPC->ConsoleCommand("/help", false);
-					LDebug("Result: {0}", result.ToChar());
-					LFlush;
-				}
-
-			}
-		}*/
-		if (callerName == "FoxChatUI" && functionName == "SubmitChat")
-		{
-			UFoxChatUI_execSubmitChat_Parms* parms = reinterpret_cast<UFoxChatUI_execSubmitChat_Parms*>(pParams);
-			std::string messageText(parms->MessageText.ToChar());
-
-			if (messageText[0] == '!')
-			{
-				auto command = messageText.substr(1, messageText.length());
-
-				if (!pAPC)
-					pAPC = UObject::GetInstanceOf<AFoxPC>();
-
-				FString result = pAPC->ConsoleCommand(FString(command.c_str()), false);
-				LDebug("{0}: {1}", command, result.ToChar());
-				LFlush;
-				UFoxChatUI* chat = reinterpret_cast<UFoxChatUI*>(pCaller);
-				chat->AddNewChatMessage(result);
-				return true;
-			}
-		}
-
 
 		if (BLRevive::Proxy::LogProcessEventCalls)
 		{
 			LDebug("{0}->{1}({2:x})", callerName, functionName, (DWORD)pParams);
 			LFlush;
 		}
-
-
 	}
 	catch (const int ex) {
 		LError("Error {0}", ex);
@@ -161,34 +113,15 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 	return true;
 }
 
-#pragma region ProcessInternal/CallFunction
-typedef bool(*tProcessInternalWrapper)();
-
-
-
-
-#pragma endregion
-
-
-
 void BLRevive::Proxy::Initialize()
 {
 	LDebug("Initializing Proxy.");
+
+	BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
+
 	MakeJMP((BYTE*)pProcessEventMidHook, (DWORD)hkProcessEvent, 0x5);
 	pProcessEventWrapper = (tProcessEventWrapper)ProcessEventWrapper;
 	LDebug("Proxy initialized");
-}
-
-bool BLRevive::Proxy::IsServer()
-{
-	AWorldInfo* wi = UObject::GetInstanceOf<AWorldInfo>();
-	if (!wi) {
-		MessageBoxA(NULL, "WorldInfo not found!", "Error", MB_OK);
-		return false;
-	}
-
-
-	return wi->IsServer();
 }
 
 void BLRevive::Proxy::MakeJMP(BYTE* pAddress, DWORD dwJumpTo, DWORD dwLen)

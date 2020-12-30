@@ -10,6 +10,8 @@ class Config
 {
 public:
 	static bool LogProcessEventCalls();
+	static std::string Command();
+	static std::string CommandKey();
 
 protected:
 	inline static std::string ConfigFile = std::string("BLRevive.json");
