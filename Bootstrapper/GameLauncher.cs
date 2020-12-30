@@ -23,16 +23,6 @@ namespace Bootstrapper
         EXIT_PROCESS_NOT_FOUND			= 1006
     }
 
-
-    class Config
-    {
-        public int LogLevel;
-        public int ServerStartupOffset;
-        public string Username;
-        public string[] Maps;
-        public string[] Gamemodes;
-    }
-
     class GameLauncher
     {
         static string GameFile = "FoxGame-win32-Shipping";
@@ -44,26 +34,7 @@ namespace Bootstrapper
         static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
         static string LogFileName = $"{LogFileDirectoryAbs}BLReviveLauncher.log";
         static string[] ConfigFiles = { "LauncherConfig.json"};
-        static string LauncherConfigFile = $"{Directory.GetCurrentDirectory()}\\LauncherConfig.json";
 
-        private static Config _Config = null;
-
-        public static Config GetConfig()
-        {
-            try
-            {
-                if (_Config == null)
-                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("LauncherConfig.json"));
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Failed to parse LauncherConfig.json!");
-                //Log.Debug(ex.Message);
-                Environment.Exit(1);
-            }
-            
-
-            return _Config;
-        }
 
         protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
         {
@@ -179,7 +150,7 @@ namespace Bootstrapper
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
             string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
-            string clientArgs = $"?Name={GetConfig().Username}";
+            string clientArgs = $"?Name={Config.Get().Username}";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
 
@@ -190,8 +161,8 @@ namespace Bootstrapper
             }
 
             Log.Information("Started game server.");
-            Log.Debug("Waiting {0} seconds for server to start", GetConfig().ServerStartupOffset);
-            Thread.Sleep(GetConfig().ServerStartupOffset);
+            Log.Debug("Waiting {0} seconds for server to start", Config.Get().ServerStartupOffset);
+            Thread.Sleep(Config.Get().ServerStartupOffset);
 
 
             if (LaunchClient("127.0.0.1", clientArgs) == null)
@@ -245,7 +216,7 @@ namespace Bootstrapper
                 LoggerConfiguration loggerConfig = new LoggerConfiguration();
                 loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
 
-                switch(GetConfig().LogLevel)
+                switch(Config.Get().LogLevel)
                 {
                     // verbose
                     case 0:
@@ -344,7 +315,8 @@ namespace Bootstrapper
             if (!CheckConfigs())
                 Environment.Exit(1);
 
-            GetConfig();
+            // make sure config is loaded
+            Config.Get();
 
             if (!CheckLogDirectory())
                 Environment.Exit(1);
