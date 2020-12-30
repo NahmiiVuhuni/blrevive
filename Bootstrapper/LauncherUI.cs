@@ -29,7 +29,8 @@ namespace Bootstrapper
 
         private void ClientLaunchButton_Click(object sender, EventArgs e)
         {
-            WriteUsername(ClientPlayerNameTextBox.Text);
+            Config.Username = ClientPlayerNameTextBox.Text;
+            Config.Save();
 
             if (ClientCustomURLCheckBox.Checked)
             {
@@ -86,12 +87,6 @@ namespace Bootstrapper
             ServerMapsCombo.SelectedIndex = 9;
             ServerBotCountNum.Value = 10;
             ServerPlayerCountNum.Value = 16;
-        }
-
-        private void WriteUsername(string Username)
-        {
-            Config.Username = Username;
-            Config.Save();
         }
     }
 }
