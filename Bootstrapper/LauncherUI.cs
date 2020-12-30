@@ -6,9 +6,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace Bootstrapper
 {
@@ -39,7 +42,22 @@ namespace Bootstrapper
             else
             {
                 string options = $"?Name={ClientPlayerNameTextBox.Text}{ClientLaunchOptionsTextBox.Text}";
-                GameLauncher.LaunchClient(ClientIPTextBox.Text, options);
+                string  ipString = ClientIPTextBox.Text;
+                if (!Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"))
+                {
+                    try
+                    {
+                        IPAddress ipAddress = Dns.GetHostAddresses(ipString).First();
+                        ipString = ipAddress.ToString();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error("Could not resolve host name: {0}", ipString);
+                        MessageBox.Show("Could not resolve host name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                GameLauncher.LaunchClient(ipString, options);
             }
         }
 
