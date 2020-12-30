@@ -61,7 +61,7 @@ namespace Bootstrapper
                         return;
                     }
                 }
-                Config.PreviousIP = ipString;
+                Config.PreviousIP = ClientIPTextBox.Text;
                 Config.Save();
                 GameLauncher.LaunchClient(ipString, options);
             }
