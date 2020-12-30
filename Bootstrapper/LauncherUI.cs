@@ -106,5 +106,10 @@ namespace Bootstrapper
             ServerBotCountNum.Value = 0;
             ServerPlayerCountNum.Value = 16;
         }
+
+        private void BotMatchTab_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

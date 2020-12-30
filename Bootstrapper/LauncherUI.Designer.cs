@@ -83,7 +83,7 @@ namespace Bootstrapper
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(496, 282);
+            this.tabControl1.Size = new System.Drawing.Size(622, 322);
             this.tabControl1.TabIndex = 0;
             // 
             // BotMatchTab
@@ -98,14 +98,15 @@ namespace Bootstrapper
             this.BotMatchTab.Location = new System.Drawing.Point(4, 22);
             this.BotMatchTab.Name = "BotMatchTab";
             this.BotMatchTab.Padding = new System.Windows.Forms.Padding(3);
-            this.BotMatchTab.Size = new System.Drawing.Size(488, 256);
+            this.BotMatchTab.Size = new System.Drawing.Size(614, 296);
             this.BotMatchTab.TabIndex = 0;
             this.BotMatchTab.Text = "Bot Match";
             this.BotMatchTab.UseVisualStyleBackColor = true;
+            this.BotMatchTab.Click += new System.EventHandler(this.BotMatchTab_Click);
             // 
             // BGBotCountNum
             // 
-            this.BGBotCountNum.Location = new System.Drawing.Point(302, 130);
+            this.BGBotCountNum.Location = new System.Drawing.Point(425, 144);
             this.BGBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -118,7 +119,7 @@ namespace Bootstrapper
             // BGBotCountLable
             // 
             this.BGBotCountLable.AutoSize = true;
-            this.BGBotCountLable.Location = new System.Drawing.Point(71, 132);
+            this.BGBotCountLable.Location = new System.Drawing.Point(72, 146);
             this.BGBotCountLable.Name = "BGBotCountLable";
             this.BGBotCountLable.Size = new System.Drawing.Size(54, 13);
             this.BGBotCountLable.TabIndex = 16;
@@ -126,7 +127,7 @@ namespace Bootstrapper
             // 
             // BGLaunchButton
             // 
-            this.BGLaunchButton.Location = new System.Drawing.Point(210, 205);
+            this.BGLaunchButton.Location = new System.Drawing.Point(270, 244);
             this.BGLaunchButton.Name = "BGLaunchButton";
             this.BGLaunchButton.Size = new System.Drawing.Size(75, 23);
             this.BGLaunchButton.TabIndex = 15;
@@ -137,7 +138,7 @@ namespace Bootstrapper
             // BGMapLable
             // 
             this.BGMapLable.AutoSize = true;
-            this.BGMapLable.Location = new System.Drawing.Point(71, 106);
+            this.BGMapLable.Location = new System.Drawing.Point(72, 120);
             this.BGMapLable.Name = "BGMapLable";
             this.BGMapLable.Size = new System.Drawing.Size(28, 13);
             this.BGMapLable.TabIndex = 14;
@@ -146,7 +147,7 @@ namespace Bootstrapper
             // BGGamemodeLabel
             // 
             this.BGGamemodeLabel.AutoSize = true;
-            this.BGGamemodeLabel.Location = new System.Drawing.Point(71, 82);
+            this.BGGamemodeLabel.Location = new System.Drawing.Point(72, 93);
             this.BGGamemodeLabel.Name = "BGGamemodeLabel";
             this.BGGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.BGGamemodeLabel.TabIndex = 13;
@@ -158,7 +159,7 @@ namespace Bootstrapper
             this.BGMapsCombo.FormattingEnabled = true;
             this.BGMapsCombo.Items.AddRange(new object[] {
             "HeloDeck"});
-            this.BGMapsCombo.Location = new System.Drawing.Point(302, 103);
+            this.BGMapsCombo.Location = new System.Drawing.Point(425, 117);
             this.BGMapsCombo.Name = "BGMapsCombo";
             this.BGMapsCombo.Size = new System.Drawing.Size(121, 21);
             this.BGMapsCombo.TabIndex = 12;
@@ -177,7 +178,7 @@ namespace Bootstrapper
             "Last Team Standing",
             "Search and Destroy",
             "Onslaught"});
-            this.BGGamemodesCombo.Location = new System.Drawing.Point(302, 75);
+            this.BGGamemodesCombo.Location = new System.Drawing.Point(425, 90);
             this.BGGamemodesCombo.Name = "BGGamemodesCombo";
             this.BGGamemodesCombo.Size = new System.Drawing.Size(121, 21);
             this.BGGamemodesCombo.TabIndex = 11;
@@ -196,7 +197,7 @@ namespace Bootstrapper
             this.ClientTab.Location = new System.Drawing.Point(4, 22);
             this.ClientTab.Name = "ClientTab";
             this.ClientTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ClientTab.Size = new System.Drawing.Size(488, 256);
+            this.ClientTab.Size = new System.Drawing.Size(614, 296);
             this.ClientTab.TabIndex = 1;
             this.ClientTab.Text = "Client";
             this.ClientTab.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@ namespace Bootstrapper
             // ClientCustomURLTextBox
             // 
             this.ClientCustomURLTextBox.Enabled = false;
-            this.ClientCustomURLTextBox.Location = new System.Drawing.Point(192, 147);
+            this.ClientCustomURLTextBox.Location = new System.Drawing.Point(315, 147);
             this.ClientCustomURLTextBox.Name = "ClientCustomURLTextBox";
             this.ClientCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientCustomURLTextBox.TabIndex = 21;
@@ -212,7 +213,7 @@ namespace Bootstrapper
             // ClientCustomURLCheckBox
             // 
             this.ClientCustomURLCheckBox.AutoSize = true;
-            this.ClientCustomURLCheckBox.Location = new System.Drawing.Point(74, 149);
+            this.ClientCustomURLCheckBox.Location = new System.Drawing.Point(72, 149);
             this.ClientCustomURLCheckBox.Name = "ClientCustomURLCheckBox";
             this.ClientCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
             this.ClientCustomURLCheckBox.TabIndex = 20;
@@ -223,7 +224,7 @@ namespace Bootstrapper
             // ClientLaunchOptionsLable
             // 
             this.ClientLaunchOptionsLable.AutoSize = true;
-            this.ClientLaunchOptionsLable.Location = new System.Drawing.Point(71, 119);
+            this.ClientLaunchOptionsLable.Location = new System.Drawing.Point(72, 119);
             this.ClientLaunchOptionsLable.Name = "ClientLaunchOptionsLable";
             this.ClientLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
             this.ClientLaunchOptionsLable.TabIndex = 19;
@@ -232,7 +233,7 @@ namespace Bootstrapper
             // ClientPlayerNameLabel
             // 
             this.ClientPlayerNameLabel.AutoSize = true;
-            this.ClientPlayerNameLabel.Location = new System.Drawing.Point(71, 89);
+            this.ClientPlayerNameLabel.Location = new System.Drawing.Point(72, 89);
             this.ClientPlayerNameLabel.Name = "ClientPlayerNameLabel";
             this.ClientPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientPlayerNameLabel.TabIndex = 18;
@@ -241,7 +242,7 @@ namespace Bootstrapper
             // ClientServerIPLable
             // 
             this.ClientServerIPLable.AutoSize = true;
-            this.ClientServerIPLable.Location = new System.Drawing.Point(71, 62);
+            this.ClientServerIPLable.Location = new System.Drawing.Point(72, 62);
             this.ClientServerIPLable.Name = "ClientServerIPLable";
             this.ClientServerIPLable.Size = new System.Drawing.Size(79, 13);
             this.ClientServerIPLable.TabIndex = 17;
@@ -249,7 +250,7 @@ namespace Bootstrapper
             // 
             // ClientLaunchButton
             // 
-            this.ClientLaunchButton.Location = new System.Drawing.Point(210, 205);
+            this.ClientLaunchButton.Location = new System.Drawing.Point(270, 244);
             this.ClientLaunchButton.Name = "ClientLaunchButton";
             this.ClientLaunchButton.Size = new System.Drawing.Size(75, 23);
             this.ClientLaunchButton.TabIndex = 16;
@@ -259,14 +260,14 @@ namespace Bootstrapper
             // 
             // ClientLaunchOptionsTextBox
             // 
-            this.ClientLaunchOptionsTextBox.Location = new System.Drawing.Point(192, 116);
+            this.ClientLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 116);
             this.ClientLaunchOptionsTextBox.Name = "ClientLaunchOptionsTextBox";
             this.ClientLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientLaunchOptionsTextBox.TabIndex = 15;
             // 
             // ClientPlayerNameTextBox
             // 
-            this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(302, 86);
+            this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(425, 86);
             this.ClientPlayerNameTextBox.Name = "ClientPlayerNameTextBox";
             this.ClientPlayerNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.ClientPlayerNameTextBox.TabIndex = 14;
@@ -274,7 +275,7 @@ namespace Bootstrapper
             // 
             // ClientIPTextBox
             // 
-            this.ClientIPTextBox.Location = new System.Drawing.Point(302, 59);
+            this.ClientIPTextBox.Location = new System.Drawing.Point(425, 59);
             this.ClientIPTextBox.Name = "ClientIPTextBox";
             this.ClientIPTextBox.Size = new System.Drawing.Size(121, 20);
             this.ClientIPTextBox.TabIndex = 13;
@@ -297,14 +298,14 @@ namespace Bootstrapper
             this.ServerTab.Controls.Add(this.ServerGamemodesCombo);
             this.ServerTab.Location = new System.Drawing.Point(4, 22);
             this.ServerTab.Name = "ServerTab";
-            this.ServerTab.Size = new System.Drawing.Size(488, 256);
+            this.ServerTab.Size = new System.Drawing.Size(614, 296);
             this.ServerTab.TabIndex = 2;
             this.ServerTab.Text = "Server";
             this.ServerTab.UseVisualStyleBackColor = true;
             // 
             // ServerPlayerCountNum
             // 
-            this.ServerPlayerCountNum.Location = new System.Drawing.Point(302, 88);
+            this.ServerPlayerCountNum.Location = new System.Drawing.Point(425, 88);
             this.ServerPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -317,7 +318,7 @@ namespace Bootstrapper
             // ServerMaxPlayersLabel
             // 
             this.ServerMaxPlayersLabel.AutoSize = true;
-            this.ServerMaxPlayersLabel.Location = new System.Drawing.Point(71, 90);
+            this.ServerMaxPlayersLabel.Location = new System.Drawing.Point(72, 90);
             this.ServerMaxPlayersLabel.Name = "ServerMaxPlayersLabel";
             this.ServerMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
             this.ServerMaxPlayersLabel.TabIndex = 25;
@@ -326,7 +327,7 @@ namespace Bootstrapper
             // ServerCustomURLCheckbox
             // 
             this.ServerCustomURLCheckbox.AutoSize = true;
-            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(74, 168);
+            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(72, 168);
             this.ServerCustomURLCheckbox.Name = "ServerCustomURLCheckbox";
             this.ServerCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerCustomURLCheckbox.TabIndex = 24;
@@ -337,15 +338,15 @@ namespace Bootstrapper
             // ServerCustomURLTextBox
             // 
             this.ServerCustomURLTextBox.Enabled = false;
-            this.ServerCustomURLTextBox.Location = new System.Drawing.Point(210, 166);
+            this.ServerCustomURLTextBox.Location = new System.Drawing.Point(315, 168);
             this.ServerCustomURLTextBox.Name = "ServerCustomURLTextBox";
-            this.ServerCustomURLTextBox.Size = new System.Drawing.Size(213, 20);
+            this.ServerCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ServerCustomURLTextBox.TabIndex = 23;
             // 
             // ServerLaunchOptionsLabel
             // 
             this.ServerLaunchOptionsLabel.AutoSize = true;
-            this.ServerLaunchOptionsLabel.Location = new System.Drawing.Point(71, 143);
+            this.ServerLaunchOptionsLabel.Location = new System.Drawing.Point(72, 143);
             this.ServerLaunchOptionsLabel.Name = "ServerLaunchOptionsLabel";
             this.ServerLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerLaunchOptionsLabel.TabIndex = 22;
@@ -354,7 +355,7 @@ namespace Bootstrapper
             // ServerBotCountLabel
             // 
             this.ServerBotCountLabel.AutoSize = true;
-            this.ServerBotCountLabel.Location = new System.Drawing.Point(71, 116);
+            this.ServerBotCountLabel.Location = new System.Drawing.Point(72, 116);
             this.ServerBotCountLabel.Name = "ServerBotCountLabel";
             this.ServerBotCountLabel.Size = new System.Drawing.Size(54, 13);
             this.ServerBotCountLabel.TabIndex = 21;
@@ -363,7 +364,7 @@ namespace Bootstrapper
             // ServerMapLabel
             // 
             this.ServerMapLabel.AutoSize = true;
-            this.ServerMapLabel.Location = new System.Drawing.Point(71, 64);
+            this.ServerMapLabel.Location = new System.Drawing.Point(72, 64);
             this.ServerMapLabel.Name = "ServerMapLabel";
             this.ServerMapLabel.Size = new System.Drawing.Size(28, 13);
             this.ServerMapLabel.TabIndex = 20;
@@ -372,7 +373,7 @@ namespace Bootstrapper
             // ServerGamemodeLabel
             // 
             this.ServerGamemodeLabel.AutoSize = true;
-            this.ServerGamemodeLabel.Location = new System.Drawing.Point(71, 37);
+            this.ServerGamemodeLabel.Location = new System.Drawing.Point(72, 37);
             this.ServerGamemodeLabel.Name = "ServerGamemodeLabel";
             this.ServerGamemodeLabel.Size = new System.Drawing.Size(65, 13);
             this.ServerGamemodeLabel.TabIndex = 19;
@@ -380,14 +381,14 @@ namespace Bootstrapper
             // 
             // ServerLaunchOptionsTextBox
             // 
-            this.ServerLaunchOptionsTextBox.Location = new System.Drawing.Point(210, 140);
+            this.ServerLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 140);
             this.ServerLaunchOptionsTextBox.Name = "ServerLaunchOptionsTextBox";
-            this.ServerLaunchOptionsTextBox.Size = new System.Drawing.Size(213, 20);
+            this.ServerLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
             this.ServerLaunchOptionsTextBox.TabIndex = 18;
             // 
             // ServerLaunchButton
             // 
-            this.ServerLaunchButton.Location = new System.Drawing.Point(210, 205);
+            this.ServerLaunchButton.Location = new System.Drawing.Point(270, 244);
             this.ServerLaunchButton.Name = "ServerLaunchButton";
             this.ServerLaunchButton.Size = new System.Drawing.Size(75, 23);
             this.ServerLaunchButton.TabIndex = 17;
@@ -397,7 +398,7 @@ namespace Bootstrapper
             // 
             // ServerBotCountNum
             // 
-            this.ServerBotCountNum.Location = new System.Drawing.Point(302, 114);
+            this.ServerBotCountNum.Location = new System.Drawing.Point(425, 114);
             this.ServerBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -411,7 +412,7 @@ namespace Bootstrapper
             // 
             this.ServerMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerMapsCombo.FormattingEnabled = true;
-            this.ServerMapsCombo.Location = new System.Drawing.Point(302, 61);
+            this.ServerMapsCombo.Location = new System.Drawing.Point(425, 61);
             this.ServerMapsCombo.Name = "ServerMapsCombo";
             this.ServerMapsCombo.Size = new System.Drawing.Size(121, 21);
             this.ServerMapsCombo.TabIndex = 15;
@@ -420,7 +421,7 @@ namespace Bootstrapper
             // 
             this.ServerGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerGamemodesCombo.FormattingEnabled = true;
-            this.ServerGamemodesCombo.Location = new System.Drawing.Point(302, 34);
+            this.ServerGamemodesCombo.Location = new System.Drawing.Point(425, 34);
             this.ServerGamemodesCombo.Name = "ServerGamemodesCombo";
             this.ServerGamemodesCombo.Size = new System.Drawing.Size(121, 21);
             this.ServerGamemodesCombo.TabIndex = 14;
@@ -430,7 +431,7 @@ namespace Bootstrapper
             this.MasterServerTab.Controls.Add(this.label4);
             this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
             this.MasterServerTab.Name = "MasterServerTab";
-            this.MasterServerTab.Size = new System.Drawing.Size(488, 256);
+            this.MasterServerTab.Size = new System.Drawing.Size(614, 296);
             this.MasterServerTab.TabIndex = 3;
             this.MasterServerTab.Text = "Master Server";
             this.MasterServerTab.UseVisualStyleBackColor = true;
@@ -438,7 +439,7 @@ namespace Bootstrapper
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(199, 112);
+            this.label4.Location = new System.Drawing.Point(270, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 13);
             this.label4.TabIndex = 0;
@@ -448,7 +449,7 @@ namespace Bootstrapper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 278);
+            this.ClientSize = new System.Drawing.Size(624, 321);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LauncherUI";
