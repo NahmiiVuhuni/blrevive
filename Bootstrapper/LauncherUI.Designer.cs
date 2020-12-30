@@ -39,6 +39,7 @@ namespace Bootstrapper
             this.BGMapsCombo = new System.Windows.Forms.ComboBox();
             this.BGGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.ClientTab = new System.Windows.Forms.TabPage();
+            this.ClientLocalConnectCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientCustomURLTextBox = new System.Windows.Forms.TextBox();
             this.ClientCustomURLCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientLaunchOptionsLable = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@ namespace Bootstrapper
             this.BotMatchTab.TabIndex = 0;
             this.BotMatchTab.Text = "Bot Match";
             this.BotMatchTab.UseVisualStyleBackColor = true;
-            this.BotMatchTab.Click += new System.EventHandler(this.BotMatchTab_Click);
             // 
             // BGBotCountNum
             // 
@@ -185,6 +185,7 @@ namespace Bootstrapper
             // 
             // ClientTab
             // 
+            this.ClientTab.Controls.Add(this.ClientLocalConnectCheckBox);
             this.ClientTab.Controls.Add(this.ClientCustomURLTextBox);
             this.ClientTab.Controls.Add(this.ClientCustomURLCheckBox);
             this.ClientTab.Controls.Add(this.ClientLaunchOptionsLable);
@@ -202,10 +203,22 @@ namespace Bootstrapper
             this.ClientTab.Text = "Client";
             this.ClientTab.UseVisualStyleBackColor = true;
             // 
+            // ClientLocalConnectCheckBox
+            // 
+            this.ClientLocalConnectCheckBox.AutoSize = true;
+            this.ClientLocalConnectCheckBox.Location = new System.Drawing.Point(411, 53);
+            this.ClientLocalConnectCheckBox.Name = "ClientLocalConnectCheckBox";
+            this.ClientLocalConnectCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ClientLocalConnectCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.ClientLocalConnectCheckBox.TabIndex = 22;
+            this.ClientLocalConnectCheckBox.Text = "Connect to local server";
+            this.ClientLocalConnectCheckBox.UseVisualStyleBackColor = true;
+            this.ClientLocalConnectCheckBox.CheckedChanged += new System.EventHandler(this.ClientLocalConnectCheckBox_CheckedChanged);
+            // 
             // ClientCustomURLTextBox
             // 
             this.ClientCustomURLTextBox.Enabled = false;
-            this.ClientCustomURLTextBox.Location = new System.Drawing.Point(315, 147);
+            this.ClientCustomURLTextBox.Location = new System.Drawing.Point(315, 154);
             this.ClientCustomURLTextBox.Name = "ClientCustomURLTextBox";
             this.ClientCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientCustomURLTextBox.TabIndex = 21;
@@ -213,7 +226,7 @@ namespace Bootstrapper
             // ClientCustomURLCheckBox
             // 
             this.ClientCustomURLCheckBox.AutoSize = true;
-            this.ClientCustomURLCheckBox.Location = new System.Drawing.Point(72, 149);
+            this.ClientCustomURLCheckBox.Location = new System.Drawing.Point(75, 156);
             this.ClientCustomURLCheckBox.Name = "ClientCustomURLCheckBox";
             this.ClientCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
             this.ClientCustomURLCheckBox.TabIndex = 20;
@@ -224,7 +237,7 @@ namespace Bootstrapper
             // ClientLaunchOptionsLable
             // 
             this.ClientLaunchOptionsLable.AutoSize = true;
-            this.ClientLaunchOptionsLable.Location = new System.Drawing.Point(72, 119);
+            this.ClientLaunchOptionsLable.Location = new System.Drawing.Point(72, 131);
             this.ClientLaunchOptionsLable.Name = "ClientLaunchOptionsLable";
             this.ClientLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
             this.ClientLaunchOptionsLable.TabIndex = 19;
@@ -233,7 +246,7 @@ namespace Bootstrapper
             // ClientPlayerNameLabel
             // 
             this.ClientPlayerNameLabel.AutoSize = true;
-            this.ClientPlayerNameLabel.Location = new System.Drawing.Point(72, 89);
+            this.ClientPlayerNameLabel.Location = new System.Drawing.Point(72, 105);
             this.ClientPlayerNameLabel.Name = "ClientPlayerNameLabel";
             this.ClientPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientPlayerNameLabel.TabIndex = 18;
@@ -242,7 +255,7 @@ namespace Bootstrapper
             // ClientServerIPLable
             // 
             this.ClientServerIPLable.AutoSize = true;
-            this.ClientServerIPLable.Location = new System.Drawing.Point(72, 62);
+            this.ClientServerIPLable.Location = new System.Drawing.Point(72, 79);
             this.ClientServerIPLable.Name = "ClientServerIPLable";
             this.ClientServerIPLable.Size = new System.Drawing.Size(79, 13);
             this.ClientServerIPLable.TabIndex = 17;
@@ -260,24 +273,24 @@ namespace Bootstrapper
             // 
             // ClientLaunchOptionsTextBox
             // 
-            this.ClientLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 116);
+            this.ClientLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 128);
             this.ClientLaunchOptionsTextBox.Name = "ClientLaunchOptionsTextBox";
             this.ClientLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientLaunchOptionsTextBox.TabIndex = 15;
             // 
             // ClientPlayerNameTextBox
             // 
-            this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(425, 86);
+            this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(411, 102);
             this.ClientPlayerNameTextBox.Name = "ClientPlayerNameTextBox";
-            this.ClientPlayerNameTextBox.Size = new System.Drawing.Size(121, 20);
+            this.ClientPlayerNameTextBox.Size = new System.Drawing.Size(135, 20);
             this.ClientPlayerNameTextBox.TabIndex = 14;
             this.ClientPlayerNameTextBox.Text = "Player";
             // 
             // ClientIPTextBox
             // 
-            this.ClientIPTextBox.Location = new System.Drawing.Point(425, 59);
+            this.ClientIPTextBox.Location = new System.Drawing.Point(411, 76);
             this.ClientIPTextBox.Name = "ClientIPTextBox";
-            this.ClientIPTextBox.Size = new System.Drawing.Size(121, 20);
+            this.ClientIPTextBox.Size = new System.Drawing.Size(135, 20);
             this.ClientIPTextBox.TabIndex = 13;
             this.ClientIPTextBox.Text = "127.0.0.1";
             // 
@@ -305,7 +318,7 @@ namespace Bootstrapper
             // 
             // ServerPlayerCountNum
             // 
-            this.ServerPlayerCountNum.Location = new System.Drawing.Point(425, 88);
+            this.ServerPlayerCountNum.Location = new System.Drawing.Point(425, 104);
             this.ServerPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -318,7 +331,7 @@ namespace Bootstrapper
             // ServerMaxPlayersLabel
             // 
             this.ServerMaxPlayersLabel.AutoSize = true;
-            this.ServerMaxPlayersLabel.Location = new System.Drawing.Point(72, 90);
+            this.ServerMaxPlayersLabel.Location = new System.Drawing.Point(72, 106);
             this.ServerMaxPlayersLabel.Name = "ServerMaxPlayersLabel";
             this.ServerMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
             this.ServerMaxPlayersLabel.TabIndex = 25;
@@ -327,7 +340,7 @@ namespace Bootstrapper
             // ServerCustomURLCheckbox
             // 
             this.ServerCustomURLCheckbox.AutoSize = true;
-            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(72, 168);
+            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(75, 184);
             this.ServerCustomURLCheckbox.Name = "ServerCustomURLCheckbox";
             this.ServerCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerCustomURLCheckbox.TabIndex = 24;
@@ -338,7 +351,7 @@ namespace Bootstrapper
             // ServerCustomURLTextBox
             // 
             this.ServerCustomURLTextBox.Enabled = false;
-            this.ServerCustomURLTextBox.Location = new System.Drawing.Point(315, 168);
+            this.ServerCustomURLTextBox.Location = new System.Drawing.Point(315, 182);
             this.ServerCustomURLTextBox.Name = "ServerCustomURLTextBox";
             this.ServerCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ServerCustomURLTextBox.TabIndex = 23;
@@ -346,7 +359,7 @@ namespace Bootstrapper
             // ServerLaunchOptionsLabel
             // 
             this.ServerLaunchOptionsLabel.AutoSize = true;
-            this.ServerLaunchOptionsLabel.Location = new System.Drawing.Point(72, 143);
+            this.ServerLaunchOptionsLabel.Location = new System.Drawing.Point(72, 159);
             this.ServerLaunchOptionsLabel.Name = "ServerLaunchOptionsLabel";
             this.ServerLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerLaunchOptionsLabel.TabIndex = 22;
@@ -355,7 +368,7 @@ namespace Bootstrapper
             // ServerBotCountLabel
             // 
             this.ServerBotCountLabel.AutoSize = true;
-            this.ServerBotCountLabel.Location = new System.Drawing.Point(72, 116);
+            this.ServerBotCountLabel.Location = new System.Drawing.Point(72, 132);
             this.ServerBotCountLabel.Name = "ServerBotCountLabel";
             this.ServerBotCountLabel.Size = new System.Drawing.Size(54, 13);
             this.ServerBotCountLabel.TabIndex = 21;
@@ -364,7 +377,7 @@ namespace Bootstrapper
             // ServerMapLabel
             // 
             this.ServerMapLabel.AutoSize = true;
-            this.ServerMapLabel.Location = new System.Drawing.Point(72, 64);
+            this.ServerMapLabel.Location = new System.Drawing.Point(72, 80);
             this.ServerMapLabel.Name = "ServerMapLabel";
             this.ServerMapLabel.Size = new System.Drawing.Size(28, 13);
             this.ServerMapLabel.TabIndex = 20;
@@ -373,15 +386,15 @@ namespace Bootstrapper
             // ServerGamemodeLabel
             // 
             this.ServerGamemodeLabel.AutoSize = true;
-            this.ServerGamemodeLabel.Location = new System.Drawing.Point(72, 37);
+            this.ServerGamemodeLabel.Location = new System.Drawing.Point(72, 53);
             this.ServerGamemodeLabel.Name = "ServerGamemodeLabel";
-            this.ServerGamemodeLabel.Size = new System.Drawing.Size(65, 13);
+            this.ServerGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.ServerGamemodeLabel.TabIndex = 19;
-            this.ServerGamemodeLabel.Text = "Game Mode";
+            this.ServerGamemodeLabel.Text = "Gamemode";
             // 
             // ServerLaunchOptionsTextBox
             // 
-            this.ServerLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 140);
+            this.ServerLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 156);
             this.ServerLaunchOptionsTextBox.Name = "ServerLaunchOptionsTextBox";
             this.ServerLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
             this.ServerLaunchOptionsTextBox.TabIndex = 18;
@@ -398,7 +411,7 @@ namespace Bootstrapper
             // 
             // ServerBotCountNum
             // 
-            this.ServerBotCountNum.Location = new System.Drawing.Point(425, 114);
+            this.ServerBotCountNum.Location = new System.Drawing.Point(425, 130);
             this.ServerBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -412,7 +425,7 @@ namespace Bootstrapper
             // 
             this.ServerMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerMapsCombo.FormattingEnabled = true;
-            this.ServerMapsCombo.Location = new System.Drawing.Point(425, 61);
+            this.ServerMapsCombo.Location = new System.Drawing.Point(425, 77);
             this.ServerMapsCombo.Name = "ServerMapsCombo";
             this.ServerMapsCombo.Size = new System.Drawing.Size(121, 21);
             this.ServerMapsCombo.TabIndex = 15;
@@ -421,7 +434,7 @@ namespace Bootstrapper
             // 
             this.ServerGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerGamemodesCombo.FormattingEnabled = true;
-            this.ServerGamemodesCombo.Location = new System.Drawing.Point(425, 34);
+            this.ServerGamemodesCombo.Location = new System.Drawing.Point(425, 50);
             this.ServerGamemodesCombo.Name = "ServerGamemodesCombo";
             this.ServerGamemodesCombo.Size = new System.Drawing.Size(121, 21);
             this.ServerGamemodesCombo.TabIndex = 14;
@@ -508,5 +521,6 @@ namespace Bootstrapper
         private System.Windows.Forms.NumericUpDown ServerBotCountNum;
         private System.Windows.Forms.ComboBox ServerMapsCombo;
         private System.Windows.Forms.ComboBox ServerGamemodesCombo;
+        private System.Windows.Forms.CheckBox ClientLocalConnectCheckBox;
     }
 }

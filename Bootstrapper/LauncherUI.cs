@@ -42,7 +42,11 @@ namespace Bootstrapper
             else
             {
                 string options = $"?Name={ClientPlayerNameTextBox.Text}{ClientLaunchOptionsTextBox.Text}";
-                string  ipString = ClientIPTextBox.Text;
+                string ipString;
+                if (ClientLocalConnectCheckBox.Checked)
+                    ipString = "127.0.0.1";
+                else
+                    ipString = ClientIPTextBox.Text;
                 if (!Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"))
                 {
                     try
@@ -57,6 +61,8 @@ namespace Bootstrapper
                         return;
                     }
                 }
+                Config.PreviousIP = ipString;
+                Config.Save();
                 GameLauncher.LaunchClient(ipString, options);
             }
         }
@@ -75,6 +81,12 @@ namespace Bootstrapper
             ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
             ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
             ClientCustomURLTextBox.Enabled = !ClientCustomURLTextBox.Enabled;
+        }
+
+        private void ClientLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ClientServerIPLable.Enabled = !ClientServerIPLable.Enabled;
+            ClientIPTextBox.Enabled = !ClientIPTextBox.Enabled;
         }
 
         private void ServerCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -105,11 +117,11 @@ namespace Bootstrapper
             ServerMapsCombo.SelectedIndex = 9;
             ServerBotCountNum.Value = 0;
             ServerPlayerCountNum.Value = 16;
-        }
 
-        private void BotMatchTab_Click(object sender, EventArgs e)
-        {
-
+            if (Config.PreviousIP != null)
+                ClientIPTextBox.Text = Config.PreviousIP;
+            else
+                ClientIPTextBox.Text = "127.0.0.1";
         }
     }
 }

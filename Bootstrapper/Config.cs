@@ -20,7 +20,7 @@ namespace Bootstrapper
         public int LogLevel;
 
         /// <summary>
-        /// Delay between server and client startup
+        /// Delay between server and client startup.
         /// </summary>
         public int ServerStartupOffset;
 
@@ -30,12 +30,17 @@ namespace Bootstrapper
         public string Username;
 
         /// <summary>
-        /// Available Maps
+        /// IP of the server connected to in the previous session.
+        /// </summary>
+        public string PreviousIP;
+
+        /// <summary>
+        /// Available Maps.
         /// </summary>
         public string[] Maps;
 
         /// <summary>
-        /// Available Game modes
+        /// Available Gamemodes.
         /// </summary>
         public string[] Gamemodes;
         
@@ -45,7 +50,7 @@ namespace Bootstrapper
         /// <summary>
         /// Get the configuration from JSON.
         /// </summary>
-        /// <returns>Instance of this class with parsed config</returns>
+        /// <returns>Instance of this class with parsed config.</returns>
         public static Config Get()
         {
             try
@@ -67,7 +72,7 @@ namespace Bootstrapper
         /// <summary>
         /// Save the current config to JSON.
         /// </summary>
-        /// <returns>wether saving succeeded</returns>
+        /// <returns>Whether saving succeeded.</returns>
         public static bool Save()
         {
             try
@@ -76,7 +81,7 @@ namespace Bootstrapper
                 File.WriteAllText("LauncherConfig.json", jsonConfig);
             } catch (Exception ex)
             {
-                MessageBox.Show($"Error on writing config: {ex.Message}");
+                MessageBox.Show($"Error writing config: {ex.Message}");
             }
             return true;
         }
