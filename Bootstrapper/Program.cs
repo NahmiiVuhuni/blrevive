@@ -9,13 +9,17 @@ namespace Bootstrapper
     static class Program
     {
         /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
+        /// Main thread.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            // initialize app
+            Logging.Initialize();
+            Config.Get();
             GameLauncher.Prepare();
 
+            // run gui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LauncherUI());

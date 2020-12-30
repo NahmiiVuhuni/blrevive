@@ -11,60 +11,39 @@ using Serilog;
 
 namespace Bootstrapper
 {
-
-    enum InjectorExitCodes
-    {
-        EXIT_MEMORY_WRITE_FAILED        = 1000,
-        EXIT_MEMORY_ALLOCATION_FAILED	= 1001,
-        EXIT_REMOTE_THREAD_FAILED		= 1002,
-        EXIT_CREATE_LOG_FAILED			= 1003,
-        EXIT_ARGS_MISSING				= 1004,
-        EXIT_DLL_NOT_FOUND				= 1005,
-        EXIT_PROCESS_NOT_FOUND			= 1006
-    }
-
-
-    class Config
-    {
-        public int LogLevel;
-        public int ServerStartupOffset;
-        public string Username;
-        public string[] Maps;
-        public string[] Gamemodes;
-    }
-
+    /// <summary>
+    /// Provides functionality for starting Server and Client.
+    /// </summary>
     class GameLauncher
     {
-        static string GameFile = "FoxGame-win32-Shipping";
-        static string GameExe = $"{GameFile}.exe";
-        static string PatchedGameExe = $"{GameFile}-Patched.exe";
-        static string ServerExe = $"{GameFile}-Patched-Server.exe";
-        static string Injector = "Injector.exe";
-        static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
-        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
-        static string LogFileName = $"{LogFileDirectoryAbs}BLReviveLauncher.log";
-        static string[] ConfigFiles = { "LauncherConfig.json"};
-        static string LauncherConfigFile = $"{Directory.GetCurrentDirectory()}\\LauncherConfig.json";
+        /// <summary>
+        /// name of untouched game file without extension
+        /// </summary>
+        public static string GameFile = "FoxGame-win32-Shipping";
 
-        private static Config _Config = null;
+        /// <summary>
+        /// name of untouched game file with extension
+        /// </summary>
+        public static string GameExe = $"{GameFile}.exe";
 
-        public static Config GetConfig()
-        {
-            try
-            {
-                if (_Config == null)
-                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("LauncherConfig.json"));
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Failed to parse LauncherConfig.json!");
-                //Log.Debug(ex.Message);
-                Environment.Exit(1);
-            }
-            
+        /// <summary>
+        /// name of patched game file
+        /// </summary>
+        public static string PatchedGameExe = $"{GameFile}-Patched.exe";
 
-            return _Config;
-        }
+        /// <summary>
+        /// name of server copy of patched game file
+        /// </summary>
+        public static string ServerExe = $"{GameFile}-Patched-Server.exe";
 
+        /// <summary>
+        /// Starts a process with the given attributes.
+        /// </summary>
+        /// <param name="FileName">application file to execute</param>
+        /// <param name="Args">cli arguments</param>
+        /// <param name="ShowWindow">show the window for the process ?</param>
+        /// <param name="WorkDir">workdir of process (defaults to current workdir)</param>
+        /// <returns>process handle</returns>
         protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
         {
             Log.Debug("Launching process {0} \"{1}\"", FileName, Args);
@@ -100,6 +79,11 @@ namespace Bootstrapper
             }
         }
 
+        /// <summary>
+        /// Start server process with custom options.
+        /// </summary>
+        /// <param name="Options">URL for server</param>
+        /// <returns>server process handle</returns>
         public static Process LaunchServer(string Options)
         {
             Log.Information("Launching Server");
@@ -114,12 +98,27 @@ namespace Bootstrapper
             return serverProcess;
         }
 
+        /// <summary>
+        /// Start server process with given attributes.
+        /// </summary>
+        /// <param name="Map"></param>
+        /// <param name="GameMode"></param>
+        /// <param name="BotCount"></param>
+        /// <param name="MaxPlayers"></param>
+        /// <param name="additionalArgs"></param>
+        /// <returns>server process handle</returns>
         public static Process LaunchServer(string Map, string GameMode, int BotCount, int MaxPlayers, string additionalArgs)
         {
             string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
             return LaunchServer(args);
         }
 
+        /// <summary>
+        /// Start client process with given attributes.
+        /// </summary>
+        /// <param name="IP">server ip to connect to</param>
+        /// <param name="Options">client URL</param>
+        /// <returns></returns>
         public static Process LaunchClient(string IP, string Options)
         {
             Log.Information("Launching Client");
@@ -138,48 +137,19 @@ namespace Bootstrapper
             return clientProcess;
         }
 
-        public static Process LaunchInjector(Process target, bool bKillTargetOnError = true)
-        {
-            Log.Information("Launching Injector.");
-            Log.Verbose("Process: {0} | PID: {1}", target.ProcessName, target.Id);
-
-            try
-            {
-                Process injectorProcess = LaunchProcess(Injector, $"{target.Id} \"{Directory.GetCurrentDirectory()}\\Proxy.dll\"", false);
-                if (injectorProcess == null)
-                {
-                    Log.Error("Failed to launch the injector.");
-                    if (!target.HasExited && bKillTargetOnError)
-                    {
-                        Log.Verbose("Killing target process {0} ({1}))", target.ProcessName, target.Id);
-                        target.Kill();
-                    }
-                }
-
-                injectorProcess.WaitForExit();
-
-                if (injectorProcess.ExitCode != 0)
-                {
-                    Log.Error("Injection failed. See Injector.log. ExitCode: {0}", injectorProcess.ExitCode);
-                }
-
-                Log.Information("Injection succeeded.");
-
-                return injectorProcess;
-            } catch (Exception ex)
-            {
-                Log.Error("Failed to setup Injector.");
-                Log.Debug(ex.Message);
-                return null;
-            }
-        }
-
+        /// <summary>
+        /// Start server & client process for a local botgame.
+        /// </summary>
+        /// <param name="Map"></param>
+        /// <param name="GameMode"></param>
+        /// <param name="BotCount"></param>
+        /// <param name="LaunchFinishedAction"></param>
         public static void LaunchBotgame(string Map, string GameMode, int BotCount, Action LaunchFinishedAction)
         {
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
             string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
-            string clientArgs = $"?Name={GetConfig().Username}";
+            string clientArgs = $"?Name={Config.Get().Username}";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
 
@@ -190,8 +160,8 @@ namespace Bootstrapper
             }
 
             Log.Information("Started game server.");
-            Log.Debug("Waiting {0} seconds for server to start", GetConfig().ServerStartupOffset);
-            Thread.Sleep(GetConfig().ServerStartupOffset);
+            Log.Debug("Waiting {0} seconds for server to start", Config.Get().ServerStartupOffset);
+            Thread.Sleep(Config.Get().ServerStartupOffset);
 
 
             if (LaunchClient("127.0.0.1", clientArgs) == null)
@@ -204,159 +174,15 @@ namespace Bootstrapper
             LaunchFinishedAction.Invoke();
         }
 
-        protected static bool CheckLogDirectory()
-        {
-            if(!Directory.Exists(LogFileDirectoryAbs))
-            {
-                MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist!");
-                Environment.Exit(1);
-            }
-
-            try
-            {
-                System.Security.AccessControl.DirectorySecurity ds = Directory.GetAccessControl(LogFileDirectoryAbs);
-            } catch(Exception ex)
-            {
-                MessageBox.Show($"Logfile directory is not writable!");
-                Environment.Exit(1);
-            }
-
-            return true;
-        }
-
-        protected static bool CheckConfigs()
-        {
-            foreach(string configFile in ConfigFiles)
-            {
-                if (!File.Exists($"{Directory.GetCurrentDirectory()}\\{configFile}"))
-                {
-                    MessageBox.Show($"Config file {configFile} not found in {Directory.GetCurrentDirectory()}!");
-                    Environment.Exit(1);
-                }
-            }
-
-            return true;
-        }
-
-        public static bool InitializeLogger()
-        {
-            try
-            {
-                LoggerConfiguration loggerConfig = new LoggerConfiguration();
-                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
-
-                switch(GetConfig().LogLevel)
-                {
-                    // verbose
-                    case 0:
-                        loggerConfig.MinimumLevel.Verbose();
-                        break;
-                    case 1:
-                        loggerConfig.MinimumLevel.Debug();
-                        break;
-                    case 2:
-                        loggerConfig.MinimumLevel.Warning();
-                        break;
-                    case 3:
-                        loggerConfig.MinimumLevel.Error();
-                        break;
-                    case 4:
-                        loggerConfig.MinimumLevel.Fatal();
-                        break;
-                }
-
-                Log.Logger = loggerConfig.CreateLogger();
-            } catch(Exception ex)
-            {
-                MessageBox.Show("Failed to initialize logging system!");
-                Environment.Exit(1);
-            }
-
-
-            return true;
-        }
-        protected static bool CheckGameFiles()
-        {
-            try
-            {
-                if (!File.Exists(GameExe))
-                {
-                    MessageBox.Show("The original game file (FoxGame-win32-Shipping.exe) is missing!");
-                    Log.Fatal("{0} is missing", GameExe);
-                    Environment.Exit(1);
-                }
-
-                if (File.Exists(PatchedGameExe))
-                    File.Delete(PatchedGameExe);
-
-                if (File.Exists(ServerExe))
-                    File.Delete(ServerExe);
-
-                File.Copy(GameExe, PatchedGameExe);
-                FileStream patchedFile = new FileStream(PatchedGameExe, FileMode.Open);
-                StaticInjectDLL(patchedFile);
-                patchedFile.Close();
-                File.Copy(PatchedGameExe, ServerExe);
-
-                return true;
-            } catch (Exception ex)
-            {
-                Log.Fatal("Error while cheking game files!");
-                Log.Debug(ex.Message);
-                return false;
-            }
-        }
-
-        protected static void StaticInjectDLL(FileStream fs)
-        {
-            BinaryWriter Bin = new BinaryWriter(fs);
-
-            // disable aslr :)
-            Bin.Seek(0x1FE, SeekOrigin.Begin);
-            Bin.Write((byte)0x00);
-
-            // patch crash issue (setemblem patch)
-            byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
-            Bin.Seek(0xB38BA6, SeekOrigin.Begin);
-            Bin.Write(patch);
-
-            // calling loadlib from engine init
-            Bin.Seek(0x27C199, SeekOrigin.Begin);
-
-            byte[] payload =
-            {
-                // pushad (save all registers on stack)
-                0x60,
-                // push 0x014c94d0 ("Proxy")
-                0x68, 0xD0, 0x94, 0x4c, 0x01,
-                // call loadlibrary
-                0xff, 0x15, 0x64, 0xe2, 0x49, 0x01,
-                0x61,
-                // restore original code
-                0x5F, 0x5E, 0x8B, 0xE5, 0x5D, 0xC2, 0x0C, 0x00
-            };
-            Bin.Write(payload);
-            Bin.Close();
-        }
-
+        /// <summary>
+        /// Make sure everything is setup properly before starting GUI.
+        /// </summary>
         public static void Prepare()
         {
-            if (!CheckConfigs())
-                Environment.Exit(1);
+            Log.Verbose("Preparing GameLauncher");
 
-            GetConfig();
-
-            if (!CheckLogDirectory())
-                Environment.Exit(1);
-
-            if (!InitializeLogger())
-                Environment.Exit(1);
-
-            InitializeLogger();
-            Log.Information("Starting GameLauncher");
-
-            if (!CheckGameFiles())
-                Environment.Exit(0);
+            if (!Patcher.IsPatched)
+                Patcher.PatchFiles();
         }
     }
 }

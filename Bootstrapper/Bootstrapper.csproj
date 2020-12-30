@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="GameLauncher.cs" />
     <Compile Include="LauncherUI.cs">
       <SubType>Form</SubType>
@@ -66,6 +67,8 @@
     <Compile Include="LauncherUI.Designer.cs">
       <DependentUpon>LauncherUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logging.cs" />
+    <Compile Include="Patcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LauncherUI.resx">

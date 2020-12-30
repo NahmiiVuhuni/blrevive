@@ -6,17 +6,23 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace Bootstrapper
 {
     public partial class LauncherUI : Form
     {
+        protected Config Config;
+
         public LauncherUI()
         {
             InitializeComponent();
+            Config = Bootstrapper.Config.Get();
         }
 
         private void BGLaunchButton_Click(object sender, EventArgs e)
@@ -26,7 +32,8 @@ namespace Bootstrapper
 
         private void ClientLaunchButton_Click(object sender, EventArgs e)
         {
-            WriteUsername(ClientPlayerNameTextBox.Text);
+            Config.Username = ClientPlayerNameTextBox.Text;
+            Config.Save();
 
             if (ClientCustomURLCheckBox.Checked)
             {
@@ -35,7 +42,22 @@ namespace Bootstrapper
             else
             {
                 string options = $"?Name={ClientPlayerNameTextBox.Text}{ClientLaunchOptionsTextBox.Text}";
-                GameLauncher.LaunchClient(ClientIPTextBox.Text, options);
+                string  ipString = ClientIPTextBox.Text;
+                if (!Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"))
+                {
+                    try
+                    {
+                        IPAddress ipAddress = Dns.GetHostAddresses(ipString).First();
+                        ipString = ipAddress.ToString();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error("Could not resolve host name: {0}", ipString);
+                        MessageBox.Show("Could not resolve host name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                GameLauncher.LaunchClient(ipString, options);
             }
         }
 
@@ -66,31 +88,23 @@ namespace Bootstrapper
         }
         private void LauncherUI_Load(object sender, EventArgs e)
         {
-            BGGamemodesCombo.DataSource = GameLauncher.GetConfig().Gamemodes;
+            BGGamemodesCombo.DataSource = Config.Gamemodes;
             BGGamemodesCombo.SelectedIndex = 1;
-            BGMapsCombo.DataSource = GameLauncher.GetConfig().Maps;
+            BGMapsCombo.DataSource = Config.Maps;
             BGMapsCombo.SelectedIndex = 9;
             BGBotCountNum.Value = 10;
 
-            if (GameLauncher.GetConfig().Username != null)
-                ClientPlayerNameTextBox.Text = GameLauncher.GetConfig().Username;
+            if (Config.Username != null)
+                ClientPlayerNameTextBox.Text = Config.Username;
             else
                 ClientPlayerNameTextBox.Text = "Player";
 
-            ServerGamemodesCombo.DataSource = GameLauncher.GetConfig().Gamemodes;
+            ServerGamemodesCombo.DataSource = Config.Gamemodes;
             ServerGamemodesCombo.SelectedIndex = 1;
-            ServerMapsCombo.DataSource = GameLauncher.GetConfig().Maps;
+            ServerMapsCombo.DataSource = Config.Maps;
             ServerMapsCombo.SelectedIndex = 9;
             ServerBotCountNum.Value = 10;
             ServerPlayerCountNum.Value = 16;
-        }
-
-        private void WriteUsername(string Username)
-        {
-            Config LauncherConfig = GameLauncher.GetConfig();
-            LauncherConfig.Username = Username;
-            string output = JsonConvert.SerializeObject(LauncherConfig, Formatting.Indented);
-            File.WriteAllText("LauncherConfig.json", output);
         }
     }
 }
