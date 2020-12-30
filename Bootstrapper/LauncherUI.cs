@@ -103,7 +103,7 @@ namespace Bootstrapper
             ServerGamemodesCombo.SelectedIndex = 1;
             ServerMapsCombo.DataSource = Config.Maps;
             ServerMapsCombo.SelectedIndex = 9;
-            ServerBotCountNum.Value = 10;
+            ServerBotCountNum.Value = 0;
             ServerPlayerCountNum.Value = 16;
         }
     }
