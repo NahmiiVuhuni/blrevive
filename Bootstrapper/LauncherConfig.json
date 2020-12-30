@@ -2,6 +2,7 @@
   "LogLevel":  1,
   "ServerStartupOffset": 5000,
   "Username": "Player",
+  "PreviousIP": "127.0.0.1",
   "Maps": [
     "Centre",
     "Containment",
