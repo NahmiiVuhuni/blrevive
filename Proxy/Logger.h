@@ -13,6 +13,9 @@
 
 namespace BLRevive
 {
+	/// <summary>
+	/// Provides logging functionality
+	/// </summary>
 	class Logger
 	{
 	public:

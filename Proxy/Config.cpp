@@ -6,20 +6,35 @@ namespace fs = std::filesystem;
 
 bool Config::LogProcessEventCalls()
 {
-    auto config = GetConfig();
-    if (config == NULL) {
-        MessageBoxA(NULL, "Config was null", "Error", MB_OK);
-        return false;
-    }
-
-    bool value = false;
     try {
-        value = config["LogProcessEventCalls"].get<int>();
+        return GetConfig()["LogProcessEventCalls"].get<int>();
     }
     catch (json::exception ex) {
         MessageBoxA(NULL, ex.what(), "JSON Parse Error", MB_OK);
+        return false;
     }
-    return value;
+}
+
+std::string Config::Command()
+{
+    try {
+        return GetConfig()["Command"].get<std::string>();
+    }
+    catch (json::exception ex) {
+        MessageBoxA(NULL, ex.what(), "JSON Parse Error", MB_OK);
+        return "";
+    }
+}
+
+std::string Config::CommandKey()
+{
+    try {
+        return GetConfig()["CommandKey"].get<std::string>();
+    }
+    catch (json::exception ex) {
+        MessageBoxA(NULL, ex.what(), "JSON Parse Error", MB_OK);
+        return "";
+    }
 }
 
 json Config::GetConfig()

@@ -2,7 +2,6 @@
 #include "pch.h"
 #include "Tools.h"
 #include "Proxy.h"
-#include "SetEmblemPatch.h"
 #include "Config.h"
 
 void OnAttach()
@@ -11,7 +10,6 @@ void OnAttach()
     LFlush;
 
     BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
-    BLRevive::Patch::ApplyAll();
     BLRevive::Proxy::GetInstance()->Initialize();
 }
 

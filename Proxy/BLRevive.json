@@ -1,3 +1,5 @@
 {
-  "LogProcessEventCalls": false
+  "LogProcessEventCalls": false,
+  "Command": "EXIT",
+  "CommandKey": "F2"
 }
