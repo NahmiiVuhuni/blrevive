@@ -1,17 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using Serilog;
 
 namespace Bootstrapper
 {
@@ -22,7 +10,7 @@ namespace Bootstrapper
         public LauncherUI()
         {
             InitializeComponent();
-            Config = Bootstrapper.Config.Get();
+            Config = Config.Get();
         }
 
         private void BGLaunchButton_Click(object sender, EventArgs e)
@@ -32,38 +20,37 @@ namespace Bootstrapper
 
         private void ClientLaunchButton_Click(object sender, EventArgs e)
         {
-            Config.Username = ClientPlayerNameTextBox.Text;
-            Config.Save();
-
             if (ClientCustomURLCheckBox.Checked)
             {
                 GameLauncher.LaunchClient("", ClientCustomURLTextBox.Text);
             }
             else
             {
-                string options = $"?Name={ClientPlayerNameTextBox.Text}{ClientLaunchOptionsTextBox.Text}";
-                string ipString;
-                if (ClientLocalConnectCheckBox.Checked)
-                    ipString = "127.0.0.1";
-                else
-                    ipString = ClientServerAddressTextBox.Text;
-                if (!Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"))
+                string currentPlayerName = ClientPlayerNameTextBox.Text;
+                if (!UserUtil.IsValidPlayerName(currentPlayerName))
                 {
-                    try
-                    {
-                        IPAddress ipAddress = Dns.GetHostAddresses(ipString).First();
-                        ipString = ipAddress.ToString();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error("Could not resolve host name: {0}", ipString);
-                        MessageBox.Show("Could not resolve host name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show("Missing or invalid Player Name!");
+                    return;
                 }
-                Config.PreviousServerAddress = ClientServerAddressTextBox.Text;
-                Config.Save();
-                GameLauncher.LaunchClient(ipString, options);
+                else
+                {
+                    UserUtil.SavePlayerName(currentPlayerName);
+                }
+
+                string currentServerAddress = ClientLocalConnectCheckBox.Checked ? Config.DefaultLocalHostIp : ClientServerAddressTextBox.Text;
+                string options = $"?Name={currentPlayerName}{ClientLaunchOptionsTextBox.Text}";
+                
+                string ipString = ClientLocalConnectCheckBox.Checked ? currentServerAddress : NetworkUtil.GetHostIp(currentServerAddress);
+                // check if the address is valid either by IP or IP resolved from server name
+                if (!NetworkUtil.IsValidIPv4(ipString))
+                {
+                    MessageBox.Show("Could not resolve host name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // use valid server name or IP, the way the user added it 
+                NetworkUtil.SaveAsPreviousServerAddress(currentServerAddress);
+                GameLauncher.LaunchClient(currentServerAddress, options);
             }
         }
 
@@ -77,16 +64,36 @@ namespace Bootstrapper
 
         private void ClientCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ClientServerAddressTextBox.Enabled = !ClientServerAddressTextBox.Enabled;
-            ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
-            ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
+            // this condition can be condensed simplified, keep it like this to be easy to read, that is: apply flag toggle only if not checked 
+            ClientServerAddressLable.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressLable.Enabled : false;
+            ClientServerAddressTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressTextBox.Enabled : false;
+            ClientPlayerNameTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientPlayerNameTextBox.Enabled : false;
+            ClientPlayerNameLabel.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientPlayerNameLabel.Enabled : false;
+            ClientLaunchOptionsTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientLaunchOptionsTextBox.Enabled : false;
+            ClientServerAddressSaveButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressSaveButton.Enabled : false;
+            ClientHostServersResetButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersResetButton.Enabled : false;
+            ClientHostServersRestoreButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersRestoreButton.Enabled : false;
+            ClientHostServersComboBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersComboBox.Enabled : false;
+
             ClientCustomURLTextBox.Enabled = !ClientCustomURLTextBox.Enabled;
+            ClientLocalConnectCheckBox.Enabled = !ClientLocalConnectCheckBox.Enabled;
         }
 
         private void ClientLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             ClientServerAddressLable.Enabled = !ClientServerAddressLable.Enabled;
             ClientServerAddressTextBox.Enabled = !ClientServerAddressTextBox.Enabled;
+            ClientServerAddressSaveButton.Enabled = !ClientServerAddressSaveButton.Enabled;
+
+            ClientPlayerNameLabel.Enabled = !ClientPlayerNameLabel.Enabled;
+            ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
+            ClientLaunchOptionsLable.Enabled = !ClientLaunchOptionsTextBox.Enabled;
+            ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
+
+            ClientHostServersResetButton.Enabled = !ClientHostServersResetButton.Enabled;
+            ClientHostServersRestoreButton.Enabled = !ClientHostServersRestoreButton.Enabled;
+            ClientHostServersComboBox.Enabled = !ClientHostServersComboBox.Enabled;
+            ClientHostServersLable.Enabled = !ClientHostServersLable.Enabled;
         }
 
         private void ServerCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -98,6 +105,48 @@ namespace Bootstrapper
             ServerLaunchOptionsTextBox.Enabled = !ServerLaunchOptionsTextBox.Enabled;
             ServerCustomURLTextBox.Enabled = !ServerCustomURLTextBox.Enabled;
         }
+
+        private void ClientHostServersComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Update_ClientServerAddressTextBox();
+        }
+
+        private void ClientHostServersResetButton_Click(object sender, EventArgs e)
+        {
+            NetworkUtil.ResetHostsList();
+            Update_ClientHostServersComboBox(0);
+            Update_ClientServerAddressTextBox();
+        }
+
+        private void ClientServerAddressSaveButton_Click(object sender, EventArgs e)
+        {
+            bool isUpdated = NetworkUtil.UpdateHostsList((string)ClientServerAddressTextBox.Text);
+            if (isUpdated)
+            {
+                int lastAddedHostSelectionIndex = Config.Hosts.Length - 1;
+                Update_ClientHostServersComboBox(lastAddedHostSelectionIndex);
+            }
+        }
+
+        private void ClientHostServersRestoreButton_Click(object sender, EventArgs e)
+        {
+            bool isRestored = NetworkUtil.RestoreHostsListFromBackup();
+            if (isRestored)
+            {
+                Update_ClientHostServersComboBox(0);
+                MessageBox.Show($"Restored successfully the hosts list from: {HostsConfig.HostsConfigFileName} !");
+            }
+        }
+
+        private void ClientHostServersBackupButton_Click(object sender, EventArgs e)
+        {
+            bool isSaved = NetworkUtil.BackupHostsList();
+            if (isSaved)
+            {
+                MessageBox.Show($"Hosts backup completed successfully to: {HostsConfig.HostsConfigFileName} !");
+            }
+        }
+
         private void LauncherUI_Load(object sender, EventArgs e)
         {
             BGGamemodesCombo.DataSource = Config.Gamemodes;
@@ -106,10 +155,10 @@ namespace Bootstrapper
             BGMapsCombo.SelectedIndex = 9;
             BGBotCountNum.Value = 10;
 
-            if (Config.Username != null)
-                ClientPlayerNameTextBox.Text = Config.Username;
-            else
-                ClientPlayerNameTextBox.Text = "Player";
+            // don't select anything on initial load to prevent overwrite of PreviousServerAddress restore if exists
+            ClientHostServersComboBox.DataSource = Config.Hosts;
+
+            ClientPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.Username) ? Config.Username : Config.DefaultPlayerName;
 
             ServerGamemodesCombo.DataSource = Config.Gamemodes;
             ServerGamemodesCombo.SelectedIndex = 1;
@@ -117,11 +166,23 @@ namespace Bootstrapper
             ServerMapsCombo.SelectedIndex = 9;
             ServerBotCountNum.Value = 0;
             ServerPlayerCountNum.Value = 16;
-
-            if (Config.PreviousServerAddress != null)
+            
+            if (!String.IsNullOrWhiteSpace(Config.PreviousServerAddress))
                 ClientServerAddressTextBox.Text = Config.PreviousServerAddress;
             else
-                ClientServerAddressTextBox.Text = "127.0.0.1";
+                Update_ClientServerAddressTextBox();
+        }
+
+        private void Update_ClientServerAddressTextBox()
+        {
+            string selectedHost = (string)ClientHostServersComboBox.SelectedItem;
+            ClientServerAddressTextBox.Text = !String.IsNullOrWhiteSpace(selectedHost) ? selectedHost : NetworkUtil.GetDefaultHost();
+        }
+
+        private void Update_ClientHostServersComboBox(int selectedIndex)
+        {
+            ClientHostServersComboBox.DataSource = Config.Hosts;
+            ClientHostServersComboBox.SelectedIndex = selectedIndex;
         }
     }
 }
