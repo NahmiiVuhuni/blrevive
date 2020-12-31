@@ -30,9 +30,9 @@ namespace Bootstrapper
         public string Username;
 
         /// <summary>
-        /// IP of the server connected to in the previous session.
+        /// Address of the server connected to in the previous session.
         /// </summary>
-        public string PreviousIP;
+        public string PreviousServerAddress;
 
         /// <summary>
         /// Available Maps.

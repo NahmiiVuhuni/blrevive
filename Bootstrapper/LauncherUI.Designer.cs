@@ -44,11 +44,11 @@ namespace Bootstrapper
             this.ClientCustomURLCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientLaunchOptionsLable = new System.Windows.Forms.Label();
             this.ClientPlayerNameLabel = new System.Windows.Forms.Label();
-            this.ClientServerIPLable = new System.Windows.Forms.Label();
+            this.ClientServerAddressLable = new System.Windows.Forms.Label();
             this.ClientLaunchButton = new System.Windows.Forms.Button();
             this.ClientLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
             this.ClientPlayerNameTextBox = new System.Windows.Forms.TextBox();
-            this.ClientIPTextBox = new System.Windows.Forms.TextBox();
+            this.ClientServerAddressTextBox = new System.Windows.Forms.TextBox();
             this.ServerTab = new System.Windows.Forms.TabPage();
             this.ServerPlayerCountNum = new System.Windows.Forms.NumericUpDown();
             this.ServerMaxPlayersLabel = new System.Windows.Forms.Label();
@@ -190,11 +190,11 @@ namespace Bootstrapper
             this.ClientTab.Controls.Add(this.ClientCustomURLCheckBox);
             this.ClientTab.Controls.Add(this.ClientLaunchOptionsLable);
             this.ClientTab.Controls.Add(this.ClientPlayerNameLabel);
-            this.ClientTab.Controls.Add(this.ClientServerIPLable);
+            this.ClientTab.Controls.Add(this.ClientServerAddressLable);
             this.ClientTab.Controls.Add(this.ClientLaunchButton);
             this.ClientTab.Controls.Add(this.ClientLaunchOptionsTextBox);
             this.ClientTab.Controls.Add(this.ClientPlayerNameTextBox);
-            this.ClientTab.Controls.Add(this.ClientIPTextBox);
+            this.ClientTab.Controls.Add(this.ClientServerAddressTextBox);
             this.ClientTab.Location = new System.Drawing.Point(4, 22);
             this.ClientTab.Name = "ClientTab";
             this.ClientTab.Padding = new System.Windows.Forms.Padding(3);
@@ -252,14 +252,14 @@ namespace Bootstrapper
             this.ClientPlayerNameLabel.TabIndex = 18;
             this.ClientPlayerNameLabel.Text = "Player Name";
             // 
-            // ClientServerIPLable
+            // ClientServerAddressLable
             // 
-            this.ClientServerIPLable.AutoSize = true;
-            this.ClientServerIPLable.Location = new System.Drawing.Point(72, 79);
-            this.ClientServerIPLable.Name = "ClientServerIPLable";
-            this.ClientServerIPLable.Size = new System.Drawing.Size(79, 13);
-            this.ClientServerIPLable.TabIndex = 17;
-            this.ClientServerIPLable.Text = "Server Address";
+            this.ClientServerAddressLable.AutoSize = true;
+            this.ClientServerAddressLable.Location = new System.Drawing.Point(72, 79);
+            this.ClientServerAddressLable.Name = "ClientServerAddressLable";
+            this.ClientServerAddressLable.Size = new System.Drawing.Size(79, 13);
+            this.ClientServerAddressLable.TabIndex = 17;
+            this.ClientServerAddressLable.Text = "Server Address";
             // 
             // ClientLaunchButton
             // 
@@ -286,13 +286,13 @@ namespace Bootstrapper
             this.ClientPlayerNameTextBox.TabIndex = 14;
             this.ClientPlayerNameTextBox.Text = "Player";
             // 
-            // ClientIPTextBox
+            // ClientServerAddressTextBox
             // 
-            this.ClientIPTextBox.Location = new System.Drawing.Point(411, 76);
-            this.ClientIPTextBox.Name = "ClientIPTextBox";
-            this.ClientIPTextBox.Size = new System.Drawing.Size(135, 20);
-            this.ClientIPTextBox.TabIndex = 13;
-            this.ClientIPTextBox.Text = "127.0.0.1";
+            this.ClientServerAddressTextBox.Location = new System.Drawing.Point(411, 76);
+            this.ClientServerAddressTextBox.Name = "ClientServerAddressTextBox";
+            this.ClientServerAddressTextBox.Size = new System.Drawing.Size(135, 20);
+            this.ClientServerAddressTextBox.TabIndex = 13;
+            this.ClientServerAddressTextBox.Text = "127.0.0.1";
             // 
             // ServerTab
             // 
@@ -503,11 +503,11 @@ namespace Bootstrapper
         private System.Windows.Forms.CheckBox ClientCustomURLCheckBox;
         private System.Windows.Forms.Label ClientLaunchOptionsLable;
         private System.Windows.Forms.Label ClientPlayerNameLabel;
-        private System.Windows.Forms.Label ClientServerIPLable;
+        private System.Windows.Forms.Label ClientServerAddressLable;
         private System.Windows.Forms.Button ClientLaunchButton;
         private System.Windows.Forms.TextBox ClientLaunchOptionsTextBox;
         private System.Windows.Forms.TextBox ClientPlayerNameTextBox;
-        private System.Windows.Forms.TextBox ClientIPTextBox;
+        private System.Windows.Forms.TextBox ClientServerAddressTextBox;
         private System.Windows.Forms.NumericUpDown ServerPlayerCountNum;
         private System.Windows.Forms.Label ServerMaxPlayersLabel;
         private System.Windows.Forms.CheckBox ServerCustomURLCheckbox;

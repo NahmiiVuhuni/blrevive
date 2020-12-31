@@ -46,7 +46,7 @@ namespace Bootstrapper
                 if (ClientLocalConnectCheckBox.Checked)
                     ipString = "127.0.0.1";
                 else
-                    ipString = ClientIPTextBox.Text;
+                    ipString = ClientServerAddressTextBox.Text;
                 if (!Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"))
                 {
                     try
@@ -61,7 +61,7 @@ namespace Bootstrapper
                         return;
                     }
                 }
-                Config.PreviousIP = ClientIPTextBox.Text;
+                Config.PreviousServerAddress = ClientServerAddressTextBox.Text;
                 Config.Save();
                 GameLauncher.LaunchClient(ipString, options);
             }
@@ -77,7 +77,7 @@ namespace Bootstrapper
 
         private void ClientCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ClientIPTextBox.Enabled = !ClientIPTextBox.Enabled;
+            ClientServerAddressTextBox.Enabled = !ClientServerAddressTextBox.Enabled;
             ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
             ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
             ClientCustomURLTextBox.Enabled = !ClientCustomURLTextBox.Enabled;
@@ -85,8 +85,8 @@ namespace Bootstrapper
 
         private void ClientLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ClientServerIPLable.Enabled = !ClientServerIPLable.Enabled;
-            ClientIPTextBox.Enabled = !ClientIPTextBox.Enabled;
+            ClientServerAddressLable.Enabled = !ClientServerAddressLable.Enabled;
+            ClientServerAddressTextBox.Enabled = !ClientServerAddressTextBox.Enabled;
         }
 
         private void ServerCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -118,10 +118,10 @@ namespace Bootstrapper
             ServerBotCountNum.Value = 0;
             ServerPlayerCountNum.Value = 16;
 
-            if (Config.PreviousIP != null)
-                ClientIPTextBox.Text = Config.PreviousIP;
+            if (Config.PreviousServerAddress != null)
+                ClientServerAddressTextBox.Text = Config.PreviousServerAddress;
             else
-                ClientIPTextBox.Text = "127.0.0.1";
+                ClientServerAddressTextBox.Text = "127.0.0.1";
         }
     }
 }
