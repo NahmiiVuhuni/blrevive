@@ -29,7 +29,7 @@ namespace Bootstrapper
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.LauncherTabControl = new System.Windows.Forms.TabControl();
             this.BotMatchTab = new System.Windows.Forms.TabPage();
             this.BGBotCountNum = new System.Windows.Forms.NumericUpDown();
             this.BGBotCountLable = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@ namespace Bootstrapper
             this.ServerGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGBotCountNum)).BeginInit();
             this.ClientTab.SuspendLayout();
@@ -81,17 +81,17 @@ namespace Bootstrapper
             this.MasterServerTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // LauncherTabControl
             // 
-            this.tabControl1.Controls.Add(this.BotMatchTab);
-            this.tabControl1.Controls.Add(this.ClientTab);
-            this.tabControl1.Controls.Add(this.ServerTab);
-            this.tabControl1.Controls.Add(this.MasterServerTab);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(622, 322);
-            this.tabControl1.TabIndex = 0;
+            this.LauncherTabControl.Controls.Add(this.BotMatchTab);
+            this.LauncherTabControl.Controls.Add(this.ClientTab);
+            this.LauncherTabControl.Controls.Add(this.ServerTab);
+            this.LauncherTabControl.Controls.Add(this.MasterServerTab);
+            this.LauncherTabControl.Location = new System.Drawing.Point(0, 0);
+            this.LauncherTabControl.Name = "LauncherTabControl";
+            this.LauncherTabControl.SelectedIndex = 0;
+            this.LauncherTabControl.Size = new System.Drawing.Size(622, 322);
+            this.LauncherTabControl.TabIndex = 0;
             // 
             // BotMatchTab
             // 
@@ -352,6 +352,7 @@ namespace Bootstrapper
             // ClientPlayerNameTextBox
             // 
             this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(322, 147);
+            this.ClientPlayerNameTextBox.MaxLength = 24;
             this.ClientPlayerNameTextBox.Name = "ClientPlayerNameTextBox";
             this.ClientPlayerNameTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientPlayerNameTextBox.TabIndex = 14;
@@ -534,12 +535,12 @@ namespace Bootstrapper
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 321);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.LauncherTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LauncherUI";
             this.Text = "BLRevive Launcher";
             this.Load += new System.EventHandler(this.LauncherUI_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.LauncherTabControl.ResumeLayout(false);
             this.BotMatchTab.ResumeLayout(false);
             this.BotMatchTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGBotCountNum)).EndInit();
@@ -557,7 +558,7 @@ namespace Bootstrapper
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl LauncherTabControl;
         private System.Windows.Forms.TabPage BotMatchTab;
         private System.Windows.Forms.TabPage ClientTab;
         private System.Windows.Forms.TabPage ServerTab;
