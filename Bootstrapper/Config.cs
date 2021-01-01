@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
@@ -14,6 +10,11 @@ namespace Bootstrapper
     /// </summary>
     public class Config
     {
+        
+        public const string DefaultPlayerName = "Player";
+        public const string DefaultLocalHostIp = "127.0.0.1";
+        public const int MaxClientHostListSize = 50;
+
         /// <summary>
         /// The log level to use
         /// </summary>
@@ -43,9 +44,14 @@ namespace Bootstrapper
         /// Available Gamemodes.
         /// </summary>
         public string[] Gamemodes;
-        
+
+        /// <summary>
+        /// Known Hosts by IP or Name 
+        /// </summary>
+        public string[] Hosts;
 
         private static Config _Config = null;
+        private const string LauncherConfigFileName = "LauncherConfig.json";
 
         /// <summary>
         /// Get the configuration from JSON.
@@ -56,11 +62,11 @@ namespace Bootstrapper
             try
             {
                 if (_Config == null)
-                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("LauncherConfig.json"));
+                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(LauncherConfigFileName));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to parse LauncherConfig.json!");
+                MessageBox.Show($"Failed to parse {LauncherConfigFileName}!");
                 //Log.Debug(ex.Message);
                 Environment.Exit(1);
             }
@@ -78,11 +84,12 @@ namespace Bootstrapper
             try
             {
                 string jsonConfig = JsonConvert.SerializeObject(Get(), Formatting.Indented);
-                File.WriteAllText("LauncherConfig.json", jsonConfig);
+                File.WriteAllText(LauncherConfigFileName, jsonConfig);
             } catch (Exception ex)
             {
                 MessageBox.Show($"Error writing config: {ex.Message}");
             }
+
             return true;
         }
     }

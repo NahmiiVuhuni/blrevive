@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
-using Newtonsoft.Json;
 using Serilog;
 
 namespace Bootstrapper
@@ -133,7 +128,7 @@ namespace Bootstrapper
                 return null;
             }
 
-            Log.Information("Client sucessfully started and patched!");
+            Log.Information("Client successfully started and patched!");
             return clientProcess;
         }
 
@@ -164,7 +159,7 @@ namespace Bootstrapper
             Thread.Sleep(Config.Get().ServerStartupOffset);
 
 
-            if (LaunchClient("127.0.0.1", clientArgs) == null)
+            if (LaunchClient(NetworkUtil.GetDefaultHost(), clientArgs) == null)
             {
                 Log.Error("Failed to start client!");
             }

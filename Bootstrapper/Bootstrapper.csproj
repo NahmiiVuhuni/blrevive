@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserUtil.cs" />
+    <Compile Include="HostsConfig.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="GameLauncher.cs" />
     <Compile Include="LauncherUI.cs">
@@ -68,6 +70,7 @@
       <DependentUpon>LauncherUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Logging.cs" />
+    <Compile Include="NetworkUtil.cs" />
     <Compile Include="Patcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

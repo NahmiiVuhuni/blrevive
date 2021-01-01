@@ -1,5 +1,5 @@
 ﻿{
-  "LogLevel":  1,
+  "LogLevel": 1,
   "ServerStartupOffset": 5000,
   "Username": "Player",
   "PreviousServerAddress": "127.0.0.1",
@@ -42,5 +42,8 @@
     "KC",
     "OS",
     "SND"
+  ],
+  "Hosts": [
+    "127.0.0.1"
   ]
 }
