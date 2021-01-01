@@ -64,7 +64,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="BLRevive.json">
       <Filter>Headerdateien</Filter>
     </None>
