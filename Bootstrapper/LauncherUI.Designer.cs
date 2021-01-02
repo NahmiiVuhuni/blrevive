@@ -144,7 +144,7 @@ namespace Bootstrapper
             this.BGTabLaunchButton.TabIndex = 15;
             this.BGTabLaunchButton.Text = "Launch";
             this.BGTabLaunchButton.UseVisualStyleBackColor = true;
-            this.BGTabLaunchButton.Click += new System.EventHandler(this.BGLaunchButton_Click);
+            this.BGTabLaunchButton.Click += new System.EventHandler(this.BGTabLaunchButton_Click);
             // 
             // BGTabMapLable
             // 
@@ -246,7 +246,7 @@ namespace Bootstrapper
             this.ClientTabHostServersRestoreButton.TabIndex = 27;
             this.ClientTabHostServersRestoreButton.Text = "Restore";
             this.ClientTabHostServersRestoreButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersRestoreButton.Click += new System.EventHandler(this.ClientHostServersRestoreButton_Click);
+            this.ClientTabHostServersRestoreButton.Click += new System.EventHandler(this.ClientTabHostServersRestoreButton_Click);
             // 
             // ClientTabHostServersBackupButton
             // 
@@ -256,7 +256,7 @@ namespace Bootstrapper
             this.ClientTabHostServersBackupButton.TabIndex = 26;
             this.ClientTabHostServersBackupButton.Text = "Backup";
             this.ClientTabHostServersBackupButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersBackupButton.Click += new System.EventHandler(this.ClientHostServersBackupButton_Click);
+            this.ClientTabHostServersBackupButton.Click += new System.EventHandler(this.ClientTabHostServersBackupButton_Click);
             // 
             // ClientTabServerAddressSaveButton
             // 
@@ -266,7 +266,7 @@ namespace Bootstrapper
             this.ClientTabServerAddressSaveButton.TabIndex = 25;
             this.ClientTabServerAddressSaveButton.Text = "Save";
             this.ClientTabServerAddressSaveButton.UseVisualStyleBackColor = true;
-            this.ClientTabServerAddressSaveButton.Click += new System.EventHandler(this.ClientServerAddressSaveButton_Click);
+            this.ClientTabServerAddressSaveButton.Click += new System.EventHandler(this.ClientTabServerAddressSaveButton_Click);
             // 
             // ClientTabHostServersResetButton
             // 
@@ -276,7 +276,7 @@ namespace Bootstrapper
             this.ClientTabHostServersResetButton.TabIndex = 24;
             this.ClientTabHostServersResetButton.Text = "Reset";
             this.ClientTabHostServersResetButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersResetButton.Click += new System.EventHandler(this.ClientHostServersResetButton_Click);
+            this.ClientTabHostServersResetButton.Click += new System.EventHandler(this.ClientTabHostServersResetButton_Click);
             // 
             // ClientTabHostServersComboBox
             // 
@@ -286,7 +286,7 @@ namespace Bootstrapper
             this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
             this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(231, 21);
             this.ClientTabHostServersComboBox.TabIndex = 23;
-            this.ClientTabHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientHostServersComboBox_SelectedIndexChanged);
+            this.ClientTabHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientTabHostServersComboBox_SelectedIndexChanged);
             // 
             // ClientTabHostServersLable
             // 
@@ -307,7 +307,7 @@ namespace Bootstrapper
             this.ClientTabLocalConnectCheckBox.TabIndex = 22;
             this.ClientTabLocalConnectCheckBox.Text = "Connect to local server";
             this.ClientTabLocalConnectCheckBox.UseVisualStyleBackColor = true;
-            this.ClientTabLocalConnectCheckBox.CheckedChanged += new System.EventHandler(this.ClientLocalConnectCheckBox_CheckedChanged);
+            this.ClientTabLocalConnectCheckBox.CheckedChanged += new System.EventHandler(this.ClientTabLocalConnectCheckBox_CheckedChanged);
             // 
             // ClientTabCustomURLTextBox
             // 
@@ -326,7 +326,7 @@ namespace Bootstrapper
             this.ClientTabCustomURLCheckBox.TabIndex = 20;
             this.ClientTabCustomURLCheckBox.Text = "Custom URL";
             this.ClientTabCustomURLCheckBox.UseVisualStyleBackColor = true;
-            this.ClientTabCustomURLCheckBox.CheckedChanged += new System.EventHandler(this.ClientCustomURLCheckBox_CheckedChanged);
+            this.ClientTabCustomURLCheckBox.CheckedChanged += new System.EventHandler(this.ClientTabCustomURLCheckBox_CheckedChanged);
             // 
             // ClientTabLaunchOptionsLable
             // 
@@ -363,7 +363,7 @@ namespace Bootstrapper
             this.ClientTabLaunchButton.TabIndex = 16;
             this.ClientTabLaunchButton.Text = "Launch";
             this.ClientTabLaunchButton.UseVisualStyleBackColor = true;
-            this.ClientTabLaunchButton.Click += new System.EventHandler(this.ClientLaunchButton_Click);
+            this.ClientTabLaunchButton.Click += new System.EventHandler(this.ClientTabLaunchButton_Click);
             // 
             // ClientTabLaunchOptionsTextBox
             // 
@@ -469,7 +469,7 @@ namespace Bootstrapper
             this.ServerTabCustomURLCheckbox.TabIndex = 24;
             this.ServerTabCustomURLCheckbox.Text = "Custom URL";
             this.ServerTabCustomURLCheckbox.UseVisualStyleBackColor = true;
-            this.ServerTabCustomURLCheckbox.CheckedChanged += new System.EventHandler(this.ServerCustomURLCheckbox_CheckedChanged);
+            this.ServerTabCustomURLCheckbox.CheckedChanged += new System.EventHandler(this.ServerTabCustomURLCheckbox_CheckedChanged);
             // 
             // ServerTabCustomURLTextBox
             // 
@@ -530,7 +530,7 @@ namespace Bootstrapper
             this.ServerTabLaunchButton.TabIndex = 17;
             this.ServerTabLaunchButton.Text = "Launch";
             this.ServerTabLaunchButton.UseVisualStyleBackColor = true;
-            this.ServerTabLaunchButton.Click += new System.EventHandler(this.ServerLaunchButton_Click);
+            this.ServerTabLaunchButton.Click += new System.EventHandler(this.ServerTabLaunchButton_Click);
             // 
             // ServerTabBotCountNum
             // 

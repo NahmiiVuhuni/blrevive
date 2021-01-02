@@ -13,7 +13,7 @@ namespace Bootstrapper
         
         public const string DefaultPlayerName = "Player";
         public const string DefaultLocalHostIp = "127.0.0.1";
-        public const decimal DefaultLocalHostPort = 7777;
+        public const string DefaultLocalHostPort = "7777";
         public const int MaxClientHostListSize = 50;
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Bootstrapper
         /// <summary
         /// Port of the server connect to in the previous session.
         /// </summary>
-        public decimal PreviousServerPort;
+        public string PreviousServerPort;
 
         /// <summary>
         /// Available Maps.
