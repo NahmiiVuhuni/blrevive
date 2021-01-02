@@ -587,7 +587,7 @@ namespace Bootstrapper
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 321);
             this.Controls.Add(this.LauncherTabControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LauncherUI";
             this.Text = "BLRevive Launcher";
             this.Load += new System.EventHandler(this.LauncherUI_Load);
