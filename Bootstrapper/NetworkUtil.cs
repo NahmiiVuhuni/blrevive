@@ -138,9 +138,10 @@ namespace Bootstrapper
             return isSaved;
         }
 
-        public static bool SaveAsPreviousServerAddress(string hostIpOrAddress)
+        public static bool SaveAsPreviousServerAddress(string hostIpOrAddress, decimal hostPort)
         {
             Config.Get().PreviousServerAddress = hostIpOrAddress;
+            Config.Get().PreviousServerPort = hostPort;
             return Config.Save();
         }
     }

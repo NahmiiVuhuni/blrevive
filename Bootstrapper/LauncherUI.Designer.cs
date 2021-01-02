@@ -418,9 +418,9 @@ namespace Bootstrapper
             this.ServerTabPortLable.AutoSize = true;
             this.ServerTabPortLable.Location = new System.Drawing.Point(72, 149);
             this.ServerTabPortLable.Name = "ServerTabPortLable";
-            this.ServerTabPortLable.Size = new System.Drawing.Size(64, 13);
+            this.ServerTabPortLable.Size = new System.Drawing.Size(26, 13);
             this.ServerTabPortLable.TabIndex = 30;
-            this.ServerTabPortLable.Text = "Custom Port";
+            this.ServerTabPortLable.Text = "Port";
             // 
             // ServerTabPortNum
             // 
@@ -587,7 +587,7 @@ namespace Bootstrapper
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 321);
             this.Controls.Add(this.LauncherTabControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LauncherUI";
             this.Text = "BLRevive Launcher";
             this.Load += new System.EventHandler(this.LauncherUI_Load);

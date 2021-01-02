@@ -38,6 +38,7 @@ namespace Bootstrapper
                 }
 
                 string currentServerAddress = ClientTabLocalConnectCheckBox.Checked ? Config.DefaultLocalHostIp : ClientTabServerAddressTextBox.Text;
+                string currentServerPort = ClientTabLocalConnectCheckBox.Checked ? Config.DefaultLocalHostPort.ToString() : ClientTabServerPortNum.Value.ToString();
                 string options = $"?Name={currentPlayerName}{ClientTabLaunchOptionsTextBox.Text}";
                 
                 string ipString = ClientTabLocalConnectCheckBox.Checked ? currentServerAddress : NetworkUtil.GetHostIp(currentServerAddress);
@@ -49,10 +50,8 @@ namespace Bootstrapper
                 }
 
                 // use valid server name or IP, the way the user added it 
-                NetworkUtil.SaveAsPreviousServerAddress(currentServerAddress);
-                Config.PreviousServerPort = (int)ClientTabServerPortNum.Value;
-                Config.Save();
-                GameLauncher.LaunchClient(currentServerAddress, ClientTabServerPortNum.Value.ToString(), options);
+                NetworkUtil.SaveAsPreviousServerAddress(currentServerAddress, ServerTabPortNum.Value);
+                GameLauncher.LaunchClient(currentServerAddress, currentServerPort, options);
             }
         }
 
@@ -83,7 +82,6 @@ namespace Bootstrapper
         private void ClientLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             ClientTabServerAddressTextBox.Enabled = !ClientTabServerAddressTextBox.Enabled;
-            ClientTabServerPortNum.Enabled = !ClientTabServerPortNum.Enabled;
             ClientTabServerAddressSaveButton.Enabled = !ClientTabServerAddressSaveButton.Enabled;
 
             ClientTabHostServersResetButton.Enabled = !ClientTabHostServersResetButton.Enabled;
