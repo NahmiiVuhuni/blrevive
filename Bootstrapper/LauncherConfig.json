@@ -3,6 +3,7 @@
   "ServerStartupOffset": 5000,
   "Username": "Player",
   "PreviousServerAddress": "127.0.0.1",
+  "PreviousServerPort": "7777",
   "Maps": [
     "Centre",
     "Containment",

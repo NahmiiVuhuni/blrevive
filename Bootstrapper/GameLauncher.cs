@@ -98,33 +98,35 @@ namespace Bootstrapper
         /// </summary>
         /// <param name="Map"></param>
         /// <param name="GameMode"></param>
+        /// <param name="Port"></param>
         /// <param name="BotCount"></param>
         /// <param name="MaxPlayers"></param>
         /// <param name="additionalArgs"></param>
         /// <returns>server process handle</returns>
-        public static Process LaunchServer(string Map, string GameMode, int BotCount, int MaxPlayers, string additionalArgs)
+        public static Process LaunchServer(string Map, string GameMode, int Port, int BotCount, int MaxPlayers, string additionalArgs)
         {
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
             return LaunchServer(args);
         }
 
         /// <summary>
         /// Start client process with given attributes.
         /// </summary>
-        /// <param name="IP">server ip to connect to</param>
-        /// <param name="Options">client URL</param>
+        /// <param name="IP">Server IP to connect to.</param>
+        /// <param name="Port">Port of the server.</param>
+        /// <param name="Options">Client URL</param>
         /// <returns></returns>
-        public static Process LaunchClient(string IP, string Options)
+        public static Process LaunchClient(string IP, string Port, string Options)
         {
             Log.Information("Launching Client");
-            Log.Debug("IP: {0} | Options: {1}", IP, Options);
+            Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
 
-            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}{Options}");
+            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}:{Port}{Options}");
 
             if(clientProcess == null)
             {
                 Log.Error("Failed to launch client!");
-                Log.Debug("CLI: {0} {1}{2}", PatchedGameExe, IP, Options);
+                Log.Debug("CLI: {0} {1}{2}", PatchedGameExe, IP, Port, Options);
                 return null;
             }
 
@@ -159,7 +161,7 @@ namespace Bootstrapper
             Thread.Sleep(Config.Get().ServerStartupOffset);
 
 
-            if (LaunchClient(NetworkUtil.GetDefaultHost(), clientArgs) == null)
+            if (LaunchClient(NetworkUtil.GetDefaultHost(), $"{Config.DefaultLocalHostPort}", clientArgs) == null)
             {
                 Log.Error("Failed to start client!");
             }

@@ -15,18 +15,18 @@ namespace Bootstrapper
 
         private void BGLaunchButton_Click(object sender, EventArgs e)
         {
-            GameLauncher.LaunchBotgame((string)BGMapsCombo.SelectedItem, (string)BGGamemodesCombo.SelectedItem, (int)BGBotCountNum.Value, () => this.Close());
+            GameLauncher.LaunchBotgame((string)BGTabMapsCombo.SelectedItem, (string)BGTabGamemodesCombo.SelectedItem, (int)BGTabBotCountNum.Value, () => this.Close());
         }
 
         private void ClientLaunchButton_Click(object sender, EventArgs e)
         {
-            if (ClientCustomURLCheckBox.Checked)
+            if (ClientTabCustomURLCheckBox.Checked)
             {
-                GameLauncher.LaunchClient("", ClientCustomURLTextBox.Text);
+                GameLauncher.LaunchClient("", $"{Config.DefaultLocalHostPort}", ClientTabCustomURLTextBox.Text);
             }
             else
             {
-                string currentPlayerName = ClientPlayerNameTextBox.Text;
+                string currentPlayerName = ClientTabPlayerNameTextBox.Text;
                 if (!UserUtil.IsValidPlayerName(currentPlayerName))
                 {
                     MessageBox.Show("Missing or invalid Player Name!");
@@ -37,10 +37,10 @@ namespace Bootstrapper
                     UserUtil.SavePlayerName(currentPlayerName);
                 }
 
-                string currentServerAddress = ClientLocalConnectCheckBox.Checked ? Config.DefaultLocalHostIp : ClientServerAddressTextBox.Text;
-                string options = $"?Name={currentPlayerName}{ClientLaunchOptionsTextBox.Text}";
+                string currentServerAddress = ClientTabLocalConnectCheckBox.Checked ? Config.DefaultLocalHostIp : ClientTabServerAddressTextBox.Text;
+                string options = $"?Name={currentPlayerName}{ClientTabLaunchOptionsTextBox.Text}";
                 
-                string ipString = ClientLocalConnectCheckBox.Checked ? currentServerAddress : NetworkUtil.GetHostIp(currentServerAddress);
+                string ipString = ClientTabLocalConnectCheckBox.Checked ? currentServerAddress : NetworkUtil.GetHostIp(currentServerAddress);
                 // check if the address is valid either by IP or IP resolved from server name
                 if (!NetworkUtil.IsValidIPv4(ipString))
                 {
@@ -50,60 +50,57 @@ namespace Bootstrapper
 
                 // use valid server name or IP, the way the user added it 
                 NetworkUtil.SaveAsPreviousServerAddress(currentServerAddress);
-                GameLauncher.LaunchClient(currentServerAddress, options);
+                Config.PreviousServerPort = (int)ClientTabServerPortNum.Value;
+                Config.Save();
+                GameLauncher.LaunchClient(currentServerAddress, ClientTabServerPortNum.Value.ToString(), options);
             }
         }
 
         private void ServerLaunchButton_Click(object sender, EventArgs e)
         {
-            if (ServerCustomURLCheckbox.Checked)
-                GameLauncher.LaunchServer(ServerLaunchOptionsTextBox.Text);
+            if (ServerTabCustomURLCheckbox.Checked)
+                GameLauncher.LaunchServer(ServerTabLaunchOptionsTextBox.Text);
             else
-                GameLauncher.LaunchServer((string)ServerMapsCombo.SelectedItem, (string)ServerGamemodesCombo.SelectedItem, (int)ServerBotCountNum.Value, (int)ServerPlayerCountNum.Value, ServerLaunchOptionsTextBox.Text);
+                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, ServerTabLaunchOptionsTextBox.Text);
         }
 
         private void ClientCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // this condition can be condensed simplified, keep it like this to be easy to read, that is: apply flag toggle only if not checked 
-            ClientServerAddressLable.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressLable.Enabled : false;
-            ClientServerAddressTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressTextBox.Enabled : false;
-            ClientPlayerNameTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientPlayerNameTextBox.Enabled : false;
-            ClientPlayerNameLabel.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientPlayerNameLabel.Enabled : false;
-            ClientLaunchOptionsTextBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientLaunchOptionsTextBox.Enabled : false;
-            ClientServerAddressSaveButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientServerAddressSaveButton.Enabled : false;
-            ClientHostServersResetButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersResetButton.Enabled : false;
-            ClientHostServersRestoreButton.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersRestoreButton.Enabled : false;
-            ClientHostServersComboBox.Enabled = !ClientLocalConnectCheckBox.Checked ? !ClientHostServersComboBox.Enabled : false;
+            ClientTabServerAddressTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabServerAddressTextBox.Enabled : false;
+            ClientTabPlayerNameTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabPlayerNameTextBox.Enabled : false;
+            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabLaunchOptionsTextBox.Enabled : false;
+            ClientTabServerAddressSaveButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabServerAddressSaveButton.Enabled : false;
+            ClientTabHostServersResetButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersResetButton.Enabled : false;
+            ClientTabHostServersBackupButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersBackupButton.Enabled : false;
+            ClientTabHostServersRestoreButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersRestoreButton.Enabled : false;
+            ClientTabHostServersComboBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersComboBox.Enabled : false;
 
-            ClientCustomURLTextBox.Enabled = !ClientCustomURLTextBox.Enabled;
-            ClientLocalConnectCheckBox.Enabled = !ClientLocalConnectCheckBox.Enabled;
+            ClientTabCustomURLTextBox.Enabled = !ClientTabCustomURLTextBox.Enabled;
+            ClientTabLocalConnectCheckBox.Enabled = !ClientTabLocalConnectCheckBox.Enabled;
         }
 
         private void ClientLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ClientServerAddressLable.Enabled = !ClientServerAddressLable.Enabled;
-            ClientServerAddressTextBox.Enabled = !ClientServerAddressTextBox.Enabled;
-            ClientServerAddressSaveButton.Enabled = !ClientServerAddressSaveButton.Enabled;
+            ClientTabServerAddressTextBox.Enabled = !ClientTabServerAddressTextBox.Enabled;
+            ClientTabServerPortNum.Enabled = !ClientTabServerPortNum.Enabled;
+            ClientTabServerAddressSaveButton.Enabled = !ClientTabServerAddressSaveButton.Enabled;
 
-            ClientPlayerNameLabel.Enabled = !ClientPlayerNameLabel.Enabled;
-            ClientPlayerNameTextBox.Enabled = !ClientPlayerNameTextBox.Enabled;
-            ClientLaunchOptionsLable.Enabled = !ClientLaunchOptionsTextBox.Enabled;
-            ClientLaunchOptionsTextBox.Enabled = !ClientLaunchOptionsTextBox.Enabled;
-
-            ClientHostServersResetButton.Enabled = !ClientHostServersResetButton.Enabled;
-            ClientHostServersRestoreButton.Enabled = !ClientHostServersRestoreButton.Enabled;
-            ClientHostServersComboBox.Enabled = !ClientHostServersComboBox.Enabled;
-            ClientHostServersLable.Enabled = !ClientHostServersLable.Enabled;
+            ClientTabHostServersResetButton.Enabled = !ClientTabHostServersResetButton.Enabled;
+            ClientTabHostServersBackupButton.Enabled = !ClientTabHostServersBackupButton.Enabled;
+            ClientTabHostServersRestoreButton.Enabled = !ClientTabHostServersRestoreButton.Enabled;
+            ClientTabHostServersComboBox.Enabled = !ClientTabHostServersComboBox.Enabled;
         }
 
         private void ServerCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            ServerGamemodesCombo.Enabled = !ServerGamemodesCombo.Enabled;
-            ServerMapsCombo.Enabled = !ServerMapsCombo.Enabled;
-            ServerBotCountNum.Enabled = !ServerBotCountNum.Enabled;
-            ServerPlayerCountNum.Enabled = !ServerPlayerCountNum.Enabled;
-            ServerLaunchOptionsTextBox.Enabled = !ServerLaunchOptionsTextBox.Enabled;
-            ServerCustomURLTextBox.Enabled = !ServerCustomURLTextBox.Enabled;
+            ServerTabGamemodesCombo.Enabled = !ServerTabGamemodesCombo.Enabled;
+            ServerTabMapsCombo.Enabled = !ServerTabMapsCombo.Enabled;
+            ServerTabBotCountNum.Enabled = !ServerTabBotCountNum.Enabled;
+            ServerTabPlayerCountNum.Enabled = !ServerTabPlayerCountNum.Enabled;
+            ServerTabLaunchOptionsTextBox.Enabled = !ServerTabLaunchOptionsTextBox.Enabled;
+            ServerTabCustomURLTextBox.Enabled = !ServerTabCustomURLTextBox.Enabled;
+            ServerTabPortNum.Enabled = !ServerTabPortNum.Enabled;
         }
 
         private void ClientHostServersComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -120,7 +117,7 @@ namespace Bootstrapper
 
         private void ClientServerAddressSaveButton_Click(object sender, EventArgs e)
         {
-            bool isUpdated = NetworkUtil.UpdateHostsList((string)ClientServerAddressTextBox.Text);
+            bool isUpdated = NetworkUtil.UpdateHostsList((string)ClientTabServerAddressTextBox.Text);
             if (isUpdated)
             {
                 int lastAddedHostSelectionIndex = Config.Hosts.Length - 1;
@@ -149,40 +146,44 @@ namespace Bootstrapper
 
         private void LauncherUI_Load(object sender, EventArgs e)
         {
-            BGGamemodesCombo.DataSource = Config.Gamemodes;
-            BGGamemodesCombo.SelectedIndex = 1;
-            BGMapsCombo.DataSource = Config.Maps;
-            BGMapsCombo.SelectedIndex = 9;
-            BGBotCountNum.Value = 10;
+            BGTabGamemodesCombo.DataSource = Config.Gamemodes;
+            BGTabGamemodesCombo.SelectedIndex = 1;
+            BGTabMapsCombo.DataSource = Config.Maps;
+            BGTabMapsCombo.SelectedIndex = 9;
+            BGTabBotCountNum.Value = 10;
 
             // don't select anything on initial load to prevent overwrite of PreviousServerAddress restore if exists
-            ClientHostServersComboBox.DataSource = Config.Hosts;
+            ClientTabHostServersComboBox.DataSource = Config.Hosts;
 
-            ClientPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.Username) ? Config.Username : Config.DefaultPlayerName;
+            ClientTabPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.Username) ? Config.Username : Config.DefaultPlayerName;
 
-            ServerGamemodesCombo.DataSource = Config.Gamemodes;
-            ServerGamemodesCombo.SelectedIndex = 1;
-            ServerMapsCombo.DataSource = Config.Maps;
-            ServerMapsCombo.SelectedIndex = 9;
-            ServerBotCountNum.Value = 0;
-            ServerPlayerCountNum.Value = 16;
+            ServerTabGamemodesCombo.DataSource = Config.Gamemodes;
+            ServerTabGamemodesCombo.SelectedIndex = 1;
+            ServerTabMapsCombo.DataSource = Config.Maps;
+            ServerTabMapsCombo.SelectedIndex = 9;
+            ServerTabBotCountNum.Value = 0;
+            ServerTabPlayerCountNum.Value = 16;
             
             if (!String.IsNullOrWhiteSpace(Config.PreviousServerAddress))
-                ClientServerAddressTextBox.Text = Config.PreviousServerAddress;
+                ClientTabServerAddressTextBox.Text = Config.PreviousServerAddress;
             else
                 Update_ClientServerAddressTextBox();
+            if (Config.Get().PreviousServerPort != 0)
+                ClientTabServerPortNum.Value = Config.Get().PreviousServerPort;
+            else
+                ClientTabServerPortNum.Value = Config.DefaultLocalHostPort;
         }
 
         private void Update_ClientServerAddressTextBox()
         {
-            string selectedHost = (string)ClientHostServersComboBox.SelectedItem;
-            ClientServerAddressTextBox.Text = !String.IsNullOrWhiteSpace(selectedHost) ? selectedHost : NetworkUtil.GetDefaultHost();
+            string selectedHost = (string)ClientTabHostServersComboBox.SelectedItem;
+            ClientTabServerAddressTextBox.Text = !String.IsNullOrWhiteSpace(selectedHost) ? selectedHost : NetworkUtil.GetDefaultHost();
         }
 
         private void Update_ClientHostServersComboBox(int selectedIndex)
         {
-            ClientHostServersComboBox.DataSource = Config.Hosts;
-            ClientHostServersComboBox.SelectedIndex = selectedIndex;
+            ClientTabHostServersComboBox.DataSource = Config.Hosts;
+            ClientTabHostServersComboBox.SelectedIndex = selectedIndex;
         }
     }
 }
