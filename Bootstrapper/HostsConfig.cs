@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
@@ -11,9 +12,9 @@ namespace Bootstrapper
     public class HostsConfig
     {
         /// <summary>
-        /// Known Hosts by IP or Name
+        /// Known Hosts by IP or Name and port
         /// </summary>
-        public string[] Hosts;
+        public List<Server> Hosts;
 
         private static HostsConfig _HostsConfig = null;
         public const string HostsConfigFileName = "HostsConfigBackup.json";
@@ -53,10 +54,10 @@ namespace Bootstrapper
         {
             try
             {
-                string[] currentHosts = Config.Get().Hosts;
-                if (currentHosts == null || currentHosts.Length == 0)
+                List<Server> currentHosts = Config.Get().Hosts;
+                if (currentHosts == null || currentHosts.Count == 0)
                 {
-                    MessageBox.Show("There are no hosts available to save!");
+                    MessageBox.Show("There are no hosts servers available to save!");
                     return false;
                 }
 

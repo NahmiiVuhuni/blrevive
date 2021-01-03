@@ -2,7 +2,14 @@
   "LogLevel": 1,
   "ServerStartupOffset": 5000,
   "Username": "Player",
-  "PreviousServerAddress": "127.0.0.1",
+  "PreviousHost": 
+  {
+    "Server":
+    {
+      "Address": "127.0.0.1",
+      "Port": "7777"
+    }
+  },
   "Maps": [
     "Centre",
     "Containment",
@@ -44,6 +51,9 @@
     "SND"
   ],
   "Hosts": [
-    "127.0.0.1"
+    {
+      "Address": "127.0.0.1",
+      "Port": "7777"
+    }
   ]
 }

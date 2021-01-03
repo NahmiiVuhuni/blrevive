@@ -31,53 +31,57 @@ namespace Bootstrapper
         {
             this.LauncherTabControl = new System.Windows.Forms.TabControl();
             this.BotMatchTab = new System.Windows.Forms.TabPage();
-            this.BGBotCountNum = new System.Windows.Forms.NumericUpDown();
-            this.BGBotCountLable = new System.Windows.Forms.Label();
-            this.BGLaunchButton = new System.Windows.Forms.Button();
-            this.BGMapLable = new System.Windows.Forms.Label();
-            this.BGGamemodeLabel = new System.Windows.Forms.Label();
-            this.BGMapsCombo = new System.Windows.Forms.ComboBox();
-            this.BGGamemodesCombo = new System.Windows.Forms.ComboBox();
+            this.BGTabBotCountNum = new System.Windows.Forms.NumericUpDown();
+            this.BGTabBotCountLable = new System.Windows.Forms.Label();
+            this.BGTabLaunchButton = new System.Windows.Forms.Button();
+            this.BGTabMapLable = new System.Windows.Forms.Label();
+            this.BGTabGamemodeLabel = new System.Windows.Forms.Label();
+            this.BGTabMapsCombo = new System.Windows.Forms.ComboBox();
+            this.BGTabGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.ClientTab = new System.Windows.Forms.TabPage();
-            this.ClientHostServersRestoreButton = new System.Windows.Forms.Button();
-            this.ClientHostServersBackupButton = new System.Windows.Forms.Button();
-            this.ClientServerAddressSaveButton = new System.Windows.Forms.Button();
-            this.ClientHostServersResetButton = new System.Windows.Forms.Button();
-            this.ClientHostServersComboBox = new System.Windows.Forms.ComboBox();
-            this.ClientHostServersLable = new System.Windows.Forms.Label();
-            this.ClientLocalConnectCheckBox = new System.Windows.Forms.CheckBox();
-            this.ClientCustomURLTextBox = new System.Windows.Forms.TextBox();
-            this.ClientCustomURLCheckBox = new System.Windows.Forms.CheckBox();
-            this.ClientLaunchOptionsLable = new System.Windows.Forms.Label();
-            this.ClientPlayerNameLabel = new System.Windows.Forms.Label();
-            this.ClientServerAddressLable = new System.Windows.Forms.Label();
-            this.ClientLaunchButton = new System.Windows.Forms.Button();
-            this.ClientLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
-            this.ClientPlayerNameTextBox = new System.Windows.Forms.TextBox();
-            this.ClientServerAddressTextBox = new System.Windows.Forms.TextBox();
+            this.ClientTabServerPortNum = new System.Windows.Forms.NumericUpDown();
+            this.ClientTabHostServersRestoreButton = new System.Windows.Forms.Button();
+            this.ClientTabHostServersBackupButton = new System.Windows.Forms.Button();
+            this.ClientTabServerAddressSaveButton = new System.Windows.Forms.Button();
+            this.ClientTabHostServersResetButton = new System.Windows.Forms.Button();
+            this.ClientTabHostServersComboBox = new System.Windows.Forms.ComboBox();
+            this.ClientTabHostServersLable = new System.Windows.Forms.Label();
+            this.ClientTabCustomURLTextBox = new System.Windows.Forms.TextBox();
+            this.ClientTabCustomURLCheckBox = new System.Windows.Forms.CheckBox();
+            this.ClientTabLaunchOptionsLable = new System.Windows.Forms.Label();
+            this.ClientTabPlayerNameLabel = new System.Windows.Forms.Label();
+            this.ClientTabServerAddressLable = new System.Windows.Forms.Label();
+            this.ClientTabLaunchButton = new System.Windows.Forms.Button();
+            this.ClientTabLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
+            this.ClientTabPlayerNameTextBox = new System.Windows.Forms.TextBox();
+            this.ClientTabServerAddressTextBox = new System.Windows.Forms.TextBox();
             this.ServerTab = new System.Windows.Forms.TabPage();
-            this.ServerPlayerCountNum = new System.Windows.Forms.NumericUpDown();
-            this.ServerMaxPlayersLabel = new System.Windows.Forms.Label();
-            this.ServerCustomURLCheckbox = new System.Windows.Forms.CheckBox();
-            this.ServerCustomURLTextBox = new System.Windows.Forms.TextBox();
-            this.ServerLaunchOptionsLabel = new System.Windows.Forms.Label();
-            this.ServerBotCountLabel = new System.Windows.Forms.Label();
-            this.ServerMapLabel = new System.Windows.Forms.Label();
-            this.ServerGamemodeLabel = new System.Windows.Forms.Label();
-            this.ServerLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
-            this.ServerLaunchButton = new System.Windows.Forms.Button();
-            this.ServerBotCountNum = new System.Windows.Forms.NumericUpDown();
-            this.ServerMapsCombo = new System.Windows.Forms.ComboBox();
-            this.ServerGamemodesCombo = new System.Windows.Forms.ComboBox();
+            this.ServerTabPortLable = new System.Windows.Forms.Label();
+            this.ServerTabPortNum = new System.Windows.Forms.NumericUpDown();
+            this.ServerTabPlayerCountNum = new System.Windows.Forms.NumericUpDown();
+            this.ServerTabMaxPlayersLabel = new System.Windows.Forms.Label();
+            this.ServerTabCustomURLCheckbox = new System.Windows.Forms.CheckBox();
+            this.ServerTabCustomURLTextBox = new System.Windows.Forms.TextBox();
+            this.ServerTabLaunchOptionsLabel = new System.Windows.Forms.Label();
+            this.ServerTabBotCountLabel = new System.Windows.Forms.Label();
+            this.ServerTabMapLabel = new System.Windows.Forms.Label();
+            this.ServerTabGamemodeLabel = new System.Windows.Forms.Label();
+            this.ServerTabLaunchOptionsTextBox = new System.Windows.Forms.TextBox();
+            this.ServerTabLaunchButton = new System.Windows.Forms.Button();
+            this.ServerTabBotCountNum = new System.Windows.Forms.NumericUpDown();
+            this.ServerTabMapsCombo = new System.Windows.Forms.ComboBox();
+            this.ServerTabGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.MasterServerTab = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
+            this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BGBotCountNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
             this.ClientTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientTabServerPortNum)).BeginInit();
             this.ServerTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ServerPlayerCountNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ServerBotCountNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabPortNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabPlayerCountNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).BeginInit();
             this.MasterServerTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,13 +99,13 @@ namespace Bootstrapper
             // 
             // BotMatchTab
             // 
-            this.BotMatchTab.Controls.Add(this.BGBotCountNum);
-            this.BotMatchTab.Controls.Add(this.BGBotCountLable);
-            this.BotMatchTab.Controls.Add(this.BGLaunchButton);
-            this.BotMatchTab.Controls.Add(this.BGMapLable);
-            this.BotMatchTab.Controls.Add(this.BGGamemodeLabel);
-            this.BotMatchTab.Controls.Add(this.BGMapsCombo);
-            this.BotMatchTab.Controls.Add(this.BGGamemodesCombo);
+            this.BotMatchTab.Controls.Add(this.BGTabBotCountNum);
+            this.BotMatchTab.Controls.Add(this.BGTabBotCountLable);
+            this.BotMatchTab.Controls.Add(this.BGTabLaunchButton);
+            this.BotMatchTab.Controls.Add(this.BGTabMapLable);
+            this.BotMatchTab.Controls.Add(this.BGTabGamemodeLabel);
+            this.BotMatchTab.Controls.Add(this.BGTabMapsCombo);
+            this.BotMatchTab.Controls.Add(this.BGTabGamemodesCombo);
             this.BotMatchTab.Location = new System.Drawing.Point(4, 22);
             this.BotMatchTab.Name = "BotMatchTab";
             this.BotMatchTab.Padding = new System.Windows.Forms.Padding(3);
@@ -110,71 +114,71 @@ namespace Bootstrapper
             this.BotMatchTab.Text = "Bot Match";
             this.BotMatchTab.UseVisualStyleBackColor = true;
             // 
-            // BGBotCountNum
+            // BGTabBotCountNum
             // 
-            this.BGBotCountNum.Location = new System.Drawing.Point(425, 144);
-            this.BGBotCountNum.Maximum = new decimal(new int[] {
+            this.BGTabBotCountNum.Location = new System.Drawing.Point(425, 144);
+            this.BGTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
-            this.BGBotCountNum.Name = "BGBotCountNum";
-            this.BGBotCountNum.Size = new System.Drawing.Size(121, 20);
-            this.BGBotCountNum.TabIndex = 17;
+            this.BGTabBotCountNum.Name = "BGTabBotCountNum";
+            this.BGTabBotCountNum.Size = new System.Drawing.Size(121, 20);
+            this.BGTabBotCountNum.TabIndex = 17;
             // 
-            // BGBotCountLable
+            // BGTabBotCountLable
             // 
-            this.BGBotCountLable.AutoSize = true;
-            this.BGBotCountLable.Location = new System.Drawing.Point(72, 146);
-            this.BGBotCountLable.Name = "BGBotCountLable";
-            this.BGBotCountLable.Size = new System.Drawing.Size(54, 13);
-            this.BGBotCountLable.TabIndex = 16;
-            this.BGBotCountLable.Text = "Bot Count";
+            this.BGTabBotCountLable.AutoSize = true;
+            this.BGTabBotCountLable.Location = new System.Drawing.Point(72, 146);
+            this.BGTabBotCountLable.Name = "BGTabBotCountLable";
+            this.BGTabBotCountLable.Size = new System.Drawing.Size(54, 13);
+            this.BGTabBotCountLable.TabIndex = 16;
+            this.BGTabBotCountLable.Text = "Bot Count";
             // 
-            // BGLaunchButton
+            // BGTabLaunchButton
             // 
-            this.BGLaunchButton.Location = new System.Drawing.Point(270, 244);
-            this.BGLaunchButton.Name = "BGLaunchButton";
-            this.BGLaunchButton.Size = new System.Drawing.Size(75, 23);
-            this.BGLaunchButton.TabIndex = 15;
-            this.BGLaunchButton.Text = "Launch";
-            this.BGLaunchButton.UseVisualStyleBackColor = true;
-            this.BGLaunchButton.Click += new System.EventHandler(this.BGLaunchButton_Click);
+            this.BGTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.BGTabLaunchButton.Name = "BGTabLaunchButton";
+            this.BGTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.BGTabLaunchButton.TabIndex = 15;
+            this.BGTabLaunchButton.Text = "Launch";
+            this.BGTabLaunchButton.UseVisualStyleBackColor = true;
+            this.BGTabLaunchButton.Click += new System.EventHandler(this.BGTabLaunchButton_Click);
             // 
-            // BGMapLable
+            // BGTabMapLable
             // 
-            this.BGMapLable.AutoSize = true;
-            this.BGMapLable.Location = new System.Drawing.Point(72, 120);
-            this.BGMapLable.Name = "BGMapLable";
-            this.BGMapLable.Size = new System.Drawing.Size(28, 13);
-            this.BGMapLable.TabIndex = 14;
-            this.BGMapLable.Text = "Map";
+            this.BGTabMapLable.AutoSize = true;
+            this.BGTabMapLable.Location = new System.Drawing.Point(72, 120);
+            this.BGTabMapLable.Name = "BGTabMapLable";
+            this.BGTabMapLable.Size = new System.Drawing.Size(28, 13);
+            this.BGTabMapLable.TabIndex = 14;
+            this.BGTabMapLable.Text = "Map";
             // 
-            // BGGamemodeLabel
+            // BGTabGamemodeLabel
             // 
-            this.BGGamemodeLabel.AutoSize = true;
-            this.BGGamemodeLabel.Location = new System.Drawing.Point(72, 93);
-            this.BGGamemodeLabel.Name = "BGGamemodeLabel";
-            this.BGGamemodeLabel.Size = new System.Drawing.Size(61, 13);
-            this.BGGamemodeLabel.TabIndex = 13;
-            this.BGGamemodeLabel.Text = "Gamemode";
+            this.BGTabGamemodeLabel.AutoSize = true;
+            this.BGTabGamemodeLabel.Location = new System.Drawing.Point(72, 93);
+            this.BGTabGamemodeLabel.Name = "BGTabGamemodeLabel";
+            this.BGTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
+            this.BGTabGamemodeLabel.TabIndex = 13;
+            this.BGTabGamemodeLabel.Text = "Gamemode";
             // 
-            // BGMapsCombo
+            // BGTabMapsCombo
             // 
-            this.BGMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BGMapsCombo.FormattingEnabled = true;
-            this.BGMapsCombo.Items.AddRange(new object[] {
+            this.BGTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BGTabMapsCombo.FormattingEnabled = true;
+            this.BGTabMapsCombo.Items.AddRange(new object[] {
             "HeloDeck"});
-            this.BGMapsCombo.Location = new System.Drawing.Point(425, 117);
-            this.BGMapsCombo.Name = "BGMapsCombo";
-            this.BGMapsCombo.Size = new System.Drawing.Size(121, 21);
-            this.BGMapsCombo.TabIndex = 12;
+            this.BGTabMapsCombo.Location = new System.Drawing.Point(425, 117);
+            this.BGTabMapsCombo.Name = "BGTabMapsCombo";
+            this.BGTabMapsCombo.Size = new System.Drawing.Size(121, 21);
+            this.BGTabMapsCombo.TabIndex = 12;
             // 
-            // BGGamemodesCombo
+            // BGTabGamemodesCombo
             // 
-            this.BGGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BGGamemodesCombo.FormattingEnabled = true;
-            this.BGGamemodesCombo.Items.AddRange(new object[] {
+            this.BGTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BGTabGamemodesCombo.FormattingEnabled = true;
+            this.BGTabGamemodesCombo.Items.AddRange(new object[] {
             "Deathmatch",
             "Team Deathmatch",
             "Domination",
@@ -184,29 +188,29 @@ namespace Bootstrapper
             "Last Team Standing",
             "Search and Destroy",
             "Onslaught"});
-            this.BGGamemodesCombo.Location = new System.Drawing.Point(425, 90);
-            this.BGGamemodesCombo.Name = "BGGamemodesCombo";
-            this.BGGamemodesCombo.Size = new System.Drawing.Size(121, 21);
-            this.BGGamemodesCombo.TabIndex = 11;
+            this.BGTabGamemodesCombo.Location = new System.Drawing.Point(425, 90);
+            this.BGTabGamemodesCombo.Name = "BGTabGamemodesCombo";
+            this.BGTabGamemodesCombo.Size = new System.Drawing.Size(121, 21);
+            this.BGTabGamemodesCombo.TabIndex = 11;
             // 
             // ClientTab
             // 
-            this.ClientTab.Controls.Add(this.ClientHostServersRestoreButton);
-            this.ClientTab.Controls.Add(this.ClientHostServersBackupButton);
-            this.ClientTab.Controls.Add(this.ClientServerAddressSaveButton);
-            this.ClientTab.Controls.Add(this.ClientHostServersResetButton);
-            this.ClientTab.Controls.Add(this.ClientHostServersComboBox);
-            this.ClientTab.Controls.Add(this.ClientHostServersLable);
-            this.ClientTab.Controls.Add(this.ClientLocalConnectCheckBox);
-            this.ClientTab.Controls.Add(this.ClientCustomURLTextBox);
-            this.ClientTab.Controls.Add(this.ClientCustomURLCheckBox);
-            this.ClientTab.Controls.Add(this.ClientLaunchOptionsLable);
-            this.ClientTab.Controls.Add(this.ClientPlayerNameLabel);
-            this.ClientTab.Controls.Add(this.ClientServerAddressLable);
-            this.ClientTab.Controls.Add(this.ClientLaunchButton);
-            this.ClientTab.Controls.Add(this.ClientLaunchOptionsTextBox);
-            this.ClientTab.Controls.Add(this.ClientPlayerNameTextBox);
-            this.ClientTab.Controls.Add(this.ClientServerAddressTextBox);
+            this.ClientTab.Controls.Add(this.ClientTabServerPortNum);
+            this.ClientTab.Controls.Add(this.ClientTabHostServersRestoreButton);
+            this.ClientTab.Controls.Add(this.ClientTabHostServersBackupButton);
+            this.ClientTab.Controls.Add(this.ClientTabServerAddressSaveButton);
+            this.ClientTab.Controls.Add(this.ClientTabHostServersResetButton);
+            this.ClientTab.Controls.Add(this.ClientTabHostServersComboBox);
+            this.ClientTab.Controls.Add(this.ClientTabHostServersLable);
+            this.ClientTab.Controls.Add(this.ClientTabCustomURLTextBox);
+            this.ClientTab.Controls.Add(this.ClientTabCustomURLCheckBox);
+            this.ClientTab.Controls.Add(this.ClientTabLaunchOptionsLable);
+            this.ClientTab.Controls.Add(this.ClientTabPlayerNameLabel);
+            this.ClientTab.Controls.Add(this.ClientTabServerAddressLable);
+            this.ClientTab.Controls.Add(this.ClientTabLaunchButton);
+            this.ClientTab.Controls.Add(this.ClientTabLaunchOptionsTextBox);
+            this.ClientTab.Controls.Add(this.ClientTabPlayerNameTextBox);
+            this.ClientTab.Controls.Add(this.ClientTabServerAddressTextBox);
             this.ClientTab.Location = new System.Drawing.Point(4, 22);
             this.ClientTab.Name = "ClientTab";
             this.ClientTab.Padding = new System.Windows.Forms.Padding(3);
@@ -215,172 +219,179 @@ namespace Bootstrapper
             this.ClientTab.Text = "Client";
             this.ClientTab.UseVisualStyleBackColor = true;
             // 
-            // ClientHostServersRestoreButton
+            // ClientTabServerPortNum
             // 
-            this.ClientHostServersRestoreButton.Location = new System.Drawing.Point(483, 56);
-            this.ClientHostServersRestoreButton.Name = "ClientHostServersRestoreButton";
-            this.ClientHostServersRestoreButton.Size = new System.Drawing.Size(70, 23);
-            this.ClientHostServersRestoreButton.TabIndex = 27;
-            this.ClientHostServersRestoreButton.Text = "Restore";
-            this.ClientHostServersRestoreButton.UseVisualStyleBackColor = true;
-            this.ClientHostServersRestoreButton.Click += new System.EventHandler(this.ClientHostServersRestoreButton_Click);
+            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 104);
+            this.ClientTabServerPortNum.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.ClientTabServerPortNum.Name = "ClientTabServerPortNum";
+            this.ClientTabServerPortNum.Size = new System.Drawing.Size(60, 20);
+            this.ClientTabServerPortNum.TabIndex = 28;
+            this.ClientTabServerPortNum.Value = new decimal(new int[] {
+            7777,
+            0,
+            0,
+            0});
             // 
-            // ClientHostServersBackupButton
+            // ClientTabHostServersRestoreButton
             // 
-            this.ClientHostServersBackupButton.Location = new System.Drawing.Point(403, 56);
-            this.ClientHostServersBackupButton.Name = "ClientHostServersBackupButton";
-            this.ClientHostServersBackupButton.Size = new System.Drawing.Size(75, 23);
-            this.ClientHostServersBackupButton.TabIndex = 26;
-            this.ClientHostServersBackupButton.Text = "Backup";
-            this.ClientHostServersBackupButton.UseVisualStyleBackColor = true;
-            this.ClientHostServersBackupButton.Click += new System.EventHandler(this.ClientHostServersBackupButton_Click);
+            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 75);
+            this.ClientTabHostServersRestoreButton.Name = "ClientTabHostServersRestoreButton";
+            this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(70, 23);
+            this.ClientTabHostServersRestoreButton.TabIndex = 27;
+            this.ClientTabHostServersRestoreButton.Text = "Restore";
+            this.ClientTabHostServersRestoreButton.UseVisualStyleBackColor = true;
+            this.ClientTabHostServersRestoreButton.Click += new System.EventHandler(this.ClientTabHostServersRestoreButton_Click);
             // 
-            // ClientServerAddressSaveButton
+            // ClientTabHostServersBackupButton
             // 
-            this.ClientServerAddressSaveButton.Location = new System.Drawing.Point(484, 119);
-            this.ClientServerAddressSaveButton.Name = "ClientServerAddressSaveButton";
-            this.ClientServerAddressSaveButton.Size = new System.Drawing.Size(70, 23);
-            this.ClientServerAddressSaveButton.TabIndex = 25;
-            this.ClientServerAddressSaveButton.Text = "Save";
-            this.ClientServerAddressSaveButton.UseVisualStyleBackColor = true;
-            this.ClientServerAddressSaveButton.Click += new System.EventHandler(this.ClientServerAddressSaveButton_Click);
+            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(402, 75);
+            this.ClientTabHostServersBackupButton.Name = "ClientTabHostServersBackupButton";
+            this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(75, 23);
+            this.ClientTabHostServersBackupButton.TabIndex = 26;
+            this.ClientTabHostServersBackupButton.Text = "Backup";
+            this.ClientTabHostServersBackupButton.UseVisualStyleBackColor = true;
+            this.ClientTabHostServersBackupButton.Click += new System.EventHandler(this.ClientTabHostServersBackupButton_Click);
             // 
-            // ClientHostServersResetButton
+            // ClientTabServerAddressSaveButton
             // 
-            this.ClientHostServersResetButton.Location = new System.Drawing.Point(322, 56);
-            this.ClientHostServersResetButton.Name = "ClientHostServersResetButton";
-            this.ClientHostServersResetButton.Size = new System.Drawing.Size(70, 23);
-            this.ClientHostServersResetButton.TabIndex = 24;
-            this.ClientHostServersResetButton.Text = "Reset";
-            this.ClientHostServersResetButton.UseVisualStyleBackColor = true;
-            this.ClientHostServersResetButton.Click += new System.EventHandler(this.ClientHostServersResetButton_Click);
+            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(483, 102);
+            this.ClientTabServerAddressSaveButton.Name = "ClientTabServerAddressSaveButton";
+            this.ClientTabServerAddressSaveButton.Size = new System.Drawing.Size(70, 23);
+            this.ClientTabServerAddressSaveButton.TabIndex = 25;
+            this.ClientTabServerAddressSaveButton.Text = "Save";
+            this.ClientTabServerAddressSaveButton.UseVisualStyleBackColor = true;
+            this.ClientTabServerAddressSaveButton.Click += new System.EventHandler(this.ClientTabServerAddressSaveButton_Click);
             // 
-            // ClientHostServersComboBox
+            // ClientTabHostServersResetButton
             // 
-            this.ClientHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClientHostServersComboBox.FormattingEnabled = true;
-            this.ClientHostServersComboBox.Location = new System.Drawing.Point(322, 28);
-            this.ClientHostServersComboBox.Name = "ClientHostServersComboBox";
-            this.ClientHostServersComboBox.Size = new System.Drawing.Size(231, 21);
-            this.ClientHostServersComboBox.TabIndex = 23;
-            this.ClientHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientHostServersComboBox_SelectedIndexChanged);
+            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 75);
+            this.ClientTabHostServersResetButton.Name = "ClientTabHostServersResetButton";
+            this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(70, 23);
+            this.ClientTabHostServersResetButton.TabIndex = 24;
+            this.ClientTabHostServersResetButton.Text = "Reset";
+            this.ClientTabHostServersResetButton.UseVisualStyleBackColor = true;
+            this.ClientTabHostServersResetButton.Click += new System.EventHandler(this.ClientTabHostServersResetButton_Click);
             // 
-            // ClientHostServersLable
+            // ClientTabHostServersComboBox
             // 
-            this.ClientHostServersLable.AutoSize = true;
-            this.ClientHostServersLable.Location = new System.Drawing.Point(79, 31);
-            this.ClientHostServersLable.Name = "ClientHostServersLable";
-            this.ClientHostServersLable.Size = new System.Drawing.Size(102, 13);
-            this.ClientHostServersLable.TabIndex = 22;
-            this.ClientHostServersLable.Text = "Saved Host Servers";
+            this.ClientTabHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ClientTabHostServersComboBox.FormattingEnabled = true;
+            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(323, 48);
+            this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
+            this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(231, 21);
+            this.ClientTabHostServersComboBox.TabIndex = 23;
+            this.ClientTabHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientTabHostServersComboBox_SelectedIndexChanged);
             // 
-            // ClientLocalConnectCheckBox
+            // ClientTabHostServersLable
             // 
-            this.ClientLocalConnectCheckBox.AutoSize = true;
-            this.ClientLocalConnectCheckBox.Location = new System.Drawing.Point(418, 98);
-            this.ClientLocalConnectCheckBox.Name = "ClientLocalConnectCheckBox";
-            this.ClientLocalConnectCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ClientLocalConnectCheckBox.Size = new System.Drawing.Size(135, 17);
-            this.ClientLocalConnectCheckBox.TabIndex = 22;
-            this.ClientLocalConnectCheckBox.Text = "Connect to local server";
-            this.ClientLocalConnectCheckBox.UseVisualStyleBackColor = true;
-            this.ClientLocalConnectCheckBox.CheckedChanged += new System.EventHandler(this.ClientLocalConnectCheckBox_CheckedChanged);
+            this.ClientTabHostServersLable.AutoSize = true;
+            this.ClientTabHostServersLable.Location = new System.Drawing.Point(73, 51);
+            this.ClientTabHostServersLable.Name = "ClientTabHostServersLable";
+            this.ClientTabHostServersLable.Size = new System.Drawing.Size(102, 13);
+            this.ClientTabHostServersLable.TabIndex = 22;
+            this.ClientTabHostServersLable.Text = "Saved Host Servers";
             // 
-            // ClientCustomURLTextBox
+            // ClientTabCustomURLTextBox
             // 
-            this.ClientCustomURLTextBox.Enabled = false;
-            this.ClientCustomURLTextBox.Location = new System.Drawing.Point(322, 199);
-            this.ClientCustomURLTextBox.Name = "ClientCustomURLTextBox";
-            this.ClientCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
-            this.ClientCustomURLTextBox.TabIndex = 21;
+            this.ClientTabCustomURLTextBox.Enabled = false;
+            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 183);
+            this.ClientTabCustomURLTextBox.Name = "ClientTabCustomURLTextBox";
+            this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabCustomURLTextBox.TabIndex = 21;
             // 
-            // ClientCustomURLCheckBox
+            // ClientTabCustomURLCheckBox
             // 
-            this.ClientCustomURLCheckBox.AutoSize = true;
-            this.ClientCustomURLCheckBox.Location = new System.Drawing.Point(82, 201);
-            this.ClientCustomURLCheckBox.Name = "ClientCustomURLCheckBox";
-            this.ClientCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.ClientCustomURLCheckBox.TabIndex = 20;
-            this.ClientCustomURLCheckBox.Text = "Custom URL";
-            this.ClientCustomURLCheckBox.UseVisualStyleBackColor = true;
-            this.ClientCustomURLCheckBox.CheckedChanged += new System.EventHandler(this.ClientCustomURLCheckBox_CheckedChanged);
+            this.ClientTabCustomURLCheckBox.AutoSize = true;
+            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(76, 185);
+            this.ClientTabCustomURLCheckBox.Name = "ClientTabCustomURLCheckBox";
+            this.ClientTabCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
+            this.ClientTabCustomURLCheckBox.TabIndex = 20;
+            this.ClientTabCustomURLCheckBox.Text = "Custom URL";
+            this.ClientTabCustomURLCheckBox.UseVisualStyleBackColor = true;
+            this.ClientTabCustomURLCheckBox.CheckedChanged += new System.EventHandler(this.ClientTabCustomURLCheckBox_CheckedChanged);
             // 
-            // ClientLaunchOptionsLable
+            // ClientTabLaunchOptionsLable
             // 
-            this.ClientLaunchOptionsLable.AutoSize = true;
-            this.ClientLaunchOptionsLable.Location = new System.Drawing.Point(79, 176);
-            this.ClientLaunchOptionsLable.Name = "ClientLaunchOptionsLable";
-            this.ClientLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
-            this.ClientLaunchOptionsLable.TabIndex = 19;
-            this.ClientLaunchOptionsLable.Text = "Additional Parameters";
+            this.ClientTabLaunchOptionsLable.AutoSize = true;
+            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(73, 160);
+            this.ClientTabLaunchOptionsLable.Name = "ClientTabLaunchOptionsLable";
+            this.ClientTabLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
+            this.ClientTabLaunchOptionsLable.TabIndex = 19;
+            this.ClientTabLaunchOptionsLable.Text = "Additional Parameters";
             // 
-            // ClientPlayerNameLabel
+            // ClientTabPlayerNameLabel
             // 
-            this.ClientPlayerNameLabel.AutoSize = true;
-            this.ClientPlayerNameLabel.Location = new System.Drawing.Point(79, 150);
-            this.ClientPlayerNameLabel.Name = "ClientPlayerNameLabel";
-            this.ClientPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
-            this.ClientPlayerNameLabel.TabIndex = 18;
-            this.ClientPlayerNameLabel.Text = "Player Name";
+            this.ClientTabPlayerNameLabel.AutoSize = true;
+            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(73, 134);
+            this.ClientTabPlayerNameLabel.Name = "ClientTabPlayerNameLabel";
+            this.ClientTabPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
+            this.ClientTabPlayerNameLabel.TabIndex = 18;
+            this.ClientTabPlayerNameLabel.Text = "Player Name";
             // 
-            // ClientServerAddressLable
+            // ClientTabServerAddressLable
             // 
-            this.ClientServerAddressLable.AutoSize = true;
-            this.ClientServerAddressLable.Location = new System.Drawing.Point(79, 124);
-            this.ClientServerAddressLable.Name = "ClientServerAddressLable";
-            this.ClientServerAddressLable.Size = new System.Drawing.Size(79, 13);
-            this.ClientServerAddressLable.TabIndex = 17;
-            this.ClientServerAddressLable.Text = "Server Address";
+            this.ClientTabServerAddressLable.AutoSize = true;
+            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(73, 106);
+            this.ClientTabServerAddressLable.Name = "ClientTabServerAddressLable";
+            this.ClientTabServerAddressLable.Size = new System.Drawing.Size(103, 13);
+            this.ClientTabServerAddressLable.TabIndex = 17;
+            this.ClientTabServerAddressLable.Text = "Server Address/Port";
             // 
-            // ClientLaunchButton
+            // ClientTabLaunchButton
             // 
-            this.ClientLaunchButton.Location = new System.Drawing.Point(270, 244);
-            this.ClientLaunchButton.Name = "ClientLaunchButton";
-            this.ClientLaunchButton.Size = new System.Drawing.Size(75, 23);
-            this.ClientLaunchButton.TabIndex = 16;
-            this.ClientLaunchButton.Text = "Launch";
-            this.ClientLaunchButton.UseVisualStyleBackColor = true;
-            this.ClientLaunchButton.Click += new System.EventHandler(this.ClientLaunchButton_Click);
+            this.ClientTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.ClientTabLaunchButton.Name = "ClientTabLaunchButton";
+            this.ClientTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.ClientTabLaunchButton.TabIndex = 16;
+            this.ClientTabLaunchButton.Text = "Launch";
+            this.ClientTabLaunchButton.UseVisualStyleBackColor = true;
+            this.ClientTabLaunchButton.Click += new System.EventHandler(this.ClientTabLaunchButton_Click);
             // 
-            // ClientLaunchOptionsTextBox
+            // ClientTabLaunchOptionsTextBox
             // 
-            this.ClientLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 173);
-            this.ClientLaunchOptionsTextBox.Name = "ClientLaunchOptionsTextBox";
-            this.ClientLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
-            this.ClientLaunchOptionsTextBox.TabIndex = 15;
+            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 157);
+            this.ClientTabLaunchOptionsTextBox.Name = "ClientTabLaunchOptionsTextBox";
+            this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabLaunchOptionsTextBox.TabIndex = 15;
             // 
-            // ClientPlayerNameTextBox
+            // ClientTabPlayerNameTextBox
             // 
-            this.ClientPlayerNameTextBox.Location = new System.Drawing.Point(322, 147);
-            this.ClientPlayerNameTextBox.MaxLength = 24;
-            this.ClientPlayerNameTextBox.Name = "ClientPlayerNameTextBox";
-            this.ClientPlayerNameTextBox.Size = new System.Drawing.Size(231, 20);
-            this.ClientPlayerNameTextBox.TabIndex = 14;
-            this.ClientPlayerNameTextBox.Text = "Player";
+            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 131);
+            this.ClientTabPlayerNameTextBox.MaxLength = 24;
+            this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
+            this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabPlayerNameTextBox.TabIndex = 14;
+            this.ClientTabPlayerNameTextBox.Text = "Player";
             // 
-            // ClientServerAddressTextBox
+            // ClientTabServerAddressTextBox
             // 
-            this.ClientServerAddressTextBox.Location = new System.Drawing.Point(322, 121);
-            this.ClientServerAddressTextBox.Name = "ClientServerAddressTextBox";
-            this.ClientServerAddressTextBox.Size = new System.Drawing.Size(156, 20);
-            this.ClientServerAddressTextBox.TabIndex = 13;
-            this.ClientServerAddressTextBox.Text = "127.0.0.1";
+            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(322, 104);
+            this.ClientTabServerAddressTextBox.Name = "ClientTabServerAddressTextBox";
+            this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(90, 20);
+            this.ClientTabServerAddressTextBox.TabIndex = 13;
+            this.ClientTabServerAddressTextBox.Text = "127.0.0.1";
             // 
             // ServerTab
             // 
-            this.ServerTab.Controls.Add(this.ServerPlayerCountNum);
-            this.ServerTab.Controls.Add(this.ServerMaxPlayersLabel);
-            this.ServerTab.Controls.Add(this.ServerCustomURLCheckbox);
-            this.ServerTab.Controls.Add(this.ServerCustomURLTextBox);
-            this.ServerTab.Controls.Add(this.ServerLaunchOptionsLabel);
-            this.ServerTab.Controls.Add(this.ServerBotCountLabel);
-            this.ServerTab.Controls.Add(this.ServerMapLabel);
-            this.ServerTab.Controls.Add(this.ServerGamemodeLabel);
-            this.ServerTab.Controls.Add(this.ServerLaunchOptionsTextBox);
-            this.ServerTab.Controls.Add(this.ServerLaunchButton);
-            this.ServerTab.Controls.Add(this.ServerBotCountNum);
-            this.ServerTab.Controls.Add(this.ServerMapsCombo);
-            this.ServerTab.Controls.Add(this.ServerGamemodesCombo);
+            this.ServerTab.Controls.Add(this.ServerTabPortLable);
+            this.ServerTab.Controls.Add(this.ServerTabPortNum);
+            this.ServerTab.Controls.Add(this.ServerTabPlayerCountNum);
+            this.ServerTab.Controls.Add(this.ServerTabMaxPlayersLabel);
+            this.ServerTab.Controls.Add(this.ServerTabCustomURLCheckbox);
+            this.ServerTab.Controls.Add(this.ServerTabCustomURLTextBox);
+            this.ServerTab.Controls.Add(this.ServerTabLaunchOptionsLabel);
+            this.ServerTab.Controls.Add(this.ServerTabBotCountLabel);
+            this.ServerTab.Controls.Add(this.ServerTabMapLabel);
+            this.ServerTab.Controls.Add(this.ServerTabGamemodeLabel);
+            this.ServerTab.Controls.Add(this.ServerTabLaunchOptionsTextBox);
+            this.ServerTab.Controls.Add(this.ServerTabLaunchButton);
+            this.ServerTab.Controls.Add(this.ServerTabBotCountNum);
+            this.ServerTab.Controls.Add(this.ServerTabMapsCombo);
+            this.ServerTab.Controls.Add(this.ServerTabGamemodesCombo);
             this.ServerTab.Location = new System.Drawing.Point(4, 22);
             this.ServerTab.Name = "ServerTab";
             this.ServerTab.Size = new System.Drawing.Size(614, 296);
@@ -388,132 +399,158 @@ namespace Bootstrapper
             this.ServerTab.Text = "Server";
             this.ServerTab.UseVisualStyleBackColor = true;
             // 
-            // ServerPlayerCountNum
+            // ServerTabPortLable
             // 
-            this.ServerPlayerCountNum.Location = new System.Drawing.Point(425, 104);
-            this.ServerPlayerCountNum.Maximum = new decimal(new int[] {
+            this.ServerTabPortLable.AutoSize = true;
+            this.ServerTabPortLable.Location = new System.Drawing.Point(72, 149);
+            this.ServerTabPortLable.Name = "ServerTabPortLable";
+            this.ServerTabPortLable.Size = new System.Drawing.Size(26, 13);
+            this.ServerTabPortLable.TabIndex = 30;
+            this.ServerTabPortLable.Text = "Port";
+            // 
+            // ServerTabPortNum
+            // 
+            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 147);
+            this.ServerTabPortNum.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.ServerTabPortNum.Name = "ServerTabPortNum";
+            this.ServerTabPortNum.Size = new System.Drawing.Size(121, 20);
+            this.ServerTabPortNum.TabIndex = 29;
+            this.ServerTabPortNum.Value = new decimal(new int[] {
+            7777,
+            0,
+            0,
+            0});
+            // 
+            // ServerTabPlayerCountNum
+            // 
+            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 95);
+            this.ServerTabPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
-            this.ServerPlayerCountNum.Name = "ServerPlayerCountNum";
-            this.ServerPlayerCountNum.Size = new System.Drawing.Size(121, 20);
-            this.ServerPlayerCountNum.TabIndex = 26;
+            this.ServerTabPlayerCountNum.Name = "ServerTabPlayerCountNum";
+            this.ServerTabPlayerCountNum.Size = new System.Drawing.Size(121, 20);
+            this.ServerTabPlayerCountNum.TabIndex = 26;
             // 
-            // ServerMaxPlayersLabel
+            // ServerTabMaxPlayersLabel
             // 
-            this.ServerMaxPlayersLabel.AutoSize = true;
-            this.ServerMaxPlayersLabel.Location = new System.Drawing.Point(72, 106);
-            this.ServerMaxPlayersLabel.Name = "ServerMaxPlayersLabel";
-            this.ServerMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
-            this.ServerMaxPlayersLabel.TabIndex = 25;
-            this.ServerMaxPlayersLabel.Text = "Max Players";
+            this.ServerTabMaxPlayersLabel.AutoSize = true;
+            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(72, 97);
+            this.ServerTabMaxPlayersLabel.Name = "ServerTabMaxPlayersLabel";
+            this.ServerTabMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
+            this.ServerTabMaxPlayersLabel.TabIndex = 25;
+            this.ServerTabMaxPlayersLabel.Text = "Max Players";
             // 
-            // ServerCustomURLCheckbox
+            // ServerTabCustomURLCheckbox
             // 
-            this.ServerCustomURLCheckbox.AutoSize = true;
-            this.ServerCustomURLCheckbox.Location = new System.Drawing.Point(75, 184);
-            this.ServerCustomURLCheckbox.Name = "ServerCustomURLCheckbox";
-            this.ServerCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
-            this.ServerCustomURLCheckbox.TabIndex = 24;
-            this.ServerCustomURLCheckbox.Text = "Custom URL";
-            this.ServerCustomURLCheckbox.UseVisualStyleBackColor = true;
-            this.ServerCustomURLCheckbox.CheckedChanged += new System.EventHandler(this.ServerCustomURLCheckbox_CheckedChanged);
+            this.ServerTabCustomURLCheckbox.AutoSize = true;
+            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(75, 201);
+            this.ServerTabCustomURLCheckbox.Name = "ServerTabCustomURLCheckbox";
+            this.ServerTabCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
+            this.ServerTabCustomURLCheckbox.TabIndex = 24;
+            this.ServerTabCustomURLCheckbox.Text = "Custom URL";
+            this.ServerTabCustomURLCheckbox.UseVisualStyleBackColor = true;
+            this.ServerTabCustomURLCheckbox.CheckedChanged += new System.EventHandler(this.ServerTabCustomURLCheckbox_CheckedChanged);
             // 
-            // ServerCustomURLTextBox
+            // ServerTabCustomURLTextBox
             // 
-            this.ServerCustomURLTextBox.Enabled = false;
-            this.ServerCustomURLTextBox.Location = new System.Drawing.Point(315, 182);
-            this.ServerCustomURLTextBox.Name = "ServerCustomURLTextBox";
-            this.ServerCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
-            this.ServerCustomURLTextBox.TabIndex = 23;
+            this.ServerTabCustomURLTextBox.Enabled = false;
+            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(315, 199);
+            this.ServerTabCustomURLTextBox.Name = "ServerTabCustomURLTextBox";
+            this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ServerTabCustomURLTextBox.TabIndex = 23;
             // 
-            // ServerLaunchOptionsLabel
+            // ServerTabLaunchOptionsLabel
             // 
-            this.ServerLaunchOptionsLabel.AutoSize = true;
-            this.ServerLaunchOptionsLabel.Location = new System.Drawing.Point(72, 159);
-            this.ServerLaunchOptionsLabel.Name = "ServerLaunchOptionsLabel";
-            this.ServerLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
-            this.ServerLaunchOptionsLabel.TabIndex = 22;
-            this.ServerLaunchOptionsLabel.Text = "Additional Parameters";
+            this.ServerTabLaunchOptionsLabel.AutoSize = true;
+            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(72, 176);
+            this.ServerTabLaunchOptionsLabel.Name = "ServerTabLaunchOptionsLabel";
+            this.ServerTabLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
+            this.ServerTabLaunchOptionsLabel.TabIndex = 22;
+            this.ServerTabLaunchOptionsLabel.Text = "Additional Parameters";
             // 
-            // ServerBotCountLabel
+            // ServerTabBotCountLabel
             // 
-            this.ServerBotCountLabel.AutoSize = true;
-            this.ServerBotCountLabel.Location = new System.Drawing.Point(72, 132);
-            this.ServerBotCountLabel.Name = "ServerBotCountLabel";
-            this.ServerBotCountLabel.Size = new System.Drawing.Size(54, 13);
-            this.ServerBotCountLabel.TabIndex = 21;
-            this.ServerBotCountLabel.Text = "Bot Count";
+            this.ServerTabBotCountLabel.AutoSize = true;
+            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(72, 123);
+            this.ServerTabBotCountLabel.Name = "ServerTabBotCountLabel";
+            this.ServerTabBotCountLabel.Size = new System.Drawing.Size(54, 13);
+            this.ServerTabBotCountLabel.TabIndex = 21;
+            this.ServerTabBotCountLabel.Text = "Bot Count";
             // 
-            // ServerMapLabel
+            // ServerTabMapLabel
             // 
-            this.ServerMapLabel.AutoSize = true;
-            this.ServerMapLabel.Location = new System.Drawing.Point(72, 80);
-            this.ServerMapLabel.Name = "ServerMapLabel";
-            this.ServerMapLabel.Size = new System.Drawing.Size(28, 13);
-            this.ServerMapLabel.TabIndex = 20;
-            this.ServerMapLabel.Text = "Map";
+            this.ServerTabMapLabel.AutoSize = true;
+            this.ServerTabMapLabel.Location = new System.Drawing.Point(72, 71);
+            this.ServerTabMapLabel.Name = "ServerTabMapLabel";
+            this.ServerTabMapLabel.Size = new System.Drawing.Size(28, 13);
+            this.ServerTabMapLabel.TabIndex = 20;
+            this.ServerTabMapLabel.Text = "Map";
             // 
-            // ServerGamemodeLabel
+            // ServerTabGamemodeLabel
             // 
-            this.ServerGamemodeLabel.AutoSize = true;
-            this.ServerGamemodeLabel.Location = new System.Drawing.Point(72, 53);
-            this.ServerGamemodeLabel.Name = "ServerGamemodeLabel";
-            this.ServerGamemodeLabel.Size = new System.Drawing.Size(61, 13);
-            this.ServerGamemodeLabel.TabIndex = 19;
-            this.ServerGamemodeLabel.Text = "Gamemode";
+            this.ServerTabGamemodeLabel.AutoSize = true;
+            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(72, 44);
+            this.ServerTabGamemodeLabel.Name = "ServerTabGamemodeLabel";
+            this.ServerTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
+            this.ServerTabGamemodeLabel.TabIndex = 19;
+            this.ServerTabGamemodeLabel.Text = "Gamemode";
             // 
-            // ServerLaunchOptionsTextBox
+            // ServerTabLaunchOptionsTextBox
             // 
-            this.ServerLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 156);
-            this.ServerLaunchOptionsTextBox.Name = "ServerLaunchOptionsTextBox";
-            this.ServerLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
-            this.ServerLaunchOptionsTextBox.TabIndex = 18;
+            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 173);
+            this.ServerTabLaunchOptionsTextBox.Name = "ServerTabLaunchOptionsTextBox";
+            this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ServerTabLaunchOptionsTextBox.TabIndex = 18;
             // 
-            // ServerLaunchButton
+            // ServerTabLaunchButton
             // 
-            this.ServerLaunchButton.Location = new System.Drawing.Point(270, 244);
-            this.ServerLaunchButton.Name = "ServerLaunchButton";
-            this.ServerLaunchButton.Size = new System.Drawing.Size(75, 23);
-            this.ServerLaunchButton.TabIndex = 17;
-            this.ServerLaunchButton.Text = "Launch";
-            this.ServerLaunchButton.UseVisualStyleBackColor = true;
-            this.ServerLaunchButton.Click += new System.EventHandler(this.ServerLaunchButton_Click);
+            this.ServerTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.ServerTabLaunchButton.Name = "ServerTabLaunchButton";
+            this.ServerTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.ServerTabLaunchButton.TabIndex = 17;
+            this.ServerTabLaunchButton.Text = "Launch";
+            this.ServerTabLaunchButton.UseVisualStyleBackColor = true;
+            this.ServerTabLaunchButton.Click += new System.EventHandler(this.ServerTabLaunchButton_Click);
             // 
-            // ServerBotCountNum
+            // ServerTabBotCountNum
             // 
-            this.ServerBotCountNum.Location = new System.Drawing.Point(425, 130);
-            this.ServerBotCountNum.Maximum = new decimal(new int[] {
+            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 121);
+            this.ServerTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
-            this.ServerBotCountNum.Name = "ServerBotCountNum";
-            this.ServerBotCountNum.Size = new System.Drawing.Size(121, 20);
-            this.ServerBotCountNum.TabIndex = 16;
+            this.ServerTabBotCountNum.Name = "ServerTabBotCountNum";
+            this.ServerTabBotCountNum.Size = new System.Drawing.Size(121, 20);
+            this.ServerTabBotCountNum.TabIndex = 16;
             // 
-            // ServerMapsCombo
+            // ServerTabMapsCombo
             // 
-            this.ServerMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ServerMapsCombo.FormattingEnabled = true;
-            this.ServerMapsCombo.Location = new System.Drawing.Point(425, 77);
-            this.ServerMapsCombo.Name = "ServerMapsCombo";
-            this.ServerMapsCombo.Size = new System.Drawing.Size(121, 21);
-            this.ServerMapsCombo.TabIndex = 15;
+            this.ServerTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ServerTabMapsCombo.FormattingEnabled = true;
+            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 68);
+            this.ServerTabMapsCombo.Name = "ServerTabMapsCombo";
+            this.ServerTabMapsCombo.Size = new System.Drawing.Size(121, 21);
+            this.ServerTabMapsCombo.TabIndex = 15;
             // 
-            // ServerGamemodesCombo
+            // ServerTabGamemodesCombo
             // 
-            this.ServerGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ServerGamemodesCombo.FormattingEnabled = true;
-            this.ServerGamemodesCombo.Location = new System.Drawing.Point(425, 50);
-            this.ServerGamemodesCombo.Name = "ServerGamemodesCombo";
-            this.ServerGamemodesCombo.Size = new System.Drawing.Size(121, 21);
-            this.ServerGamemodesCombo.TabIndex = 14;
+            this.ServerTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ServerTabGamemodesCombo.FormattingEnabled = true;
+            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 41);
+            this.ServerTabGamemodesCombo.Name = "ServerTabGamemodesCombo";
+            this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(121, 21);
+            this.ServerTabGamemodesCombo.TabIndex = 14;
             // 
             // MasterServerTab
             // 
-            this.MasterServerTab.Controls.Add(this.label4);
+            this.MasterServerTab.Controls.Add(this.MSTabNotImplementedLable);
             this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
             this.MasterServerTab.Name = "MasterServerTab";
             this.MasterServerTab.Size = new System.Drawing.Size(614, 296);
@@ -521,14 +558,14 @@ namespace Bootstrapper
             this.MasterServerTab.Text = "Master Server";
             this.MasterServerTab.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // MSTabNotImplementedLable
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(270, 132);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Not implemented!";
+            this.MSTabNotImplementedLable.AutoSize = true;
+            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(270, 132);
+            this.MSTabNotImplementedLable.Name = "MSTabNotImplementedLable";
+            this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
+            this.MSTabNotImplementedLable.TabIndex = 0;
+            this.MSTabNotImplementedLable.Text = "Not implemented!";
             // 
             // LauncherUI
             // 
@@ -543,13 +580,15 @@ namespace Bootstrapper
             this.LauncherTabControl.ResumeLayout(false);
             this.BotMatchTab.ResumeLayout(false);
             this.BotMatchTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BGBotCountNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).EndInit();
             this.ClientTab.ResumeLayout(false);
             this.ClientTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientTabServerPortNum)).EndInit();
             this.ServerTab.ResumeLayout(false);
             this.ServerTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ServerPlayerCountNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ServerBotCountNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabPortNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabPlayerCountNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).EndInit();
             this.MasterServerTab.ResumeLayout(false);
             this.MasterServerTab.PerformLayout();
             this.ResumeLayout(false);
@@ -563,42 +602,44 @@ namespace Bootstrapper
         private System.Windows.Forms.TabPage ClientTab;
         private System.Windows.Forms.TabPage ServerTab;
         private System.Windows.Forms.TabPage MasterServerTab;
-        private System.Windows.Forms.NumericUpDown BGBotCountNum;
-        private System.Windows.Forms.Label BGBotCountLable;
-        private System.Windows.Forms.Button BGLaunchButton;
-        private System.Windows.Forms.Label BGMapLable;
-        private System.Windows.Forms.Label BGGamemodeLabel;
-        private System.Windows.Forms.ComboBox BGMapsCombo;
-        private System.Windows.Forms.ComboBox BGGamemodesCombo;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ClientCustomURLTextBox;
-        private System.Windows.Forms.CheckBox ClientCustomURLCheckBox;
-        private System.Windows.Forms.Label ClientLaunchOptionsLable;
-        private System.Windows.Forms.Label ClientPlayerNameLabel;
-        private System.Windows.Forms.Label ClientServerAddressLable;
-        private System.Windows.Forms.Button ClientLaunchButton;
-        private System.Windows.Forms.TextBox ClientLaunchOptionsTextBox;
-        private System.Windows.Forms.TextBox ClientPlayerNameTextBox;
-        private System.Windows.Forms.TextBox ClientServerAddressTextBox;
-        private System.Windows.Forms.NumericUpDown ServerPlayerCountNum;
-        private System.Windows.Forms.Label ServerMaxPlayersLabel;
-        private System.Windows.Forms.CheckBox ServerCustomURLCheckbox;
-        private System.Windows.Forms.TextBox ServerCustomURLTextBox;
-        private System.Windows.Forms.Label ServerLaunchOptionsLabel;
-        private System.Windows.Forms.Label ServerBotCountLabel;
-        private System.Windows.Forms.Label ServerMapLabel;
-        private System.Windows.Forms.Label ServerGamemodeLabel;
-        private System.Windows.Forms.TextBox ServerLaunchOptionsTextBox;
-        private System.Windows.Forms.Button ServerLaunchButton;
-        private System.Windows.Forms.NumericUpDown ServerBotCountNum;
-        private System.Windows.Forms.ComboBox ServerMapsCombo;
-        private System.Windows.Forms.ComboBox ServerGamemodesCombo;
-        private System.Windows.Forms.Label ClientHostServersLable;
-        private System.Windows.Forms.ComboBox ClientHostServersComboBox;
-        private System.Windows.Forms.Button ClientHostServersResetButton;
-        private System.Windows.Forms.Button ClientServerAddressSaveButton;
-        private System.Windows.Forms.Button ClientHostServersRestoreButton;
-        private System.Windows.Forms.Button ClientHostServersBackupButton;
-        private System.Windows.Forms.CheckBox ClientLocalConnectCheckBox;
+        private System.Windows.Forms.NumericUpDown BGTabBotCountNum;
+        private System.Windows.Forms.Label BGTabBotCountLable;
+        private System.Windows.Forms.Button BGTabLaunchButton;
+        private System.Windows.Forms.Label BGTabMapLable;
+        private System.Windows.Forms.Label BGTabGamemodeLabel;
+        private System.Windows.Forms.ComboBox BGTabMapsCombo;
+        private System.Windows.Forms.ComboBox BGTabGamemodesCombo;
+        private System.Windows.Forms.Label MSTabNotImplementedLable;
+        private System.Windows.Forms.TextBox ClientTabCustomURLTextBox;
+        private System.Windows.Forms.CheckBox ClientTabCustomURLCheckBox;
+        private System.Windows.Forms.Label ClientTabLaunchOptionsLable;
+        private System.Windows.Forms.Label ClientTabPlayerNameLabel;
+        private System.Windows.Forms.Label ClientTabServerAddressLable;
+        private System.Windows.Forms.Button ClientTabLaunchButton;
+        private System.Windows.Forms.TextBox ClientTabLaunchOptionsTextBox;
+        private System.Windows.Forms.TextBox ClientTabPlayerNameTextBox;
+        private System.Windows.Forms.TextBox ClientTabServerAddressTextBox;
+        private System.Windows.Forms.NumericUpDown ServerTabPlayerCountNum;
+        private System.Windows.Forms.Label ServerTabMaxPlayersLabel;
+        private System.Windows.Forms.CheckBox ServerTabCustomURLCheckbox;
+        private System.Windows.Forms.TextBox ServerTabCustomURLTextBox;
+        private System.Windows.Forms.Label ServerTabLaunchOptionsLabel;
+        private System.Windows.Forms.Label ServerTabBotCountLabel;
+        private System.Windows.Forms.Label ServerTabMapLabel;
+        private System.Windows.Forms.Label ServerTabGamemodeLabel;
+        private System.Windows.Forms.TextBox ServerTabLaunchOptionsTextBox;
+        private System.Windows.Forms.Button ServerTabLaunchButton;
+        private System.Windows.Forms.NumericUpDown ServerTabBotCountNum;
+        private System.Windows.Forms.ComboBox ServerTabMapsCombo;
+        private System.Windows.Forms.ComboBox ServerTabGamemodesCombo;
+        private System.Windows.Forms.Label ClientTabHostServersLable;
+        private System.Windows.Forms.ComboBox ClientTabHostServersComboBox;
+        private System.Windows.Forms.Button ClientTabHostServersResetButton;
+        private System.Windows.Forms.Button ClientTabServerAddressSaveButton;
+        private System.Windows.Forms.Button ClientTabHostServersRestoreButton;
+        private System.Windows.Forms.Button ClientTabHostServersBackupButton;
+        private System.Windows.Forms.NumericUpDown ClientTabServerPortNum;
+        private System.Windows.Forms.NumericUpDown ServerTabPortNum;
+        private System.Windows.Forms.Label ServerTabPortLable;
     }
 }
