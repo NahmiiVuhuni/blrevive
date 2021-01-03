@@ -39,11 +39,11 @@ namespace Bootstrapper
                     UserUtil.SavePlayerName(currentPlayerName);
                 }
 
-                string currentServerAddress = ClientTabLocalConnectCheckBox.Checked ? Config.DefaultLocalHostServer.Address : ClientTabServerAddressTextBox.Text;
-                string currentServerPort = ClientTabLocalConnectCheckBox.Checked ? Config.DefaultLocalHostServer.Port : ClientTabServerPortNum.Value.ToString();
+                string currentServerAddress = ClientTabServerAddressTextBox.Text;
+                string currentServerPort = ClientTabServerPortNum.Value.ToString();
                 string options = $"?Name={currentPlayerName}{ClientTabLaunchOptionsTextBox.Text}";
                 
-                string ipString = ClientTabLocalConnectCheckBox.Checked ? currentServerAddress : NetworkUtil.GetHostIp(currentServerAddress);
+                string ipString = NetworkUtil.GetHostIp(currentServerAddress);
                 // check if the address is valid either by IP or IP resolved from server name
                 if (!NetworkUtil.IsValidIPv4(ipString))
                 {
@@ -68,28 +68,17 @@ namespace Bootstrapper
         private void ClientTabCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // this condition can be condensed simplified, keep it like this to be easy to read, that is: apply flag toggle only if not checked 
-            ClientTabServerAddressTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabServerAddressTextBox.Enabled : false;
-            ClientTabPlayerNameTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabPlayerNameTextBox.Enabled : false;
-            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabLaunchOptionsTextBox.Enabled : false;
-            ClientTabServerAddressSaveButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabServerAddressSaveButton.Enabled : false;
-            ClientTabHostServersResetButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersResetButton.Enabled : false;
-            ClientTabHostServersBackupButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersBackupButton.Enabled : false;
-            ClientTabHostServersRestoreButton.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersRestoreButton.Enabled : false;
-            ClientTabHostServersComboBox.Enabled = !ClientTabLocalConnectCheckBox.Checked ? !ClientTabHostServersComboBox.Enabled : false;
+            ClientTabServerAddressTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressTextBox.Enabled : false;
+            ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerPortNum.Enabled : false;
+            ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabPlayerNameTextBox.Enabled : false;
+            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabLaunchOptionsTextBox.Enabled : false;
+            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressSaveButton.Enabled : false;
+            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersResetButton.Enabled : false;
+            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersBackupButton.Enabled : false;
+            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersRestoreButton.Enabled : false;
+            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersComboBox.Enabled : false;
 
-            ClientTabCustomURLTextBox.Enabled = !ClientTabCustomURLTextBox.Enabled;
-            ClientTabLocalConnectCheckBox.Enabled = !ClientTabLocalConnectCheckBox.Enabled;
-        }
-
-        private void ClientTabLocalConnectCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            ClientTabServerAddressTextBox.Enabled = !ClientTabServerAddressTextBox.Enabled;
-            ClientTabServerAddressSaveButton.Enabled = !ClientTabServerAddressSaveButton.Enabled;
-
-            ClientTabHostServersResetButton.Enabled = !ClientTabHostServersResetButton.Enabled;
-            ClientTabHostServersBackupButton.Enabled = !ClientTabHostServersBackupButton.Enabled;
-            ClientTabHostServersRestoreButton.Enabled = !ClientTabHostServersRestoreButton.Enabled;
-            ClientTabHostServersComboBox.Enabled = !ClientTabHostServersComboBox.Enabled;
+            ClientTabCustomURLTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabCustomURLTextBox.Enabled : false;
         }
 
         private void ServerTabCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -140,7 +129,7 @@ namespace Bootstrapper
             if (isRestored)
             {
                 Update_ClientTabHostServersComboBox(0);
-                MessageBox.Show($"Restored successfully the hosts list from: {HostsConfig.HostsConfigFileName} !");
+                MessageBox.Show($"Restored hosts list from: {HostsConfig.HostsConfigFileName}!");
             }
         }
 
@@ -149,7 +138,7 @@ namespace Bootstrapper
             bool isSaved = NetworkUtil.BackupHostsList();
             if (isSaved)
             {
-                MessageBox.Show($"Hosts backup completed successfully to: {HostsConfig.HostsConfigFileName} !");
+                MessageBox.Show($"Hosts backed-up to: {HostsConfig.HostsConfigFileName}!");
             }
         }
 

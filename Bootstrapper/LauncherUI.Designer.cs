@@ -46,7 +46,6 @@ namespace Bootstrapper
             this.ClientTabHostServersResetButton = new System.Windows.Forms.Button();
             this.ClientTabHostServersComboBox = new System.Windows.Forms.ComboBox();
             this.ClientTabHostServersLable = new System.Windows.Forms.Label();
-            this.ClientTabLocalConnectCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientTabCustomURLTextBox = new System.Windows.Forms.TextBox();
             this.ClientTabCustomURLCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientTabLaunchOptionsLable = new System.Windows.Forms.Label();
@@ -203,7 +202,6 @@ namespace Bootstrapper
             this.ClientTab.Controls.Add(this.ClientTabHostServersResetButton);
             this.ClientTab.Controls.Add(this.ClientTabHostServersComboBox);
             this.ClientTab.Controls.Add(this.ClientTabHostServersLable);
-            this.ClientTab.Controls.Add(this.ClientTabLocalConnectCheckBox);
             this.ClientTab.Controls.Add(this.ClientTabCustomURLTextBox);
             this.ClientTab.Controls.Add(this.ClientTabCustomURLCheckBox);
             this.ClientTab.Controls.Add(this.ClientTabLaunchOptionsLable);
@@ -223,7 +221,7 @@ namespace Bootstrapper
             // 
             // ClientTabServerPortNum
             // 
-            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 121);
+            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 104);
             this.ClientTabServerPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -240,7 +238,7 @@ namespace Bootstrapper
             // 
             // ClientTabHostServersRestoreButton
             // 
-            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 69);
+            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 75);
             this.ClientTabHostServersRestoreButton.Name = "ClientTabHostServersRestoreButton";
             this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(70, 23);
             this.ClientTabHostServersRestoreButton.TabIndex = 27;
@@ -250,7 +248,7 @@ namespace Bootstrapper
             // 
             // ClientTabHostServersBackupButton
             // 
-            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(403, 69);
+            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(402, 75);
             this.ClientTabHostServersBackupButton.Name = "ClientTabHostServersBackupButton";
             this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(75, 23);
             this.ClientTabHostServersBackupButton.TabIndex = 26;
@@ -260,7 +258,7 @@ namespace Bootstrapper
             // 
             // ClientTabServerAddressSaveButton
             // 
-            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(484, 119);
+            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(483, 102);
             this.ClientTabServerAddressSaveButton.Name = "ClientTabServerAddressSaveButton";
             this.ClientTabServerAddressSaveButton.Size = new System.Drawing.Size(70, 23);
             this.ClientTabServerAddressSaveButton.TabIndex = 25;
@@ -270,7 +268,7 @@ namespace Bootstrapper
             // 
             // ClientTabHostServersResetButton
             // 
-            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 69);
+            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 75);
             this.ClientTabHostServersResetButton.Name = "ClientTabHostServersResetButton";
             this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(70, 23);
             this.ClientTabHostServersResetButton.TabIndex = 24;
@@ -282,7 +280,7 @@ namespace Bootstrapper
             // 
             this.ClientTabHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ClientTabHostServersComboBox.FormattingEnabled = true;
-            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(322, 42);
+            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(323, 48);
             this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
             this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(231, 21);
             this.ClientTabHostServersComboBox.TabIndex = 23;
@@ -291,28 +289,16 @@ namespace Bootstrapper
             // ClientTabHostServersLable
             // 
             this.ClientTabHostServersLable.AutoSize = true;
-            this.ClientTabHostServersLable.Location = new System.Drawing.Point(73, 45);
+            this.ClientTabHostServersLable.Location = new System.Drawing.Point(73, 51);
             this.ClientTabHostServersLable.Name = "ClientTabHostServersLable";
             this.ClientTabHostServersLable.Size = new System.Drawing.Size(102, 13);
             this.ClientTabHostServersLable.TabIndex = 22;
             this.ClientTabHostServersLable.Text = "Saved Host Servers";
             // 
-            // ClientTabLocalConnectCheckBox
-            // 
-            this.ClientTabLocalConnectCheckBox.AutoSize = true;
-            this.ClientTabLocalConnectCheckBox.Location = new System.Drawing.Point(418, 98);
-            this.ClientTabLocalConnectCheckBox.Name = "ClientTabLocalConnectCheckBox";
-            this.ClientTabLocalConnectCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ClientTabLocalConnectCheckBox.Size = new System.Drawing.Size(135, 17);
-            this.ClientTabLocalConnectCheckBox.TabIndex = 22;
-            this.ClientTabLocalConnectCheckBox.Text = "Connect to local server";
-            this.ClientTabLocalConnectCheckBox.UseVisualStyleBackColor = true;
-            this.ClientTabLocalConnectCheckBox.CheckedChanged += new System.EventHandler(this.ClientTabLocalConnectCheckBox_CheckedChanged);
-            // 
             // ClientTabCustomURLTextBox
             // 
             this.ClientTabCustomURLTextBox.Enabled = false;
-            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 199);
+            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 183);
             this.ClientTabCustomURLTextBox.Name = "ClientTabCustomURLTextBox";
             this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientTabCustomURLTextBox.TabIndex = 21;
@@ -320,7 +306,7 @@ namespace Bootstrapper
             // ClientTabCustomURLCheckBox
             // 
             this.ClientTabCustomURLCheckBox.AutoSize = true;
-            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(75, 201);
+            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(76, 185);
             this.ClientTabCustomURLCheckBox.Name = "ClientTabCustomURLCheckBox";
             this.ClientTabCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
             this.ClientTabCustomURLCheckBox.TabIndex = 20;
@@ -331,7 +317,7 @@ namespace Bootstrapper
             // ClientTabLaunchOptionsLable
             // 
             this.ClientTabLaunchOptionsLable.AutoSize = true;
-            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(72, 176);
+            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(73, 160);
             this.ClientTabLaunchOptionsLable.Name = "ClientTabLaunchOptionsLable";
             this.ClientTabLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
             this.ClientTabLaunchOptionsLable.TabIndex = 19;
@@ -340,7 +326,7 @@ namespace Bootstrapper
             // ClientTabPlayerNameLabel
             // 
             this.ClientTabPlayerNameLabel.AutoSize = true;
-            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(72, 150);
+            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(73, 134);
             this.ClientTabPlayerNameLabel.Name = "ClientTabPlayerNameLabel";
             this.ClientTabPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientTabPlayerNameLabel.TabIndex = 18;
@@ -349,7 +335,7 @@ namespace Bootstrapper
             // ClientTabServerAddressLable
             // 
             this.ClientTabServerAddressLable.AutoSize = true;
-            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(72, 124);
+            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(73, 106);
             this.ClientTabServerAddressLable.Name = "ClientTabServerAddressLable";
             this.ClientTabServerAddressLable.Size = new System.Drawing.Size(103, 13);
             this.ClientTabServerAddressLable.TabIndex = 17;
@@ -367,14 +353,14 @@ namespace Bootstrapper
             // 
             // ClientTabLaunchOptionsTextBox
             // 
-            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 173);
+            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 157);
             this.ClientTabLaunchOptionsTextBox.Name = "ClientTabLaunchOptionsTextBox";
             this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
             this.ClientTabLaunchOptionsTextBox.TabIndex = 15;
             // 
             // ClientTabPlayerNameTextBox
             // 
-            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 147);
+            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 131);
             this.ClientTabPlayerNameTextBox.MaxLength = 24;
             this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
             this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(231, 20);
@@ -383,7 +369,7 @@ namespace Bootstrapper
             // 
             // ClientTabServerAddressTextBox
             // 
-            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(322, 121);
+            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(322, 104);
             this.ClientTabServerAddressTextBox.Name = "ClientTabServerAddressTextBox";
             this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(90, 20);
             this.ClientTabServerAddressTextBox.TabIndex = 13;
@@ -652,7 +638,6 @@ namespace Bootstrapper
         private System.Windows.Forms.Button ClientTabServerAddressSaveButton;
         private System.Windows.Forms.Button ClientTabHostServersRestoreButton;
         private System.Windows.Forms.Button ClientTabHostServersBackupButton;
-        private System.Windows.Forms.CheckBox ClientTabLocalConnectCheckBox;
         private System.Windows.Forms.NumericUpDown ClientTabServerPortNum;
         private System.Windows.Forms.NumericUpDown ServerTabPortNum;
         private System.Windows.Forms.Label ServerTabPortLable;
