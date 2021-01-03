@@ -169,11 +169,11 @@ namespace Bootstrapper
             ServerTabBotCountNum.Value = 0;
             ServerTabPlayerCountNum.Value = 16;
             
-            if (!String.IsNullOrWhiteSpace(Config.Get().PreviousHost.Server.Address))
+            if (Config.Get().PreviousHost != null && !String.IsNullOrWhiteSpace(Config.Get().PreviousHost.Server.Address))
                 ClientTabServerAddressTextBox.Text = Config.Get().PreviousHost.Server.Address;
             else
                 Update_ClientTabServerAddressTextBox();
-            if (Config.Get().PreviousHost.Server.Port != null)
+            if (Config.Get().PreviousHost != null && Config.Get().PreviousHost.Server.Port != null)
                 ClientTabServerPortNum.Value = Int16.Parse(Config.Get().PreviousHost.Server.Port);
             else
                 ClientTabServerPortNum.Value = Int16.Parse(Config.DefaultLocalHostServer.Port);
