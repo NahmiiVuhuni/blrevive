@@ -82,6 +82,7 @@ static UFoxUI* pUI = NULL;
 static UConsole* pConsole = NULL;
 static UEngine* pEngine = NULL;
 static ULocalPlayer* pLocalPlayer = NULL;
+static bool bSetInventory = false;
 bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 {
 	if (!pCaller) {
@@ -95,9 +96,43 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 		return false;
 	}
 
+
 	try {
 		std::string callerName(pCaller->GetName());
 		std::string functionName(pFunction->GetName());
+
+		if (functionName == "BeginState")
+		{
+			UObject_eventBeginState_Parms* parms = reinterpret_cast<UObject_eventBeginState_Parms*>(pParams);
+			LDebug("{0}->{1}(PreviousState: {2})", callerName, functionName, parms->PreviousStateName.GetName());
+			LFlush;
+			return true;
+		}
+		else if (functionName == "EndState") {
+			UObject_eventEndState_Parms* parms = reinterpret_cast<UObject_eventEndState_Parms*>(pParams);
+			LDebug("{0}->{1}(NextState: {2})", callerName, functionName, parms->NextStateName.GetName());
+			return true;
+		}
+		else if (functionName == "ClientGotoState") {
+			APlayerController_execClientGotoState_Parms* parms = reinterpret_cast<APlayerController_execClientGotoState_Parms*>(pParams);
+			std::string newStateName(parms->NewState.GetName());
+			if ( newStateName == "PlayerWalking")
+			{
+				//LDebug("ChangePreset: {0}", ret.ToChar());
+			}
+
+			LDebug("{0}->{1}(NewState: {2} | NewLabel: {3})", callerName, functionName, parms->NewState.GetName(), parms->NewLabel.GetName());
+			return true;
+		}
+		
+		if (GetAsyncKeyState(VK_F2) & 0x8000 && !bSetInventory) {
+				bSetInventory = true;
+				auto apc = UObject::GetInstanceOf<AFoxPawn>();
+				apc->ConsoleCommand(FString("ChangePreset DefaultWpnPreset_SNI_0"), true);
+		}
+		else if (GetAsyncKeyState(VK_F2) == 0)
+			bSetInventory = false;
+
 
 		if (BLRevive::Proxy::LogProcessEventCalls)
 		{
