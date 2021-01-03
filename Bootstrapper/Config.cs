@@ -14,11 +14,11 @@ namespace Bootstrapper
         
         public const string DefaultPlayerName = "Player";
         
-        private const string DefaultLocalHostIp = "127.0.0.1";
+        private const string DefaultLocalHostIP = "127.0.0.1";
         private const string DefaultLocalHostPort = "7777";
         public static Server DefaultLocalHostServer = new Server()
         {
-            Address = DefaultLocalHostIp, 
+            Address = DefaultLocalHostIP, 
             Port = DefaultLocalHostPort
         };
 

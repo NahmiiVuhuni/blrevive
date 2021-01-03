@@ -125,7 +125,11 @@ namespace Bootstrapper
 
             if (isUpdated)
             {
-                int lastAddedHostSelectionIndex = Config.Get().Hosts.Count - 1;
+                int lastAddedHostSelectionIndex;
+                if (Config.Get().Hosts.Count > 0)
+                    lastAddedHostSelectionIndex = Config.Get().Hosts.Count - 1;
+                else
+                    lastAddedHostSelectionIndex = 0;
                 Update_ClientTabHostServersComboBox(lastAddedHostSelectionIndex);
             }
         }
@@ -168,10 +172,10 @@ namespace Bootstrapper
             ServerTabMapsCombo.SelectedIndex = 9;
             ServerTabBotCountNum.Value = 0;
             ServerTabPlayerCountNum.Value = 16;
-            
+
             if (Config.Get().PreviousHost != null && !String.IsNullOrWhiteSpace(Config.Get().PreviousHost.Server.Address))
                 ClientTabServerAddressTextBox.Text = Config.Get().PreviousHost.Server.Address;
-            else
+            else if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
                 Update_ClientTabServerAddressTextBox();
             if (Config.Get().PreviousHost != null && Config.Get().PreviousHost.Server.Port != null)
                 ClientTabServerPortNum.Value = Int16.Parse(Config.Get().PreviousHost.Server.Port);
@@ -198,7 +202,8 @@ namespace Bootstrapper
             ClientTabHostServersComboBox.DisplayMember = "Server"; 
             ClientTabHostServersComboBox.ValueMember = null;
             // set new list instance as data source, otherwise the combobox won't react to items changed/added inside the hosts list(combobox)  
-            ClientTabHostServersComboBox.DataSource = Config.Get().Hosts.ToList(); 
+            if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
+                ClientTabHostServersComboBox.DataSource = Config.Get().Hosts.ToList(); 
         }
     }
 }

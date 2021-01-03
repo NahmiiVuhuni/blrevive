@@ -18,7 +18,7 @@ namespace Bootstrapper
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Address} : {Port}";
+            return $"{Address}:{Port}";
         }
     }
 }
