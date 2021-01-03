@@ -161,7 +161,7 @@ namespace Bootstrapper
             Thread.Sleep(Config.Get().ServerStartupOffset);
 
 
-            if (LaunchClient(NetworkUtil.GetDefaultHost(), $"{Config.DefaultLocalHostPort}", clientArgs) == null)
+            if (LaunchClient(NetworkUtil.GetDefaultHostServer().Address, $"{Config.DefaultLocalHostServer.Port}", clientArgs) == null)
             {
                 Log.Error("Failed to start client!");
             }

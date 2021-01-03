@@ -54,18 +54,18 @@ namespace Bootstrapper
         }
 
         /// <summary>
-        /// Provides a default Host as the first entry in Config.Hosts list or falls back to Config.DefaultLocalHostIp
+        /// Provides a default Host Server as the first entry in Config.Hosts list or falls back to Config.DefaultLocalHostIp
         /// </summary>
-        /// <returns>First host (defaulted as Local Host IP) in the Config Hosts List OR Default Local Host IP</returns>
-        public static string GetDefaultHost()
+        /// <returns>First host server (defaulted as Local Host IP) in the Config Hosts List OR Default Local Host server</returns>
+        public static Server GetDefaultHostServer()
         {
-            string[] hosts = Config.Get().Hosts;
-            if (hosts != null && hosts.Length > 0)
+            List<Server> hosts = Config.Get().Hosts;
+            if (hosts != null && hosts.Count > 0)
             {
                 return hosts[0];
             }
 
-            return Config.DefaultLocalHostIp;
+            return Config.DefaultLocalHostServer;
         }
 
         /// <summary>
@@ -73,35 +73,45 @@ namespace Bootstrapper
         /// </summary>
         public static void ResetHostsList()
         {
-            Config.Get().Hosts = new[] { Config.DefaultLocalHostIp };
+            Config.Get().Hosts = new List<Server>() { Config.DefaultLocalHostServer };
             Config.Save();
         }
 
         /// <summary>
         /// Update the Host Servers list only with uniques Host IP/Server Name and saves it in Config JSON 
         /// </summary>
-        /// <param name="hostIpOrName"></param>
+        /// <param name="server"></param>
         /// <returns>True - if the host list was updated, False otherwise</returns>
-        public static bool UpdateHostsList(string hostIpOrName)
+        public static bool UpdateHostsList(Server server)
         {
-            string[] hosts = Config.Get().Hosts;
+            List<Server> hosts = Config.Get().Hosts;
             if (hosts == null 
-                || String.IsNullOrWhiteSpace(hostIpOrName) 
-                || hosts.Contains(hostIpOrName) 
-                || hosts.Length >= Config.MaxClientHostListSize)
+                || String.IsNullOrWhiteSpace(server.Address)
+                || String.IsNullOrWhiteSpace(server.Port)
+                || hosts.Exists(item => item.Address.Equals(server.Address) && item.Port.Equals(server.Port)) 
+                || hosts.Count >= Config.MaxClientHostListSize)
             {
                 return false;
             }
 
             // check if the host name is already in the list with it's equivalent IP
-            string hostIp = GetHostIp(hostIpOrName);
-            if (!String.IsNullOrWhiteSpace(hostIp) && !hosts.Contains(hostIp))
+            string hostIp = GetHostIp(server.Address);
+            if (!String.IsNullOrWhiteSpace(hostIp))
             {
-                List<string> tempHostsList = hosts.ToList();
-                // add actual valid host representation (IP or name), as added by user 
-                tempHostsList.Add(hostIpOrName);
+                List<Server> tempHostsList = hosts;
 
-                Config.Get().Hosts = tempHostsList.ToArray();
+                if (!hosts.Exists(item => item.Address.Equals(hostIp)))
+                {
+                    // add actual valid host representation (IP or name), as added by user 
+                    tempHostsList.Add(server);
+                } else if (hosts.Exists(item => item.Address.Equals(hostIp) && item.Port.Equals(server.Port)))
+                {
+                    // overwrite server IP representation with the DNS string representation 
+                    int existingHostWithIpIndex = hosts.FindIndex(item => item.Address.Equals(hostIp) && item.Port.Equals(server.Port));
+                    tempHostsList[existingHostWithIpIndex] = server;
+                }
+
+                Config.Get().Hosts = tempHostsList;
                 bool isSaved = Config.Save();
                 if (!isSaved)
                 {
@@ -121,13 +131,13 @@ namespace Bootstrapper
 
         public static bool RestoreHostsListFromBackup()
         {
-            string[] backupHosts = HostsConfig.Get().Hosts;
-            if (backupHosts == null || backupHosts.Length == 0)
+            List<Server> backupHosts = HostsConfig.Get().Hosts;
+            if (backupHosts == null || backupHosts.Count == 0)
             {
                 return false;
             }
 
-            string[] currentHosts = Config.Get().Hosts;
+            List<Server> currentHosts = Config.Get().Hosts;
             Config.Get().Hosts = backupHosts;
             bool isSaved = Config.Save();
             if (!isSaved)
@@ -138,10 +148,9 @@ namespace Bootstrapper
             return isSaved;
         }
 
-        public static bool SaveAsPreviousServerAddress(string hostIpOrAddress, string hostPort)
+        public static bool SaveAsPreviousServer(string hostIpOrAddress, string hostPort)
         {
-            Config.Get().PreviousServerAddress = hostIpOrAddress;
-            Config.Get().PreviousServerPort = hostPort;
+            Config.Get().PreviousHost = new PreviousHost() {Server = new Server() { Address = hostIpOrAddress, Port = hostPort}};
             return Config.Save();
         }
     }

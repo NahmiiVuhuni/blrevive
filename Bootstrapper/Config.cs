@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
@@ -12,8 +13,15 @@ namespace Bootstrapper
     {
         
         public const string DefaultPlayerName = "Player";
-        public const string DefaultLocalHostIp = "127.0.0.1";
-        public const string DefaultLocalHostPort = "7777";
+        
+        private const string DefaultLocalHostIp = "127.0.0.1";
+        private const string DefaultLocalHostPort = "7777";
+        public static Server DefaultLocalHostServer = new Server()
+        {
+            Address = DefaultLocalHostIp, 
+            Port = DefaultLocalHostPort
+        };
+
         public const int MaxClientHostListSize = 50;
 
         /// <summary>
@@ -32,13 +40,9 @@ namespace Bootstrapper
         public string Username;
 
         /// <summary>
-        /// Address of the server connected to in the previous session.
+        /// Contains the server connected to in the previous session.
         /// </summary>
-        public string PreviousServerAddress;
-        /// <summary
-        /// Port of the server connect to in the previous session.
-        /// </summary>
-        public string PreviousServerPort;
+        public PreviousHost PreviousHost;
 
         /// <summary>
         /// Available Maps.
@@ -51,9 +55,9 @@ namespace Bootstrapper
         public string[] Gamemodes;
 
         /// <summary>
-        /// Known Hosts by IP or Name 
+        /// Known Host Servers by IP or Name and port  
         /// </summary>
-        public string[] Hosts;
+        public List<Server> Hosts;
 
         private static Config _Config = null;
         private const string LauncherConfigFileName = "LauncherConfig.json";

@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PreviousHost.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="UserUtil.cs" />
     <Compile Include="HostsConfig.cs" />
     <Compile Include="Config.cs" />
