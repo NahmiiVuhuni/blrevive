@@ -74,19 +74,19 @@ namespace Bootstrapper
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
             this.LoadoutTab = new System.Windows.Forms.TabPage();
-            this.LoadoutArmorGroupbox = new System.Windows.Forms.GroupBox();
-            this.LoadoutArmorCamoSkinComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorCamoSkinLabel = new System.Windows.Forms.Label();
-            this.LoadoutArmorLowerComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutArmorCamoComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorCamoLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorLegsComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutArmorHelmetLabel = new System.Windows.Forms.Label();
-            this.LoadoutArmorUpperComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorLowerLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorChestComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorLegsLabel = new System.Windows.Forms.Label();
             this.LoadoutArmorHelmetComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorUpperLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorChestLabel = new System.Windows.Forms.Label();
             this.LoadoutSecondaryGroupBox = new System.Windows.Forms.GroupBox();
             this.LoadoutSecondaryAmmoTypeComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutSecondaryCamoComboBox = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryScopeComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutSecondaryMagazineComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutSecondaryStockComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutSecondaryMuzzleComboBox = new System.Windows.Forms.ComboBox();
@@ -118,18 +118,45 @@ namespace Bootstrapper
             this.LoadoutPrimaryAmmoTypeLabel = new System.Windows.Forms.Label();
             this.LoadoutPrimaryCamoComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryCamoLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayScopeComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryScopeComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryScopeLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayMagazineComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryMagazineComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryMagazineLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayStockComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryStockComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryStockLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayMuzzleComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryMuzzleComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryMuzzleLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayBarrelComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryBarrelComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryBarrelLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimayReceiverComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimaryReceiverComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryReceiverLabel = new System.Windows.Forms.Label();
+            this.LoadoutDepotGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutDepotSlot5ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutDepotSlot5Label = new System.Windows.Forms.Label();
+            this.LoadoutDepotSlot4ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutDepotSlot4Label = new System.Windows.Forms.Label();
+            this.LoadoutDepotSlot3ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutDepotSlot3Label = new System.Windows.Forms.Label();
+            this.LoadoutDepotSlot2ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutDepotSlot2Label = new System.Windows.Forms.Label();
+            this.LoadoutDepotSlot1ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutDepotSlot1Label = new System.Windows.Forms.Label();
+            this.LoadoutTabControl = new System.Windows.Forms.TabControl();
+            this.WeaponsTab = new System.Windows.Forms.TabPage();
+            this.EquipmentTab = new System.Windows.Forms.TabPage();
+            this.LoadoutArmorSkinComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorSkinLabel = new System.Windows.Forms.Label();
+            this.LoadoutPrimarySkinComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPrimarySkinLabel = new System.Windows.Forms.Label();
+            this.LoadoutCharacterGroupBox = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -141,10 +168,15 @@ namespace Bootstrapper
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).BeginInit();
             this.MasterServerTab.SuspendLayout();
             this.LoadoutTab.SuspendLayout();
-            this.LoadoutArmorGroupbox.SuspendLayout();
+            this.LoadoutArmorGroupBox.SuspendLayout();
             this.LoadoutSecondaryGroupBox.SuspendLayout();
             this.LoadoutGearGroupBox.SuspendLayout();
             this.LoadoutPrimaryGroupBox.SuspendLayout();
+            this.LoadoutDepotGroupBox.SuspendLayout();
+            this.LoadoutTabControl.SuspendLayout();
+            this.WeaponsTab.SuspendLayout();
+            this.EquipmentTab.SuspendLayout();
+            this.LoadoutCharacterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // LauncherTabControl
@@ -152,13 +184,13 @@ namespace Bootstrapper
             this.LauncherTabControl.Controls.Add(this.BotMatchTab);
             this.LauncherTabControl.Controls.Add(this.ClientTab);
             this.LauncherTabControl.Controls.Add(this.ServerTab);
-            this.LauncherTabControl.Controls.Add(this.MasterServerTab);
             this.LauncherTabControl.Controls.Add(this.LoadoutTab);
+            this.LauncherTabControl.Controls.Add(this.MasterServerTab);
             this.LauncherTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LauncherTabControl.Location = new System.Drawing.Point(0, 0);
             this.LauncherTabControl.Name = "LauncherTabControl";
             this.LauncherTabControl.SelectedIndex = 0;
-            this.LauncherTabControl.Size = new System.Drawing.Size(704, 321);
+            this.LauncherTabControl.Size = new System.Drawing.Size(704, 441);
             this.LauncherTabControl.TabIndex = 0;
             // 
             // BotMatchTab
@@ -173,7 +205,7 @@ namespace Bootstrapper
             this.BotMatchTab.Location = new System.Drawing.Point(4, 22);
             this.BotMatchTab.Name = "BotMatchTab";
             this.BotMatchTab.Padding = new System.Windows.Forms.Padding(3);
-            this.BotMatchTab.Size = new System.Drawing.Size(696, 295);
+            this.BotMatchTab.Size = new System.Drawing.Size(696, 415);
             this.BotMatchTab.TabIndex = 0;
             this.BotMatchTab.Text = "Bot Match";
             this.BotMatchTab.UseVisualStyleBackColor = true;
@@ -182,7 +214,7 @@ namespace Bootstrapper
             // 
             this.BGTabBotCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BGTabBotCountNum.Location = new System.Drawing.Point(425, 144);
+            this.BGTabBotCountNum.Location = new System.Drawing.Point(425, 193);
             this.BGTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -195,7 +227,7 @@ namespace Bootstrapper
             // BGTabBotCountLable
             // 
             this.BGTabBotCountLable.AutoSize = true;
-            this.BGTabBotCountLable.Location = new System.Drawing.Point(72, 146);
+            this.BGTabBotCountLable.Location = new System.Drawing.Point(72, 195);
             this.BGTabBotCountLable.Name = "BGTabBotCountLable";
             this.BGTabBotCountLable.Size = new System.Drawing.Size(54, 13);
             this.BGTabBotCountLable.TabIndex = 16;
@@ -205,7 +237,7 @@ namespace Bootstrapper
             // 
             this.BGTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BGTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.BGTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.BGTabLaunchButton.Name = "BGTabLaunchButton";
             this.BGTabLaunchButton.Size = new System.Drawing.Size(155, 23);
             this.BGTabLaunchButton.TabIndex = 15;
@@ -216,7 +248,7 @@ namespace Bootstrapper
             // BGTabMapLable
             // 
             this.BGTabMapLable.AutoSize = true;
-            this.BGTabMapLable.Location = new System.Drawing.Point(72, 120);
+            this.BGTabMapLable.Location = new System.Drawing.Point(72, 169);
             this.BGTabMapLable.Name = "BGTabMapLable";
             this.BGTabMapLable.Size = new System.Drawing.Size(28, 13);
             this.BGTabMapLable.TabIndex = 14;
@@ -225,7 +257,7 @@ namespace Bootstrapper
             // BGTabGamemodeLabel
             // 
             this.BGTabGamemodeLabel.AutoSize = true;
-            this.BGTabGamemodeLabel.Location = new System.Drawing.Point(72, 93);
+            this.BGTabGamemodeLabel.Location = new System.Drawing.Point(72, 142);
             this.BGTabGamemodeLabel.Name = "BGTabGamemodeLabel";
             this.BGTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.BGTabGamemodeLabel.TabIndex = 13;
@@ -239,7 +271,7 @@ namespace Bootstrapper
             this.BGTabMapsCombo.FormattingEnabled = true;
             this.BGTabMapsCombo.Items.AddRange(new object[] {
             "HeloDeck"});
-            this.BGTabMapsCombo.Location = new System.Drawing.Point(425, 117);
+            this.BGTabMapsCombo.Location = new System.Drawing.Point(425, 166);
             this.BGTabMapsCombo.Name = "BGTabMapsCombo";
             this.BGTabMapsCombo.Size = new System.Drawing.Size(201, 21);
             this.BGTabMapsCombo.TabIndex = 12;
@@ -260,7 +292,7 @@ namespace Bootstrapper
             "Last Team Standing",
             "Search and Destroy",
             "Onslaught"});
-            this.BGTabGamemodesCombo.Location = new System.Drawing.Point(425, 90);
+            this.BGTabGamemodesCombo.Location = new System.Drawing.Point(425, 139);
             this.BGTabGamemodesCombo.Name = "BGTabGamemodesCombo";
             this.BGTabGamemodesCombo.Size = new System.Drawing.Size(201, 21);
             this.BGTabGamemodesCombo.TabIndex = 11;
@@ -286,14 +318,14 @@ namespace Bootstrapper
             this.ClientTab.Location = new System.Drawing.Point(4, 22);
             this.ClientTab.Name = "ClientTab";
             this.ClientTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ClientTab.Size = new System.Drawing.Size(696, 295);
+            this.ClientTab.Size = new System.Drawing.Size(696, 415);
             this.ClientTab.TabIndex = 1;
             this.ClientTab.Text = "Client";
             this.ClientTab.UseVisualStyleBackColor = true;
             // 
             // ClientTabServerPortNum
             // 
-            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 104);
+            this.ClientTabServerPortNum.Location = new System.Drawing.Point(419, 150);
             this.ClientTabServerPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -312,7 +344,7 @@ namespace Bootstrapper
             // 
             this.ClientTabHostServersRestoreButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 75);
+            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 124);
             this.ClientTabHostServersRestoreButton.Name = "ClientTabHostServersRestoreButton";
             this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(150, 23);
             this.ClientTabHostServersRestoreButton.TabIndex = 27;
@@ -322,7 +354,7 @@ namespace Bootstrapper
             // 
             // ClientTabHostServersBackupButton
             // 
-            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(402, 75);
+            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(400, 124);
             this.ClientTabHostServersBackupButton.Name = "ClientTabHostServersBackupButton";
             this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(75, 23);
             this.ClientTabHostServersBackupButton.TabIndex = 26;
@@ -334,7 +366,7 @@ namespace Bootstrapper
             // 
             this.ClientTabServerAddressSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(483, 102);
+            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(483, 148);
             this.ClientTabServerAddressSaveButton.Name = "ClientTabServerAddressSaveButton";
             this.ClientTabServerAddressSaveButton.Size = new System.Drawing.Size(150, 23);
             this.ClientTabServerAddressSaveButton.TabIndex = 25;
@@ -344,7 +376,7 @@ namespace Bootstrapper
             // 
             // ClientTabHostServersResetButton
             // 
-            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 75);
+            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 124);
             this.ClientTabHostServersResetButton.Name = "ClientTabHostServersResetButton";
             this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(70, 23);
             this.ClientTabHostServersResetButton.TabIndex = 24;
@@ -358,7 +390,7 @@ namespace Bootstrapper
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ClientTabHostServersComboBox.FormattingEnabled = true;
-            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(323, 48);
+            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(322, 98);
             this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
             this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(311, 21);
             this.ClientTabHostServersComboBox.TabIndex = 23;
@@ -367,7 +399,7 @@ namespace Bootstrapper
             // ClientTabHostServersLable
             // 
             this.ClientTabHostServersLable.AutoSize = true;
-            this.ClientTabHostServersLable.Location = new System.Drawing.Point(73, 51);
+            this.ClientTabHostServersLable.Location = new System.Drawing.Point(73, 101);
             this.ClientTabHostServersLable.Name = "ClientTabHostServersLable";
             this.ClientTabHostServersLable.Size = new System.Drawing.Size(102, 13);
             this.ClientTabHostServersLable.TabIndex = 22;
@@ -378,7 +410,7 @@ namespace Bootstrapper
             this.ClientTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabCustomURLTextBox.Enabled = false;
-            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 183);
+            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 228);
             this.ClientTabCustomURLTextBox.Name = "ClientTabCustomURLTextBox";
             this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(311, 20);
             this.ClientTabCustomURLTextBox.TabIndex = 21;
@@ -386,7 +418,7 @@ namespace Bootstrapper
             // ClientTabCustomURLCheckBox
             // 
             this.ClientTabCustomURLCheckBox.AutoSize = true;
-            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(76, 185);
+            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(76, 230);
             this.ClientTabCustomURLCheckBox.Name = "ClientTabCustomURLCheckBox";
             this.ClientTabCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
             this.ClientTabCustomURLCheckBox.TabIndex = 20;
@@ -397,7 +429,7 @@ namespace Bootstrapper
             // ClientTabLaunchOptionsLable
             // 
             this.ClientTabLaunchOptionsLable.AutoSize = true;
-            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(73, 160);
+            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(73, 205);
             this.ClientTabLaunchOptionsLable.Name = "ClientTabLaunchOptionsLable";
             this.ClientTabLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
             this.ClientTabLaunchOptionsLable.TabIndex = 19;
@@ -406,7 +438,7 @@ namespace Bootstrapper
             // ClientTabPlayerNameLabel
             // 
             this.ClientTabPlayerNameLabel.AutoSize = true;
-            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(73, 134);
+            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(73, 179);
             this.ClientTabPlayerNameLabel.Name = "ClientTabPlayerNameLabel";
             this.ClientTabPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientTabPlayerNameLabel.TabIndex = 18;
@@ -415,7 +447,7 @@ namespace Bootstrapper
             // ClientTabServerAddressLable
             // 
             this.ClientTabServerAddressLable.AutoSize = true;
-            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(73, 106);
+            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(73, 153);
             this.ClientTabServerAddressLable.Name = "ClientTabServerAddressLable";
             this.ClientTabServerAddressLable.Size = new System.Drawing.Size(103, 13);
             this.ClientTabServerAddressLable.TabIndex = 17;
@@ -425,7 +457,7 @@ namespace Bootstrapper
             // 
             this.ClientTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.ClientTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.ClientTabLaunchButton.Name = "ClientTabLaunchButton";
             this.ClientTabLaunchButton.Size = new System.Drawing.Size(155, 23);
             this.ClientTabLaunchButton.TabIndex = 16;
@@ -437,7 +469,7 @@ namespace Bootstrapper
             // 
             this.ClientTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 157);
+            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 202);
             this.ClientTabLaunchOptionsTextBox.Name = "ClientTabLaunchOptionsTextBox";
             this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(311, 20);
             this.ClientTabLaunchOptionsTextBox.TabIndex = 15;
@@ -446,7 +478,7 @@ namespace Bootstrapper
             // 
             this.ClientTabPlayerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 131);
+            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 176);
             this.ClientTabPlayerNameTextBox.MaxLength = 24;
             this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
             this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(311, 20);
@@ -455,7 +487,7 @@ namespace Bootstrapper
             // 
             // ClientTabServerAddressTextBox
             // 
-            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(322, 104);
+            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(323, 150);
             this.ClientTabServerAddressTextBox.Name = "ClientTabServerAddressTextBox";
             this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(90, 20);
             this.ClientTabServerAddressTextBox.TabIndex = 13;
@@ -480,7 +512,7 @@ namespace Bootstrapper
             this.ServerTab.Controls.Add(this.ServerTabGamemodesCombo);
             this.ServerTab.Location = new System.Drawing.Point(4, 22);
             this.ServerTab.Name = "ServerTab";
-            this.ServerTab.Size = new System.Drawing.Size(696, 295);
+            this.ServerTab.Size = new System.Drawing.Size(696, 415);
             this.ServerTab.TabIndex = 2;
             this.ServerTab.Text = "Server";
             this.ServerTab.UseVisualStyleBackColor = true;
@@ -488,7 +520,7 @@ namespace Bootstrapper
             // ServerTabPortLable
             // 
             this.ServerTabPortLable.AutoSize = true;
-            this.ServerTabPortLable.Location = new System.Drawing.Point(72, 149);
+            this.ServerTabPortLable.Location = new System.Drawing.Point(72, 196);
             this.ServerTabPortLable.Name = "ServerTabPortLable";
             this.ServerTabPortLable.Size = new System.Drawing.Size(26, 13);
             this.ServerTabPortLable.TabIndex = 30;
@@ -498,7 +530,7 @@ namespace Bootstrapper
             // 
             this.ServerTabPortNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 147);
+            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 194);
             this.ServerTabPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -517,7 +549,7 @@ namespace Bootstrapper
             // 
             this.ServerTabPlayerCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 95);
+            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 143);
             this.ServerTabPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -530,7 +562,7 @@ namespace Bootstrapper
             // ServerTabMaxPlayersLabel
             // 
             this.ServerTabMaxPlayersLabel.AutoSize = true;
-            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(72, 97);
+            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(72, 145);
             this.ServerTabMaxPlayersLabel.Name = "ServerTabMaxPlayersLabel";
             this.ServerTabMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
             this.ServerTabMaxPlayersLabel.TabIndex = 25;
@@ -539,7 +571,7 @@ namespace Bootstrapper
             // ServerTabCustomURLCheckbox
             // 
             this.ServerTabCustomURLCheckbox.AutoSize = true;
-            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(75, 201);
+            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(75, 248);
             this.ServerTabCustomURLCheckbox.Name = "ServerTabCustomURLCheckbox";
             this.ServerTabCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerTabCustomURLCheckbox.TabIndex = 24;
@@ -552,7 +584,7 @@ namespace Bootstrapper
             this.ServerTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabCustomURLTextBox.Enabled = false;
-            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(315, 199);
+            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(315, 246);
             this.ServerTabCustomURLTextBox.Name = "ServerTabCustomURLTextBox";
             this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(311, 20);
             this.ServerTabCustomURLTextBox.TabIndex = 23;
@@ -560,7 +592,7 @@ namespace Bootstrapper
             // ServerTabLaunchOptionsLabel
             // 
             this.ServerTabLaunchOptionsLabel.AutoSize = true;
-            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(72, 176);
+            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(72, 223);
             this.ServerTabLaunchOptionsLabel.Name = "ServerTabLaunchOptionsLabel";
             this.ServerTabLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerTabLaunchOptionsLabel.TabIndex = 22;
@@ -569,7 +601,7 @@ namespace Bootstrapper
             // ServerTabBotCountLabel
             // 
             this.ServerTabBotCountLabel.AutoSize = true;
-            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(72, 123);
+            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(72, 171);
             this.ServerTabBotCountLabel.Name = "ServerTabBotCountLabel";
             this.ServerTabBotCountLabel.Size = new System.Drawing.Size(54, 13);
             this.ServerTabBotCountLabel.TabIndex = 21;
@@ -578,7 +610,7 @@ namespace Bootstrapper
             // ServerTabMapLabel
             // 
             this.ServerTabMapLabel.AutoSize = true;
-            this.ServerTabMapLabel.Location = new System.Drawing.Point(72, 71);
+            this.ServerTabMapLabel.Location = new System.Drawing.Point(72, 118);
             this.ServerTabMapLabel.Name = "ServerTabMapLabel";
             this.ServerTabMapLabel.Size = new System.Drawing.Size(28, 13);
             this.ServerTabMapLabel.TabIndex = 20;
@@ -587,7 +619,7 @@ namespace Bootstrapper
             // ServerTabGamemodeLabel
             // 
             this.ServerTabGamemodeLabel.AutoSize = true;
-            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(72, 44);
+            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(75, 91);
             this.ServerTabGamemodeLabel.Name = "ServerTabGamemodeLabel";
             this.ServerTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.ServerTabGamemodeLabel.TabIndex = 19;
@@ -597,7 +629,7 @@ namespace Bootstrapper
             // 
             this.ServerTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 173);
+            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 220);
             this.ServerTabLaunchOptionsTextBox.Name = "ServerTabLaunchOptionsTextBox";
             this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(311, 20);
             this.ServerTabLaunchOptionsTextBox.TabIndex = 18;
@@ -606,7 +638,7 @@ namespace Bootstrapper
             // 
             this.ServerTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchButton.Location = new System.Drawing.Point(270, 244);
+            this.ServerTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.ServerTabLaunchButton.Name = "ServerTabLaunchButton";
             this.ServerTabLaunchButton.Size = new System.Drawing.Size(155, 23);
             this.ServerTabLaunchButton.TabIndex = 17;
@@ -618,7 +650,7 @@ namespace Bootstrapper
             // 
             this.ServerTabBotCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 121);
+            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 169);
             this.ServerTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -634,7 +666,7 @@ namespace Bootstrapper
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabMapsCombo.FormattingEnabled = true;
-            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 68);
+            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 115);
             this.ServerTabMapsCombo.Name = "ServerTabMapsCombo";
             this.ServerTabMapsCombo.Size = new System.Drawing.Size(201, 21);
             this.ServerTabMapsCombo.TabIndex = 15;
@@ -645,7 +677,7 @@ namespace Bootstrapper
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabGamemodesCombo.FormattingEnabled = true;
-            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 41);
+            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 88);
             this.ServerTabGamemodesCombo.Name = "ServerTabGamemodesCombo";
             this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(201, 21);
             this.ServerTabGamemodesCombo.TabIndex = 14;
@@ -655,7 +687,7 @@ namespace Bootstrapper
             this.MasterServerTab.Controls.Add(this.MSTabNotImplementedLable);
             this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
             this.MasterServerTab.Name = "MasterServerTab";
-            this.MasterServerTab.Size = new System.Drawing.Size(696, 295);
+            this.MasterServerTab.Size = new System.Drawing.Size(696, 415);
             this.MasterServerTab.TabIndex = 3;
             this.MasterServerTab.Text = "Master Server";
             this.MasterServerTab.UseVisualStyleBackColor = true;
@@ -663,7 +695,7 @@ namespace Bootstrapper
             // MSTabNotImplementedLable
             // 
             this.MSTabNotImplementedLable.AutoSize = true;
-            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(308, 132);
+            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(308, 200);
             this.MSTabNotImplementedLable.Name = "MSTabNotImplementedLable";
             this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
             this.MSTabNotImplementedLable.TabIndex = 0;
@@ -671,62 +703,63 @@ namespace Bootstrapper
             // 
             // LoadoutTab
             // 
-            this.LoadoutTab.Controls.Add(this.LoadoutArmorGroupbox);
-            this.LoadoutTab.Controls.Add(this.LoadoutSecondaryGroupBox);
-            this.LoadoutTab.Controls.Add(this.LoadoutGearGroupBox);
-            this.LoadoutTab.Controls.Add(this.LoadoutPrimaryGroupBox);
+            this.LoadoutTab.Controls.Add(this.LoadoutTabControl);
             this.LoadoutTab.Location = new System.Drawing.Point(4, 22);
             this.LoadoutTab.Name = "LoadoutTab";
             this.LoadoutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.LoadoutTab.Size = new System.Drawing.Size(696, 295);
+            this.LoadoutTab.Size = new System.Drawing.Size(696, 415);
             this.LoadoutTab.TabIndex = 4;
             this.LoadoutTab.Text = "Loadout";
             this.LoadoutTab.UseVisualStyleBackColor = true;
             // 
-            // LoadoutArmorGroupbox
+            // LoadoutArmorGroupBox
             // 
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorCamoSkinComboBox);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorCamoSkinLabel);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorLowerComboBox);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorHelmetLabel);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorUpperComboBox);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorLowerLabel);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorHelmetComboBox);
-            this.LoadoutArmorGroupbox.Controls.Add(this.LoadoutArmorUpperLabel);
-            this.LoadoutArmorGroupbox.Location = new System.Drawing.Point(468, 163);
-            this.LoadoutArmorGroupbox.Name = "LoadoutArmorGroupbox";
-            this.LoadoutArmorGroupbox.Size = new System.Drawing.Size(232, 136);
-            this.LoadoutArmorGroupbox.TabIndex = 19;
-            this.LoadoutArmorGroupbox.TabStop = false;
-            this.LoadoutArmorGroupbox.Text = "Armor";
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestLabel);
+            this.LoadoutArmorGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.LoadoutArmorGroupBox.Name = "LoadoutArmorGroupBox";
+            this.LoadoutArmorGroupBox.Size = new System.Drawing.Size(228, 150);
+            this.LoadoutArmorGroupBox.TabIndex = 19;
+            this.LoadoutArmorGroupBox.TabStop = false;
+            this.LoadoutArmorGroupBox.Text = "Armor";
             // 
-            // LoadoutArmorCamoSkinComboBox
+            // LoadoutArmorCamoComboBox
             // 
-            this.LoadoutArmorCamoSkinComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.LoadoutArmorCamoSkinComboBox.Enabled = false;
-            this.LoadoutArmorCamoSkinComboBox.FormattingEnabled = true;
-            this.LoadoutArmorCamoSkinComboBox.Location = new System.Drawing.Point(66, 94);
-            this.LoadoutArmorCamoSkinComboBox.Name = "LoadoutArmorCamoSkinComboBox";
-            this.LoadoutArmorCamoSkinComboBox.Size = new System.Drawing.Size(156, 21);
-            this.LoadoutArmorCamoSkinComboBox.TabIndex = 7;
+            this.LoadoutArmorCamoComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorCamoComboBox.Enabled = false;
+            this.LoadoutArmorCamoComboBox.FormattingEnabled = true;
+            this.LoadoutArmorCamoComboBox.Location = new System.Drawing.Point(57, 94);
+            this.LoadoutArmorCamoComboBox.Name = "LoadoutArmorCamoComboBox";
+            this.LoadoutArmorCamoComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorCamoComboBox.TabIndex = 7;
             // 
-            // LoadoutArmorCamoSkinLabel
+            // LoadoutArmorCamoLabel
             // 
-            this.LoadoutArmorCamoSkinLabel.AutoSize = true;
-            this.LoadoutArmorCamoSkinLabel.Location = new System.Drawing.Point(6, 97);
-            this.LoadoutArmorCamoSkinLabel.Name = "LoadoutArmorCamoSkinLabel";
-            this.LoadoutArmorCamoSkinLabel.Size = new System.Drawing.Size(58, 13);
-            this.LoadoutArmorCamoSkinLabel.TabIndex = 6;
-            this.LoadoutArmorCamoSkinLabel.Text = "Camo/skin";
+            this.LoadoutArmorCamoLabel.AutoSize = true;
+            this.LoadoutArmorCamoLabel.Location = new System.Drawing.Point(6, 97);
+            this.LoadoutArmorCamoLabel.Name = "LoadoutArmorCamoLabel";
+            this.LoadoutArmorCamoLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutArmorCamoLabel.TabIndex = 6;
+            this.LoadoutArmorCamoLabel.Text = "Camo";
             // 
-            // LoadoutArmorLowerComboBox
+            // LoadoutArmorLegsComboBox
             // 
-            this.LoadoutArmorLowerComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.LoadoutArmorLowerComboBox.FormattingEnabled = true;
-            this.LoadoutArmorLowerComboBox.Location = new System.Drawing.Point(66, 67);
-            this.LoadoutArmorLowerComboBox.Name = "LoadoutArmorLowerComboBox";
-            this.LoadoutArmorLowerComboBox.Size = new System.Drawing.Size(156, 21);
-            this.LoadoutArmorLowerComboBox.TabIndex = 5;
+            this.LoadoutArmorLegsComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorLegsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorLegsComboBox.FormattingEnabled = true;
+            this.LoadoutArmorLegsComboBox.Location = new System.Drawing.Point(57, 67);
+            this.LoadoutArmorLegsComboBox.Name = "LoadoutArmorLegsComboBox";
+            this.LoadoutArmorLegsComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorLegsComboBox.TabIndex = 5;
             // 
             // LoadoutArmorHelmetLabel
             // 
@@ -737,45 +770,47 @@ namespace Bootstrapper
             this.LoadoutArmorHelmetLabel.TabIndex = 4;
             this.LoadoutArmorHelmetLabel.Text = "Helmet";
             // 
-            // LoadoutArmorUpperComboBox
+            // LoadoutArmorChestComboBox
             // 
-            this.LoadoutArmorUpperComboBox.FormattingEnabled = true;
-            this.LoadoutArmorUpperComboBox.Location = new System.Drawing.Point(66, 40);
-            this.LoadoutArmorUpperComboBox.Name = "LoadoutArmorUpperComboBox";
-            this.LoadoutArmorUpperComboBox.Size = new System.Drawing.Size(156, 21);
-            this.LoadoutArmorUpperComboBox.TabIndex = 3;
+            this.LoadoutArmorChestComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorChestComboBox.FormattingEnabled = true;
+            this.LoadoutArmorChestComboBox.Location = new System.Drawing.Point(57, 40);
+            this.LoadoutArmorChestComboBox.Name = "LoadoutArmorChestComboBox";
+            this.LoadoutArmorChestComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorChestComboBox.TabIndex = 3;
             // 
-            // LoadoutArmorLowerLabel
+            // LoadoutArmorLegsLabel
             // 
-            this.LoadoutArmorLowerLabel.AutoSize = true;
-            this.LoadoutArmorLowerLabel.Location = new System.Drawing.Point(6, 70);
-            this.LoadoutArmorLowerLabel.Name = "LoadoutArmorLowerLabel";
-            this.LoadoutArmorLowerLabel.Size = new System.Drawing.Size(36, 13);
-            this.LoadoutArmorLowerLabel.TabIndex = 2;
-            this.LoadoutArmorLowerLabel.Text = "Lower";
+            this.LoadoutArmorLegsLabel.AutoSize = true;
+            this.LoadoutArmorLegsLabel.Location = new System.Drawing.Point(6, 70);
+            this.LoadoutArmorLegsLabel.Name = "LoadoutArmorLegsLabel";
+            this.LoadoutArmorLegsLabel.Size = new System.Drawing.Size(30, 13);
+            this.LoadoutArmorLegsLabel.TabIndex = 2;
+            this.LoadoutArmorLegsLabel.Text = "Legs";
             // 
             // LoadoutArmorHelmetComboBox
             // 
+            this.LoadoutArmorHelmetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutArmorHelmetComboBox.FormattingEnabled = true;
-            this.LoadoutArmorHelmetComboBox.Location = new System.Drawing.Point(66, 13);
+            this.LoadoutArmorHelmetComboBox.Location = new System.Drawing.Point(57, 13);
             this.LoadoutArmorHelmetComboBox.Name = "LoadoutArmorHelmetComboBox";
-            this.LoadoutArmorHelmetComboBox.Size = new System.Drawing.Size(156, 21);
+            this.LoadoutArmorHelmetComboBox.Size = new System.Drawing.Size(165, 21);
             this.LoadoutArmorHelmetComboBox.TabIndex = 1;
             // 
-            // LoadoutArmorUpperLabel
+            // LoadoutArmorChestLabel
             // 
-            this.LoadoutArmorUpperLabel.AutoSize = true;
-            this.LoadoutArmorUpperLabel.Location = new System.Drawing.Point(6, 43);
-            this.LoadoutArmorUpperLabel.Name = "LoadoutArmorUpperLabel";
-            this.LoadoutArmorUpperLabel.Size = new System.Drawing.Size(36, 13);
-            this.LoadoutArmorUpperLabel.TabIndex = 0;
-            this.LoadoutArmorUpperLabel.Text = "Upper";
+            this.LoadoutArmorChestLabel.AutoSize = true;
+            this.LoadoutArmorChestLabel.Location = new System.Drawing.Point(6, 43);
+            this.LoadoutArmorChestLabel.Name = "LoadoutArmorChestLabel";
+            this.LoadoutArmorChestLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutArmorChestLabel.TabIndex = 0;
+            this.LoadoutArmorChestLabel.Text = "Chest";
             // 
             // LoadoutSecondaryGroupBox
             // 
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryAmmoTypeComboBox);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryCamoComboBox);
-            this.LoadoutSecondaryGroupBox.Controls.Add(this.comboBox9);
+            this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryScopeComboBox);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryMagazineComboBox);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryStockComboBox);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryMuzzleComboBox);
@@ -789,39 +824,43 @@ namespace Bootstrapper
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryMuzzleLabel);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryBarrelLabel);
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryReceiverLabel);
-            this.LoadoutSecondaryGroupBox.Location = new System.Drawing.Point(234, 0);
+            this.LoadoutSecondaryGroupBox.Location = new System.Drawing.Point(240, 6);
             this.LoadoutSecondaryGroupBox.Name = "LoadoutSecondaryGroupBox";
-            this.LoadoutSecondaryGroupBox.Size = new System.Drawing.Size(228, 259);
+            this.LoadoutSecondaryGroupBox.Size = new System.Drawing.Size(228, 388);
             this.LoadoutSecondaryGroupBox.TabIndex = 21;
             this.LoadoutSecondaryGroupBox.TabStop = false;
             this.LoadoutSecondaryGroupBox.Text = "Secondary";
             // 
             // LoadoutSecondaryAmmoTypeComboBox
             // 
+            this.LoadoutSecondaryAmmoTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryAmmoTypeComboBox.FormattingEnabled = true;
-            this.LoadoutSecondaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 202);
+            this.LoadoutSecondaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 175);
             this.LoadoutSecondaryAmmoTypeComboBox.Name = "LoadoutSecondaryAmmoTypeComboBox";
             this.LoadoutSecondaryAmmoTypeComboBox.Size = new System.Drawing.Size(151, 21);
             this.LoadoutSecondaryAmmoTypeComboBox.TabIndex = 24;
             // 
             // LoadoutSecondaryCamoComboBox
             // 
+            this.LoadoutSecondaryCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryCamoComboBox.FormattingEnabled = true;
-            this.LoadoutSecondaryCamoComboBox.Location = new System.Drawing.Point(71, 175);
+            this.LoadoutSecondaryCamoComboBox.Location = new System.Drawing.Point(71, 202);
             this.LoadoutSecondaryCamoComboBox.Name = "LoadoutSecondaryCamoComboBox";
             this.LoadoutSecondaryCamoComboBox.Size = new System.Drawing.Size(151, 21);
             this.LoadoutSecondaryCamoComboBox.TabIndex = 23;
             // 
-            // comboBox9
+            // LoadoutSecondaryScopeComboBox
             // 
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(71, 148);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(151, 21);
-            this.comboBox9.TabIndex = 22;
+            this.LoadoutSecondaryScopeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutSecondaryScopeComboBox.FormattingEnabled = true;
+            this.LoadoutSecondaryScopeComboBox.Location = new System.Drawing.Point(71, 148);
+            this.LoadoutSecondaryScopeComboBox.Name = "LoadoutSecondaryScopeComboBox";
+            this.LoadoutSecondaryScopeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutSecondaryScopeComboBox.TabIndex = 22;
             // 
             // LoadoutSecondaryMagazineComboBox
             // 
+            this.LoadoutSecondaryMagazineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryMagazineComboBox.FormattingEnabled = true;
             this.LoadoutSecondaryMagazineComboBox.Location = new System.Drawing.Point(71, 121);
             this.LoadoutSecondaryMagazineComboBox.Name = "LoadoutSecondaryMagazineComboBox";
@@ -830,6 +869,7 @@ namespace Bootstrapper
             // 
             // LoadoutSecondaryStockComboBox
             // 
+            this.LoadoutSecondaryStockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryStockComboBox.FormattingEnabled = true;
             this.LoadoutSecondaryStockComboBox.Location = new System.Drawing.Point(71, 94);
             this.LoadoutSecondaryStockComboBox.Name = "LoadoutSecondaryStockComboBox";
@@ -838,6 +878,7 @@ namespace Bootstrapper
             // 
             // LoadoutSecondaryMuzzleComboBox
             // 
+            this.LoadoutSecondaryMuzzleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryMuzzleComboBox.FormattingEnabled = true;
             this.LoadoutSecondaryMuzzleComboBox.Location = new System.Drawing.Point(71, 67);
             this.LoadoutSecondaryMuzzleComboBox.Name = "LoadoutSecondaryMuzzleComboBox";
@@ -846,6 +887,7 @@ namespace Bootstrapper
             // 
             // LoadoutSecondaryBarrelComboBox
             // 
+            this.LoadoutSecondaryBarrelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryBarrelComboBox.FormattingEnabled = true;
             this.LoadoutSecondaryBarrelComboBox.Location = new System.Drawing.Point(71, 40);
             this.LoadoutSecondaryBarrelComboBox.Name = "LoadoutSecondaryBarrelComboBox";
@@ -854,6 +896,7 @@ namespace Bootstrapper
             // 
             // LoadoutSecondaryReceiverComboBox
             // 
+            this.LoadoutSecondaryReceiverComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutSecondaryReceiverComboBox.FormattingEnabled = true;
             this.LoadoutSecondaryReceiverComboBox.Location = new System.Drawing.Point(71, 13);
             this.LoadoutSecondaryReceiverComboBox.Name = "LoadoutSecondaryReceiverComboBox";
@@ -863,7 +906,7 @@ namespace Bootstrapper
             // LoadoutSecondaryAmmoTypeLabel
             // 
             this.LoadoutSecondaryAmmoTypeLabel.AutoSize = true;
-            this.LoadoutSecondaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 205);
+            this.LoadoutSecondaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 179);
             this.LoadoutSecondaryAmmoTypeLabel.Name = "LoadoutSecondaryAmmoTypeLabel";
             this.LoadoutSecondaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
             this.LoadoutSecondaryAmmoTypeLabel.TabIndex = 16;
@@ -872,7 +915,7 @@ namespace Bootstrapper
             // LoadoutSecondaryCamoLabel
             // 
             this.LoadoutSecondaryCamoLabel.AutoSize = true;
-            this.LoadoutSecondaryCamoLabel.Location = new System.Drawing.Point(6, 178);
+            this.LoadoutSecondaryCamoLabel.Location = new System.Drawing.Point(7, 205);
             this.LoadoutSecondaryCamoLabel.Name = "LoadoutSecondaryCamoLabel";
             this.LoadoutSecondaryCamoLabel.Size = new System.Drawing.Size(34, 13);
             this.LoadoutSecondaryCamoLabel.TabIndex = 14;
@@ -944,9 +987,9 @@ namespace Bootstrapper
             this.LoadoutGearGroupBox.Controls.Add(this.LoadoutGearSlot2Label);
             this.LoadoutGearGroupBox.Controls.Add(this.LoadoutGearSlot1ComboBox);
             this.LoadoutGearGroupBox.Controls.Add(this.LoadoutGearSlot1Label);
-            this.LoadoutGearGroupBox.Location = new System.Drawing.Point(468, 0);
+            this.LoadoutGearGroupBox.Location = new System.Drawing.Point(6, 155);
             this.LoadoutGearGroupBox.Name = "LoadoutGearGroupBox";
-            this.LoadoutGearGroupBox.Size = new System.Drawing.Size(228, 157);
+            this.LoadoutGearGroupBox.Size = new System.Drawing.Size(228, 150);
             this.LoadoutGearGroupBox.TabIndex = 18;
             this.LoadoutGearGroupBox.TabStop = false;
             this.LoadoutGearGroupBox.Text = "Gear";
@@ -954,6 +997,7 @@ namespace Bootstrapper
             // LoadoutGearTacticalComboBox
             // 
             this.LoadoutGearTacticalComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutGearTacticalComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutGearTacticalComboBox.Enabled = false;
             this.LoadoutGearTacticalComboBox.FormattingEnabled = true;
             this.LoadoutGearTacticalComboBox.Location = new System.Drawing.Point(57, 121);
@@ -973,6 +1017,7 @@ namespace Bootstrapper
             // LoadoutGearSlot4ComboBox
             // 
             this.LoadoutGearSlot4ComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutGearSlot4ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutGearSlot4ComboBox.Enabled = false;
             this.LoadoutGearSlot4ComboBox.FormattingEnabled = true;
             this.LoadoutGearSlot4ComboBox.Location = new System.Drawing.Point(57, 94);
@@ -992,6 +1037,7 @@ namespace Bootstrapper
             // LoadoutGearSlot3ComboBox
             // 
             this.LoadoutGearSlot3ComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutGearSlot3ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutGearSlot3ComboBox.FormattingEnabled = true;
             this.LoadoutGearSlot3ComboBox.Location = new System.Drawing.Point(57, 67);
             this.LoadoutGearSlot3ComboBox.Name = "LoadoutGearSlot3ComboBox";
@@ -1009,6 +1055,7 @@ namespace Bootstrapper
             // 
             // LoadoutGearSlot2ComboBox
             // 
+            this.LoadoutGearSlot2ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutGearSlot2ComboBox.FormattingEnabled = true;
             this.LoadoutGearSlot2ComboBox.Location = new System.Drawing.Point(57, 40);
             this.LoadoutGearSlot2ComboBox.Name = "LoadoutGearSlot2ComboBox";
@@ -1026,6 +1073,7 @@ namespace Bootstrapper
             // 
             // LoadoutGearSlot1ComboBox
             // 
+            this.LoadoutGearSlot1ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutGearSlot1ComboBox.FormattingEnabled = true;
             this.LoadoutGearSlot1ComboBox.Location = new System.Drawing.Point(57, 13);
             this.LoadoutGearSlot1ComboBox.Name = "LoadoutGearSlot1ComboBox";
@@ -1043,35 +1091,38 @@ namespace Bootstrapper
             // 
             // LoadoutPrimaryGroupBox
             // 
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagLabel);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeLabel);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayScopeComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayMagazineComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayStockComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayMuzzleComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayBarrelComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimayReceiverComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverComboBox);
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverLabel);
-            this.LoadoutPrimaryGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.LoadoutPrimaryGroupBox.Location = new System.Drawing.Point(6, 6);
             this.LoadoutPrimaryGroupBox.Name = "LoadoutPrimaryGroupBox";
-            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 259);
+            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 388);
             this.LoadoutPrimaryGroupBox.TabIndex = 20;
             this.LoadoutPrimaryGroupBox.TabStop = false;
             this.LoadoutPrimaryGroupBox.Text = "Primary";
             // 
             // LoadoutPrimaryTagComboBox
             // 
+            this.LoadoutPrimaryTagComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutPrimaryTagComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryTagComboBox.Location = new System.Drawing.Point(71, 229);
+            this.LoadoutPrimaryTagComboBox.Location = new System.Drawing.Point(71, 202);
             this.LoadoutPrimaryTagComboBox.Name = "LoadoutPrimaryTagComboBox";
             this.LoadoutPrimaryTagComboBox.Size = new System.Drawing.Size(151, 21);
             this.LoadoutPrimaryTagComboBox.TabIndex = 17;
@@ -1079,7 +1130,7 @@ namespace Bootstrapper
             // LoadoutPrimaryTagLabel
             // 
             this.LoadoutPrimaryTagLabel.AutoSize = true;
-            this.LoadoutPrimaryTagLabel.Location = new System.Drawing.Point(6, 232);
+            this.LoadoutPrimaryTagLabel.Location = new System.Drawing.Point(6, 205);
             this.LoadoutPrimaryTagLabel.Name = "LoadoutPrimaryTagLabel";
             this.LoadoutPrimaryTagLabel.Size = new System.Drawing.Size(26, 13);
             this.LoadoutPrimaryTagLabel.TabIndex = 18;
@@ -1087,8 +1138,9 @@ namespace Bootstrapper
             // 
             // LoadoutPrimaryAmmoTypeComboBox
             // 
+            this.LoadoutPrimaryAmmoTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutPrimaryAmmoTypeComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 202);
+            this.LoadoutPrimaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 175);
             this.LoadoutPrimaryAmmoTypeComboBox.Name = "LoadoutPrimaryAmmoTypeComboBox";
             this.LoadoutPrimaryAmmoTypeComboBox.Size = new System.Drawing.Size(151, 21);
             this.LoadoutPrimaryAmmoTypeComboBox.TabIndex = 15;
@@ -1096,7 +1148,7 @@ namespace Bootstrapper
             // LoadoutPrimaryAmmoTypeLabel
             // 
             this.LoadoutPrimaryAmmoTypeLabel.AutoSize = true;
-            this.LoadoutPrimaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 205);
+            this.LoadoutPrimaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 178);
             this.LoadoutPrimaryAmmoTypeLabel.Name = "LoadoutPrimaryAmmoTypeLabel";
             this.LoadoutPrimaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
             this.LoadoutPrimaryAmmoTypeLabel.TabIndex = 16;
@@ -1104,8 +1156,9 @@ namespace Bootstrapper
             // 
             // LoadoutPrimaryCamoComboBox
             // 
+            this.LoadoutPrimaryCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoadoutPrimaryCamoComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryCamoComboBox.Location = new System.Drawing.Point(71, 175);
+            this.LoadoutPrimaryCamoComboBox.Location = new System.Drawing.Point(71, 229);
             this.LoadoutPrimaryCamoComboBox.Name = "LoadoutPrimaryCamoComboBox";
             this.LoadoutPrimaryCamoComboBox.Size = new System.Drawing.Size(151, 21);
             this.LoadoutPrimaryCamoComboBox.TabIndex = 13;
@@ -1113,19 +1166,20 @@ namespace Bootstrapper
             // LoadoutPrimaryCamoLabel
             // 
             this.LoadoutPrimaryCamoLabel.AutoSize = true;
-            this.LoadoutPrimaryCamoLabel.Location = new System.Drawing.Point(6, 178);
+            this.LoadoutPrimaryCamoLabel.Location = new System.Drawing.Point(6, 232);
             this.LoadoutPrimaryCamoLabel.Name = "LoadoutPrimaryCamoLabel";
             this.LoadoutPrimaryCamoLabel.Size = new System.Drawing.Size(34, 13);
             this.LoadoutPrimaryCamoLabel.TabIndex = 14;
             this.LoadoutPrimaryCamoLabel.Text = "Camo";
             // 
-            // LoadoutPrimayScopeComboBox
+            // LoadoutPrimaryScopeComboBox
             // 
-            this.LoadoutPrimayScopeComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayScopeComboBox.Location = new System.Drawing.Point(71, 148);
-            this.LoadoutPrimayScopeComboBox.Name = "LoadoutPrimayScopeComboBox";
-            this.LoadoutPrimayScopeComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayScopeComboBox.TabIndex = 11;
+            this.LoadoutPrimaryScopeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryScopeComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryScopeComboBox.Location = new System.Drawing.Point(71, 148);
+            this.LoadoutPrimaryScopeComboBox.Name = "LoadoutPrimaryScopeComboBox";
+            this.LoadoutPrimaryScopeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryScopeComboBox.TabIndex = 11;
             // 
             // LoadoutPrimaryScopeLabel
             // 
@@ -1136,13 +1190,14 @@ namespace Bootstrapper
             this.LoadoutPrimaryScopeLabel.TabIndex = 12;
             this.LoadoutPrimaryScopeLabel.Text = "Scope";
             // 
-            // LoadoutPrimayMagazineComboBox
+            // LoadoutPrimaryMagazineComboBox
             // 
-            this.LoadoutPrimayMagazineComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayMagazineComboBox.Location = new System.Drawing.Point(71, 121);
-            this.LoadoutPrimayMagazineComboBox.Name = "LoadoutPrimayMagazineComboBox";
-            this.LoadoutPrimayMagazineComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayMagazineComboBox.TabIndex = 9;
+            this.LoadoutPrimaryMagazineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryMagazineComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryMagazineComboBox.Location = new System.Drawing.Point(71, 121);
+            this.LoadoutPrimaryMagazineComboBox.Name = "LoadoutPrimaryMagazineComboBox";
+            this.LoadoutPrimaryMagazineComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryMagazineComboBox.TabIndex = 9;
             // 
             // LoadoutPrimaryMagazineLabel
             // 
@@ -1153,13 +1208,14 @@ namespace Bootstrapper
             this.LoadoutPrimaryMagazineLabel.TabIndex = 10;
             this.LoadoutPrimaryMagazineLabel.Text = "Magazine";
             // 
-            // LoadoutPrimayStockComboBox
+            // LoadoutPrimaryStockComboBox
             // 
-            this.LoadoutPrimayStockComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayStockComboBox.Location = new System.Drawing.Point(71, 94);
-            this.LoadoutPrimayStockComboBox.Name = "LoadoutPrimayStockComboBox";
-            this.LoadoutPrimayStockComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayStockComboBox.TabIndex = 7;
+            this.LoadoutPrimaryStockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryStockComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryStockComboBox.Location = new System.Drawing.Point(71, 94);
+            this.LoadoutPrimaryStockComboBox.Name = "LoadoutPrimaryStockComboBox";
+            this.LoadoutPrimaryStockComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryStockComboBox.TabIndex = 7;
             // 
             // LoadoutPrimaryStockLabel
             // 
@@ -1170,13 +1226,14 @@ namespace Bootstrapper
             this.LoadoutPrimaryStockLabel.TabIndex = 8;
             this.LoadoutPrimaryStockLabel.Text = "Stock";
             // 
-            // LoadoutPrimayMuzzleComboBox
+            // LoadoutPrimaryMuzzleComboBox
             // 
-            this.LoadoutPrimayMuzzleComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayMuzzleComboBox.Location = new System.Drawing.Point(71, 67);
-            this.LoadoutPrimayMuzzleComboBox.Name = "LoadoutPrimayMuzzleComboBox";
-            this.LoadoutPrimayMuzzleComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayMuzzleComboBox.TabIndex = 5;
+            this.LoadoutPrimaryMuzzleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryMuzzleComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryMuzzleComboBox.Location = new System.Drawing.Point(71, 67);
+            this.LoadoutPrimaryMuzzleComboBox.Name = "LoadoutPrimaryMuzzleComboBox";
+            this.LoadoutPrimaryMuzzleComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryMuzzleComboBox.TabIndex = 5;
             // 
             // LoadoutPrimaryMuzzleLabel
             // 
@@ -1187,13 +1244,14 @@ namespace Bootstrapper
             this.LoadoutPrimaryMuzzleLabel.TabIndex = 6;
             this.LoadoutPrimaryMuzzleLabel.Text = "Muzzle";
             // 
-            // LoadoutPrimayBarrelComboBox
+            // LoadoutPrimaryBarrelComboBox
             // 
-            this.LoadoutPrimayBarrelComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayBarrelComboBox.Location = new System.Drawing.Point(71, 40);
-            this.LoadoutPrimayBarrelComboBox.Name = "LoadoutPrimayBarrelComboBox";
-            this.LoadoutPrimayBarrelComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayBarrelComboBox.TabIndex = 3;
+            this.LoadoutPrimaryBarrelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryBarrelComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryBarrelComboBox.Location = new System.Drawing.Point(71, 40);
+            this.LoadoutPrimaryBarrelComboBox.Name = "LoadoutPrimaryBarrelComboBox";
+            this.LoadoutPrimaryBarrelComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryBarrelComboBox.TabIndex = 3;
             // 
             // LoadoutPrimaryBarrelLabel
             // 
@@ -1204,13 +1262,14 @@ namespace Bootstrapper
             this.LoadoutPrimaryBarrelLabel.TabIndex = 4;
             this.LoadoutPrimaryBarrelLabel.Text = "Barrel";
             // 
-            // LoadoutPrimayReceiverComboBox
+            // LoadoutPrimaryReceiverComboBox
             // 
-            this.LoadoutPrimayReceiverComboBox.FormattingEnabled = true;
-            this.LoadoutPrimayReceiverComboBox.Location = new System.Drawing.Point(71, 13);
-            this.LoadoutPrimayReceiverComboBox.Name = "LoadoutPrimayReceiverComboBox";
-            this.LoadoutPrimayReceiverComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimayReceiverComboBox.TabIndex = 2;
+            this.LoadoutPrimaryReceiverComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryReceiverComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryReceiverComboBox.Location = new System.Drawing.Point(71, 13);
+            this.LoadoutPrimaryReceiverComboBox.Name = "LoadoutPrimaryReceiverComboBox";
+            this.LoadoutPrimaryReceiverComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryReceiverComboBox.TabIndex = 2;
             // 
             // LoadoutPrimaryReceiverLabel
             // 
@@ -1221,11 +1280,292 @@ namespace Bootstrapper
             this.LoadoutPrimaryReceiverLabel.TabIndex = 2;
             this.LoadoutPrimaryReceiverLabel.Text = "Receiver";
             // 
+            // LoadoutDepotGroupBox
+            // 
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot5ComboBox);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot5Label);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot4ComboBox);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot4Label);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot3ComboBox);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot3Label);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot2ComboBox);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot2Label);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot1ComboBox);
+            this.LoadoutDepotGroupBox.Controls.Add(this.LoadoutDepotSlot1Label);
+            this.LoadoutDepotGroupBox.Location = new System.Drawing.Point(240, 155);
+            this.LoadoutDepotGroupBox.Name = "LoadoutDepotGroupBox";
+            this.LoadoutDepotGroupBox.Size = new System.Drawing.Size(228, 150);
+            this.LoadoutDepotGroupBox.TabIndex = 22;
+            this.LoadoutDepotGroupBox.TabStop = false;
+            this.LoadoutDepotGroupBox.Text = "Depot";
+            // 
+            // LoadoutDepotSlot5ComboBox
+            // 
+            this.LoadoutDepotSlot5ComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutDepotSlot5ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutDepotSlot5ComboBox.Enabled = false;
+            this.LoadoutDepotSlot5ComboBox.FormattingEnabled = true;
+            this.LoadoutDepotSlot5ComboBox.Location = new System.Drawing.Point(57, 121);
+            this.LoadoutDepotSlot5ComboBox.Name = "LoadoutDepotSlot5ComboBox";
+            this.LoadoutDepotSlot5ComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutDepotSlot5ComboBox.TabIndex = 9;
+            // 
+            // LoadoutDepotSlot5Label
+            // 
+            this.LoadoutDepotSlot5Label.AutoSize = true;
+            this.LoadoutDepotSlot5Label.Location = new System.Drawing.Point(6, 124);
+            this.LoadoutDepotSlot5Label.Name = "LoadoutDepotSlot5Label";
+            this.LoadoutDepotSlot5Label.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutDepotSlot5Label.TabIndex = 8;
+            this.LoadoutDepotSlot5Label.Text = "Slot 5";
+            // 
+            // LoadoutDepotSlot4ComboBox
+            // 
+            this.LoadoutDepotSlot4ComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutDepotSlot4ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutDepotSlot4ComboBox.Enabled = false;
+            this.LoadoutDepotSlot4ComboBox.FormattingEnabled = true;
+            this.LoadoutDepotSlot4ComboBox.Location = new System.Drawing.Point(57, 94);
+            this.LoadoutDepotSlot4ComboBox.Name = "LoadoutDepotSlot4ComboBox";
+            this.LoadoutDepotSlot4ComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutDepotSlot4ComboBox.TabIndex = 7;
+            // 
+            // LoadoutDepotSlot4Label
+            // 
+            this.LoadoutDepotSlot4Label.AutoSize = true;
+            this.LoadoutDepotSlot4Label.Location = new System.Drawing.Point(6, 97);
+            this.LoadoutDepotSlot4Label.Name = "LoadoutDepotSlot4Label";
+            this.LoadoutDepotSlot4Label.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutDepotSlot4Label.TabIndex = 6;
+            this.LoadoutDepotSlot4Label.Text = "Slot 4";
+            // 
+            // LoadoutDepotSlot3ComboBox
+            // 
+            this.LoadoutDepotSlot3ComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutDepotSlot3ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutDepotSlot3ComboBox.FormattingEnabled = true;
+            this.LoadoutDepotSlot3ComboBox.Location = new System.Drawing.Point(57, 67);
+            this.LoadoutDepotSlot3ComboBox.Name = "LoadoutDepotSlot3ComboBox";
+            this.LoadoutDepotSlot3ComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutDepotSlot3ComboBox.TabIndex = 5;
+            // 
+            // LoadoutDepotSlot3Label
+            // 
+            this.LoadoutDepotSlot3Label.AutoSize = true;
+            this.LoadoutDepotSlot3Label.Location = new System.Drawing.Point(6, 70);
+            this.LoadoutDepotSlot3Label.Name = "LoadoutDepotSlot3Label";
+            this.LoadoutDepotSlot3Label.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutDepotSlot3Label.TabIndex = 4;
+            this.LoadoutDepotSlot3Label.Text = "Slot 3";
+            // 
+            // LoadoutDepotSlot2ComboBox
+            // 
+            this.LoadoutDepotSlot2ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutDepotSlot2ComboBox.FormattingEnabled = true;
+            this.LoadoutDepotSlot2ComboBox.Location = new System.Drawing.Point(57, 40);
+            this.LoadoutDepotSlot2ComboBox.Name = "LoadoutDepotSlot2ComboBox";
+            this.LoadoutDepotSlot2ComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutDepotSlot2ComboBox.TabIndex = 3;
+            // 
+            // LoadoutDepotSlot2Label
+            // 
+            this.LoadoutDepotSlot2Label.AutoSize = true;
+            this.LoadoutDepotSlot2Label.Location = new System.Drawing.Point(6, 43);
+            this.LoadoutDepotSlot2Label.Name = "LoadoutDepotSlot2Label";
+            this.LoadoutDepotSlot2Label.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutDepotSlot2Label.TabIndex = 2;
+            this.LoadoutDepotSlot2Label.Text = "Slot 2";
+            // 
+            // LoadoutDepotSlot1ComboBox
+            // 
+            this.LoadoutDepotSlot1ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutDepotSlot1ComboBox.FormattingEnabled = true;
+            this.LoadoutDepotSlot1ComboBox.Location = new System.Drawing.Point(57, 13);
+            this.LoadoutDepotSlot1ComboBox.Name = "LoadoutDepotSlot1ComboBox";
+            this.LoadoutDepotSlot1ComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutDepotSlot1ComboBox.TabIndex = 1;
+            // 
+            // LoadoutDepotSlot1Label
+            // 
+            this.LoadoutDepotSlot1Label.AutoSize = true;
+            this.LoadoutDepotSlot1Label.Location = new System.Drawing.Point(6, 16);
+            this.LoadoutDepotSlot1Label.Name = "LoadoutDepotSlot1Label";
+            this.LoadoutDepotSlot1Label.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutDepotSlot1Label.TabIndex = 0;
+            this.LoadoutDepotSlot1Label.Text = "Slot 1";
+            // 
+            // LoadoutTabControl
+            // 
+            this.LoadoutTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.LoadoutTabControl.Controls.Add(this.WeaponsTab);
+            this.LoadoutTabControl.Controls.Add(this.EquipmentTab);
+            this.LoadoutTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadoutTabControl.Location = new System.Drawing.Point(3, 3);
+            this.LoadoutTabControl.Name = "LoadoutTabControl";
+            this.LoadoutTabControl.SelectedIndex = 0;
+            this.LoadoutTabControl.Size = new System.Drawing.Size(690, 409);
+            this.LoadoutTabControl.TabIndex = 23;
+            // 
+            // WeaponsTab
+            // 
+            this.WeaponsTab.Controls.Add(this.LoadoutPrimaryGroupBox);
+            this.WeaponsTab.Controls.Add(this.LoadoutSecondaryGroupBox);
+            this.WeaponsTab.Location = new System.Drawing.Point(4, 4);
+            this.WeaponsTab.Name = "WeaponsTab";
+            this.WeaponsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.WeaponsTab.Size = new System.Drawing.Size(682, 383);
+            this.WeaponsTab.TabIndex = 0;
+            this.WeaponsTab.Text = "Weapons";
+            this.WeaponsTab.UseVisualStyleBackColor = true;
+            // 
+            // EquipmentTab
+            // 
+            this.EquipmentTab.Controls.Add(this.LoadoutCharacterGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutArmorGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutGearGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutDepotGroupBox);
+            this.EquipmentTab.Location = new System.Drawing.Point(4, 4);
+            this.EquipmentTab.Name = "EquipmentTab";
+            this.EquipmentTab.Size = new System.Drawing.Size(682, 383);
+            this.EquipmentTab.TabIndex = 2;
+            this.EquipmentTab.Text = "Equipment";
+            this.EquipmentTab.UseVisualStyleBackColor = true;
+            // 
+            // LoadoutArmorSkinComboBox
+            // 
+            this.LoadoutArmorSkinComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorSkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorSkinComboBox.Enabled = false;
+            this.LoadoutArmorSkinComboBox.FormattingEnabled = true;
+            this.LoadoutArmorSkinComboBox.Location = new System.Drawing.Point(57, 121);
+            this.LoadoutArmorSkinComboBox.Name = "LoadoutArmorSkinComboBox";
+            this.LoadoutArmorSkinComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorSkinComboBox.TabIndex = 8;
+            // 
+            // LoadoutArmorSkinLabel
+            // 
+            this.LoadoutArmorSkinLabel.AutoSize = true;
+            this.LoadoutArmorSkinLabel.Location = new System.Drawing.Point(6, 124);
+            this.LoadoutArmorSkinLabel.Name = "LoadoutArmorSkinLabel";
+            this.LoadoutArmorSkinLabel.Size = new System.Drawing.Size(28, 13);
+            this.LoadoutArmorSkinLabel.TabIndex = 9;
+            this.LoadoutArmorSkinLabel.Text = "Skin";
+            // 
+            // LoadoutPrimarySkinComboBox
+            // 
+            this.LoadoutPrimarySkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimarySkinComboBox.FormattingEnabled = true;
+            this.LoadoutPrimarySkinComboBox.Location = new System.Drawing.Point(71, 256);
+            this.LoadoutPrimarySkinComboBox.Name = "LoadoutPrimarySkinComboBox";
+            this.LoadoutPrimarySkinComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimarySkinComboBox.TabIndex = 19;
+            // 
+            // LoadoutPrimarySkinLabel
+            // 
+            this.LoadoutPrimarySkinLabel.AutoSize = true;
+            this.LoadoutPrimarySkinLabel.Location = new System.Drawing.Point(6, 259);
+            this.LoadoutPrimarySkinLabel.Name = "LoadoutPrimarySkinLabel";
+            this.LoadoutPrimarySkinLabel.Size = new System.Drawing.Size(28, 13);
+            this.LoadoutPrimarySkinLabel.TabIndex = 20;
+            this.LoadoutPrimarySkinLabel.Text = "Skin";
+            // 
+            // LoadoutCharacterGroupBox
+            // 
+            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox2);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.label2);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox3);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.label3);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox4);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.label4);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox5);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.label5);
+            this.LoadoutCharacterGroupBox.Location = new System.Drawing.Point(240, 6);
+            this.LoadoutCharacterGroupBox.Name = "LoadoutCharacterGroupBox";
+            this.LoadoutCharacterGroupBox.Size = new System.Drawing.Size(228, 150);
+            this.LoadoutCharacterGroupBox.TabIndex = 23;
+            this.LoadoutCharacterGroupBox.TabStop = false;
+            this.LoadoutCharacterGroupBox.Text = "Character";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Enabled = false;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(57, 94);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(165, 21);
+            this.comboBox2.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 97);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Title";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(57, 67);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(165, 21);
+            this.comboBox3.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Gender";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(57, 40);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(165, 21);
+            this.comboBox4.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 70);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Trophy";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(57, 13);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(165, 21);
+            this.comboBox5.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 43);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(34, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Voice";
+            // 
             // LauncherUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 321);
+            this.ClientSize = new System.Drawing.Size(704, 441);
             this.Controls.Add(this.LauncherTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LauncherUI";
@@ -1246,14 +1586,21 @@ namespace Bootstrapper
             this.MasterServerTab.ResumeLayout(false);
             this.MasterServerTab.PerformLayout();
             this.LoadoutTab.ResumeLayout(false);
-            this.LoadoutArmorGroupbox.ResumeLayout(false);
-            this.LoadoutArmorGroupbox.PerformLayout();
+            this.LoadoutArmorGroupBox.ResumeLayout(false);
+            this.LoadoutArmorGroupBox.PerformLayout();
             this.LoadoutSecondaryGroupBox.ResumeLayout(false);
             this.LoadoutSecondaryGroupBox.PerformLayout();
             this.LoadoutGearGroupBox.ResumeLayout(false);
             this.LoadoutGearGroupBox.PerformLayout();
             this.LoadoutPrimaryGroupBox.ResumeLayout(false);
             this.LoadoutPrimaryGroupBox.PerformLayout();
+            this.LoadoutDepotGroupBox.ResumeLayout(false);
+            this.LoadoutDepotGroupBox.PerformLayout();
+            this.LoadoutTabControl.ResumeLayout(false);
+            this.WeaponsTab.ResumeLayout(false);
+            this.EquipmentTab.ResumeLayout(false);
+            this.LoadoutCharacterGroupBox.ResumeLayout(false);
+            this.LoadoutCharacterGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1305,19 +1652,19 @@ namespace Bootstrapper
         private System.Windows.Forms.NumericUpDown ServerTabPortNum;
         private System.Windows.Forms.Label ServerTabPortLable;
         private System.Windows.Forms.TabPage LoadoutTab;
-        private System.Windows.Forms.GroupBox LoadoutArmorGroupbox;
-        private System.Windows.Forms.ComboBox LoadoutArmorCamoSkinComboBox;
-        private System.Windows.Forms.Label LoadoutArmorCamoSkinLabel;
-        private System.Windows.Forms.ComboBox LoadoutArmorLowerComboBox;
+        private System.Windows.Forms.GroupBox LoadoutArmorGroupBox;
+        private System.Windows.Forms.ComboBox LoadoutArmorCamoComboBox;
+        private System.Windows.Forms.Label LoadoutArmorCamoLabel;
+        private System.Windows.Forms.ComboBox LoadoutArmorLegsComboBox;
         private System.Windows.Forms.Label LoadoutArmorHelmetLabel;
-        private System.Windows.Forms.ComboBox LoadoutArmorUpperComboBox;
-        private System.Windows.Forms.Label LoadoutArmorLowerLabel;
+        private System.Windows.Forms.ComboBox LoadoutArmorChestComboBox;
+        private System.Windows.Forms.Label LoadoutArmorLegsLabel;
         private System.Windows.Forms.ComboBox LoadoutArmorHelmetComboBox;
-        private System.Windows.Forms.Label LoadoutArmorUpperLabel;
+        private System.Windows.Forms.Label LoadoutArmorChestLabel;
         private System.Windows.Forms.GroupBox LoadoutSecondaryGroupBox;
         private System.Windows.Forms.ComboBox LoadoutSecondaryAmmoTypeComboBox;
         private System.Windows.Forms.ComboBox LoadoutSecondaryCamoComboBox;
-        private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.ComboBox LoadoutSecondaryScopeComboBox;
         private System.Windows.Forms.ComboBox LoadoutSecondaryMagazineComboBox;
         private System.Windows.Forms.ComboBox LoadoutSecondaryStockComboBox;
         private System.Windows.Forms.ComboBox LoadoutSecondaryMuzzleComboBox;
@@ -1349,17 +1696,44 @@ namespace Bootstrapper
         private System.Windows.Forms.Label LoadoutPrimaryAmmoTypeLabel;
         private System.Windows.Forms.ComboBox LoadoutPrimaryCamoComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryCamoLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayScopeComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryScopeComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryScopeLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayMagazineComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryMagazineComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryMagazineLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayStockComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryStockComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryStockLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayMuzzleComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryMuzzleComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryMuzzleLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayBarrelComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryBarrelComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryBarrelLabel;
-        private System.Windows.Forms.ComboBox LoadoutPrimayReceiverComboBox;
+        private System.Windows.Forms.ComboBox LoadoutPrimaryReceiverComboBox;
         private System.Windows.Forms.Label LoadoutPrimaryReceiverLabel;
+        private System.Windows.Forms.TabControl LoadoutTabControl;
+        private System.Windows.Forms.TabPage WeaponsTab;
+        private System.Windows.Forms.TabPage EquipmentTab;
+        private System.Windows.Forms.GroupBox LoadoutDepotGroupBox;
+        private System.Windows.Forms.ComboBox LoadoutDepotSlot5ComboBox;
+        private System.Windows.Forms.Label LoadoutDepotSlot5Label;
+        private System.Windows.Forms.ComboBox LoadoutDepotSlot4ComboBox;
+        private System.Windows.Forms.Label LoadoutDepotSlot4Label;
+        private System.Windows.Forms.ComboBox LoadoutDepotSlot3ComboBox;
+        private System.Windows.Forms.Label LoadoutDepotSlot3Label;
+        private System.Windows.Forms.ComboBox LoadoutDepotSlot2ComboBox;
+        private System.Windows.Forms.Label LoadoutDepotSlot2Label;
+        private System.Windows.Forms.ComboBox LoadoutDepotSlot1ComboBox;
+        private System.Windows.Forms.Label LoadoutDepotSlot1Label;
+        private System.Windows.Forms.ComboBox LoadoutArmorSkinComboBox;
+        private System.Windows.Forms.Label LoadoutArmorSkinLabel;
+        private System.Windows.Forms.Label LoadoutPrimarySkinLabel;
+        private System.Windows.Forms.ComboBox LoadoutPrimarySkinComboBox;
+        private System.Windows.Forms.GroupBox LoadoutCharacterGroupBox;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.Label label5;
     }
 }
