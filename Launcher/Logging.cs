@@ -17,7 +17,7 @@ namespace BLRevive.Launcher
         /// <summary>
         /// relative path to log directory
         /// </summary>
-        static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
+        static string LogDirectory = "Logs\\";
 
         /// <summary>
         /// absolute path to log directory
@@ -37,8 +37,15 @@ namespace BLRevive.Launcher
         {
             if (!Directory.Exists(LogFileDirectoryAbs))
             {
-                MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist!");
-                Environment.Exit(1);
+                try
+                {
+                    Directory.CreateDirectory(LogFileDirectoryAbs);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!");
+                    MessageBox.Show(ex.Message);
+                    Environment.Exit(1);
+                }
             }
 
             try
@@ -48,6 +55,7 @@ namespace BLRevive.Launcher
             catch (Exception ex)
             {
                 MessageBox.Show($"Logfile directory is not writable!");
+                MessageBox.Show(ex.Message);
                 Environment.Exit(1);
             }
 
@@ -81,6 +89,7 @@ namespace BLRevive.Launcher
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to initialize logging system!");
+                MessageBox.Show(ex.Message);
                 Environment.Exit(1);
             }
 
