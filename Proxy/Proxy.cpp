@@ -3,9 +3,6 @@
 #include "Offsets.h"
 #include "../SDK/SdkHeaders.h"
 #include "Config.h"
-#include <detours/detours.h>
-
-#pragma comment (lib, "detours.lib")
 
 using namespace BLRevive;
 using namespace std;
