@@ -157,6 +157,8 @@ namespace Bootstrapper
             this.LoadoutDepotSlot1Label = new System.Windows.Forms.Label();
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
+            this.ServerTabNameTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -495,6 +497,8 @@ namespace Bootstrapper
             // 
             // ServerTab
             // 
+            this.ServerTab.Controls.Add(this.label1);
+            this.ServerTab.Controls.Add(this.ServerTabNameTextBox);
             this.ServerTab.Controls.Add(this.ServerTabPortLable);
             this.ServerTab.Controls.Add(this.ServerTabPortNum);
             this.ServerTab.Controls.Add(this.ServerTabPlayerCountNum);
@@ -520,7 +524,7 @@ namespace Bootstrapper
             // ServerTabPortLable
             // 
             this.ServerTabPortLable.AutoSize = true;
-            this.ServerTabPortLable.Location = new System.Drawing.Point(72, 196);
+            this.ServerTabPortLable.Location = new System.Drawing.Point(72, 199);
             this.ServerTabPortLable.Name = "ServerTabPortLable";
             this.ServerTabPortLable.Size = new System.Drawing.Size(26, 13);
             this.ServerTabPortLable.TabIndex = 30;
@@ -530,7 +534,7 @@ namespace Bootstrapper
             // 
             this.ServerTabPortNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 194);
+            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 197);
             this.ServerTabPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -549,7 +553,7 @@ namespace Bootstrapper
             // 
             this.ServerTabPlayerCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 143);
+            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 145);
             this.ServerTabPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -562,7 +566,7 @@ namespace Bootstrapper
             // ServerTabMaxPlayersLabel
             // 
             this.ServerTabMaxPlayersLabel.AutoSize = true;
-            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(72, 145);
+            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(72, 147);
             this.ServerTabMaxPlayersLabel.Name = "ServerTabMaxPlayersLabel";
             this.ServerTabMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
             this.ServerTabMaxPlayersLabel.TabIndex = 25;
@@ -571,7 +575,7 @@ namespace Bootstrapper
             // ServerTabCustomURLCheckbox
             // 
             this.ServerTabCustomURLCheckbox.AutoSize = true;
-            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(75, 248);
+            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(75, 250);
             this.ServerTabCustomURLCheckbox.Name = "ServerTabCustomURLCheckbox";
             this.ServerTabCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerTabCustomURLCheckbox.TabIndex = 24;
@@ -584,7 +588,7 @@ namespace Bootstrapper
             this.ServerTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabCustomURLTextBox.Enabled = false;
-            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(315, 246);
+            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(315, 248);
             this.ServerTabCustomURLTextBox.Name = "ServerTabCustomURLTextBox";
             this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(311, 20);
             this.ServerTabCustomURLTextBox.TabIndex = 23;
@@ -592,7 +596,7 @@ namespace Bootstrapper
             // ServerTabLaunchOptionsLabel
             // 
             this.ServerTabLaunchOptionsLabel.AutoSize = true;
-            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(72, 223);
+            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(72, 226);
             this.ServerTabLaunchOptionsLabel.Name = "ServerTabLaunchOptionsLabel";
             this.ServerTabLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerTabLaunchOptionsLabel.TabIndex = 22;
@@ -601,7 +605,7 @@ namespace Bootstrapper
             // ServerTabBotCountLabel
             // 
             this.ServerTabBotCountLabel.AutoSize = true;
-            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(72, 171);
+            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(72, 173);
             this.ServerTabBotCountLabel.Name = "ServerTabBotCountLabel";
             this.ServerTabBotCountLabel.Size = new System.Drawing.Size(54, 13);
             this.ServerTabBotCountLabel.TabIndex = 21;
@@ -610,7 +614,7 @@ namespace Bootstrapper
             // ServerTabMapLabel
             // 
             this.ServerTabMapLabel.AutoSize = true;
-            this.ServerTabMapLabel.Location = new System.Drawing.Point(72, 118);
+            this.ServerTabMapLabel.Location = new System.Drawing.Point(72, 95);
             this.ServerTabMapLabel.Name = "ServerTabMapLabel";
             this.ServerTabMapLabel.Size = new System.Drawing.Size(28, 13);
             this.ServerTabMapLabel.TabIndex = 20;
@@ -619,7 +623,7 @@ namespace Bootstrapper
             // ServerTabGamemodeLabel
             // 
             this.ServerTabGamemodeLabel.AutoSize = true;
-            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(75, 91);
+            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(72, 68);
             this.ServerTabGamemodeLabel.Name = "ServerTabGamemodeLabel";
             this.ServerTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.ServerTabGamemodeLabel.TabIndex = 19;
@@ -629,7 +633,7 @@ namespace Bootstrapper
             // 
             this.ServerTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 220);
+            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(315, 223);
             this.ServerTabLaunchOptionsTextBox.Name = "ServerTabLaunchOptionsTextBox";
             this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(311, 20);
             this.ServerTabLaunchOptionsTextBox.TabIndex = 18;
@@ -650,7 +654,7 @@ namespace Bootstrapper
             // 
             this.ServerTabBotCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 169);
+            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 171);
             this.ServerTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -666,7 +670,7 @@ namespace Bootstrapper
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabMapsCombo.FormattingEnabled = true;
-            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 115);
+            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 92);
             this.ServerTabMapsCombo.Name = "ServerTabMapsCombo";
             this.ServerTabMapsCombo.Size = new System.Drawing.Size(201, 21);
             this.ServerTabMapsCombo.TabIndex = 15;
@@ -677,7 +681,7 @@ namespace Bootstrapper
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabGamemodesCombo.FormattingEnabled = true;
-            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 88);
+            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 65);
             this.ServerTabGamemodesCombo.Name = "ServerTabGamemodesCombo";
             this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(201, 21);
             this.ServerTabGamemodesCombo.TabIndex = 14;
@@ -741,7 +745,7 @@ namespace Bootstrapper
             this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverLabel);
             this.LoadoutPrimaryGroupBox.Location = new System.Drawing.Point(6, 6);
             this.LoadoutPrimaryGroupBox.Name = "LoadoutPrimaryGroupBox";
-            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 388);
+            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 286);
             this.LoadoutPrimaryGroupBox.TabIndex = 20;
             this.LoadoutPrimaryGroupBox.TabStop = false;
             this.LoadoutPrimaryGroupBox.Text = "Primary";
@@ -796,9 +800,9 @@ namespace Bootstrapper
             this.LoadoutPrimaryAmmoTypeLabel.AutoSize = true;
             this.LoadoutPrimaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 178);
             this.LoadoutPrimaryAmmoTypeLabel.Name = "LoadoutPrimaryAmmoTypeLabel";
-            this.LoadoutPrimaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
+            this.LoadoutPrimaryAmmoTypeLabel.Size = new System.Drawing.Size(63, 13);
             this.LoadoutPrimaryAmmoTypeLabel.TabIndex = 16;
-            this.LoadoutPrimaryAmmoTypeLabel.Text = "Ammo type";
+            this.LoadoutPrimaryAmmoTypeLabel.Text = "Ammo Type";
             // 
             // LoadoutPrimaryCamoComboBox
             // 
@@ -946,7 +950,7 @@ namespace Bootstrapper
             this.LoadoutSecondaryGroupBox.Controls.Add(this.LoadoutSecondaryReceiverLabel);
             this.LoadoutSecondaryGroupBox.Location = new System.Drawing.Point(240, 6);
             this.LoadoutSecondaryGroupBox.Name = "LoadoutSecondaryGroupBox";
-            this.LoadoutSecondaryGroupBox.Size = new System.Drawing.Size(228, 388);
+            this.LoadoutSecondaryGroupBox.Size = new System.Drawing.Size(228, 286);
             this.LoadoutSecondaryGroupBox.TabIndex = 21;
             this.LoadoutSecondaryGroupBox.TabStop = false;
             this.LoadoutSecondaryGroupBox.Text = "Secondary";
@@ -1028,9 +1032,9 @@ namespace Bootstrapper
             this.LoadoutSecondaryAmmoTypeLabel.AutoSize = true;
             this.LoadoutSecondaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 179);
             this.LoadoutSecondaryAmmoTypeLabel.Name = "LoadoutSecondaryAmmoTypeLabel";
-            this.LoadoutSecondaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
+            this.LoadoutSecondaryAmmoTypeLabel.Size = new System.Drawing.Size(63, 13);
             this.LoadoutSecondaryAmmoTypeLabel.TabIndex = 16;
-            this.LoadoutSecondaryAmmoTypeLabel.Text = "Ammo type";
+            this.LoadoutSecondaryAmmoTypeLabel.Text = "Ammo Type";
             // 
             // LoadoutSecondaryCamoLabel
             // 
@@ -1129,7 +1133,6 @@ namespace Bootstrapper
             // 
             this.LoadoutPlayerTitleComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutPlayerTitleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPlayerTitleComboBox.Enabled = false;
             this.LoadoutPlayerTitleComboBox.FormattingEnabled = true;
             this.LoadoutPlayerTitleComboBox.Location = new System.Drawing.Point(57, 94);
             this.LoadoutPlayerTitleComboBox.Name = "LoadoutPlayerTitleComboBox";
@@ -1232,7 +1235,6 @@ namespace Bootstrapper
             // 
             this.LoadoutArmorSkinComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutArmorSkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorSkinComboBox.Enabled = false;
             this.LoadoutArmorSkinComboBox.FormattingEnabled = true;
             this.LoadoutArmorSkinComboBox.Location = new System.Drawing.Point(57, 121);
             this.LoadoutArmorSkinComboBox.Name = "LoadoutArmorSkinComboBox";
@@ -1243,7 +1245,6 @@ namespace Bootstrapper
             // 
             this.LoadoutArmorCamoComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutArmorCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorCamoComboBox.Enabled = false;
             this.LoadoutArmorCamoComboBox.FormattingEnabled = true;
             this.LoadoutArmorCamoComboBox.Location = new System.Drawing.Point(57, 94);
             this.LoadoutArmorCamoComboBox.Name = "LoadoutArmorCamoComboBox";
@@ -1337,7 +1338,6 @@ namespace Bootstrapper
             // 
             this.LoadoutGearTacticalComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutGearTacticalComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutGearTacticalComboBox.Enabled = false;
             this.LoadoutGearTacticalComboBox.FormattingEnabled = true;
             this.LoadoutGearTacticalComboBox.Location = new System.Drawing.Point(57, 121);
             this.LoadoutGearTacticalComboBox.Name = "LoadoutGearTacticalComboBox";
@@ -1357,7 +1357,6 @@ namespace Bootstrapper
             // 
             this.LoadoutGearSlot4ComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutGearSlot4ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutGearSlot4ComboBox.Enabled = false;
             this.LoadoutGearSlot4ComboBox.FormattingEnabled = true;
             this.LoadoutGearSlot4ComboBox.Location = new System.Drawing.Point(57, 94);
             this.LoadoutGearSlot4ComboBox.Name = "LoadoutGearSlot4ComboBox";
@@ -1451,7 +1450,6 @@ namespace Bootstrapper
             // 
             this.LoadoutDepotSlot5ComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutDepotSlot5ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutDepotSlot5ComboBox.Enabled = false;
             this.LoadoutDepotSlot5ComboBox.FormattingEnabled = true;
             this.LoadoutDepotSlot5ComboBox.Location = new System.Drawing.Point(57, 121);
             this.LoadoutDepotSlot5ComboBox.Name = "LoadoutDepotSlot5ComboBox";
@@ -1471,7 +1469,6 @@ namespace Bootstrapper
             // 
             this.LoadoutDepotSlot4ComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.LoadoutDepotSlot4ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutDepotSlot4ComboBox.Enabled = false;
             this.LoadoutDepotSlot4ComboBox.FormattingEnabled = true;
             this.LoadoutDepotSlot4ComboBox.Location = new System.Drawing.Point(57, 94);
             this.LoadoutDepotSlot4ComboBox.Name = "LoadoutDepotSlot4ComboBox";
@@ -1560,6 +1557,23 @@ namespace Bootstrapper
             this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
             this.MSTabNotImplementedLable.TabIndex = 0;
             this.MSTabNotImplementedLable.Text = "Not implemented!";
+            // 
+            // ServerTabNameTextBox
+            // 
+            this.ServerTabNameTextBox.Location = new System.Drawing.Point(425, 119);
+            this.ServerTabNameTextBox.MaxLength = 30;
+            this.ServerTabNameTextBox.Name = "ServerTabNameTextBox";
+            this.ServerTabNameTextBox.Size = new System.Drawing.Size(201, 20);
+            this.ServerTabNameTextBox.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(72, 122);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Server Name";
             // 
             // LauncherUI
             // 
@@ -1735,5 +1749,7 @@ namespace Bootstrapper
         private System.Windows.Forms.Label LoadoutTrophyLabel;
         private System.Windows.Forms.ComboBox LoadoutGenderComboBox;
         private System.Windows.Forms.Label LoadoutVoiceLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ServerTabNameTextBox;
     }
 }

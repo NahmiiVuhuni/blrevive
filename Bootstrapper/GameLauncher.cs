@@ -96,16 +96,18 @@ namespace Bootstrapper
         /// <summary>
         /// Start server process with given attributes.
         /// </summary>
+        /// <param name="Name"></param>
         /// <param name="Map"></param>
-        /// <param name="GameMode"></param>
+        /// <param name="Gamemode"></param>
         /// <param name="Port"></param>
         /// <param name="BotCount"></param>
         /// <param name="MaxPlayers"></param>
         /// <param name="additionalArgs"></param>
         /// <returns>server process handle</returns>
-        public static Process LaunchServer(string Map, string GameMode, int Port, int BotCount, int MaxPlayers, string additionalArgs)
+        public static Process LaunchServer(string Map, string Gamemode, string Name, int Port, int BotCount, int MaxPlayers, string additionalArgs)
         {
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
+            const string quote = "\"";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{Gamemode}?ServerName={quote}{Name}{quote}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
             return LaunchServer(args);
         }
 
@@ -114,7 +116,7 @@ namespace Bootstrapper
         /// </summary>
         /// <param name="IP">Server IP to connect to.</param>
         /// <param name="Port">Port of the server.</param>
-        /// <param name="Options">Client URL</param>
+        /// <param name="Options">Client URL.</param>
         /// <returns></returns>
         public static Process LaunchClient(string IP, string Port, string Options)
         {
