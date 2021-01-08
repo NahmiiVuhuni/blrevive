@@ -92,7 +92,6 @@ namespace Bootstrapper
             this.LauncherTabControl.Controls.Add(this.BotMatchTab);
             this.LauncherTabControl.Controls.Add(this.ClientTab);
             this.LauncherTabControl.Controls.Add(this.ServerTab);
-            this.LauncherTabControl.Controls.Add(this.LoadoutTab);
             this.LauncherTabControl.Controls.Add(this.MasterServerTab);
             this.LauncherTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LauncherTabControl.Location = new System.Drawing.Point(0, 0);
@@ -687,6 +686,8 @@ namespace Bootstrapper
         private System.Windows.Forms.Button ClientTabHostServersBackupButton;
         private System.Windows.Forms.NumericUpDown ClientTabServerPortNum;
         private System.Windows.Forms.NumericUpDown ServerTabPortNum;
-        private System.Windows.Forms.Label ServerTabPortLable;
+        private System.Windows.Forms.Label ServerTabPortLable; 
+        private System.Windows.Forms.Label ServerTabNameLabel;
+        private System.Windows.Forms.TextBox ServerTabNameTextBox;
     }
 }
