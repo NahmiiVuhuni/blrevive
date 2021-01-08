@@ -56,6 +56,8 @@ namespace Bootstrapper
             this.ClientTabPlayerNameTextBox = new System.Windows.Forms.TextBox();
             this.ClientTabServerAddressTextBox = new System.Windows.Forms.TextBox();
             this.ServerTab = new System.Windows.Forms.TabPage();
+            this.ServerTabNameLabel = new System.Windows.Forms.Label();
+            this.ServerTabNameTextBox = new System.Windows.Forms.TextBox();
             this.ServerTabPortLable = new System.Windows.Forms.Label();
             this.ServerTabPortNum = new System.Windows.Forms.NumericUpDown();
             this.ServerTabPlayerCountNum = new System.Windows.Forms.NumericUpDown();
@@ -157,8 +159,6 @@ namespace Bootstrapper
             this.LoadoutDepotSlot1Label = new System.Windows.Forms.Label();
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
-            this.ServerTabNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -497,7 +497,7 @@ namespace Bootstrapper
             // 
             // ServerTab
             // 
-            this.ServerTab.Controls.Add(this.label1);
+            this.ServerTab.Controls.Add(this.ServerTabNameLabel);
             this.ServerTab.Controls.Add(this.ServerTabNameTextBox);
             this.ServerTab.Controls.Add(this.ServerTabPortLable);
             this.ServerTab.Controls.Add(this.ServerTabPortNum);
@@ -520,6 +520,23 @@ namespace Bootstrapper
             this.ServerTab.TabIndex = 2;
             this.ServerTab.Text = "Server";
             this.ServerTab.UseVisualStyleBackColor = true;
+            // 
+            // ServerTabNameLabel
+            // 
+            this.ServerTabNameLabel.AutoSize = true;
+            this.ServerTabNameLabel.Location = new System.Drawing.Point(72, 122);
+            this.ServerTabNameLabel.Name = "ServerTabNameLabel";
+            this.ServerTabNameLabel.Size = new System.Drawing.Size(69, 13);
+            this.ServerTabNameLabel.TabIndex = 32;
+            this.ServerTabNameLabel.Text = "Server Name";
+            // 
+            // ServerTabNameTextBox
+            // 
+            this.ServerTabNameTextBox.Location = new System.Drawing.Point(425, 119);
+            this.ServerTabNameTextBox.MaxLength = 30;
+            this.ServerTabNameTextBox.Name = "ServerTabNameTextBox";
+            this.ServerTabNameTextBox.Size = new System.Drawing.Size(201, 20);
+            this.ServerTabNameTextBox.TabIndex = 31;
             // 
             // ServerTabPortLable
             // 
@@ -1558,23 +1575,6 @@ namespace Bootstrapper
             this.MSTabNotImplementedLable.TabIndex = 0;
             this.MSTabNotImplementedLable.Text = "Not implemented!";
             // 
-            // ServerTabNameTextBox
-            // 
-            this.ServerTabNameTextBox.Location = new System.Drawing.Point(425, 119);
-            this.ServerTabNameTextBox.MaxLength = 30;
-            this.ServerTabNameTextBox.Name = "ServerTabNameTextBox";
-            this.ServerTabNameTextBox.Size = new System.Drawing.Size(201, 20);
-            this.ServerTabNameTextBox.TabIndex = 31;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 122);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Server Name";
-            // 
             // LauncherUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1749,7 +1749,7 @@ namespace Bootstrapper
         private System.Windows.Forms.Label LoadoutTrophyLabel;
         private System.Windows.Forms.ComboBox LoadoutGenderComboBox;
         private System.Windows.Forms.Label LoadoutVoiceLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ServerTabNameLabel;
         private System.Windows.Forms.TextBox ServerTabNameTextBox;
     }
 }
