@@ -174,16 +174,19 @@ namespace BLRevive.Launcher
 
             if(Config.Get().GameFolder == null || String.IsNullOrWhiteSpace(Config.Get().GameFolder))
             {
-                var defaultPath = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\blacklightretribution\\";
+                var defaultPath = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\blacklightretribution";
                 if (!Directory.Exists(defaultPath))
                     MessageBox.Show("Couldn't find a valid Blacklight: Retribution install directory. Please head to the Settings tab and fix the Game Folder!");
                 else
-                    SettingsTabBlacklightDirectoryTextBox.Text = defaultPath;
-
+                {
+                    Config.Get().GameFolder = defaultPath;
+                    Config.Save();
+                }
             }
+            SettingsTabBlacklightDirectoryTextBox.Text = Config.Get().GameFolder;
 
-            PatchTabGameFileInputTextBox.Text = $"{SettingsTabBlacklightDirectoryTextBox.Text}Binaries\\Win32\\FoxGame-win32-Shipping.exe";
-            PatchTabGameFileOutputTextBox.Text = "FoxGame-win32-Shipping.exe";
+            PatchTabGameFileInputTextBox.Text = $"{Config.Get().GameFolder}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+            PatchTabGameFileOutputTextBox.Text = $"{Config.Get().GameFolder}\\Binaries\\Win32\\FoxGame-win32-Shipping-Patched.exe";
         }
 
         private void Update_ClientTabServerAddressTextBox()
