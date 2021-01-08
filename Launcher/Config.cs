@@ -60,9 +60,9 @@ namespace BLRevive.Launcher
         public List<Server> Hosts;
 
         /// <summary>
-        /// path to to original FoxGame-win32-Shipping.exe
+        /// path to blacklight installation directory
         /// </summary>
-        public string OriginalGameFile;
+        public string GameFolder;
 
         private static Config _Config = null;
         private const string LauncherConfigFileName = "LauncherConfig.json";

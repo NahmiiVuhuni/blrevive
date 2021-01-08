@@ -2,6 +2,7 @@
   "LogLevel": 1,
   "ServerStartupOffset": 5000,
   "Username": "Player",
+  "GameFolder":  "",
   "PreviousHost": 
   {
     "Server":
