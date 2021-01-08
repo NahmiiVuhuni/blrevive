@@ -85,7 +85,8 @@ namespace BLRevive.Launcher
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
 
-            Process serverProcess = LaunchProcess(ServerExe, $"server {Options}");
+            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            Process serverProcess = LaunchProcess($"{binaryDir}{ServerExe}", $"server {Options}", true, binaryDir);
 
             if (serverProcess == null)
                 return null;
@@ -123,8 +124,8 @@ namespace BLRevive.Launcher
         {
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
-
-            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}:{Port}{Options}");
+            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            Process clientProcess = LaunchProcess($"{binaryDir}{PatchedGameExe}", $"{IP}:{Port}{Options}", true, binaryDir);
 
             if(clientProcess == null)
             {
