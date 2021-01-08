@@ -22,7 +22,7 @@ namespace BLRevive.Launcher
         /// <summary>
         /// absolute path to log directory
         /// </summary>
-        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
+        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}\\{LogDirectory}";
 
         /// <summary>
         /// log file name

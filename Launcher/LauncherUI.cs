@@ -182,7 +182,8 @@ namespace BLRevive.Launcher
 
             }
 
-            PatchTabGameFileTextBox.Text = $"{SettingsTabBlacklightDirectoryTextBox.Text}Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+            PatchTabGameFileInputTextBox.Text = $"{SettingsTabBlacklightDirectoryTextBox.Text}Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+            PatchTabGameFileOutputTextBox.Text = "FoxGame-win32-Shipping.exe";
         }
 
         private void Update_ClientTabServerAddressTextBox()
@@ -210,8 +211,8 @@ namespace BLRevive.Launcher
 
         private void PatchTabPatchFileButton_Click(object sender, EventArgs e)
         {
-            GameLauncher.LaunchPatcher(PatchTabGameFileTextBox.Text, PatchTabASLROnlyCheckBox.Checked,
-                PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
+            GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
+                PatchTabASLROnlyCheckBox.Checked, PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
         }
 
         private void PatchTabOpenGameFileDialogButton_Click(object sender, EventArgs e)
@@ -225,7 +226,7 @@ namespace BLRevive.Launcher
             var result = fileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                PatchTabGameFileTextBox.Text = fileDialog.FileName;
+                PatchTabGameFileInputTextBox.Text = fileDialog.FileName;
             }
         }
 
@@ -268,6 +269,25 @@ namespace BLRevive.Launcher
                     Config.Get().GameFolder = folderDialog.SelectedPath;
                     Config.Save();
                 }
+            }
+        }
+
+        private void PatchTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PatchTabOpenGameOutputDialogButton_Click(object sender, EventArgs e)
+        {
+            var fileDialog = new SaveFileDialog();
+            fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            fileDialog.DefaultExt = ".exe";
+            fileDialog.FileName = "FoxGame-win32-Shipping-Patched.exe";
+
+            var result = fileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                PatchTabGameFileOutputTextBox.Text = fileDialog.FileName;
             }
         }
     }

@@ -175,12 +175,12 @@ namespace BLRevive.Launcher
             LaunchFinishedAction.Invoke();
         }
 
-        public static bool LaunchPatcher(string GameFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = false)
+        public static bool LaunchPatcher(string GameInputFile, string GameOutputFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = false)
         {
             Log.Information("Starting patcher.");
-            Log.Debug("GameFile: {0} | AslrOnly: {1} | NoEmblemPatch: {2} | NoProxyInjection: {3}", GameFile, AslrOnly, NoEmblemPatch, NoProxyInjection);
+            Log.Debug("GameFile: {0} | AslrOnly: {1} | NoEmblemPatch: {2} | NoProxyInjection: {3}", GameInputFile, AslrOnly, NoEmblemPatch, NoProxyInjection);
 
-            string args = $"\"{GameFile}\"";
+            string args = $"\"{GameInputFile}\" --output=\"{GameOutputFile}\"";
             if (AslrOnly)
                 args += " --aslr-only";
             if (NoEmblemPatch)
