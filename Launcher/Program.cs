@@ -17,7 +17,6 @@ namespace BLRevive.Launcher
             // initialize app
             Logging.Initialize();
             Config.Get();
-            GameLauncher.Prepare();
 
             // run gui
             Application.EnableVisualStyles();

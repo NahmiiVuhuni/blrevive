@@ -170,6 +170,8 @@ namespace BLRevive.Launcher
                 ClientTabServerPortNum.Value = Int16.Parse(Config.Get().PreviousHost.Server.Port);
             else
                 ClientTabServerPortNum.Value = Int16.Parse(Config.DefaultLocalHostServer.Port);
+
+            PatchTabGameFileTextBox.Text = Config.Get().OriginalGameFile;
         }
 
         private void Update_ClientTabServerAddressTextBox()
@@ -193,6 +195,28 @@ namespace BLRevive.Launcher
             // set new list instance as data source, otherwise the combobox won't react to items changed/added inside the hosts list(combobox)  
             if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
                 ClientTabHostServersComboBox.DataSource = Config.Get().Hosts.ToList(); 
+        }
+
+        private void PatchTabPatchFileButton_Click(object sender, EventArgs e)
+        {
+            GameLauncher.LaunchPatcher(PatchTabGameFileTextBox.Text, PatchTabASLROnlyCheckBox.Checked,
+                PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
+        }
+
+        private void PatchTabOpenGameFileDialogButton_Click(object sender, EventArgs e)
+        {
+            var result = PatchTabOpenGameFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                PatchTabGameFileTextBox.Text = PatchTabOpenGameFileDialog.FileName;
+                Config.Get().OriginalGameFile = PatchTabGameFileTextBox.Text;
+                Config.Save();
+            }
+        }
+
+        private void PatchTabASLROnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            PatchTabNoProxyInjectionCheckBox.Enabled = !PatchTabASLROnlyCheckBox.Checked;
         }
     }
 }

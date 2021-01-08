@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="Logging.cs" />
     <Compile Include="NetworkUtil.cs" />
-    <Compile Include="Patcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LauncherUI.resx">

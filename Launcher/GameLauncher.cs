@@ -3,6 +3,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Serilog;
+using System.IO.Ports;
 
 namespace BLRevive.Launcher
 {
@@ -132,7 +133,7 @@ namespace BLRevive.Launcher
                 return null;
             }
 
-            Log.Information("Client successfully started and patched!");
+            Log.Information("Client successfully started!");
             return clientProcess;
         }
 
@@ -173,15 +174,42 @@ namespace BLRevive.Launcher
             LaunchFinishedAction.Invoke();
         }
 
-        /// <summary>
-        /// Make sure everything is setup properly before starting GUI.
-        /// </summary>
-        public static void Prepare()
+        public static bool LaunchPatcher(string GameFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = false)
         {
-            Log.Verbose("Preparing GameLauncher");
+            Log.Information("Starting patcher.");
+            Log.Debug("GameFile: {0} | AslrOnly: {1} | NoEmblemPatch: {2} | NoProxyInjection: {3}", GameFile, AslrOnly, NoEmblemPatch, NoProxyInjection);
 
-            if (!Patcher.IsPatched)
-                Patcher.PatchFiles();
+            string args = $"\"{GameFile}\"";
+            if (AslrOnly)
+                args += " --aslr-only";
+            if (NoEmblemPatch)
+                args += " --no-emblem-patch";
+            if (NoProxyInjection)
+                args += " --no-proxy";
+
+            Log.Debug("Args: {0}", args);
+
+            var patcherProcess = LaunchProcess("Patcher.exe", args, false);
+            if(patcherProcess != null)
+            {
+                string patcherProcessOutput = "";
+                patcherProcess.OutputDataReceived += (object sender, DataReceivedEventArgs e) => { patcherProcessOutput += e.Data; };
+
+                patcherProcess.WaitForExit();
+                if(patcherProcess.ExitCode != 0)
+                {
+                    Log.Error("Patcher failed!");
+                    Log.Debug(patcherProcessOutput);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            Log.Information("Patching was succesfull!");
+            return true;
         }
     }
 }

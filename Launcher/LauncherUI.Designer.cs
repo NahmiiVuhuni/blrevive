@@ -75,6 +75,14 @@ namespace BLRevive.Launcher
             this.ServerTabGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
+            this.PatchTab = new System.Windows.Forms.TabPage();
+            this.PatchTabOpenGameFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.PatchTabGameFileTextBox = new System.Windows.Forms.TextBox();
+            this.PatchTabPatchFileButton = new System.Windows.Forms.Button();
+            this.PatchTabOpenGameFileDialogButton = new System.Windows.Forms.Button();
+            this.PatchTabASLROnlyCheckBox = new System.Windows.Forms.CheckBox();
+            this.PatchTabNoEmblemPatchCheckBox = new System.Windows.Forms.CheckBox();
+            this.PatchTabNoProxyInjectionCheckBox = new System.Windows.Forms.CheckBox();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -85,6 +93,7 @@ namespace BLRevive.Launcher
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabPlayerCountNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).BeginInit();
             this.MasterServerTab.SuspendLayout();
+            this.PatchTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // LauncherTabControl
@@ -93,6 +102,7 @@ namespace BLRevive.Launcher
             this.LauncherTabControl.Controls.Add(this.ClientTab);
             this.LauncherTabControl.Controls.Add(this.ServerTab);
             this.LauncherTabControl.Controls.Add(this.MasterServerTab);
+            this.LauncherTabControl.Controls.Add(this.PatchTab);
             this.LauncherTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LauncherTabControl.Location = new System.Drawing.Point(0, 0);
             this.LauncherTabControl.Name = "LauncherTabControl";
@@ -599,7 +609,7 @@ namespace BLRevive.Launcher
             this.MasterServerTab.Controls.Add(this.MSTabNotImplementedLable);
             this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
             this.MasterServerTab.Name = "MasterServerTab";
-            this.MasterServerTab.Size = new System.Drawing.Size(614, 296);
+            this.MasterServerTab.Size = new System.Drawing.Size(696, 415);
             this.MasterServerTab.TabIndex = 3;
             this.MasterServerTab.Text = "Master Server";
             this.MasterServerTab.UseVisualStyleBackColor = true;
@@ -612,6 +622,85 @@ namespace BLRevive.Launcher
             this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
             this.MSTabNotImplementedLable.TabIndex = 0;
             this.MSTabNotImplementedLable.Text = "Not implemented!";
+            // 
+            // PatchTab
+            // 
+            this.PatchTab.Controls.Add(this.PatchTabNoProxyInjectionCheckBox);
+            this.PatchTab.Controls.Add(this.PatchTabNoEmblemPatchCheckBox);
+            this.PatchTab.Controls.Add(this.PatchTabASLROnlyCheckBox);
+            this.PatchTab.Controls.Add(this.PatchTabOpenGameFileDialogButton);
+            this.PatchTab.Controls.Add(this.PatchTabPatchFileButton);
+            this.PatchTab.Controls.Add(this.PatchTabGameFileTextBox);
+            this.PatchTab.Location = new System.Drawing.Point(4, 22);
+            this.PatchTab.Name = "PatchTab";
+            this.PatchTab.Size = new System.Drawing.Size(696, 415);
+            this.PatchTab.TabIndex = 4;
+            this.PatchTab.Text = "Patcher";
+            this.PatchTab.UseVisualStyleBackColor = true;
+            // 
+            // PatchTabOpenGameFileDialog
+            // 
+            this.PatchTabOpenGameFileDialog.FileName = "FoxGame-win32-Shipping.exe";
+            this.PatchTabOpenGameFileDialog.Filter = "BLR Game File|FoxGame-win32-Shipping.exe";
+            // 
+            // PatchTabGameFileTextBox
+            // 
+            this.PatchTabGameFileTextBox.Location = new System.Drawing.Point(131, 119);
+            this.PatchTabGameFileTextBox.Name = "PatchTabGameFileTextBox";
+            this.PatchTabGameFileTextBox.Size = new System.Drawing.Size(346, 20);
+            this.PatchTabGameFileTextBox.TabIndex = 0;
+            this.PatchTabGameFileTextBox.Text = "FoxGame-win32-Shipping.exe";
+            // 
+            // PatchTabPatchFileButton
+            // 
+            this.PatchTabPatchFileButton.Location = new System.Drawing.Point(255, 276);
+            this.PatchTabPatchFileButton.Name = "PatchTabPatchFileButton";
+            this.PatchTabPatchFileButton.Size = new System.Drawing.Size(165, 67);
+            this.PatchTabPatchFileButton.TabIndex = 1;
+            this.PatchTabPatchFileButton.Text = "Patch File";
+            this.PatchTabPatchFileButton.UseVisualStyleBackColor = true;
+            this.PatchTabPatchFileButton.Click += new System.EventHandler(this.PatchTabPatchFileButton_Click);
+            // 
+            // PatchTabOpenGameFileDialogButton
+            // 
+            this.PatchTabOpenGameFileDialogButton.Location = new System.Drawing.Point(497, 116);
+            this.PatchTabOpenGameFileDialogButton.Name = "PatchTabOpenGameFileDialogButton";
+            this.PatchTabOpenGameFileDialogButton.Size = new System.Drawing.Size(75, 23);
+            this.PatchTabOpenGameFileDialogButton.TabIndex = 3;
+            this.PatchTabOpenGameFileDialogButton.Text = "Browse";
+            this.PatchTabOpenGameFileDialogButton.UseVisualStyleBackColor = true;
+            this.PatchTabOpenGameFileDialogButton.Click += new System.EventHandler(this.PatchTabOpenGameFileDialogButton_Click);
+            // 
+            // PatchTabASLROnlyCheckBox
+            // 
+            this.PatchTabASLROnlyCheckBox.AutoSize = true;
+            this.PatchTabASLROnlyCheckBox.Location = new System.Drawing.Point(282, 199);
+            this.PatchTabASLROnlyCheckBox.Name = "PatchTabASLROnlyCheckBox";
+            this.PatchTabASLROnlyCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.PatchTabASLROnlyCheckBox.TabIndex = 4;
+            this.PatchTabASLROnlyCheckBox.Text = "ASLR only";
+            this.PatchTabASLROnlyCheckBox.UseVisualStyleBackColor = true;
+            this.PatchTabASLROnlyCheckBox.CheckedChanged += new System.EventHandler(this.PatchTabASLROnlyCheckBox_CheckedChanged);
+            // 
+            // PatchTabNoEmblemPatchCheckBox
+            // 
+            this.PatchTabNoEmblemPatchCheckBox.AutoSize = true;
+            this.PatchTabNoEmblemPatchCheckBox.Location = new System.Drawing.Point(282, 176);
+            this.PatchTabNoEmblemPatchCheckBox.Name = "PatchTabNoEmblemPatchCheckBox";
+            this.PatchTabNoEmblemPatchCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.PatchTabNoEmblemPatchCheckBox.TabIndex = 5;
+            this.PatchTabNoEmblemPatchCheckBox.Text = "No Emblem Patch";
+            this.PatchTabNoEmblemPatchCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // PatchTabNoProxyInjectionCheckBox
+            // 
+            this.PatchTabNoProxyInjectionCheckBox.AutoSize = true;
+            this.PatchTabNoProxyInjectionCheckBox.Location = new System.Drawing.Point(282, 222);
+            this.PatchTabNoProxyInjectionCheckBox.Name = "PatchTabNoProxyInjectionCheckBox";
+            this.PatchTabNoProxyInjectionCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.PatchTabNoProxyInjectionCheckBox.TabIndex = 6;
+            this.PatchTabNoProxyInjectionCheckBox.Text = "No Proxy Injection";
+            this.PatchTabNoProxyInjectionCheckBox.UseVisualStyleBackColor = true;
             // 
             // LauncherUI
             // 
@@ -637,6 +726,8 @@ namespace BLRevive.Launcher
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).EndInit();
             this.MasterServerTab.ResumeLayout(false);
             this.MasterServerTab.PerformLayout();
+            this.PatchTab.ResumeLayout(false);
+            this.PatchTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -689,5 +780,13 @@ namespace BLRevive.Launcher
         private System.Windows.Forms.Label ServerTabPortLable; 
         private System.Windows.Forms.Label ServerTabNameLabel;
         private System.Windows.Forms.TextBox ServerTabNameTextBox;
+        private System.Windows.Forms.TabPage PatchTab;
+        private System.Windows.Forms.Button PatchTabPatchFileButton;
+        private System.Windows.Forms.TextBox PatchTabGameFileTextBox;
+        private System.Windows.Forms.OpenFileDialog PatchTabOpenGameFileDialog;
+        private System.Windows.Forms.Button PatchTabOpenGameFileDialogButton;
+        private System.Windows.Forms.CheckBox PatchTabNoProxyInjectionCheckBox;
+        private System.Windows.Forms.CheckBox PatchTabNoEmblemPatchCheckBox;
+        private System.Windows.Forms.CheckBox PatchTabASLROnlyCheckBox;
     }
 }

@@ -59,6 +59,11 @@ namespace BLRevive.Launcher
         /// </summary>
         public List<Server> Hosts;
 
+        /// <summary>
+        /// path to to original FoxGame-win32-Shipping.exe
+        /// </summary>
+        public string OriginalGameFile;
+
         private static Config _Config = null;
         private const string LauncherConfigFileName = "LauncherConfig.json";
 
