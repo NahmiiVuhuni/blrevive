@@ -71,47 +71,12 @@ namespace Bootstrapper
             this.ServerTabBotCountNum = new System.Windows.Forms.NumericUpDown();
             this.ServerTabMapsCombo = new System.Windows.Forms.ComboBox();
             this.ServerTabGamemodesCombo = new System.Windows.Forms.ComboBox();
-            this.MasterServerTab = new System.Windows.Forms.TabPage();
-            this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
             this.LoadoutTab = new System.Windows.Forms.TabPage();
-            this.LoadoutArmorGroupBox = new System.Windows.Forms.GroupBox();
-            this.LoadoutArmorCamoComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorCamoLabel = new System.Windows.Forms.Label();
-            this.LoadoutArmorLegsComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorHelmetLabel = new System.Windows.Forms.Label();
-            this.LoadoutArmorChestComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorLegsLabel = new System.Windows.Forms.Label();
-            this.LoadoutArmorHelmetComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorChestLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryGroupBox = new System.Windows.Forms.GroupBox();
-            this.LoadoutSecondaryAmmoTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryCamoComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryScopeComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryMagazineComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryStockComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryMuzzleComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryBarrelComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryReceiverComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutSecondaryAmmoTypeLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryCamoLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryScopeLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryMagazineLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryStockLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryMuzzleLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryBarrelLabel = new System.Windows.Forms.Label();
-            this.LoadoutSecondaryReceiverLabel = new System.Windows.Forms.Label();
-            this.LoadoutGearGroupBox = new System.Windows.Forms.GroupBox();
-            this.LoadoutGearTacticalComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutGearTacticalLabel = new System.Windows.Forms.Label();
-            this.LoadoutGearSlot4ComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutGearSlot4Label = new System.Windows.Forms.Label();
-            this.LoadoutGearSlot3ComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutGearSlot3Label = new System.Windows.Forms.Label();
-            this.LoadoutGearSlot2ComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutGearSlot2Label = new System.Windows.Forms.Label();
-            this.LoadoutGearSlot1ComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutGearSlot1Label = new System.Windows.Forms.Label();
+            this.LoadoutTabControl = new System.Windows.Forms.TabControl();
+            this.WeaponsTab = new System.Windows.Forms.TabPage();
             this.LoadoutPrimaryGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutPrimarySkinLabel = new System.Windows.Forms.Label();
+            this.LoadoutPrimarySkinComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryTagComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryTagLabel = new System.Windows.Forms.Label();
             this.LoadoutPrimaryAmmoTypeComboBox = new System.Windows.Forms.ComboBox();
@@ -130,6 +95,55 @@ namespace Bootstrapper
             this.LoadoutPrimaryBarrelLabel = new System.Windows.Forms.Label();
             this.LoadoutPrimaryReceiverComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutPrimaryReceiverLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutSecondaryAmmoTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryCamoComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryScopeComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryMagazineComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryStockComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryMuzzleComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryBarrelComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryReceiverComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutSecondaryAmmoTypeLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryCamoLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryScopeLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryMagazineLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryStockLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryMuzzleLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryBarrelLabel = new System.Windows.Forms.Label();
+            this.LoadoutSecondaryReceiverLabel = new System.Windows.Forms.Label();
+            this.EquipmentTab = new System.Windows.Forms.TabPage();
+            this.LoadoutCharacterGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutPlayerTitleComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutPlayerTitleLabel = new System.Windows.Forms.Label();
+            this.LoadoutTrophyComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGenderLabel = new System.Windows.Forms.Label();
+            this.LoadoutVoiceComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutTrophyLabel = new System.Windows.Forms.Label();
+            this.LoadoutGenderComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutVoiceLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutArmorSkinLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorSkinComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorCamoComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorCamoLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorLegsComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorHelmetLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorChestComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorLegsLabel = new System.Windows.Forms.Label();
+            this.LoadoutArmorHelmetComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutArmorChestLabel = new System.Windows.Forms.Label();
+            this.LoadoutGearGroupBox = new System.Windows.Forms.GroupBox();
+            this.LoadoutGearTacticalComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGearTacticalLabel = new System.Windows.Forms.Label();
+            this.LoadoutGearSlot4ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGearSlot4Label = new System.Windows.Forms.Label();
+            this.LoadoutGearSlot3ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGearSlot3Label = new System.Windows.Forms.Label();
+            this.LoadoutGearSlot2ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGearSlot2Label = new System.Windows.Forms.Label();
+            this.LoadoutGearSlot1ComboBox = new System.Windows.Forms.ComboBox();
+            this.LoadoutGearSlot1Label = new System.Windows.Forms.Label();
             this.LoadoutDepotGroupBox = new System.Windows.Forms.GroupBox();
             this.LoadoutDepotSlot5ComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutDepotSlot5Label = new System.Windows.Forms.Label();
@@ -141,22 +155,8 @@ namespace Bootstrapper
             this.LoadoutDepotSlot2Label = new System.Windows.Forms.Label();
             this.LoadoutDepotSlot1ComboBox = new System.Windows.Forms.ComboBox();
             this.LoadoutDepotSlot1Label = new System.Windows.Forms.Label();
-            this.LoadoutTabControl = new System.Windows.Forms.TabControl();
-            this.WeaponsTab = new System.Windows.Forms.TabPage();
-            this.EquipmentTab = new System.Windows.Forms.TabPage();
-            this.LoadoutArmorSkinComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutArmorSkinLabel = new System.Windows.Forms.Label();
-            this.LoadoutPrimarySkinComboBox = new System.Windows.Forms.ComboBox();
-            this.LoadoutPrimarySkinLabel = new System.Windows.Forms.Label();
-            this.LoadoutCharacterGroupBox = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.MasterServerTab = new System.Windows.Forms.TabPage();
+            this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -166,17 +166,17 @@ namespace Bootstrapper
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabPortNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabPlayerCountNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).BeginInit();
-            this.MasterServerTab.SuspendLayout();
             this.LoadoutTab.SuspendLayout();
-            this.LoadoutArmorGroupBox.SuspendLayout();
-            this.LoadoutSecondaryGroupBox.SuspendLayout();
-            this.LoadoutGearGroupBox.SuspendLayout();
-            this.LoadoutPrimaryGroupBox.SuspendLayout();
-            this.LoadoutDepotGroupBox.SuspendLayout();
             this.LoadoutTabControl.SuspendLayout();
             this.WeaponsTab.SuspendLayout();
+            this.LoadoutPrimaryGroupBox.SuspendLayout();
+            this.LoadoutSecondaryGroupBox.SuspendLayout();
             this.EquipmentTab.SuspendLayout();
             this.LoadoutCharacterGroupBox.SuspendLayout();
+            this.LoadoutArmorGroupBox.SuspendLayout();
+            this.LoadoutGearGroupBox.SuspendLayout();
+            this.LoadoutDepotGroupBox.SuspendLayout();
+            this.MasterServerTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // LauncherTabControl
@@ -479,7 +479,7 @@ namespace Bootstrapper
             this.ClientTabPlayerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 176);
-            this.ClientTabPlayerNameTextBox.MaxLength = 24;
+            this.ClientTabPlayerNameTextBox.MaxLength = 20;
             this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
             this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(311, 20);
             this.ClientTabPlayerNameTextBox.TabIndex = 14;
@@ -682,25 +682,6 @@ namespace Bootstrapper
             this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(201, 21);
             this.ServerTabGamemodesCombo.TabIndex = 14;
             // 
-            // MasterServerTab
-            // 
-            this.MasterServerTab.Controls.Add(this.MSTabNotImplementedLable);
-            this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
-            this.MasterServerTab.Name = "MasterServerTab";
-            this.MasterServerTab.Size = new System.Drawing.Size(696, 415);
-            this.MasterServerTab.TabIndex = 3;
-            this.MasterServerTab.Text = "Master Server";
-            this.MasterServerTab.UseVisualStyleBackColor = true;
-            // 
-            // MSTabNotImplementedLable
-            // 
-            this.MSTabNotImplementedLable.AutoSize = true;
-            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(308, 200);
-            this.MSTabNotImplementedLable.Name = "MSTabNotImplementedLable";
-            this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
-            this.MSTabNotImplementedLable.TabIndex = 0;
-            this.MSTabNotImplementedLable.Text = "Not implemented!";
-            // 
             // LoadoutTab
             // 
             this.LoadoutTab.Controls.Add(this.LoadoutTabControl);
@@ -712,99 +693,238 @@ namespace Bootstrapper
             this.LoadoutTab.Text = "Loadout";
             this.LoadoutTab.UseVisualStyleBackColor = true;
             // 
-            // LoadoutArmorGroupBox
+            // LoadoutTabControl
             // 
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinLabel);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinComboBox);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoComboBox);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoLabel);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsComboBox);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetLabel);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestComboBox);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsLabel);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetComboBox);
-            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestLabel);
-            this.LoadoutArmorGroupBox.Location = new System.Drawing.Point(6, 6);
-            this.LoadoutArmorGroupBox.Name = "LoadoutArmorGroupBox";
-            this.LoadoutArmorGroupBox.Size = new System.Drawing.Size(228, 150);
-            this.LoadoutArmorGroupBox.TabIndex = 19;
-            this.LoadoutArmorGroupBox.TabStop = false;
-            this.LoadoutArmorGroupBox.Text = "Armor";
+            this.LoadoutTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.LoadoutTabControl.Controls.Add(this.WeaponsTab);
+            this.LoadoutTabControl.Controls.Add(this.EquipmentTab);
+            this.LoadoutTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadoutTabControl.Location = new System.Drawing.Point(3, 3);
+            this.LoadoutTabControl.Name = "LoadoutTabControl";
+            this.LoadoutTabControl.SelectedIndex = 0;
+            this.LoadoutTabControl.Size = new System.Drawing.Size(690, 409);
+            this.LoadoutTabControl.TabIndex = 23;
             // 
-            // LoadoutArmorCamoComboBox
+            // WeaponsTab
             // 
-            this.LoadoutArmorCamoComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.LoadoutArmorCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorCamoComboBox.Enabled = false;
-            this.LoadoutArmorCamoComboBox.FormattingEnabled = true;
-            this.LoadoutArmorCamoComboBox.Location = new System.Drawing.Point(57, 94);
-            this.LoadoutArmorCamoComboBox.Name = "LoadoutArmorCamoComboBox";
-            this.LoadoutArmorCamoComboBox.Size = new System.Drawing.Size(165, 21);
-            this.LoadoutArmorCamoComboBox.TabIndex = 7;
+            this.WeaponsTab.Controls.Add(this.LoadoutPrimaryGroupBox);
+            this.WeaponsTab.Controls.Add(this.LoadoutSecondaryGroupBox);
+            this.WeaponsTab.Location = new System.Drawing.Point(4, 4);
+            this.WeaponsTab.Name = "WeaponsTab";
+            this.WeaponsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.WeaponsTab.Size = new System.Drawing.Size(682, 383);
+            this.WeaponsTab.TabIndex = 0;
+            this.WeaponsTab.Text = "Weapons";
+            this.WeaponsTab.UseVisualStyleBackColor = true;
             // 
-            // LoadoutArmorCamoLabel
+            // LoadoutPrimaryGroupBox
             // 
-            this.LoadoutArmorCamoLabel.AutoSize = true;
-            this.LoadoutArmorCamoLabel.Location = new System.Drawing.Point(6, 97);
-            this.LoadoutArmorCamoLabel.Name = "LoadoutArmorCamoLabel";
-            this.LoadoutArmorCamoLabel.Size = new System.Drawing.Size(34, 13);
-            this.LoadoutArmorCamoLabel.TabIndex = 6;
-            this.LoadoutArmorCamoLabel.Text = "Camo";
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelLabel);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverComboBox);
+            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverLabel);
+            this.LoadoutPrimaryGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.LoadoutPrimaryGroupBox.Name = "LoadoutPrimaryGroupBox";
+            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 388);
+            this.LoadoutPrimaryGroupBox.TabIndex = 20;
+            this.LoadoutPrimaryGroupBox.TabStop = false;
+            this.LoadoutPrimaryGroupBox.Text = "Primary";
             // 
-            // LoadoutArmorLegsComboBox
+            // LoadoutPrimarySkinLabel
             // 
-            this.LoadoutArmorLegsComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.LoadoutArmorLegsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorLegsComboBox.FormattingEnabled = true;
-            this.LoadoutArmorLegsComboBox.Location = new System.Drawing.Point(57, 67);
-            this.LoadoutArmorLegsComboBox.Name = "LoadoutArmorLegsComboBox";
-            this.LoadoutArmorLegsComboBox.Size = new System.Drawing.Size(165, 21);
-            this.LoadoutArmorLegsComboBox.TabIndex = 5;
+            this.LoadoutPrimarySkinLabel.AutoSize = true;
+            this.LoadoutPrimarySkinLabel.Location = new System.Drawing.Point(6, 259);
+            this.LoadoutPrimarySkinLabel.Name = "LoadoutPrimarySkinLabel";
+            this.LoadoutPrimarySkinLabel.Size = new System.Drawing.Size(28, 13);
+            this.LoadoutPrimarySkinLabel.TabIndex = 20;
+            this.LoadoutPrimarySkinLabel.Text = "Skin";
             // 
-            // LoadoutArmorHelmetLabel
+            // LoadoutPrimarySkinComboBox
             // 
-            this.LoadoutArmorHelmetLabel.AutoSize = true;
-            this.LoadoutArmorHelmetLabel.Location = new System.Drawing.Point(6, 16);
-            this.LoadoutArmorHelmetLabel.Name = "LoadoutArmorHelmetLabel";
-            this.LoadoutArmorHelmetLabel.Size = new System.Drawing.Size(40, 13);
-            this.LoadoutArmorHelmetLabel.TabIndex = 4;
-            this.LoadoutArmorHelmetLabel.Text = "Helmet";
+            this.LoadoutPrimarySkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimarySkinComboBox.FormattingEnabled = true;
+            this.LoadoutPrimarySkinComboBox.Location = new System.Drawing.Point(71, 256);
+            this.LoadoutPrimarySkinComboBox.Name = "LoadoutPrimarySkinComboBox";
+            this.LoadoutPrimarySkinComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimarySkinComboBox.TabIndex = 19;
             // 
-            // LoadoutArmorChestComboBox
+            // LoadoutPrimaryTagComboBox
             // 
-            this.LoadoutArmorChestComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorChestComboBox.FormattingEnabled = true;
-            this.LoadoutArmorChestComboBox.Location = new System.Drawing.Point(57, 40);
-            this.LoadoutArmorChestComboBox.Name = "LoadoutArmorChestComboBox";
-            this.LoadoutArmorChestComboBox.Size = new System.Drawing.Size(165, 21);
-            this.LoadoutArmorChestComboBox.TabIndex = 3;
+            this.LoadoutPrimaryTagComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryTagComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryTagComboBox.Location = new System.Drawing.Point(71, 202);
+            this.LoadoutPrimaryTagComboBox.Name = "LoadoutPrimaryTagComboBox";
+            this.LoadoutPrimaryTagComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryTagComboBox.TabIndex = 17;
             // 
-            // LoadoutArmorLegsLabel
+            // LoadoutPrimaryTagLabel
             // 
-            this.LoadoutArmorLegsLabel.AutoSize = true;
-            this.LoadoutArmorLegsLabel.Location = new System.Drawing.Point(6, 70);
-            this.LoadoutArmorLegsLabel.Name = "LoadoutArmorLegsLabel";
-            this.LoadoutArmorLegsLabel.Size = new System.Drawing.Size(30, 13);
-            this.LoadoutArmorLegsLabel.TabIndex = 2;
-            this.LoadoutArmorLegsLabel.Text = "Legs";
+            this.LoadoutPrimaryTagLabel.AutoSize = true;
+            this.LoadoutPrimaryTagLabel.Location = new System.Drawing.Point(6, 205);
+            this.LoadoutPrimaryTagLabel.Name = "LoadoutPrimaryTagLabel";
+            this.LoadoutPrimaryTagLabel.Size = new System.Drawing.Size(26, 13);
+            this.LoadoutPrimaryTagLabel.TabIndex = 18;
+            this.LoadoutPrimaryTagLabel.Text = "Tag";
             // 
-            // LoadoutArmorHelmetComboBox
+            // LoadoutPrimaryAmmoTypeComboBox
             // 
-            this.LoadoutArmorHelmetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorHelmetComboBox.FormattingEnabled = true;
-            this.LoadoutArmorHelmetComboBox.Location = new System.Drawing.Point(57, 13);
-            this.LoadoutArmorHelmetComboBox.Name = "LoadoutArmorHelmetComboBox";
-            this.LoadoutArmorHelmetComboBox.Size = new System.Drawing.Size(165, 21);
-            this.LoadoutArmorHelmetComboBox.TabIndex = 1;
+            this.LoadoutPrimaryAmmoTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryAmmoTypeComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 175);
+            this.LoadoutPrimaryAmmoTypeComboBox.Name = "LoadoutPrimaryAmmoTypeComboBox";
+            this.LoadoutPrimaryAmmoTypeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryAmmoTypeComboBox.TabIndex = 15;
             // 
-            // LoadoutArmorChestLabel
+            // LoadoutPrimaryAmmoTypeLabel
             // 
-            this.LoadoutArmorChestLabel.AutoSize = true;
-            this.LoadoutArmorChestLabel.Location = new System.Drawing.Point(6, 43);
-            this.LoadoutArmorChestLabel.Name = "LoadoutArmorChestLabel";
-            this.LoadoutArmorChestLabel.Size = new System.Drawing.Size(34, 13);
-            this.LoadoutArmorChestLabel.TabIndex = 0;
-            this.LoadoutArmorChestLabel.Text = "Chest";
+            this.LoadoutPrimaryAmmoTypeLabel.AutoSize = true;
+            this.LoadoutPrimaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 178);
+            this.LoadoutPrimaryAmmoTypeLabel.Name = "LoadoutPrimaryAmmoTypeLabel";
+            this.LoadoutPrimaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
+            this.LoadoutPrimaryAmmoTypeLabel.TabIndex = 16;
+            this.LoadoutPrimaryAmmoTypeLabel.Text = "Ammo type";
+            // 
+            // LoadoutPrimaryCamoComboBox
+            // 
+            this.LoadoutPrimaryCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryCamoComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryCamoComboBox.Location = new System.Drawing.Point(71, 229);
+            this.LoadoutPrimaryCamoComboBox.Name = "LoadoutPrimaryCamoComboBox";
+            this.LoadoutPrimaryCamoComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryCamoComboBox.TabIndex = 13;
+            // 
+            // LoadoutPrimaryCamoLabel
+            // 
+            this.LoadoutPrimaryCamoLabel.AutoSize = true;
+            this.LoadoutPrimaryCamoLabel.Location = new System.Drawing.Point(6, 232);
+            this.LoadoutPrimaryCamoLabel.Name = "LoadoutPrimaryCamoLabel";
+            this.LoadoutPrimaryCamoLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutPrimaryCamoLabel.TabIndex = 14;
+            this.LoadoutPrimaryCamoLabel.Text = "Camo";
+            // 
+            // LoadoutPrimaryScopeComboBox
+            // 
+            this.LoadoutPrimaryScopeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryScopeComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryScopeComboBox.Location = new System.Drawing.Point(71, 148);
+            this.LoadoutPrimaryScopeComboBox.Name = "LoadoutPrimaryScopeComboBox";
+            this.LoadoutPrimaryScopeComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryScopeComboBox.TabIndex = 11;
+            // 
+            // LoadoutPrimaryScopeLabel
+            // 
+            this.LoadoutPrimaryScopeLabel.AutoSize = true;
+            this.LoadoutPrimaryScopeLabel.Location = new System.Drawing.Point(6, 151);
+            this.LoadoutPrimaryScopeLabel.Name = "LoadoutPrimaryScopeLabel";
+            this.LoadoutPrimaryScopeLabel.Size = new System.Drawing.Size(38, 13);
+            this.LoadoutPrimaryScopeLabel.TabIndex = 12;
+            this.LoadoutPrimaryScopeLabel.Text = "Scope";
+            // 
+            // LoadoutPrimaryMagazineComboBox
+            // 
+            this.LoadoutPrimaryMagazineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryMagazineComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryMagazineComboBox.Location = new System.Drawing.Point(71, 121);
+            this.LoadoutPrimaryMagazineComboBox.Name = "LoadoutPrimaryMagazineComboBox";
+            this.LoadoutPrimaryMagazineComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryMagazineComboBox.TabIndex = 9;
+            // 
+            // LoadoutPrimaryMagazineLabel
+            // 
+            this.LoadoutPrimaryMagazineLabel.AutoSize = true;
+            this.LoadoutPrimaryMagazineLabel.Location = new System.Drawing.Point(6, 124);
+            this.LoadoutPrimaryMagazineLabel.Name = "LoadoutPrimaryMagazineLabel";
+            this.LoadoutPrimaryMagazineLabel.Size = new System.Drawing.Size(53, 13);
+            this.LoadoutPrimaryMagazineLabel.TabIndex = 10;
+            this.LoadoutPrimaryMagazineLabel.Text = "Magazine";
+            // 
+            // LoadoutPrimaryStockComboBox
+            // 
+            this.LoadoutPrimaryStockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryStockComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryStockComboBox.Location = new System.Drawing.Point(71, 94);
+            this.LoadoutPrimaryStockComboBox.Name = "LoadoutPrimaryStockComboBox";
+            this.LoadoutPrimaryStockComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryStockComboBox.TabIndex = 7;
+            // 
+            // LoadoutPrimaryStockLabel
+            // 
+            this.LoadoutPrimaryStockLabel.AutoSize = true;
+            this.LoadoutPrimaryStockLabel.Location = new System.Drawing.Point(6, 97);
+            this.LoadoutPrimaryStockLabel.Name = "LoadoutPrimaryStockLabel";
+            this.LoadoutPrimaryStockLabel.Size = new System.Drawing.Size(35, 13);
+            this.LoadoutPrimaryStockLabel.TabIndex = 8;
+            this.LoadoutPrimaryStockLabel.Text = "Stock";
+            // 
+            // LoadoutPrimaryMuzzleComboBox
+            // 
+            this.LoadoutPrimaryMuzzleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryMuzzleComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryMuzzleComboBox.Location = new System.Drawing.Point(71, 67);
+            this.LoadoutPrimaryMuzzleComboBox.Name = "LoadoutPrimaryMuzzleComboBox";
+            this.LoadoutPrimaryMuzzleComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryMuzzleComboBox.TabIndex = 5;
+            // 
+            // LoadoutPrimaryMuzzleLabel
+            // 
+            this.LoadoutPrimaryMuzzleLabel.AutoSize = true;
+            this.LoadoutPrimaryMuzzleLabel.Location = new System.Drawing.Point(6, 70);
+            this.LoadoutPrimaryMuzzleLabel.Name = "LoadoutPrimaryMuzzleLabel";
+            this.LoadoutPrimaryMuzzleLabel.Size = new System.Drawing.Size(40, 13);
+            this.LoadoutPrimaryMuzzleLabel.TabIndex = 6;
+            this.LoadoutPrimaryMuzzleLabel.Text = "Muzzle";
+            // 
+            // LoadoutPrimaryBarrelComboBox
+            // 
+            this.LoadoutPrimaryBarrelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryBarrelComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryBarrelComboBox.Location = new System.Drawing.Point(71, 40);
+            this.LoadoutPrimaryBarrelComboBox.Name = "LoadoutPrimaryBarrelComboBox";
+            this.LoadoutPrimaryBarrelComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryBarrelComboBox.TabIndex = 3;
+            // 
+            // LoadoutPrimaryBarrelLabel
+            // 
+            this.LoadoutPrimaryBarrelLabel.AutoSize = true;
+            this.LoadoutPrimaryBarrelLabel.Location = new System.Drawing.Point(6, 43);
+            this.LoadoutPrimaryBarrelLabel.Name = "LoadoutPrimaryBarrelLabel";
+            this.LoadoutPrimaryBarrelLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutPrimaryBarrelLabel.TabIndex = 4;
+            this.LoadoutPrimaryBarrelLabel.Text = "Barrel";
+            // 
+            // LoadoutPrimaryReceiverComboBox
+            // 
+            this.LoadoutPrimaryReceiverComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPrimaryReceiverComboBox.FormattingEnabled = true;
+            this.LoadoutPrimaryReceiverComboBox.Location = new System.Drawing.Point(71, 13);
+            this.LoadoutPrimaryReceiverComboBox.Name = "LoadoutPrimaryReceiverComboBox";
+            this.LoadoutPrimaryReceiverComboBox.Size = new System.Drawing.Size(151, 21);
+            this.LoadoutPrimaryReceiverComboBox.TabIndex = 2;
+            // 
+            // LoadoutPrimaryReceiverLabel
+            // 
+            this.LoadoutPrimaryReceiverLabel.AutoSize = true;
+            this.LoadoutPrimaryReceiverLabel.Location = new System.Drawing.Point(6, 16);
+            this.LoadoutPrimaryReceiverLabel.Name = "LoadoutPrimaryReceiverLabel";
+            this.LoadoutPrimaryReceiverLabel.Size = new System.Drawing.Size(50, 13);
+            this.LoadoutPrimaryReceiverLabel.TabIndex = 2;
+            this.LoadoutPrimaryReceiverLabel.Text = "Receiver";
             // 
             // LoadoutSecondaryGroupBox
             // 
@@ -975,6 +1095,225 @@ namespace Bootstrapper
             this.LoadoutSecondaryReceiverLabel.TabIndex = 2;
             this.LoadoutSecondaryReceiverLabel.Text = "Receiver";
             // 
+            // EquipmentTab
+            // 
+            this.EquipmentTab.Controls.Add(this.LoadoutCharacterGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutArmorGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutGearGroupBox);
+            this.EquipmentTab.Controls.Add(this.LoadoutDepotGroupBox);
+            this.EquipmentTab.Location = new System.Drawing.Point(4, 4);
+            this.EquipmentTab.Name = "EquipmentTab";
+            this.EquipmentTab.Size = new System.Drawing.Size(682, 383);
+            this.EquipmentTab.TabIndex = 2;
+            this.EquipmentTab.Text = "Equipment";
+            this.EquipmentTab.UseVisualStyleBackColor = true;
+            // 
+            // LoadoutCharacterGroupBox
+            // 
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutPlayerTitleComboBox);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutPlayerTitleLabel);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutTrophyComboBox);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutGenderLabel);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutVoiceComboBox);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutTrophyLabel);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutGenderComboBox);
+            this.LoadoutCharacterGroupBox.Controls.Add(this.LoadoutVoiceLabel);
+            this.LoadoutCharacterGroupBox.Location = new System.Drawing.Point(240, 6);
+            this.LoadoutCharacterGroupBox.Name = "LoadoutCharacterGroupBox";
+            this.LoadoutCharacterGroupBox.Size = new System.Drawing.Size(228, 150);
+            this.LoadoutCharacterGroupBox.TabIndex = 23;
+            this.LoadoutCharacterGroupBox.TabStop = false;
+            this.LoadoutCharacterGroupBox.Text = "Character";
+            // 
+            // LoadoutPlayerTitleComboBox
+            // 
+            this.LoadoutPlayerTitleComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutPlayerTitleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutPlayerTitleComboBox.Enabled = false;
+            this.LoadoutPlayerTitleComboBox.FormattingEnabled = true;
+            this.LoadoutPlayerTitleComboBox.Location = new System.Drawing.Point(57, 94);
+            this.LoadoutPlayerTitleComboBox.Name = "LoadoutPlayerTitleComboBox";
+            this.LoadoutPlayerTitleComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutPlayerTitleComboBox.TabIndex = 7;
+            // 
+            // LoadoutPlayerTitleLabel
+            // 
+            this.LoadoutPlayerTitleLabel.AutoSize = true;
+            this.LoadoutPlayerTitleLabel.Location = new System.Drawing.Point(6, 97);
+            this.LoadoutPlayerTitleLabel.Name = "LoadoutPlayerTitleLabel";
+            this.LoadoutPlayerTitleLabel.Size = new System.Drawing.Size(27, 13);
+            this.LoadoutPlayerTitleLabel.TabIndex = 6;
+            this.LoadoutPlayerTitleLabel.Text = "Title";
+            // 
+            // LoadoutTrophyComboBox
+            // 
+            this.LoadoutTrophyComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutTrophyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutTrophyComboBox.FormattingEnabled = true;
+            this.LoadoutTrophyComboBox.Location = new System.Drawing.Point(57, 67);
+            this.LoadoutTrophyComboBox.Name = "LoadoutTrophyComboBox";
+            this.LoadoutTrophyComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutTrophyComboBox.TabIndex = 5;
+            // 
+            // LoadoutGenderLabel
+            // 
+            this.LoadoutGenderLabel.AutoSize = true;
+            this.LoadoutGenderLabel.Location = new System.Drawing.Point(6, 16);
+            this.LoadoutGenderLabel.Name = "LoadoutGenderLabel";
+            this.LoadoutGenderLabel.Size = new System.Drawing.Size(42, 13);
+            this.LoadoutGenderLabel.TabIndex = 4;
+            this.LoadoutGenderLabel.Text = "Gender";
+            // 
+            // LoadoutVoiceComboBox
+            // 
+            this.LoadoutVoiceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutVoiceComboBox.FormattingEnabled = true;
+            this.LoadoutVoiceComboBox.Location = new System.Drawing.Point(57, 40);
+            this.LoadoutVoiceComboBox.Name = "LoadoutVoiceComboBox";
+            this.LoadoutVoiceComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutVoiceComboBox.TabIndex = 3;
+            // 
+            // LoadoutTrophyLabel
+            // 
+            this.LoadoutTrophyLabel.AutoSize = true;
+            this.LoadoutTrophyLabel.Location = new System.Drawing.Point(6, 70);
+            this.LoadoutTrophyLabel.Name = "LoadoutTrophyLabel";
+            this.LoadoutTrophyLabel.Size = new System.Drawing.Size(40, 13);
+            this.LoadoutTrophyLabel.TabIndex = 2;
+            this.LoadoutTrophyLabel.Text = "Trophy";
+            // 
+            // LoadoutGenderComboBox
+            // 
+            this.LoadoutGenderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutGenderComboBox.FormattingEnabled = true;
+            this.LoadoutGenderComboBox.Location = new System.Drawing.Point(57, 13);
+            this.LoadoutGenderComboBox.Name = "LoadoutGenderComboBox";
+            this.LoadoutGenderComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutGenderComboBox.TabIndex = 1;
+            // 
+            // LoadoutVoiceLabel
+            // 
+            this.LoadoutVoiceLabel.AutoSize = true;
+            this.LoadoutVoiceLabel.Location = new System.Drawing.Point(6, 43);
+            this.LoadoutVoiceLabel.Name = "LoadoutVoiceLabel";
+            this.LoadoutVoiceLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutVoiceLabel.TabIndex = 0;
+            this.LoadoutVoiceLabel.Text = "Voice";
+            // 
+            // LoadoutArmorGroupBox
+            // 
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorSkinComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorCamoLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorLegsLabel);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorHelmetComboBox);
+            this.LoadoutArmorGroupBox.Controls.Add(this.LoadoutArmorChestLabel);
+            this.LoadoutArmorGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.LoadoutArmorGroupBox.Name = "LoadoutArmorGroupBox";
+            this.LoadoutArmorGroupBox.Size = new System.Drawing.Size(228, 150);
+            this.LoadoutArmorGroupBox.TabIndex = 19;
+            this.LoadoutArmorGroupBox.TabStop = false;
+            this.LoadoutArmorGroupBox.Text = "Armor";
+            // 
+            // LoadoutArmorSkinLabel
+            // 
+            this.LoadoutArmorSkinLabel.AutoSize = true;
+            this.LoadoutArmorSkinLabel.Location = new System.Drawing.Point(6, 124);
+            this.LoadoutArmorSkinLabel.Name = "LoadoutArmorSkinLabel";
+            this.LoadoutArmorSkinLabel.Size = new System.Drawing.Size(28, 13);
+            this.LoadoutArmorSkinLabel.TabIndex = 9;
+            this.LoadoutArmorSkinLabel.Text = "Skin";
+            // 
+            // LoadoutArmorSkinComboBox
+            // 
+            this.LoadoutArmorSkinComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorSkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorSkinComboBox.Enabled = false;
+            this.LoadoutArmorSkinComboBox.FormattingEnabled = true;
+            this.LoadoutArmorSkinComboBox.Location = new System.Drawing.Point(57, 121);
+            this.LoadoutArmorSkinComboBox.Name = "LoadoutArmorSkinComboBox";
+            this.LoadoutArmorSkinComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorSkinComboBox.TabIndex = 8;
+            // 
+            // LoadoutArmorCamoComboBox
+            // 
+            this.LoadoutArmorCamoComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorCamoComboBox.Enabled = false;
+            this.LoadoutArmorCamoComboBox.FormattingEnabled = true;
+            this.LoadoutArmorCamoComboBox.Location = new System.Drawing.Point(57, 94);
+            this.LoadoutArmorCamoComboBox.Name = "LoadoutArmorCamoComboBox";
+            this.LoadoutArmorCamoComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorCamoComboBox.TabIndex = 7;
+            // 
+            // LoadoutArmorCamoLabel
+            // 
+            this.LoadoutArmorCamoLabel.AutoSize = true;
+            this.LoadoutArmorCamoLabel.Location = new System.Drawing.Point(6, 97);
+            this.LoadoutArmorCamoLabel.Name = "LoadoutArmorCamoLabel";
+            this.LoadoutArmorCamoLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutArmorCamoLabel.TabIndex = 6;
+            this.LoadoutArmorCamoLabel.Text = "Camo";
+            // 
+            // LoadoutArmorLegsComboBox
+            // 
+            this.LoadoutArmorLegsComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.LoadoutArmorLegsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorLegsComboBox.FormattingEnabled = true;
+            this.LoadoutArmorLegsComboBox.Location = new System.Drawing.Point(57, 67);
+            this.LoadoutArmorLegsComboBox.Name = "LoadoutArmorLegsComboBox";
+            this.LoadoutArmorLegsComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorLegsComboBox.TabIndex = 5;
+            // 
+            // LoadoutArmorHelmetLabel
+            // 
+            this.LoadoutArmorHelmetLabel.AutoSize = true;
+            this.LoadoutArmorHelmetLabel.Location = new System.Drawing.Point(6, 16);
+            this.LoadoutArmorHelmetLabel.Name = "LoadoutArmorHelmetLabel";
+            this.LoadoutArmorHelmetLabel.Size = new System.Drawing.Size(40, 13);
+            this.LoadoutArmorHelmetLabel.TabIndex = 4;
+            this.LoadoutArmorHelmetLabel.Text = "Helmet";
+            // 
+            // LoadoutArmorChestComboBox
+            // 
+            this.LoadoutArmorChestComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorChestComboBox.FormattingEnabled = true;
+            this.LoadoutArmorChestComboBox.Location = new System.Drawing.Point(57, 40);
+            this.LoadoutArmorChestComboBox.Name = "LoadoutArmorChestComboBox";
+            this.LoadoutArmorChestComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorChestComboBox.TabIndex = 3;
+            // 
+            // LoadoutArmorLegsLabel
+            // 
+            this.LoadoutArmorLegsLabel.AutoSize = true;
+            this.LoadoutArmorLegsLabel.Location = new System.Drawing.Point(6, 70);
+            this.LoadoutArmorLegsLabel.Name = "LoadoutArmorLegsLabel";
+            this.LoadoutArmorLegsLabel.Size = new System.Drawing.Size(30, 13);
+            this.LoadoutArmorLegsLabel.TabIndex = 2;
+            this.LoadoutArmorLegsLabel.Text = "Legs";
+            // 
+            // LoadoutArmorHelmetComboBox
+            // 
+            this.LoadoutArmorHelmetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LoadoutArmorHelmetComboBox.FormattingEnabled = true;
+            this.LoadoutArmorHelmetComboBox.Location = new System.Drawing.Point(57, 13);
+            this.LoadoutArmorHelmetComboBox.Name = "LoadoutArmorHelmetComboBox";
+            this.LoadoutArmorHelmetComboBox.Size = new System.Drawing.Size(165, 21);
+            this.LoadoutArmorHelmetComboBox.TabIndex = 1;
+            // 
+            // LoadoutArmorChestLabel
+            // 
+            this.LoadoutArmorChestLabel.AutoSize = true;
+            this.LoadoutArmorChestLabel.Location = new System.Drawing.Point(6, 43);
+            this.LoadoutArmorChestLabel.Name = "LoadoutArmorChestLabel";
+            this.LoadoutArmorChestLabel.Size = new System.Drawing.Size(34, 13);
+            this.LoadoutArmorChestLabel.TabIndex = 0;
+            this.LoadoutArmorChestLabel.Text = "Chest";
+            // 
             // LoadoutGearGroupBox
             // 
             this.LoadoutGearGroupBox.Controls.Add(this.LoadoutGearTacticalComboBox);
@@ -1088,197 +1427,6 @@ namespace Bootstrapper
             this.LoadoutGearSlot1Label.Size = new System.Drawing.Size(34, 13);
             this.LoadoutGearSlot1Label.TabIndex = 0;
             this.LoadoutGearSlot1Label.Text = "Slot 1";
-            // 
-            // LoadoutPrimaryGroupBox
-            // 
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimarySkinComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryTagLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryAmmoTypeLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryCamoLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryScopeLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMagazineLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryStockLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryMuzzleLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryBarrelLabel);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverComboBox);
-            this.LoadoutPrimaryGroupBox.Controls.Add(this.LoadoutPrimaryReceiverLabel);
-            this.LoadoutPrimaryGroupBox.Location = new System.Drawing.Point(6, 6);
-            this.LoadoutPrimaryGroupBox.Name = "LoadoutPrimaryGroupBox";
-            this.LoadoutPrimaryGroupBox.Size = new System.Drawing.Size(228, 388);
-            this.LoadoutPrimaryGroupBox.TabIndex = 20;
-            this.LoadoutPrimaryGroupBox.TabStop = false;
-            this.LoadoutPrimaryGroupBox.Text = "Primary";
-            // 
-            // LoadoutPrimaryTagComboBox
-            // 
-            this.LoadoutPrimaryTagComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryTagComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryTagComboBox.Location = new System.Drawing.Point(71, 202);
-            this.LoadoutPrimaryTagComboBox.Name = "LoadoutPrimaryTagComboBox";
-            this.LoadoutPrimaryTagComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryTagComboBox.TabIndex = 17;
-            // 
-            // LoadoutPrimaryTagLabel
-            // 
-            this.LoadoutPrimaryTagLabel.AutoSize = true;
-            this.LoadoutPrimaryTagLabel.Location = new System.Drawing.Point(6, 205);
-            this.LoadoutPrimaryTagLabel.Name = "LoadoutPrimaryTagLabel";
-            this.LoadoutPrimaryTagLabel.Size = new System.Drawing.Size(26, 13);
-            this.LoadoutPrimaryTagLabel.TabIndex = 18;
-            this.LoadoutPrimaryTagLabel.Text = "Tag";
-            // 
-            // LoadoutPrimaryAmmoTypeComboBox
-            // 
-            this.LoadoutPrimaryAmmoTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryAmmoTypeComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryAmmoTypeComboBox.Location = new System.Drawing.Point(71, 175);
-            this.LoadoutPrimaryAmmoTypeComboBox.Name = "LoadoutPrimaryAmmoTypeComboBox";
-            this.LoadoutPrimaryAmmoTypeComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryAmmoTypeComboBox.TabIndex = 15;
-            // 
-            // LoadoutPrimaryAmmoTypeLabel
-            // 
-            this.LoadoutPrimaryAmmoTypeLabel.AutoSize = true;
-            this.LoadoutPrimaryAmmoTypeLabel.Location = new System.Drawing.Point(6, 178);
-            this.LoadoutPrimaryAmmoTypeLabel.Name = "LoadoutPrimaryAmmoTypeLabel";
-            this.LoadoutPrimaryAmmoTypeLabel.Size = new System.Drawing.Size(59, 13);
-            this.LoadoutPrimaryAmmoTypeLabel.TabIndex = 16;
-            this.LoadoutPrimaryAmmoTypeLabel.Text = "Ammo type";
-            // 
-            // LoadoutPrimaryCamoComboBox
-            // 
-            this.LoadoutPrimaryCamoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryCamoComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryCamoComboBox.Location = new System.Drawing.Point(71, 229);
-            this.LoadoutPrimaryCamoComboBox.Name = "LoadoutPrimaryCamoComboBox";
-            this.LoadoutPrimaryCamoComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryCamoComboBox.TabIndex = 13;
-            // 
-            // LoadoutPrimaryCamoLabel
-            // 
-            this.LoadoutPrimaryCamoLabel.AutoSize = true;
-            this.LoadoutPrimaryCamoLabel.Location = new System.Drawing.Point(6, 232);
-            this.LoadoutPrimaryCamoLabel.Name = "LoadoutPrimaryCamoLabel";
-            this.LoadoutPrimaryCamoLabel.Size = new System.Drawing.Size(34, 13);
-            this.LoadoutPrimaryCamoLabel.TabIndex = 14;
-            this.LoadoutPrimaryCamoLabel.Text = "Camo";
-            // 
-            // LoadoutPrimaryScopeComboBox
-            // 
-            this.LoadoutPrimaryScopeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryScopeComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryScopeComboBox.Location = new System.Drawing.Point(71, 148);
-            this.LoadoutPrimaryScopeComboBox.Name = "LoadoutPrimaryScopeComboBox";
-            this.LoadoutPrimaryScopeComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryScopeComboBox.TabIndex = 11;
-            // 
-            // LoadoutPrimaryScopeLabel
-            // 
-            this.LoadoutPrimaryScopeLabel.AutoSize = true;
-            this.LoadoutPrimaryScopeLabel.Location = new System.Drawing.Point(6, 151);
-            this.LoadoutPrimaryScopeLabel.Name = "LoadoutPrimaryScopeLabel";
-            this.LoadoutPrimaryScopeLabel.Size = new System.Drawing.Size(38, 13);
-            this.LoadoutPrimaryScopeLabel.TabIndex = 12;
-            this.LoadoutPrimaryScopeLabel.Text = "Scope";
-            // 
-            // LoadoutPrimaryMagazineComboBox
-            // 
-            this.LoadoutPrimaryMagazineComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryMagazineComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryMagazineComboBox.Location = new System.Drawing.Point(71, 121);
-            this.LoadoutPrimaryMagazineComboBox.Name = "LoadoutPrimaryMagazineComboBox";
-            this.LoadoutPrimaryMagazineComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryMagazineComboBox.TabIndex = 9;
-            // 
-            // LoadoutPrimaryMagazineLabel
-            // 
-            this.LoadoutPrimaryMagazineLabel.AutoSize = true;
-            this.LoadoutPrimaryMagazineLabel.Location = new System.Drawing.Point(6, 124);
-            this.LoadoutPrimaryMagazineLabel.Name = "LoadoutPrimaryMagazineLabel";
-            this.LoadoutPrimaryMagazineLabel.Size = new System.Drawing.Size(53, 13);
-            this.LoadoutPrimaryMagazineLabel.TabIndex = 10;
-            this.LoadoutPrimaryMagazineLabel.Text = "Magazine";
-            // 
-            // LoadoutPrimaryStockComboBox
-            // 
-            this.LoadoutPrimaryStockComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryStockComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryStockComboBox.Location = new System.Drawing.Point(71, 94);
-            this.LoadoutPrimaryStockComboBox.Name = "LoadoutPrimaryStockComboBox";
-            this.LoadoutPrimaryStockComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryStockComboBox.TabIndex = 7;
-            // 
-            // LoadoutPrimaryStockLabel
-            // 
-            this.LoadoutPrimaryStockLabel.AutoSize = true;
-            this.LoadoutPrimaryStockLabel.Location = new System.Drawing.Point(6, 97);
-            this.LoadoutPrimaryStockLabel.Name = "LoadoutPrimaryStockLabel";
-            this.LoadoutPrimaryStockLabel.Size = new System.Drawing.Size(35, 13);
-            this.LoadoutPrimaryStockLabel.TabIndex = 8;
-            this.LoadoutPrimaryStockLabel.Text = "Stock";
-            // 
-            // LoadoutPrimaryMuzzleComboBox
-            // 
-            this.LoadoutPrimaryMuzzleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryMuzzleComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryMuzzleComboBox.Location = new System.Drawing.Point(71, 67);
-            this.LoadoutPrimaryMuzzleComboBox.Name = "LoadoutPrimaryMuzzleComboBox";
-            this.LoadoutPrimaryMuzzleComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryMuzzleComboBox.TabIndex = 5;
-            // 
-            // LoadoutPrimaryMuzzleLabel
-            // 
-            this.LoadoutPrimaryMuzzleLabel.AutoSize = true;
-            this.LoadoutPrimaryMuzzleLabel.Location = new System.Drawing.Point(6, 70);
-            this.LoadoutPrimaryMuzzleLabel.Name = "LoadoutPrimaryMuzzleLabel";
-            this.LoadoutPrimaryMuzzleLabel.Size = new System.Drawing.Size(40, 13);
-            this.LoadoutPrimaryMuzzleLabel.TabIndex = 6;
-            this.LoadoutPrimaryMuzzleLabel.Text = "Muzzle";
-            // 
-            // LoadoutPrimaryBarrelComboBox
-            // 
-            this.LoadoutPrimaryBarrelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryBarrelComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryBarrelComboBox.Location = new System.Drawing.Point(71, 40);
-            this.LoadoutPrimaryBarrelComboBox.Name = "LoadoutPrimaryBarrelComboBox";
-            this.LoadoutPrimaryBarrelComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryBarrelComboBox.TabIndex = 3;
-            // 
-            // LoadoutPrimaryBarrelLabel
-            // 
-            this.LoadoutPrimaryBarrelLabel.AutoSize = true;
-            this.LoadoutPrimaryBarrelLabel.Location = new System.Drawing.Point(6, 43);
-            this.LoadoutPrimaryBarrelLabel.Name = "LoadoutPrimaryBarrelLabel";
-            this.LoadoutPrimaryBarrelLabel.Size = new System.Drawing.Size(34, 13);
-            this.LoadoutPrimaryBarrelLabel.TabIndex = 4;
-            this.LoadoutPrimaryBarrelLabel.Text = "Barrel";
-            // 
-            // LoadoutPrimaryReceiverComboBox
-            // 
-            this.LoadoutPrimaryReceiverComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimaryReceiverComboBox.FormattingEnabled = true;
-            this.LoadoutPrimaryReceiverComboBox.Location = new System.Drawing.Point(71, 13);
-            this.LoadoutPrimaryReceiverComboBox.Name = "LoadoutPrimaryReceiverComboBox";
-            this.LoadoutPrimaryReceiverComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimaryReceiverComboBox.TabIndex = 2;
-            // 
-            // LoadoutPrimaryReceiverLabel
-            // 
-            this.LoadoutPrimaryReceiverLabel.AutoSize = true;
-            this.LoadoutPrimaryReceiverLabel.Location = new System.Drawing.Point(6, 16);
-            this.LoadoutPrimaryReceiverLabel.Name = "LoadoutPrimaryReceiverLabel";
-            this.LoadoutPrimaryReceiverLabel.Size = new System.Drawing.Size(50, 13);
-            this.LoadoutPrimaryReceiverLabel.TabIndex = 2;
-            this.LoadoutPrimaryReceiverLabel.Text = "Receiver";
             // 
             // LoadoutDepotGroupBox
             // 
@@ -1394,172 +1542,24 @@ namespace Bootstrapper
             this.LoadoutDepotSlot1Label.TabIndex = 0;
             this.LoadoutDepotSlot1Label.Text = "Slot 1";
             // 
-            // LoadoutTabControl
+            // MasterServerTab
             // 
-            this.LoadoutTabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.LoadoutTabControl.Controls.Add(this.WeaponsTab);
-            this.LoadoutTabControl.Controls.Add(this.EquipmentTab);
-            this.LoadoutTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadoutTabControl.Location = new System.Drawing.Point(3, 3);
-            this.LoadoutTabControl.Name = "LoadoutTabControl";
-            this.LoadoutTabControl.SelectedIndex = 0;
-            this.LoadoutTabControl.Size = new System.Drawing.Size(690, 409);
-            this.LoadoutTabControl.TabIndex = 23;
+            this.MasterServerTab.Controls.Add(this.MSTabNotImplementedLable);
+            this.MasterServerTab.Location = new System.Drawing.Point(4, 22);
+            this.MasterServerTab.Name = "MasterServerTab";
+            this.MasterServerTab.Size = new System.Drawing.Size(696, 415);
+            this.MasterServerTab.TabIndex = 3;
+            this.MasterServerTab.Text = "Master Server";
+            this.MasterServerTab.UseVisualStyleBackColor = true;
             // 
-            // WeaponsTab
+            // MSTabNotImplementedLable
             // 
-            this.WeaponsTab.Controls.Add(this.LoadoutPrimaryGroupBox);
-            this.WeaponsTab.Controls.Add(this.LoadoutSecondaryGroupBox);
-            this.WeaponsTab.Location = new System.Drawing.Point(4, 4);
-            this.WeaponsTab.Name = "WeaponsTab";
-            this.WeaponsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.WeaponsTab.Size = new System.Drawing.Size(682, 383);
-            this.WeaponsTab.TabIndex = 0;
-            this.WeaponsTab.Text = "Weapons";
-            this.WeaponsTab.UseVisualStyleBackColor = true;
-            // 
-            // EquipmentTab
-            // 
-            this.EquipmentTab.Controls.Add(this.LoadoutCharacterGroupBox);
-            this.EquipmentTab.Controls.Add(this.LoadoutArmorGroupBox);
-            this.EquipmentTab.Controls.Add(this.LoadoutGearGroupBox);
-            this.EquipmentTab.Controls.Add(this.LoadoutDepotGroupBox);
-            this.EquipmentTab.Location = new System.Drawing.Point(4, 4);
-            this.EquipmentTab.Name = "EquipmentTab";
-            this.EquipmentTab.Size = new System.Drawing.Size(682, 383);
-            this.EquipmentTab.TabIndex = 2;
-            this.EquipmentTab.Text = "Equipment";
-            this.EquipmentTab.UseVisualStyleBackColor = true;
-            // 
-            // LoadoutArmorSkinComboBox
-            // 
-            this.LoadoutArmorSkinComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.LoadoutArmorSkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutArmorSkinComboBox.Enabled = false;
-            this.LoadoutArmorSkinComboBox.FormattingEnabled = true;
-            this.LoadoutArmorSkinComboBox.Location = new System.Drawing.Point(57, 121);
-            this.LoadoutArmorSkinComboBox.Name = "LoadoutArmorSkinComboBox";
-            this.LoadoutArmorSkinComboBox.Size = new System.Drawing.Size(165, 21);
-            this.LoadoutArmorSkinComboBox.TabIndex = 8;
-            // 
-            // LoadoutArmorSkinLabel
-            // 
-            this.LoadoutArmorSkinLabel.AutoSize = true;
-            this.LoadoutArmorSkinLabel.Location = new System.Drawing.Point(6, 124);
-            this.LoadoutArmorSkinLabel.Name = "LoadoutArmorSkinLabel";
-            this.LoadoutArmorSkinLabel.Size = new System.Drawing.Size(28, 13);
-            this.LoadoutArmorSkinLabel.TabIndex = 9;
-            this.LoadoutArmorSkinLabel.Text = "Skin";
-            // 
-            // LoadoutPrimarySkinComboBox
-            // 
-            this.LoadoutPrimarySkinComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LoadoutPrimarySkinComboBox.FormattingEnabled = true;
-            this.LoadoutPrimarySkinComboBox.Location = new System.Drawing.Point(71, 256);
-            this.LoadoutPrimarySkinComboBox.Name = "LoadoutPrimarySkinComboBox";
-            this.LoadoutPrimarySkinComboBox.Size = new System.Drawing.Size(151, 21);
-            this.LoadoutPrimarySkinComboBox.TabIndex = 19;
-            // 
-            // LoadoutPrimarySkinLabel
-            // 
-            this.LoadoutPrimarySkinLabel.AutoSize = true;
-            this.LoadoutPrimarySkinLabel.Location = new System.Drawing.Point(6, 259);
-            this.LoadoutPrimarySkinLabel.Name = "LoadoutPrimarySkinLabel";
-            this.LoadoutPrimarySkinLabel.Size = new System.Drawing.Size(28, 13);
-            this.LoadoutPrimarySkinLabel.TabIndex = 20;
-            this.LoadoutPrimarySkinLabel.Text = "Skin";
-            // 
-            // LoadoutCharacterGroupBox
-            // 
-            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox2);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.label2);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox3);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.label3);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox4);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.label4);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.comboBox5);
-            this.LoadoutCharacterGroupBox.Controls.Add(this.label5);
-            this.LoadoutCharacterGroupBox.Location = new System.Drawing.Point(240, 6);
-            this.LoadoutCharacterGroupBox.Name = "LoadoutCharacterGroupBox";
-            this.LoadoutCharacterGroupBox.Size = new System.Drawing.Size(228, 150);
-            this.LoadoutCharacterGroupBox.TabIndex = 23;
-            this.LoadoutCharacterGroupBox.TabStop = false;
-            this.LoadoutCharacterGroupBox.Text = "Character";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(57, 94);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(165, 21);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Title";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(57, 67);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(165, 21);
-            this.comboBox3.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Gender";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(57, 40);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(165, 21);
-            this.comboBox4.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Trophy";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(57, 13);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(165, 21);
-            this.comboBox5.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 43);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Voice";
+            this.MSTabNotImplementedLable.AutoSize = true;
+            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(308, 200);
+            this.MSTabNotImplementedLable.Name = "MSTabNotImplementedLable";
+            this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
+            this.MSTabNotImplementedLable.TabIndex = 0;
+            this.MSTabNotImplementedLable.Text = "Not implemented!";
             // 
             // LauncherUI
             // 
@@ -1583,24 +1583,24 @@ namespace Bootstrapper
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabPortNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabPlayerCountNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerTabBotCountNum)).EndInit();
-            this.MasterServerTab.ResumeLayout(false);
-            this.MasterServerTab.PerformLayout();
             this.LoadoutTab.ResumeLayout(false);
-            this.LoadoutArmorGroupBox.ResumeLayout(false);
-            this.LoadoutArmorGroupBox.PerformLayout();
-            this.LoadoutSecondaryGroupBox.ResumeLayout(false);
-            this.LoadoutSecondaryGroupBox.PerformLayout();
-            this.LoadoutGearGroupBox.ResumeLayout(false);
-            this.LoadoutGearGroupBox.PerformLayout();
-            this.LoadoutPrimaryGroupBox.ResumeLayout(false);
-            this.LoadoutPrimaryGroupBox.PerformLayout();
-            this.LoadoutDepotGroupBox.ResumeLayout(false);
-            this.LoadoutDepotGroupBox.PerformLayout();
             this.LoadoutTabControl.ResumeLayout(false);
             this.WeaponsTab.ResumeLayout(false);
+            this.LoadoutPrimaryGroupBox.ResumeLayout(false);
+            this.LoadoutPrimaryGroupBox.PerformLayout();
+            this.LoadoutSecondaryGroupBox.ResumeLayout(false);
+            this.LoadoutSecondaryGroupBox.PerformLayout();
             this.EquipmentTab.ResumeLayout(false);
             this.LoadoutCharacterGroupBox.ResumeLayout(false);
             this.LoadoutCharacterGroupBox.PerformLayout();
+            this.LoadoutArmorGroupBox.ResumeLayout(false);
+            this.LoadoutArmorGroupBox.PerformLayout();
+            this.LoadoutGearGroupBox.ResumeLayout(false);
+            this.LoadoutGearGroupBox.PerformLayout();
+            this.LoadoutDepotGroupBox.ResumeLayout(false);
+            this.LoadoutDepotGroupBox.PerformLayout();
+            this.MasterServerTab.ResumeLayout(false);
+            this.MasterServerTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1727,13 +1727,13 @@ namespace Bootstrapper
         private System.Windows.Forms.Label LoadoutPrimarySkinLabel;
         private System.Windows.Forms.ComboBox LoadoutPrimarySkinComboBox;
         private System.Windows.Forms.GroupBox LoadoutCharacterGroupBox;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox LoadoutPlayerTitleComboBox;
+        private System.Windows.Forms.Label LoadoutPlayerTitleLabel;
+        private System.Windows.Forms.ComboBox LoadoutTrophyComboBox;
+        private System.Windows.Forms.Label LoadoutGenderLabel;
+        private System.Windows.Forms.ComboBox LoadoutVoiceComboBox;
+        private System.Windows.Forms.Label LoadoutTrophyLabel;
+        private System.Windows.Forms.ComboBox LoadoutGenderComboBox;
+        private System.Windows.Forms.Label LoadoutVoiceLabel;
     }
 }
