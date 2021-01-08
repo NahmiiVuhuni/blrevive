@@ -62,7 +62,7 @@ namespace Bootstrapper
             if (ServerTabCustomURLCheckbox.Checked)
                 GameLauncher.LaunchServer(ServerTabLaunchOptionsTextBox.Text);
             else
-                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, ServerTabLaunchOptionsTextBox.Text);
+                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, ServerTabLaunchOptionsTextBox.Text);
         }
 
         private void ClientTabCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -187,7 +187,7 @@ namespace Bootstrapper
 
         private void SetClientTabHostServersComboBoxDataSource()
         {
-            // this is the name of the class/object in Hosts List, the combobox with will display a server "Address : Port", see class Server.toString() overwrite  
+            // this is the name of the class/object in Hosts List, the combobox with will display a server "Address:Port", see class Server.toString() overwrite  
             ClientTabHostServersComboBox.DisplayMember = "Server"; 
             ClientTabHostServersComboBox.ValueMember = null;
             // set new list instance as data source, otherwise the combobox won't react to items changed/added inside the hosts list(combobox)  

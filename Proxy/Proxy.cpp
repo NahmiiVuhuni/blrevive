@@ -28,52 +28,45 @@ BLRevive::Proxy::Proxy()
 #pragma region ProcessEventDetour
 typedef bool(*tProcessEventWrapper)(const class UObject* pCaller, const class UFunction* pFunction, const void* pParams);
 tProcessEventWrapper pProcessEventWrapper;
+typedef void(__thiscall* tProcessEvent)(class UObject*, class UFunction*, void*);
+tProcessEvent ProcessEvent = (tProcessEvent)pProcessEvent;
 void hkProcessEvent();
 
 DWORD FunctionXorg = NULL;
 DWORD ParamsXorg = NULL;
 
-DWORD pCaller = NULL;
-DWORD pFunction = NULL;
-DWORD pParams = NULL;
+
 
 static DWORD dwProcessEventReturn = (DWORD)pProcessEventMidHookReturn;
 static DWORD dwProcessEventSkip = (DWORD)pProcessEventMidHookEndReturn;
+static DWORD dwPEReturn = (DWORD)(pProcessEventMidHookReturn + 0xA);
 
+
+DWORD pCaller = NULL;
+DWORD pFunction = NULL;
+DWORD pParams = NULL;
 void __declspec(naked) hkProcessEvent()
 {
 	__asm
 	{
-		XOR		EBX, [ECX + EAX * 4]			// overwritten instruction
-		PUSH	EAX								// save eax
-		//MOV		EAX, DWORD PTR[EBP + 0x8]		// get decrypted function pointer
-		//MOV		pDecryptedFunction, EAX
-		//MOV		EAX, DWORD PTR[EBP + 0xC]		// get decrypted params pointer
-		//MOV		pDecryptedParams, EAX
-		MOV		pFunction, EDI					// get encrypted function pointer
-		MOV		pParams, EBX					// get encrypted params pointer
-		MOV		EAX, DWORD PTR[EBP - 0x20]
-		MOV		pCaller, EAX
-		POP		EAX								// restore eax
-		PUSHAD									// save all registers
+		MOV			pFunction, EDI;
+		MOV			pParams, EBX;
+		MOV			pCaller, ESI;
+
+		PUSHAD;
+		PUSHFD;
 	}
 
-	if (pFunction)
-		if (pProcessEventWrapper((const UObject*)pCaller, (const UFunction*)pFunction, (const void*)pParams))
-		{
-			__asm
-			{
-				POPAD									// restore all registers
-				JMP[dwProcessEventReturn]
-			}
-		}
-		else {
-			__asm
-			{
-				POPAD
-				JMP[dwProcessEventSkip]
-			}
-		}
+	pProcessEventWrapper((UObject*)pCaller, (UFunction*)pFunction, (void*)pParams);
+
+	__asm
+	{									// restore all registers
+		POPFD;
+		POPAD;
+
+		TEST		DWORD PTR[EDI + 0x84], 0x402;
+		JMP			[dwPEReturn];
+	}
 }
 #pragma endregion
 
@@ -82,6 +75,7 @@ static UFoxUI* pUI = NULL;
 static UConsole* pConsole = NULL;
 static UEngine* pEngine = NULL;
 static ULocalPlayer* pLocalPlayer = NULL;
+static bool bSetInventory = false;
 bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 {
 	if (!pCaller) {
@@ -95,9 +89,35 @@ bool ProcessEventWrapper(UObject* pCaller, UFunction* pFunction, void* pParams)
 		return false;
 	}
 
+
 	try {
 		std::string callerName(pCaller->GetName());
 		std::string functionName(pFunction->GetName());
+
+		if (functionName == "BeginState")
+		{
+			UObject_eventBeginState_Parms* parms = reinterpret_cast<UObject_eventBeginState_Parms*>(pParams);
+			LDebug("{0}->{1}(PreviousState: {2})", callerName, functionName, parms->PreviousStateName.GetName());
+			LFlush;
+			return true;
+		}
+		else if (functionName == "EndState") {
+			UObject_eventEndState_Parms* parms = reinterpret_cast<UObject_eventEndState_Parms*>(pParams);
+			LDebug("{0}->{1}(NextState: {2})", callerName, functionName, parms->NextStateName.GetName());
+			return true;
+		}
+		else if (functionName == "ClientGotoState") {
+			APlayerController_execClientGotoState_Parms* parms = reinterpret_cast<APlayerController_execClientGotoState_Parms*>(pParams);
+			std::string newStateName(parms->NewState.GetName());
+			if ( newStateName == "PlayerWalking")
+			{
+				//LDebug("ChangePreset: {0}", ret.ToChar());
+			}
+
+			LDebug("{0}->{1}(NewState: {2} | NewLabel: {3})", callerName, functionName, parms->NewState.GetName(), parms->NewLabel.GetName());
+			return true;
+		}
+
 
 		if (BLRevive::Proxy::LogProcessEventCalls)
 		{
@@ -119,7 +139,7 @@ void BLRevive::Proxy::Initialize()
 
 	BLRevive::Proxy::LogProcessEventCalls = Config::LogProcessEventCalls();
 
-	MakeJMP((BYTE*)pProcessEventMidHook, (DWORD)hkProcessEvent, 0x5);
+	MakeJMP((BYTE*)pProcessEventMidHookReturn, (DWORD)hkProcessEvent, 0xA);
 	pProcessEventWrapper = (tProcessEventWrapper)ProcessEventWrapper;
 	LDebug("Proxy initialized");
 }
