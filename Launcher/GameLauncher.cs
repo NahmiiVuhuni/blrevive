@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using Serilog;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides functionality for starting Server and Client.

@@ -7,7 +7,7 @@ using System.IO;
 using Serilog;
 using System.Windows.Forms;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides logic for patching BL:R game files.

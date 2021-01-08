@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides read/write access to JSON configuration.

@@ -1,5 +1,5 @@
 ﻿
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Object containing a host server representation for Config JSON and HostsConfig JSON 

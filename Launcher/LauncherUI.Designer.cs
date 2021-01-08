@@ -1,5 +1,5 @@
 ﻿
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     partial class LauncherUI
     {

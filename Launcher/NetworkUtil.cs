@@ -5,7 +5,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using Serilog;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides common network util functions

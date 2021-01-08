@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     public partial class LauncherUI : Form
     {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using Serilog;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Logic for logging. Don't try to use this class directly, instead use the static instance of Serilog (just Log)
