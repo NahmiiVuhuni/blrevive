@@ -70,33 +70,31 @@ namespace BLRevive.Launcher
 
         private void ClientTabCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            // this condition can be condensed simplified, keep it like this to be easy to read, that is: apply flag toggle only if not checked 
+            ClientTabServerAddressTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
 
-            ClientTabServerAddressTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressTextBox.Enabled : false;
-            ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerPortNum.Enabled : false;
-            ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabPlayerNameTextBox.Enabled : false;
-            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabLaunchOptionsTextBox.Enabled : false;
-            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressSaveButton.Enabled : false;
-            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersResetButton.Enabled : false;
-            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersBackupButton.Enabled : false;
-            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersRestoreButton.Enabled : false;
-            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersComboBox.Enabled : false;
-
-            ClientTabCustomURLTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabCustomURLTextBox.Enabled : true;
+            ClientTabCustomURLTextBox.Enabled = ClientTabCustomURLCheckBox.Checked;
         }
 
         private void ServerTabCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            ServerTabPlaylistsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabPlaylistsCombo.Enabled : false;
-            ServerTabGamemodesCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0 ? !ServerTabGamemodesCombo.Enabled : false;
-            ServerTabMapsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0 ? !ServerTabMapsCombo.Enabled : false;
-            ServerTabNameTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabNameTextBox.Enabled : false;
-            ServerTabBotCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabBotCountNum.Enabled : false;
-            ServerTabPlayerCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabPlayerCountNum.Enabled : false;
-            ServerTabLaunchOptionsTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabLaunchOptionsTextBox.Enabled : false;
-            ServerTabPortNum.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabPortNum.Enabled : false;
+            ServerTabPlaylistsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabGamemodesCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabMapsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabNameTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabBotCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabPlayerCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabLaunchOptionsTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabPortNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
 
-            ServerTabCustomURLTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked ? !ServerTabCustomURLTextBox.Enabled : true;
+            ServerTabCustomURLTextBox.Enabled = ServerTabCustomURLCheckbox.Checked;
         }
 
 
