@@ -55,6 +55,11 @@ namespace BLRevive.Launcher
         public string[] Gamemodes;
 
         /// <summary>
+        /// Available Playlists.
+        /// </summary>
+        public string[] Playlists;
+
+        /// <summary>
         /// Known Host Servers by IP or Name and port  
         /// </summary>
         public List<Server> Hosts;
