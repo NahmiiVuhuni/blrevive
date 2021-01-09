@@ -216,6 +216,16 @@ namespace BLRevive.Launcher
         {
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
                 PatchTabASLROnlyCheckBox.Checked, PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
+
+
+            File.Copy($"{Directory.GetCurrentDirectory()}\\Proxy.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\Proxy.dll", true);
+#if DEBUG
+            File.Copy($"{Directory.GetCurrentDirectory()}\\fmtd.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmtd.dll", true);
+#else
+            File.Copy($"{Directory.GetCurrentDirectory()}\\fmt.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmt.dll", true);
+#endif
+            File.Copy($"{Directory.GetCurrentDirectory()}\\BLRevive.json", $"{Config.Get().GameFolder}\\Binaries\\Win32\\BLRevive.json", true);
+            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}\\Binaries\\Win32\\{GameLauncher.ServerExe}", true);
         }
 
         private void PatchTabOpenGameFileDialogButton_Click(object sender, EventArgs e)
@@ -238,21 +248,6 @@ namespace BLRevive.Launcher
             PatchTabNoProxyInjectionCheckBox.Enabled = !PatchTabASLROnlyCheckBox.Checked;
         }
 
-        private void SettingsTabGameFileLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PatchTabOpenGameFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void SettingsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SettingsTabBlacklightDirectoryBrowseButton_Click(object sender, EventArgs e)
         {
             var folderDialog = new FolderBrowserDialog();
@@ -273,11 +268,6 @@ namespace BLRevive.Launcher
                     Config.Save();
                 }
             }
-        }
-
-        private void PatchTab_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void PatchTabOpenGameOutputDialogButton_Click(object sender, EventArgs e)

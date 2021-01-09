@@ -650,7 +650,6 @@ namespace BLRevive.Launcher
             this.PatchTab.TabIndex = 4;
             this.PatchTab.Text = "Patcher";
             this.PatchTab.UseVisualStyleBackColor = true;
-            this.PatchTab.Click += new System.EventHandler(this.PatchTab_Click);
             // 
             // PatchTabNoProxyInjectionCheckBox
             // 
@@ -722,7 +721,6 @@ namespace BLRevive.Launcher
             this.SettingsTab.TabIndex = 5;
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
-            this.SettingsTab.Click += new System.EventHandler(this.SettingsTab_Click);
             // 
             // SettingsTabBlacklightDirectoryBrowseButton
             // 
@@ -751,7 +749,6 @@ namespace BLRevive.Launcher
             this.SettingsTabGameFileLabel.Size = new System.Drawing.Size(100, 15);
             this.SettingsTabGameFileLabel.TabIndex = 0;
             this.SettingsTabGameFileLabel.Text = "Blacklight Directory";
-            this.SettingsTabGameFileLabel.Click += new System.EventHandler(this.SettingsTabGameFileLabel_Click);
             // 
             // PatchTabOpenGameOutputDialogButton
             // 
