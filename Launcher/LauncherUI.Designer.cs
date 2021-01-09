@@ -29,6 +29,7 @@ namespace BLRevive.Launcher
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherUI));
             this.LauncherTabControl = new System.Windows.Forms.TabControl();
             this.BotMatchTab = new System.Windows.Forms.TabPage();
             this.BGTabBotCountNum = new System.Windows.Forms.NumericUpDown();
@@ -76,6 +77,10 @@ namespace BLRevive.Launcher
             this.MasterServerTab = new System.Windows.Forms.TabPage();
             this.MSTabNotImplementedLable = new System.Windows.Forms.Label();
             this.PatchTab = new System.Windows.Forms.TabPage();
+            this.PatchTabGameFileOutputLabel = new System.Windows.Forms.Label();
+            this.PatchTabGameFileInputLabel = new System.Windows.Forms.Label();
+            this.PatchTabOpenGameOutputDialogButton = new System.Windows.Forms.Button();
+            this.PatchTabGameFileOutputTextBox = new System.Windows.Forms.TextBox();
             this.PatchTabNoProxyInjectionCheckBox = new System.Windows.Forms.CheckBox();
             this.PatchTabNoEmblemPatchCheckBox = new System.Windows.Forms.CheckBox();
             this.PatchTabASLROnlyCheckBox = new System.Windows.Forms.CheckBox();
@@ -86,10 +91,6 @@ namespace BLRevive.Launcher
             this.SettingsTabBlacklightDirectoryBrowseButton = new System.Windows.Forms.Button();
             this.SettingsTabBlacklightDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.SettingsTabGameFileLabel = new System.Windows.Forms.Label();
-            this.PatchTabOpenGameOutputDialogButton = new System.Windows.Forms.Button();
-            this.PatchTabGameFileOutputTextBox = new System.Windows.Forms.TextBox();
-            this.PatchTabGameFileInputLabel = new System.Windows.Forms.Label();
-            this.PatchTabGameFileOutputLabel = new System.Windows.Forms.Label();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -651,6 +652,42 @@ namespace BLRevive.Launcher
             this.PatchTab.Text = "Patcher";
             this.PatchTab.UseVisualStyleBackColor = true;
             // 
+            // PatchTabGameFileOutputLabel
+            // 
+            this.PatchTabGameFileOutputLabel.AutoSize = true;
+            this.PatchTabGameFileOutputLabel.Location = new System.Drawing.Point(71, 121);
+            this.PatchTabGameFileOutputLabel.Name = "PatchTabGameFileOutputLabel";
+            this.PatchTabGameFileOutputLabel.Size = new System.Drawing.Size(39, 13);
+            this.PatchTabGameFileOutputLabel.TabIndex = 10;
+            this.PatchTabGameFileOutputLabel.Text = "Output";
+            // 
+            // PatchTabGameFileInputLabel
+            // 
+            this.PatchTabGameFileInputLabel.AutoSize = true;
+            this.PatchTabGameFileInputLabel.Location = new System.Drawing.Point(71, 95);
+            this.PatchTabGameFileInputLabel.Name = "PatchTabGameFileInputLabel";
+            this.PatchTabGameFileInputLabel.Size = new System.Drawing.Size(31, 13);
+            this.PatchTabGameFileInputLabel.TabIndex = 9;
+            this.PatchTabGameFileInputLabel.Text = "Input";
+            // 
+            // PatchTabOpenGameOutputDialogButton
+            // 
+            this.PatchTabOpenGameOutputDialogButton.Location = new System.Drawing.Point(562, 116);
+            this.PatchTabOpenGameOutputDialogButton.Name = "PatchTabOpenGameOutputDialogButton";
+            this.PatchTabOpenGameOutputDialogButton.Size = new System.Drawing.Size(75, 22);
+            this.PatchTabOpenGameOutputDialogButton.TabIndex = 8;
+            this.PatchTabOpenGameOutputDialogButton.Text = "Browse";
+            this.PatchTabOpenGameOutputDialogButton.UseVisualStyleBackColor = true;
+            this.PatchTabOpenGameOutputDialogButton.Click += new System.EventHandler(this.PatchTabOpenGameOutputDialogButton_Click);
+            // 
+            // PatchTabGameFileOutputTextBox
+            // 
+            this.PatchTabGameFileOutputTextBox.Location = new System.Drawing.Point(123, 117);
+            this.PatchTabGameFileOutputTextBox.Name = "PatchTabGameFileOutputTextBox";
+            this.PatchTabGameFileOutputTextBox.Size = new System.Drawing.Size(437, 20);
+            this.PatchTabGameFileOutputTextBox.TabIndex = 7;
+            this.PatchTabGameFileOutputTextBox.Text = "FoxGame-win32-Shipping.exe";
+            // 
             // PatchTabNoProxyInjectionCheckBox
             // 
             this.PatchTabNoProxyInjectionCheckBox.AutoSize = true;
@@ -750,42 +787,6 @@ namespace BLRevive.Launcher
             this.SettingsTabGameFileLabel.TabIndex = 0;
             this.SettingsTabGameFileLabel.Text = "Blacklight Directory";
             // 
-            // PatchTabOpenGameOutputDialogButton
-            // 
-            this.PatchTabOpenGameOutputDialogButton.Location = new System.Drawing.Point(562, 116);
-            this.PatchTabOpenGameOutputDialogButton.Name = "PatchTabOpenGameOutputDialogButton";
-            this.PatchTabOpenGameOutputDialogButton.Size = new System.Drawing.Size(75, 22);
-            this.PatchTabOpenGameOutputDialogButton.TabIndex = 8;
-            this.PatchTabOpenGameOutputDialogButton.Text = "Browse";
-            this.PatchTabOpenGameOutputDialogButton.UseVisualStyleBackColor = true;
-            this.PatchTabOpenGameOutputDialogButton.Click += new System.EventHandler(this.PatchTabOpenGameOutputDialogButton_Click);
-            // 
-            // PatchTabGameFileOutputTextBox
-            // 
-            this.PatchTabGameFileOutputTextBox.Location = new System.Drawing.Point(123, 117);
-            this.PatchTabGameFileOutputTextBox.Name = "PatchTabGameFileOutputTextBox";
-            this.PatchTabGameFileOutputTextBox.Size = new System.Drawing.Size(437, 20);
-            this.PatchTabGameFileOutputTextBox.TabIndex = 7;
-            this.PatchTabGameFileOutputTextBox.Text = "FoxGame-win32-Shipping.exe";
-            // 
-            // PatchTabGameFileInputLabel
-            // 
-            this.PatchTabGameFileInputLabel.AutoSize = true;
-            this.PatchTabGameFileInputLabel.Location = new System.Drawing.Point(71, 95);
-            this.PatchTabGameFileInputLabel.Name = "PatchTabGameFileInputLabel";
-            this.PatchTabGameFileInputLabel.Size = new System.Drawing.Size(31, 13);
-            this.PatchTabGameFileInputLabel.TabIndex = 9;
-            this.PatchTabGameFileInputLabel.Text = "Input";
-            // 
-            // PatchTabGameFileOutputLabel
-            // 
-            this.PatchTabGameFileOutputLabel.AutoSize = true;
-            this.PatchTabGameFileOutputLabel.Location = new System.Drawing.Point(71, 121);
-            this.PatchTabGameFileOutputLabel.Name = "PatchTabGameFileOutputLabel";
-            this.PatchTabGameFileOutputLabel.Size = new System.Drawing.Size(39, 13);
-            this.PatchTabGameFileOutputLabel.TabIndex = 10;
-            this.PatchTabGameFileOutputLabel.Text = "Output";
-            // 
             // LauncherUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,6 +794,7 @@ namespace BLRevive.Launcher
             this.ClientSize = new System.Drawing.Size(704, 441);
             this.Controls.Add(this.LauncherTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LauncherUI";
             this.Text = "BLRevive Launcher";
             this.Load += new System.EventHandler(this.LauncherUI_Load);
