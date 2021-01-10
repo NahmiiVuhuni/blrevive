@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
@@ -224,14 +224,18 @@ namespace BLRevive.Launcher
 
             foreach(DriveInfo drive in drives)
             {
-                string fullSteamPath = $"{drive.VolumeLabel}:{DefaultSteamPath}\\{DefaultSteamGamePath}";
-                string cutSteamPath = $"{drive.VolumeLabel}:{DefaultSteamGamePath}";
+                try {
+                    string fullSteamPath = $"{drive.VolumeLabel}:{DefaultSteamPath}\\{DefaultSteamGamePath}";
+                    string cutSteamPath = $"{drive.VolumeLabel}:{DefaultSteamGamePath}";
 
-                if (Directory.Exists(fullSteamPath) && IsValidGameDirectory(fullSteamPath))
-                    return fullSteamPath;
+                    if (Directory.Exists(fullSteamPath) && IsValidGameDirectory(fullSteamPath))
+                        return fullSteamPath;
 
-                if (Directory.Exists(cutSteamPath) && IsValidGameDirectory(cutSteamPath))
-                    return cutSteamPath;
+                    if (Directory.Exists(cutSteamPath) && IsValidGameDirectory(cutSteamPath))
+                        return cutSteamPath;
+                } catch (Exception ex) {
+                    
+                }
             }
 
             return "";
