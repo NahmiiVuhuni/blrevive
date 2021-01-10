@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using Serilog;
 using System.IO.Ports;
+using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace BLRevive.Launcher
 {
@@ -211,6 +213,34 @@ namespace BLRevive.Launcher
 
             Log.Information("Patching was succesfull!");
             return true;
+        }
+
+        public static string GetDefaultGamePath()
+        {
+            const string DefaultSteamGamePath = "\\Steam\\steamapps\\common\\blacklightretribution";
+            const string DefaultSteamPath = "\\Program Files (x86)";
+
+            DriveInfo[] drives = DriveInfo.GetDrives();
+
+            foreach(DriveInfo drive in drives)
+            {
+                string fullSteamPath = $"{drive.VolumeLabel}:{DefaultSteamPath}\\{DefaultSteamGamePath}";
+                string cutSteamPath = $"{drive.VolumeLabel}:{DefaultSteamGamePath}";
+
+                if (Directory.Exists(fullSteamPath) && IsValidGameDirectory(fullSteamPath))
+                    return fullSteamPath;
+
+                if (Directory.Exists(cutSteamPath) && IsValidGameDirectory(cutSteamPath))
+                    return cutSteamPath;
+            }
+
+            return "";
+        }
+
+        public static bool IsValidGameDirectory(string path)
+        {
+            return !Directory.Exists($"{path}\\Binaries\\Win32") ||
+                !Directory.Exists($"{path}\\FoxGame\\Logs");
         }
     }
 }

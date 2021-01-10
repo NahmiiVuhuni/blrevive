@@ -172,21 +172,25 @@ namespace BLRevive.Launcher
             else
                 ClientTabServerPortNum.Value = Int16.Parse(Config.DefaultLocalHostServer.Port);
 
-            if(Config.Get().GameFolder == null || String.IsNullOrWhiteSpace(Config.Get().GameFolder))
+            if(String.IsNullOrEmpty(Config.Get().GameFolder))
             {
-                var defaultPath = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\blacklightretribution";
-                if (!Directory.Exists(defaultPath))
-                    MessageBox.Show("Couldn't find a valid Blacklight: Retribution install directory. Please head to the Settings tab and fix the Game Folder!");
-                else
+                string defaultPath = GameLauncher.GetDefaultGamePath();
+                if(String.IsNullOrWhiteSpace(Config.Get().GameFolder) || !TrySetGameDirectory(defaultPath, false))
                 {
-                    Config.Get().GameFolder = defaultPath;
-                    Config.Save();
+                    MessageBox.Show("Could not find a valid blacklight installation. Please head over to Settings and browse to your blacklight directory.");
+                    LauncherTabControl.SelectedTab = SettingsTab;
                 }
+            } else
+            {
+                TrySetGameDirectory(Config.Get().GameFolder);
             }
-            SettingsTabBlacklightDirectoryTextBox.Text = Config.Get().GameFolder;
 
-            PatchTabGameFileInputTextBox.Text = $"{Config.Get().GameFolder}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
-            PatchTabGameFileOutputTextBox.Text = $"{Config.Get().GameFolder}\\Binaries\\Win32\\FoxGame-win32-Shipping-Patched.exe";
+        }
+
+        private void SettingsTabBlacklightDirectoryTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                TrySetGameDirectory(SettingsTabBlacklightDirectoryTextBox.Text);
         }
 
         private void Update_ClientTabServerAddressTextBox()
@@ -234,7 +238,7 @@ namespace BLRevive.Launcher
             var folder = $"{Config.Get().GameFolder}\\Binaries\\Win32";
             if(Directory.Exists(folder))
                 fileDialog.InitialDirectory = folder;
-            fileDialog.Filter = "Blacklight Gamefile (FoxGame-win32-Shipping.exe)";
+            fileDialog.Filter = "Blacklight Gamefile | FoxGame-win32-Shipping.exe";
 
             var result = fileDialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -254,20 +258,39 @@ namespace BLRevive.Launcher
             folderDialog.ShowNewFolderButton = false;
             folderDialog.SelectedPath = Config.Get().GameFolder;
 
-            if(folderDialog.ShowDialog() == DialogResult.OK && !String.IsNullOrWhiteSpace(folderDialog.SelectedPath))
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+                TrySetGameDirectory(folderDialog.SelectedPath);
+        }
+
+        private bool TrySetGameDirectory(string path, bool displayErrors = true)
+        {
+            if (!Directory.Exists(path))
             {
-                if(!Directory.Exists($"{folderDialog.SelectedPath}\\Binaries\\Win32") ||
-                    !Directory.Exists($"{folderDialog.SelectedPath}\\FoxGame\\Logs"))
-                {
-                    MessageBox.Show("The path you selected is not a valid blacklight installation directory!");
-                }
-                else
-                {
-                    SettingsTabBlacklightDirectoryTextBox.Text = folderDialog.SelectedPath;
-                    Config.Get().GameFolder = folderDialog.SelectedPath;
-                    Config.Save();
-                }
+                if(displayErrors)
+                    MessageBox.Show("The path does not exist!");
+                return false;
             }
+
+
+            if (!GameLauncher.IsValidGameDirectory(path))
+            {
+                if(displayErrors)
+                    MessageBox.Show("The path you selected is not a valid blacklight installation directory!");
+                return false;
+            }
+
+            Config.Get().GameFolder = path;
+            Config.Save();
+
+            SettingsTabBlacklightDirectoryTextBox.Text = path;
+
+            if(String.IsNullOrWhiteSpace(PatchTabGameFileInputTextBox.Text))
+                PatchTabGameFileInputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+
+            if(String.IsNullOrWhiteSpace(PatchTabGameFileOutputTextBox.Text))
+                PatchTabGameFileOutputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+
+            return true;
         }
 
         private void PatchTabOpenGameOutputDialogButton_Click(object sender, EventArgs e)
