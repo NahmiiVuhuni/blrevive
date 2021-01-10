@@ -217,8 +217,13 @@ namespace BLRevive.Launcher
 
         public static string GetDefaultGamePath()
         {
-            const string DefaultSteamGamePath = "\\Steam\\steamapps\\common\\blacklightretribution";
-            const string DefaultSteamPath = "\\Program Files (x86)";
+            Func<string, bool> isGameFolder = (string path) => { return Directory.Exists(path) && IsValidGameDirectory(path); };
+
+            if (Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32") != -1)
+                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32"));
+
+            const string DefaultSteamGamePath = "\\Steam\\steamapps\\common\\blacklightretribution\\";
+            const string DefaultSteamPath = @"Program Files (x86)";
 
             DriveInfo[] drives = DriveInfo.GetDrives();
 
@@ -228,13 +233,13 @@ namespace BLRevive.Launcher
                     if(!drive.IsReady)
                         continue;
 
-                    string fullSteamPath = $"{drive.VolumeLabel}:{DefaultSteamPath}\\{DefaultSteamGamePath}";
-                    string cutSteamPath = $"{drive.VolumeLabel}:{DefaultSteamGamePath}";
+                    string fullSteamPath = $"{drive.Name}{DefaultSteamPath}{DefaultSteamGamePath}";
+                    string cutSteamPath = $"{drive.Name}{DefaultSteamGamePath}";
 
-                    if (Directory.Exists(fullSteamPath) && IsValidGameDirectory(fullSteamPath))
+                    if (isGameFolder(fullSteamPath))
                         return fullSteamPath;
 
-                    if (Directory.Exists(cutSteamPath) && IsValidGameDirectory(cutSteamPath))
+                    if (isGameFolder(cutSteamPath))
                         return cutSteamPath;
                 } catch (Exception ex) {
                     continue;
@@ -246,8 +251,8 @@ namespace BLRevive.Launcher
 
         public static bool IsValidGameDirectory(string path)
         {
-            return !Directory.Exists($"{path}\\Binaries\\Win32") ||
-                !Directory.Exists($"{path}\\FoxGame\\Logs");
+            return Directory.Exists($"{path}\\Binaries\\Win32") ?
+                    Directory.Exists($"{path}\\FoxGame\\Logs") ? true : false : false;
         }
     }
 }

@@ -686,7 +686,6 @@ namespace BLRevive.Launcher
             this.PatchTabGameFileOutputTextBox.Name = "PatchTabGameFileOutputTextBox";
             this.PatchTabGameFileOutputTextBox.Size = new System.Drawing.Size(437, 20);
             this.PatchTabGameFileOutputTextBox.TabIndex = 7;
-            this.PatchTabGameFileOutputTextBox.Text = "FoxGame-win32-Shipping.exe";
             // 
             // PatchTabNoProxyInjectionCheckBox
             // 
@@ -745,7 +744,6 @@ namespace BLRevive.Launcher
             this.PatchTabGameFileInputTextBox.Name = "PatchTabGameFileInputTextBox";
             this.PatchTabGameFileInputTextBox.Size = new System.Drawing.Size(437, 20);
             this.PatchTabGameFileInputTextBox.TabIndex = 0;
-            this.PatchTabGameFileInputTextBox.Text = "FoxGame-win32-Shipping.exe";
             // 
             // SettingsTab
             // 

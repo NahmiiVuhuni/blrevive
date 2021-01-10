@@ -221,8 +221,7 @@ namespace BLRevive.Launcher
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
                 PatchTabASLROnlyCheckBox.Checked, PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
 
-
-            if(Directory.GetCurrentDirectory() != Config.Get().GameFolder)
+            if(!Directory.GetCurrentDirectory().Contains("\\Binaries\\Win32"))
             {
                 File.Copy($"{Directory.GetCurrentDirectory()}\\Proxy.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\Proxy.dll", true);
 #if DEBUG
