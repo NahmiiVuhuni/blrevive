@@ -225,6 +225,9 @@ namespace BLRevive.Launcher
             foreach(DriveInfo drive in drives)
             {
                 try {
+                    if(!drive.IsReady)
+                        continue;
+
                     string fullSteamPath = $"{drive.VolumeLabel}:{DefaultSteamPath}\\{DefaultSteamGamePath}";
                     string cutSteamPath = $"{drive.VolumeLabel}:{DefaultSteamGamePath}";
 
@@ -234,7 +237,7 @@ namespace BLRevive.Launcher
                     if (Directory.Exists(cutSteamPath) && IsValidGameDirectory(cutSteamPath))
                         return cutSteamPath;
                 } catch (Exception ex) {
-                    
+                    continue;
                 }
             }
 
