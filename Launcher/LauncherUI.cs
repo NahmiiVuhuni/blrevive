@@ -222,13 +222,17 @@ namespace BLRevive.Launcher
                 PatchTabASLROnlyCheckBox.Checked, PatchTabNoEmblemPatchCheckBox.Checked, PatchTabNoProxyInjectionCheckBox.Checked);
 
 
-            File.Copy($"{Directory.GetCurrentDirectory()}\\Proxy.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\Proxy.dll", true);
+            if(Directory.GetCurrentDirectory() != Config.Get().GameFolder)
+            {
+                File.Copy($"{Directory.GetCurrentDirectory()}\\Proxy.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\Proxy.dll", true);
 #if DEBUG
-            File.Copy($"{Directory.GetCurrentDirectory()}\\fmtd.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmtd.dll", true);
-#else
-            File.Copy($"{Directory.GetCurrentDirectory()}\\fmt.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmt.dll", true);
-#endif
-            File.Copy($"{Directory.GetCurrentDirectory()}\\BLRevive.json", $"{Config.Get().GameFolder}\\Binaries\\Win32\\BLRevive.json", true);
+                File.Copy($"{Directory.GetCurrentDirectory()}\\fmtd.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmtd.dll", true);
+    #else
+                File.Copy($"{Directory.GetCurrentDirectory()}\\fmt.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmt.dll", true);
+    #endif
+                File.Copy($"{Directory.GetCurrentDirectory()}\\BLRevive.json", $"{Config.Get().GameFolder}\\Binaries\\Win32\\BLRevive.json", true);
+            }
+            
             File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}\\Binaries\\Win32\\{GameLauncher.ServerExe}", true);
         }
 
