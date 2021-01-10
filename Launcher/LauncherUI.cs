@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -238,7 +238,7 @@ namespace BLRevive.Launcher
             var folder = $"{Config.Get().GameFolder}\\Binaries\\Win32";
             if(Directory.Exists(folder))
                 fileDialog.InitialDirectory = folder;
-            fileDialog.Filter = "Blacklight Gamefile | FoxGame-win32-Shipping.exe";
+            fileDialog.Filter = "Blacklight Gamefile|*.exe";
 
             var result = fileDialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -288,7 +288,7 @@ namespace BLRevive.Launcher
                 PatchTabGameFileInputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
 
             if(String.IsNullOrWhiteSpace(PatchTabGameFileOutputTextBox.Text))
-                PatchTabGameFileOutputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+                PatchTabGameFileOutputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping-Patched.exe";
 
             return true;
         }
@@ -297,7 +297,6 @@ namespace BLRevive.Launcher
         {
             var fileDialog = new SaveFileDialog();
             fileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            fileDialog.DefaultExt = ".exe";
             fileDialog.FileName = "FoxGame-win32-Shipping-Patched.exe";
 
             var result = fileDialog.ShowDialog();
