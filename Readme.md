@@ -1,54 +1,26 @@
-[![Discord](https://img.shields.io/discord/794628005342216203?label=discord&style=flat-square)](https://discord.gg/wwj9unRvtN)
+[![Discord](https://img.shields.io/discord/794628005342216203?label=discord&style=for-the-badge)](https://discord.gg/wwj9unRvtN)
 
-A user-friendly game patcher for Blacklight: Retribution. The long-term goal is to make the latest Steam release playable without limitations.
-
-
-
-> Currently this project is still in alpha and get tested concurrently. If you want a stable version I recommend to check this page weekly or join one of our communities linked below.
+A patcher and easy GUI which enables Blacklight: Retribution for PC platform after the official servers were shutdown in 2019!
 
 
 
-# Installation
-
-- Download the latest Blacklight: Retribution Client (version 3.02) from Steam. 
-
-  > If you don't have BL:R in your Steam library you can get a copy here: [Old Wiki Downloads](https://gitlab.com/blrevive/docs/-/wikis/Resources).
-
-- Download the [latest BLRevive]() release.
-
-
-
-# Setup
-
-This will enable local and online play for your client.
-
-1. Download the [latest Client (v3.02)](https://gitlab.com/blrevive/docs/-/wikis/Resources)
-2. Download the [latest BLRevive]() release.
-3. Extract  `BLRevive.zip` and copy the contents of `BLRevive` into ` Binaries/Win32` of the base directory of your BL:R client (eg. `C:\\Program Files(x86)\\Steam\\steamapps\\common\\blacklightretribution\\Binaries\\Win32`)
-4. Verify that the `Binaries\Win32` subdirectory contains a `BLRevive.exe`
-
-
+> This project is still under heavy development and fundamental things may change in future. Currently, we're looking to switch to the v1.40 client (latest pre-parity patch available) since we found resources for the old server environment. If things go well, we gonna use that one instead of the current v3.02!
 
 # Usage
 
-1. Open `BLRevive.exe`
-2. Choose your NetMode
+
+
+Goto [Wiki/Installing & Using BLRevive](https://gitlab.com/blrevive/blrevive/-/wikis/Installing-&-Using-BLRevive).
 
 
 
-## NetModes
+## Known Bugs/Limitations
 
-#### Local
 
-Open the client and launch an offline botgame.
 
-#### Online
+**-** players are forced to the default loadout (SMG/AR/BAR + Pistol + Knife + Grenade)
 
-Open the client a connect to a [MasterServer]().
-
-#### Server
-
-Run the [MasterServer]().
+**-** you can not launch the game directly or with steam, you have to use the launcher!
 
 
 
@@ -56,16 +28,13 @@ Run the [MasterServer]().
 
 We're always happy about new worker bees!
 
-Just request access to the repo and read the sources below.
+Before start contributing read our [Contribution Guidelines](https://gitlab.com/blrevive/blrevive/-/wikis/code-contribution) and, dependent on your working area:
 
 
 
-**Read before contributing**:
+**-** [Launcher Readme](Launcher/Readme.md)
 
-- [contribution guidelines](https://gitlab.com/blrevive/blrevive/-/wikis/code-contribution)
+**-** [Patcher Readme](Patcher/Readme.md)
 
+**-** [Proxy Readme](Proxy/Readme.md)
 
-
-## Legal/Copyright Notes
-
-This whole project is GPL-licensed so you are free to use, share and fork it. Only commercial use is forbidden.

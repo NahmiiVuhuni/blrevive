@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using Serilog;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Logic for logging. Don't try to use this class directly, instead use the static instance of Serilog (just Log)
@@ -17,12 +17,12 @@ namespace Bootstrapper
         /// <summary>
         /// relative path to log directory
         /// </summary>
-        static string LogDirectory = "\\..\\..\\FoxGame\\Logs\\";
+        static string LogDirectory = "Logs\\";
 
         /// <summary>
         /// absolute path to log directory
         /// </summary>
-        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{LogDirectory}";
+        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}\\{LogDirectory}";
 
         /// <summary>
         /// log file name
@@ -37,8 +37,15 @@ namespace Bootstrapper
         {
             if (!Directory.Exists(LogFileDirectoryAbs))
             {
-                MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist!");
-                Environment.Exit(1);
+                try
+                {
+                    Directory.CreateDirectory(LogFileDirectoryAbs);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!");
+                    MessageBox.Show(ex.Message);
+                    Environment.Exit(1);
+                }
             }
 
             try
@@ -48,6 +55,7 @@ namespace Bootstrapper
             catch (Exception ex)
             {
                 MessageBox.Show($"Logfile directory is not writable!");
+                MessageBox.Show(ex.Message);
                 Environment.Exit(1);
             }
 
@@ -81,6 +89,7 @@ namespace Bootstrapper
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to initialize logging system!");
+                MessageBox.Show(ex.Message);
                 Environment.Exit(1);
             }
 

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides read/write access to JSON configuration.
@@ -55,9 +55,19 @@ namespace Bootstrapper
         public string[] Gamemodes;
 
         /// <summary>
+        /// Available Playlists.
+        /// </summary>
+        public string[] Playlists;
+
+        /// <summary>
         /// Known Host Servers by IP or Name and port  
         /// </summary>
         public List<Server> Hosts;
+
+        /// <summary>
+        /// path to blacklight installation directory
+        /// </summary>
+        public string GameFolder;
 
         private static Config _Config = null;
         private const string LauncherConfigFileName = "LauncherConfig.json";

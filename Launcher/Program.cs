@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     static class Program
     {
@@ -17,7 +17,6 @@ namespace Bootstrapper
             // initialize app
             Logging.Initialize();
             Config.Get();
-            GameLauncher.Prepare();
 
             // run gui
             Application.EnableVisualStyles();

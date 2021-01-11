@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides common user util functions

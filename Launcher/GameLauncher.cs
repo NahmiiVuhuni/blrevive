@@ -1,10 +1,13 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Serilog;
+using System.IO.Ports;
+using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Provides functionality for starting Server and Client.
@@ -84,7 +87,8 @@ namespace Bootstrapper
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
 
-            Process serverProcess = LaunchProcess(ServerExe, $"server {Options}");
+            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            Process serverProcess = LaunchProcess($"{binaryDir}{ServerExe}", $"server {Options}", true, binaryDir);
 
             if (serverProcess == null)
                 return null;
@@ -104,10 +108,10 @@ namespace Bootstrapper
         /// <param name="MaxPlayers"></param>
         /// <param name="additionalArgs"></param>
         /// <returns>server process handle</returns>
-        public static Process LaunchServer(string Map, string Gamemode, string Name, int Port, int BotCount, int MaxPlayers, string additionalArgs)
+        public static Process LaunchServer(string Map, string Gamemode, string Name, int Port, int BotCount, int MaxPlayers, string Playlist, string additionalArgs)
         {
             const string quote = "\"";
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{Gamemode}?ServerName={quote}{Name}{quote}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{Gamemode}?ServerName={quote}{Name}{quote}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}?Playlist={Playlist}{additionalArgs}";
             return LaunchServer(args);
         }
 
@@ -122,8 +126,8 @@ namespace Bootstrapper
         {
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
-
-            Process clientProcess = LaunchProcess(PatchedGameExe, $"{IP}:{Port}{Options}");
+            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            Process clientProcess = LaunchProcess($"{binaryDir}{PatchedGameExe}", $"{IP}:{Port}{Options}", true, binaryDir);
 
             if(clientProcess == null)
             {
@@ -132,7 +136,7 @@ namespace Bootstrapper
                 return null;
             }
 
-            Log.Information("Client successfully started and patched!");
+            Log.Information("Client successfully started!");
             return clientProcess;
         }
 
@@ -173,15 +177,82 @@ namespace Bootstrapper
             LaunchFinishedAction.Invoke();
         }
 
-        /// <summary>
-        /// Make sure everything is setup properly before starting GUI.
-        /// </summary>
-        public static void Prepare()
+        public static bool LaunchPatcher(string GameInputFile, string GameOutputFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = false)
         {
-            Log.Verbose("Preparing GameLauncher");
+            Log.Information("Starting patcher.");
+            Log.Debug("GameFile: {0} | AslrOnly: {1} | NoEmblemPatch: {2} | NoProxyInjection: {3}", GameInputFile, AslrOnly, NoEmblemPatch, NoProxyInjection);
 
-            if (!Patcher.IsPatched)
-                Patcher.PatchFiles();
+            string args = $"\"{GameInputFile}\" --output=\"{GameOutputFile}\"";
+            if (AslrOnly)
+                args += " --aslr-only";
+            if (NoEmblemPatch)
+                args += " --no-emblem-patch";
+            if (NoProxyInjection)
+                args += " --no-proxy";
+
+            Log.Debug("Args: {0}", args);
+
+            var patcherProcess = LaunchProcess("Patcher.exe", args, false);
+            if(patcherProcess != null)
+            {
+                string patcherProcessOutput = "";
+                patcherProcess.OutputDataReceived += (object sender, DataReceivedEventArgs e) => { patcherProcessOutput += e.Data; };
+
+                patcherProcess.WaitForExit();
+                if(patcherProcess.ExitCode != 0)
+                {
+                    Log.Error("Patcher failed!");
+                    Log.Debug(patcherProcessOutput);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            Log.Information("Patching was succesfull!");
+            return true;
+        }
+
+        public static string GetDefaultGamePath()
+        {
+            Func<string, bool> isGameFolder = (string path) => { return Directory.Exists(path) && IsValidGameDirectory(path); };
+
+            if (Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32") != -1)
+                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32"));
+
+            const string DefaultSteamGamePath = "\\Steam\\steamapps\\common\\blacklightretribution\\";
+            const string DefaultSteamPath = @"Program Files (x86)";
+
+            DriveInfo[] drives = DriveInfo.GetDrives();
+
+            foreach(DriveInfo drive in drives)
+            {
+                try {
+                    if(!drive.IsReady)
+                        continue;
+
+                    string fullSteamPath = $"{drive.Name}{DefaultSteamPath}{DefaultSteamGamePath}";
+                    string cutSteamPath = $"{drive.Name}{DefaultSteamGamePath}";
+
+                    if (isGameFolder(fullSteamPath))
+                        return fullSteamPath;
+
+                    if (isGameFolder(cutSteamPath))
+                        return cutSteamPath;
+                } catch (Exception ex) {
+                    continue;
+                }
+            }
+
+            return "";
+        }
+
+        public static bool IsValidGameDirectory(string path)
+        {
+            return Directory.Exists($"{path}\\Binaries\\Win32") ?
+                    Directory.Exists($"{path}\\FoxGame\\Logs") ? true : false : false;
         }
     }
 }

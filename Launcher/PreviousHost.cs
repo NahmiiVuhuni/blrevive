@@ -1,5 +1,5 @@
 ﻿
-namespace Bootstrapper
+namespace BLRevive.Launcher
 {
     /// <summary>
     /// Object containing the last connected server saved in Config JSON
