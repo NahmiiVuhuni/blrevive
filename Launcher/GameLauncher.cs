@@ -108,10 +108,10 @@ namespace BLRevive.Launcher
         /// <param name="MaxPlayers"></param>
         /// <param name="additionalArgs"></param>
         /// <returns>server process handle</returns>
-        public static Process LaunchServer(string Map, string Gamemode, string Name, int Port, int BotCount, int MaxPlayers, string additionalArgs)
+        public static Process LaunchServer(string Map, string Gamemode, string Name, int Port, int BotCount, int MaxPlayers, string Playlist, string additionalArgs)
         {
             const string quote = "\"";
-            string args = $"{Map}?Game=FoxGame.FoxGameMP_{Gamemode}?ServerName={quote}{Name}{quote}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}{additionalArgs}";
+            string args = $"{Map}?Game=FoxGame.FoxGameMP_{Gamemode}?ServerName={quote}{Name}{quote}?Port={Port}?NumBots={BotCount}?MaxPlayers={MaxPlayers}?Playlist={Playlist}{additionalArgs}";
             return LaunchServer(args);
         }
 

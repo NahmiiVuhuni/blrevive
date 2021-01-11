@@ -62,36 +62,41 @@ namespace BLRevive.Launcher
         {
             if (ServerTabCustomURLCheckbox.Checked)
                 GameLauncher.LaunchServer(ServerTabLaunchOptionsTextBox.Text);
+            else if (ServerTabPlaylistsCombo.SelectedIndex != 0)
+                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabLaunchOptionsTextBox.Text);
             else
-                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, ServerTabLaunchOptionsTextBox.Text);
+                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabLaunchOptionsTextBox.Text);
         }
 
         private void ClientTabCustomURLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            // this condition can be condensed simplified, keep it like this to be easy to read, that is: apply flag toggle only if not checked 
-            ClientTabServerAddressTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressTextBox.Enabled : false;
-            ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerPortNum.Enabled : false;
-            ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabPlayerNameTextBox.Enabled : false;
-            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabLaunchOptionsTextBox.Enabled : false;
-            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabServerAddressSaveButton.Enabled : false;
-            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersResetButton.Enabled : false;
-            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersBackupButton.Enabled : false;
-            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersRestoreButton.Enabled : false;
-            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabHostServersComboBox.Enabled : false;
+            ClientTabServerAddressTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
 
-            ClientTabCustomURLTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked ? !ClientTabCustomURLTextBox.Enabled : false;
+            ClientTabCustomURLTextBox.Enabled = ClientTabCustomURLCheckBox.Checked;
         }
 
         private void ServerTabCustomURLCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            ServerTabGamemodesCombo.Enabled = !ServerTabGamemodesCombo.Enabled;
-            ServerTabMapsCombo.Enabled = !ServerTabMapsCombo.Enabled;
-            ServerTabBotCountNum.Enabled = !ServerTabBotCountNum.Enabled;
-            ServerTabPlayerCountNum.Enabled = !ServerTabPlayerCountNum.Enabled;
-            ServerTabLaunchOptionsTextBox.Enabled = !ServerTabLaunchOptionsTextBox.Enabled;
-            ServerTabCustomURLTextBox.Enabled = !ServerTabCustomURLTextBox.Enabled;
-            ServerTabPortNum.Enabled = !ServerTabPortNum.Enabled;
+            ServerTabPlaylistsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabGamemodesCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabMapsCombo.Enabled = !ServerTabCustomURLCheckbox.Checked && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabNameTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabBotCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabPlayerCountNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabLaunchOptionsTextBox.Enabled = !ServerTabCustomURLCheckbox.Checked;
+            ServerTabPortNum.Enabled = !ServerTabCustomURLCheckbox.Checked;
+
+            ServerTabCustomURLTextBox.Enabled = ServerTabCustomURLCheckbox.Checked;
         }
+
 
         private void ClientTabHostServersComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
@@ -156,6 +161,8 @@ namespace BLRevive.Launcher
 
             ClientTabPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.Get().Username) ? Config.Get().Username : Config.DefaultPlayerName;
 
+            ServerTabPlaylistsCombo.DataSource = Config.Get().Playlists;
+            ServerTabPlaylistsCombo.SelectedIndex = 0;
             ServerTabGamemodesCombo.DataSource = Config.Get().Gamemodes;
             ServerTabGamemodesCombo.SelectedIndex = 1;
             ServerTabMapsCombo.DataSource = Config.Get().Maps;
@@ -307,6 +314,12 @@ namespace BLRevive.Launcher
             {
                 PatchTabGameFileOutputTextBox.Text = fileDialog.FileName;
             }
+        }
+
+        private void ServerTabPlaylistsCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServerTabGamemodesCombo.Enabled = ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabMapsCombo.Enabled = ServerTabPlaylistsCombo.SelectedIndex == 0;
         }
     }
 }
