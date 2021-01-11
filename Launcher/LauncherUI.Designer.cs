@@ -143,14 +143,14 @@ namespace BLRevive.Launcher
             // 
             this.BGTabBotCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BGTabBotCountNum.Location = new System.Drawing.Point(425, 193);
+            this.BGTabBotCountNum.Location = new System.Drawing.Point(427, 193);
             this.BGTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
             this.BGTabBotCountNum.Name = "BGTabBotCountNum";
-            this.BGTabBotCountNum.Size = new System.Drawing.Size(121, 20);
+            this.BGTabBotCountNum.Size = new System.Drawing.Size(150, 20);
             this.BGTabBotCountNum.TabIndex = 17;
             // 
             // BGTabBotCountLable
@@ -166,9 +166,9 @@ namespace BLRevive.Launcher
             // 
             this.BGTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BGTabLaunchButton.Location = new System.Drawing.Point(315, 320);
+            this.BGTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.BGTabLaunchButton.Name = "BGTabLaunchButton";
-            this.BGTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.BGTabLaunchButton.Size = new System.Drawing.Size(155, 25);
             this.BGTabLaunchButton.TabIndex = 15;
             this.BGTabLaunchButton.Text = "Launch";
             this.BGTabLaunchButton.UseVisualStyleBackColor = true;
@@ -198,9 +198,9 @@ namespace BLRevive.Launcher
             this.BGTabMapsCombo.FormattingEnabled = true;
             this.BGTabMapsCombo.Items.AddRange(new object[] {
             "HeloDeck"});
-            this.BGTabMapsCombo.Location = new System.Drawing.Point(425, 166);
+            this.BGTabMapsCombo.Location = new System.Drawing.Point(427, 166);
             this.BGTabMapsCombo.Name = "BGTabMapsCombo";
-            this.BGTabMapsCombo.Size = new System.Drawing.Size(121, 21);
+            this.BGTabMapsCombo.Size = new System.Drawing.Size(150, 21);
             this.BGTabMapsCombo.TabIndex = 12;
             // 
             // BGTabGamemodesCombo
@@ -217,9 +217,9 @@ namespace BLRevive.Launcher
             "Last Team Standing",
             "Search and Destroy",
             "Onslaught"});
-            this.BGTabGamemodesCombo.Location = new System.Drawing.Point(425, 139);
+            this.BGTabGamemodesCombo.Location = new System.Drawing.Point(427, 139);
             this.BGTabGamemodesCombo.Name = "BGTabGamemodesCombo";
-            this.BGTabGamemodesCombo.Size = new System.Drawing.Size(121, 21);
+            this.BGTabGamemodesCombo.Size = new System.Drawing.Size(150, 21);
             this.BGTabGamemodesCombo.TabIndex = 11;
             // 
             // ClientTab
@@ -250,7 +250,7 @@ namespace BLRevive.Launcher
             // 
             // ClientTabServerPortNum
             // 
-            this.ClientTabServerPortNum.Location = new System.Drawing.Point(419, 150);
+            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 150);
             this.ClientTabServerPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -269,9 +269,9 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabHostServersRestoreButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(483, 124);
+            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(475, 121);
             this.ClientTabHostServersRestoreButton.Name = "ClientTabHostServersRestoreButton";
-            this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(70, 23);
+            this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(80, 23);
             this.ClientTabHostServersRestoreButton.TabIndex = 27;
             this.ClientTabHostServersRestoreButton.Text = "Restore";
             this.ClientTabHostServersRestoreButton.UseVisualStyleBackColor = true;
@@ -279,9 +279,9 @@ namespace BLRevive.Launcher
             // 
             // ClientTabHostServersBackupButton
             // 
-            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(400, 124);
+            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(389, 121);
             this.ClientTabHostServersBackupButton.Name = "ClientTabHostServersBackupButton";
-            this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(75, 23);
+            this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(80, 23);
             this.ClientTabHostServersBackupButton.TabIndex = 26;
             this.ClientTabHostServersBackupButton.Text = "Backup";
             this.ClientTabHostServersBackupButton.UseVisualStyleBackColor = true;
@@ -291,7 +291,7 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabServerAddressSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(483, 148);
+            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(485, 148);
             this.ClientTabServerAddressSaveButton.Name = "ClientTabServerAddressSaveButton";
             this.ClientTabServerAddressSaveButton.Size = new System.Drawing.Size(70, 23);
             this.ClientTabServerAddressSaveButton.TabIndex = 25;
@@ -301,9 +301,9 @@ namespace BLRevive.Launcher
             // 
             // ClientTabHostServersResetButton
             // 
-            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(322, 124);
+            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(303, 121);
             this.ClientTabHostServersResetButton.Name = "ClientTabHostServersResetButton";
-            this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(70, 23);
+            this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(80, 23);
             this.ClientTabHostServersResetButton.TabIndex = 24;
             this.ClientTabHostServersResetButton.Text = "Reset";
             this.ClientTabHostServersResetButton.UseVisualStyleBackColor = true;
@@ -315,16 +315,16 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ClientTabHostServersComboBox.FormattingEnabled = true;
-            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(322, 98);
+            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(305, 94);
             this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
-            this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(231, 21);
+            this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(250, 21);
             this.ClientTabHostServersComboBox.TabIndex = 23;
             this.ClientTabHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientTabHostServersComboBox_SelectedIndexChanged);
             // 
             // ClientTabHostServersLable
             // 
             this.ClientTabHostServersLable.AutoSize = true;
-            this.ClientTabHostServersLable.Location = new System.Drawing.Point(143, 101);
+            this.ClientTabHostServersLable.Location = new System.Drawing.Point(144, 97);
             this.ClientTabHostServersLable.Name = "ClientTabHostServersLable";
             this.ClientTabHostServersLable.Size = new System.Drawing.Size(102, 13);
             this.ClientTabHostServersLable.TabIndex = 22;
@@ -335,9 +335,9 @@ namespace BLRevive.Launcher
             this.ClientTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabCustomURLTextBox.Enabled = false;
-            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(322, 228);
+            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(303, 228);
             this.ClientTabCustomURLTextBox.Name = "ClientTabCustomURLTextBox";
-            this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(250, 20);
             this.ClientTabCustomURLTextBox.TabIndex = 21;
             // 
             // ClientTabCustomURLCheckBox
@@ -363,7 +363,7 @@ namespace BLRevive.Launcher
             // ClientTabPlayerNameLabel
             // 
             this.ClientTabPlayerNameLabel.AutoSize = true;
-            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(143, 179);
+            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(144, 179);
             this.ClientTabPlayerNameLabel.Name = "ClientTabPlayerNameLabel";
             this.ClientTabPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientTabPlayerNameLabel.TabIndex = 18;
@@ -382,9 +382,9 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabLaunchButton.Location = new System.Drawing.Point(315, 320);
+            this.ClientTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.ClientTabLaunchButton.Name = "ClientTabLaunchButton";
-            this.ClientTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.ClientTabLaunchButton.Size = new System.Drawing.Size(155, 25);
             this.ClientTabLaunchButton.TabIndex = 16;
             this.ClientTabLaunchButton.Text = "Launch";
             this.ClientTabLaunchButton.UseVisualStyleBackColor = true;
@@ -394,27 +394,27 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 202);
+            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(303, 202);
             this.ClientTabLaunchOptionsTextBox.Name = "ClientTabLaunchOptionsTextBox";
-            this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(250, 20);
             this.ClientTabLaunchOptionsTextBox.TabIndex = 15;
             // 
             // ClientTabPlayerNameTextBox
             // 
             this.ClientTabPlayerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(322, 176);
+            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(303, 176);
             this.ClientTabPlayerNameTextBox.MaxLength = 20;
             this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
-            this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(250, 20);
             this.ClientTabPlayerNameTextBox.TabIndex = 14;
             this.ClientTabPlayerNameTextBox.Text = "Player";
             // 
             // ClientTabServerAddressTextBox
             // 
-            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(323, 150);
+            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(303, 150);
             this.ClientTabServerAddressTextBox.Name = "ClientTabServerAddressTextBox";
-            this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(90, 20);
+            this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(108, 20);
             this.ClientTabServerAddressTextBox.TabIndex = 13;
             this.ClientTabServerAddressTextBox.Text = "127.0.0.1";
             // 
@@ -449,7 +449,7 @@ namespace BLRevive.Launcher
             // ServerTabPlaylistLabel
             // 
             this.ServerTabPlaylistLabel.AutoSize = true;
-            this.ServerTabPlaylistLabel.Location = new System.Drawing.Point(143, 41);
+            this.ServerTabPlaylistLabel.Location = new System.Drawing.Point(143, 48);
             this.ServerTabPlaylistLabel.Name = "ServerTabPlaylistLabel";
             this.ServerTabPlaylistLabel.Size = new System.Drawing.Size(39, 13);
             this.ServerTabPlaylistLabel.TabIndex = 34;
@@ -461,16 +461,16 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabPlaylistsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabPlaylistsCombo.FormattingEnabled = true;
-            this.ServerTabPlaylistsCombo.Location = new System.Drawing.Point(425, 38);
+            this.ServerTabPlaylistsCombo.Location = new System.Drawing.Point(400, 45);
             this.ServerTabPlaylistsCombo.Name = "ServerTabPlaylistsCombo";
-            this.ServerTabPlaylistsCombo.Size = new System.Drawing.Size(148, 21);
+            this.ServerTabPlaylistsCombo.Size = new System.Drawing.Size(150, 21);
             this.ServerTabPlaylistsCombo.TabIndex = 33;
             this.ServerTabPlaylistsCombo.SelectedIndexChanged += new System.EventHandler(this.ServerTabPlaylistsCombo_SelectedIndexChanged);
             // 
             // ServerTabNameLabel
             // 
             this.ServerTabNameLabel.AutoSize = true;
-            this.ServerTabNameLabel.Location = new System.Drawing.Point(143, 122);
+            this.ServerTabNameLabel.Location = new System.Drawing.Point(143, 130);
             this.ServerTabNameLabel.Name = "ServerTabNameLabel";
             this.ServerTabNameLabel.Size = new System.Drawing.Size(69, 13);
             this.ServerTabNameLabel.TabIndex = 32;
@@ -480,16 +480,17 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabNameTextBox.Location = new System.Drawing.Point(322, 119);
+            this.ServerTabNameTextBox.Location = new System.Drawing.Point(298, 127);
             this.ServerTabNameTextBox.MaxLength = 30;
             this.ServerTabNameTextBox.Name = "ServerTabNameTextBox";
             this.ServerTabNameTextBox.Size = new System.Drawing.Size(251, 20);
             this.ServerTabNameTextBox.TabIndex = 31;
+            this.ServerTabNameTextBox.Text = "BLRevive Server";
             // 
             // ServerTabPortLable
             // 
             this.ServerTabPortLable.AutoSize = true;
-            this.ServerTabPortLable.Location = new System.Drawing.Point(143, 199);
+            this.ServerTabPortLable.Location = new System.Drawing.Point(143, 206);
             this.ServerTabPortLable.Name = "ServerTabPortLable";
             this.ServerTabPortLable.Size = new System.Drawing.Size(26, 13);
             this.ServerTabPortLable.TabIndex = 30;
@@ -499,7 +500,7 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabPortNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPortNum.Location = new System.Drawing.Point(425, 197);
+            this.ServerTabPortNum.Location = new System.Drawing.Point(402, 204);
             this.ServerTabPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -518,7 +519,7 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabPlayerCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(425, 145);
+            this.ServerTabPlayerCountNum.Location = new System.Drawing.Point(402, 152);
             this.ServerTabPlayerCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -531,7 +532,7 @@ namespace BLRevive.Launcher
             // ServerTabMaxPlayersLabel
             // 
             this.ServerTabMaxPlayersLabel.AutoSize = true;
-            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(143, 147);
+            this.ServerTabMaxPlayersLabel.Location = new System.Drawing.Point(143, 154);
             this.ServerTabMaxPlayersLabel.Name = "ServerTabMaxPlayersLabel";
             this.ServerTabMaxPlayersLabel.Size = new System.Drawing.Size(64, 13);
             this.ServerTabMaxPlayersLabel.TabIndex = 25;
@@ -540,7 +541,7 @@ namespace BLRevive.Launcher
             // ServerTabCustomURLCheckbox
             // 
             this.ServerTabCustomURLCheckbox.AutoSize = true;
-            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(146, 250);
+            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(146, 262);
             this.ServerTabCustomURLCheckbox.Name = "ServerTabCustomURLCheckbox";
             this.ServerTabCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerTabCustomURLCheckbox.TabIndex = 24;
@@ -553,15 +554,15 @@ namespace BLRevive.Launcher
             this.ServerTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabCustomURLTextBox.Enabled = false;
-            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(322, 248);
+            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(300, 260);
             this.ServerTabCustomURLTextBox.Name = "ServerTabCustomURLTextBox";
-            this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(251, 20);
+            this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(250, 20);
             this.ServerTabCustomURLTextBox.TabIndex = 23;
             // 
             // ServerTabLaunchOptionsLabel
             // 
             this.ServerTabLaunchOptionsLabel.AutoSize = true;
-            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(143, 226);
+            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(143, 237);
             this.ServerTabLaunchOptionsLabel.Name = "ServerTabLaunchOptionsLabel";
             this.ServerTabLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerTabLaunchOptionsLabel.TabIndex = 22;
@@ -570,7 +571,7 @@ namespace BLRevive.Launcher
             // ServerTabBotCountLabel
             // 
             this.ServerTabBotCountLabel.AutoSize = true;
-            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(143, 173);
+            this.ServerTabBotCountLabel.Location = new System.Drawing.Point(143, 180);
             this.ServerTabBotCountLabel.Name = "ServerTabBotCountLabel";
             this.ServerTabBotCountLabel.Size = new System.Drawing.Size(54, 13);
             this.ServerTabBotCountLabel.TabIndex = 21;
@@ -579,7 +580,7 @@ namespace BLRevive.Launcher
             // ServerTabMapLabel
             // 
             this.ServerTabMapLabel.AutoSize = true;
-            this.ServerTabMapLabel.Location = new System.Drawing.Point(143, 95);
+            this.ServerTabMapLabel.Location = new System.Drawing.Point(143, 103);
             this.ServerTabMapLabel.Name = "ServerTabMapLabel";
             this.ServerTabMapLabel.Size = new System.Drawing.Size(28, 13);
             this.ServerTabMapLabel.TabIndex = 20;
@@ -588,7 +589,7 @@ namespace BLRevive.Launcher
             // ServerTabGamemodeLabel
             // 
             this.ServerTabGamemodeLabel.AutoSize = true;
-            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(143, 68);
+            this.ServerTabGamemodeLabel.Location = new System.Drawing.Point(143, 76);
             this.ServerTabGamemodeLabel.Name = "ServerTabGamemodeLabel";
             this.ServerTabGamemodeLabel.Size = new System.Drawing.Size(61, 13);
             this.ServerTabGamemodeLabel.TabIndex = 19;
@@ -598,18 +599,18 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(322, 223);
+            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(300, 234);
             this.ServerTabLaunchOptionsTextBox.Name = "ServerTabLaunchOptionsTextBox";
-            this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(251, 20);
+            this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(250, 20);
             this.ServerTabLaunchOptionsTextBox.TabIndex = 18;
             // 
             // ServerTabLaunchButton
             // 
             this.ServerTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchButton.Location = new System.Drawing.Point(315, 320);
+            this.ServerTabLaunchButton.Location = new System.Drawing.Point(270, 320);
             this.ServerTabLaunchButton.Name = "ServerTabLaunchButton";
-            this.ServerTabLaunchButton.Size = new System.Drawing.Size(75, 23);
+            this.ServerTabLaunchButton.Size = new System.Drawing.Size(155, 25);
             this.ServerTabLaunchButton.TabIndex = 17;
             this.ServerTabLaunchButton.Text = "Launch";
             this.ServerTabLaunchButton.UseVisualStyleBackColor = true;
@@ -619,7 +620,7 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabBotCountNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabBotCountNum.Location = new System.Drawing.Point(425, 171);
+            this.ServerTabBotCountNum.Location = new System.Drawing.Point(402, 178);
             this.ServerTabBotCountNum.Maximum = new decimal(new int[] {
             16,
             0,
@@ -635,9 +636,9 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabMapsCombo.FormattingEnabled = true;
-            this.ServerTabMapsCombo.Location = new System.Drawing.Point(425, 92);
+            this.ServerTabMapsCombo.Location = new System.Drawing.Point(400, 100);
             this.ServerTabMapsCombo.Name = "ServerTabMapsCombo";
-            this.ServerTabMapsCombo.Size = new System.Drawing.Size(148, 21);
+            this.ServerTabMapsCombo.Size = new System.Drawing.Size(150, 21);
             this.ServerTabMapsCombo.TabIndex = 15;
             // 
             // ServerTabGamemodesCombo
@@ -646,9 +647,9 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabGamemodesCombo.FormattingEnabled = true;
-            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(425, 65);
+            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(400, 72);
             this.ServerTabGamemodesCombo.Name = "ServerTabGamemodesCombo";
-            this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(148, 21);
+            this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(150, 21);
             this.ServerTabGamemodesCombo.TabIndex = 14;
             // 
             // MasterServerTab
@@ -664,7 +665,7 @@ namespace BLRevive.Launcher
             // MSTabNotImplementedLable
             // 
             this.MSTabNotImplementedLable.AutoSize = true;
-            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(308, 132);
+            this.MSTabNotImplementedLable.Location = new System.Drawing.Point(300, 200);
             this.MSTabNotImplementedLable.Name = "MSTabNotImplementedLable";
             this.MSTabNotImplementedLable.Size = new System.Drawing.Size(89, 13);
             this.MSTabNotImplementedLable.TabIndex = 0;
@@ -692,24 +693,24 @@ namespace BLRevive.Launcher
             // PatchTabGameFileOutputLabel
             // 
             this.PatchTabGameFileOutputLabel.AutoSize = true;
-            this.PatchTabGameFileOutputLabel.Location = new System.Drawing.Point(71, 121);
+            this.PatchTabGameFileOutputLabel.Location = new System.Drawing.Point(65, 121);
             this.PatchTabGameFileOutputLabel.Name = "PatchTabGameFileOutputLabel";
-            this.PatchTabGameFileOutputLabel.Size = new System.Drawing.Size(39, 13);
+            this.PatchTabGameFileOutputLabel.Size = new System.Drawing.Size(42, 13);
             this.PatchTabGameFileOutputLabel.TabIndex = 10;
-            this.PatchTabGameFileOutputLabel.Text = "Output";
+            this.PatchTabGameFileOutputLabel.Text = "Output:";
             // 
             // PatchTabGameFileInputLabel
             // 
             this.PatchTabGameFileInputLabel.AutoSize = true;
-            this.PatchTabGameFileInputLabel.Location = new System.Drawing.Point(71, 95);
+            this.PatchTabGameFileInputLabel.Location = new System.Drawing.Point(65, 95);
             this.PatchTabGameFileInputLabel.Name = "PatchTabGameFileInputLabel";
-            this.PatchTabGameFileInputLabel.Size = new System.Drawing.Size(31, 13);
+            this.PatchTabGameFileInputLabel.Size = new System.Drawing.Size(34, 13);
             this.PatchTabGameFileInputLabel.TabIndex = 9;
-            this.PatchTabGameFileInputLabel.Text = "Input";
+            this.PatchTabGameFileInputLabel.Text = "Input:";
             // 
             // PatchTabOpenGameOutputDialogButton
             // 
-            this.PatchTabOpenGameOutputDialogButton.Location = new System.Drawing.Point(562, 116);
+            this.PatchTabOpenGameOutputDialogButton.Location = new System.Drawing.Point(553, 118);
             this.PatchTabOpenGameOutputDialogButton.Name = "PatchTabOpenGameOutputDialogButton";
             this.PatchTabOpenGameOutputDialogButton.Size = new System.Drawing.Size(75, 22);
             this.PatchTabOpenGameOutputDialogButton.TabIndex = 8;
@@ -719,7 +720,7 @@ namespace BLRevive.Launcher
             // 
             // PatchTabGameFileOutputTextBox
             // 
-            this.PatchTabGameFileOutputTextBox.Location = new System.Drawing.Point(123, 117);
+            this.PatchTabGameFileOutputTextBox.Location = new System.Drawing.Point(110, 118);
             this.PatchTabGameFileOutputTextBox.Name = "PatchTabGameFileOutputTextBox";
             this.PatchTabGameFileOutputTextBox.Size = new System.Drawing.Size(437, 20);
             this.PatchTabGameFileOutputTextBox.TabIndex = 7;
@@ -728,7 +729,7 @@ namespace BLRevive.Launcher
             // PatchTabNoProxyInjectionCheckBox
             // 
             this.PatchTabNoProxyInjectionCheckBox.AutoSize = true;
-            this.PatchTabNoProxyInjectionCheckBox.Location = new System.Drawing.Point(282, 222);
+            this.PatchTabNoProxyInjectionCheckBox.Location = new System.Drawing.Point(282, 235);
             this.PatchTabNoProxyInjectionCheckBox.Name = "PatchTabNoProxyInjectionCheckBox";
             this.PatchTabNoProxyInjectionCheckBox.Size = new System.Drawing.Size(112, 17);
             this.PatchTabNoProxyInjectionCheckBox.TabIndex = 6;
@@ -738,7 +739,7 @@ namespace BLRevive.Launcher
             // PatchTabNoEmblemPatchCheckBox
             // 
             this.PatchTabNoEmblemPatchCheckBox.AutoSize = true;
-            this.PatchTabNoEmblemPatchCheckBox.Location = new System.Drawing.Point(282, 176);
+            this.PatchTabNoEmblemPatchCheckBox.Location = new System.Drawing.Point(282, 189);
             this.PatchTabNoEmblemPatchCheckBox.Name = "PatchTabNoEmblemPatchCheckBox";
             this.PatchTabNoEmblemPatchCheckBox.Size = new System.Drawing.Size(111, 17);
             this.PatchTabNoEmblemPatchCheckBox.TabIndex = 5;
@@ -748,7 +749,7 @@ namespace BLRevive.Launcher
             // PatchTabASLROnlyCheckBox
             // 
             this.PatchTabASLROnlyCheckBox.AutoSize = true;
-            this.PatchTabASLROnlyCheckBox.Location = new System.Drawing.Point(282, 199);
+            this.PatchTabASLROnlyCheckBox.Location = new System.Drawing.Point(282, 212);
             this.PatchTabASLROnlyCheckBox.Name = "PatchTabASLROnlyCheckBox";
             this.PatchTabASLROnlyCheckBox.Size = new System.Drawing.Size(76, 17);
             this.PatchTabASLROnlyCheckBox.TabIndex = 4;
@@ -758,7 +759,7 @@ namespace BLRevive.Launcher
             // 
             // PatchTabOpenGameInputDialogButton
             // 
-            this.PatchTabOpenGameInputDialogButton.Location = new System.Drawing.Point(562, 90);
+            this.PatchTabOpenGameInputDialogButton.Location = new System.Drawing.Point(553, 90);
             this.PatchTabOpenGameInputDialogButton.Name = "PatchTabOpenGameInputDialogButton";
             this.PatchTabOpenGameInputDialogButton.Size = new System.Drawing.Size(75, 22);
             this.PatchTabOpenGameInputDialogButton.TabIndex = 3;
@@ -768,9 +769,9 @@ namespace BLRevive.Launcher
             // 
             // PatchTabPatchFileButton
             // 
-            this.PatchTabPatchFileButton.Location = new System.Drawing.Point(255, 276);
+            this.PatchTabPatchFileButton.Location = new System.Drawing.Point(270, 320);
             this.PatchTabPatchFileButton.Name = "PatchTabPatchFileButton";
-            this.PatchTabPatchFileButton.Size = new System.Drawing.Size(165, 67);
+            this.PatchTabPatchFileButton.Size = new System.Drawing.Size(155, 25);
             this.PatchTabPatchFileButton.TabIndex = 1;
             this.PatchTabPatchFileButton.Text = "Patch File";
             this.PatchTabPatchFileButton.UseVisualStyleBackColor = true;
@@ -778,7 +779,7 @@ namespace BLRevive.Launcher
             // 
             // PatchTabGameFileInputTextBox
             // 
-            this.PatchTabGameFileInputTextBox.Location = new System.Drawing.Point(123, 91);
+            this.PatchTabGameFileInputTextBox.Location = new System.Drawing.Point(110, 92);
             this.PatchTabGameFileInputTextBox.Name = "PatchTabGameFileInputTextBox";
             this.PatchTabGameFileInputTextBox.Size = new System.Drawing.Size(437, 20);
             this.PatchTabGameFileInputTextBox.TabIndex = 0;
@@ -798,7 +799,7 @@ namespace BLRevive.Launcher
             // 
             // SettingsTabBlacklightDirectoryBrowseButton
             // 
-            this.SettingsTabBlacklightDirectoryBrowseButton.Location = new System.Drawing.Point(538, 102);
+            this.SettingsTabBlacklightDirectoryBrowseButton.Location = new System.Drawing.Point(543, 183);
             this.SettingsTabBlacklightDirectoryBrowseButton.Name = "SettingsTabBlacklightDirectoryBrowseButton";
             this.SettingsTabBlacklightDirectoryBrowseButton.Size = new System.Drawing.Size(75, 22);
             this.SettingsTabBlacklightDirectoryBrowseButton.TabIndex = 2;
@@ -808,7 +809,7 @@ namespace BLRevive.Launcher
             // 
             // SettingsTabBlacklightDirectoryTextBox
             // 
-            this.SettingsTabBlacklightDirectoryTextBox.Location = new System.Drawing.Point(73, 103);
+            this.SettingsTabBlacklightDirectoryTextBox.Location = new System.Drawing.Point(72, 184);
             this.SettingsTabBlacklightDirectoryTextBox.Name = "SettingsTabBlacklightDirectoryTextBox";
             this.SettingsTabBlacklightDirectoryTextBox.Size = new System.Drawing.Size(465, 20);
             this.SettingsTabBlacklightDirectoryTextBox.TabIndex = 1;
@@ -818,11 +819,11 @@ namespace BLRevive.Launcher
             this.SettingsTabGameFileLabel.AutoSize = true;
             this.SettingsTabGameFileLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SettingsTabGameFileLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SettingsTabGameFileLabel.Location = new System.Drawing.Point(73, 89);
+            this.SettingsTabGameFileLabel.Location = new System.Drawing.Point(72, 166);
             this.SettingsTabGameFileLabel.Name = "SettingsTabGameFileLabel";
-            this.SettingsTabGameFileLabel.Size = new System.Drawing.Size(100, 15);
+            this.SettingsTabGameFileLabel.Size = new System.Drawing.Size(103, 15);
             this.SettingsTabGameFileLabel.TabIndex = 0;
-            this.SettingsTabGameFileLabel.Text = "Blacklight Directory";
+            this.SettingsTabGameFileLabel.Text = "Blacklight Directory:";
             // 
             // LauncherUI
             // 
