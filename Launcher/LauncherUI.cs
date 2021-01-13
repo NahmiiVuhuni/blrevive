@@ -54,7 +54,8 @@ namespace BLRevive.Launcher
 
                 // use valid server name or IP, the way the user added it 
                 NetworkUtil.SaveAsPreviousServer(currentServerAddress, currentServerPort);
-                GameLauncher.LaunchClient(currentServerAddress, currentServerPort, options);
+                // always use the IP for client cmd, DNS is not supported in the cmd 
+                GameLauncher.LaunchClient(ipString, currentServerPort, options);
             }
         }
 
