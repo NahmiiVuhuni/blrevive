@@ -100,9 +100,11 @@ namespace BLRevive.Launcher
             {
                 List<Server> tempHostsList = hosts;
 
-                if (!hosts.Exists(item => GetHostIp(item.Address).Equals(hostIp)))
+                // check pairs of DNS:Port or IP:Port
+                if (!hosts.Exists(item => ((GetHostIp(item.Address).Equals(hostIp) && item.Port.Equals(server.Port)) 
+                                                        || (item.Address.Equals(server.Address) && item.Port.Equals(server.Port)))))
                 {
-                    // add actual valid host representation (IP or name), as added by user 
+                    // add actual valid host representation (IP or name), as added by user with port
                     tempHostsList.Add(server);
                 } else if (!NetworkUtil.IsValidIPv4(server.Address) 
                            && hosts.Exists(item => GetHostIp(item.Address).Equals(hostIp) && item.Port.Equals(server.Port)))
