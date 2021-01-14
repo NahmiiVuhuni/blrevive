@@ -43,7 +43,7 @@ namespace BLRevive.Launcher
                 string currentServerAddress = ClientTabServerAddressTextBox.Text;
                 string currentServerPort = ClientTabServerPortNum.Value.ToString();
                 string options = $"?Name={currentPlayerName}{ClientTabLaunchOptionsTextBox.Text}";
-                
+
                 string ipString = NetworkUtil.GetHostIp(currentServerAddress);
                 // check if the address is valid either by IP or IP resolved from server name
                 if (!NetworkUtil.IsValidIPv4(ipString))
@@ -74,11 +74,11 @@ namespace BLRevive.Launcher
             ClientTabServerPortNum.Enabled = !ClientTabCustomURLCheckBox.Checked;
             ClientTabPlayerNameTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
             ClientTabLaunchOptionsTextBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
-            ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
-            ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
-            ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
-            ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
-            ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            // ClientTabServerAddressSaveButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            // ClientTabHostServersResetButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            // ClientTabHostServersBackupButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            // ClientTabHostServersRestoreButton.Enabled = !ClientTabCustomURLCheckBox.Checked;
+            // ClientTabHostServersComboBox.Enabled = !ClientTabCustomURLCheckBox.Checked;
 
             ClientTabCustomURLTextBox.Enabled = ClientTabCustomURLCheckBox.Checked;
         }
@@ -114,7 +114,7 @@ namespace BLRevive.Launcher
         {
             bool isUpdated = NetworkUtil.UpdateHostsList(new Server()
             {
-                Address = ClientTabServerAddressTextBox.Text, 
+                Address = ClientTabServerAddressTextBox.Text,
                 Port = ClientTabServerPortNum.Value.ToString()
             });
 
@@ -202,25 +202,25 @@ namespace BLRevive.Launcher
 
         private void Update_ClientTabServerAddressTextBox()
         {
-            Server selectedHost = (Server)ClientTabHostServersComboBox.SelectedItem;
-            ClientTabServerAddressTextBox.Text = !String.IsNullOrWhiteSpace(selectedHost.Address) ? selectedHost.Address : NetworkUtil.GetDefaultHostServer().Address;
-            ClientTabServerPortNum.Value = !String.IsNullOrWhiteSpace(selectedHost.Port) ? Int16.Parse(selectedHost.Port) : Int16.Parse(NetworkUtil.GetDefaultHostServer().Port);
+            // Server selectedHost = (Server)ClientTabHostServersComboBox.SelectedItem;
+            // ClientTabServerAddressTextBox.Text = !String.IsNullOrWhiteSpace(selectedHost.Address) ? selectedHost.Address : NetworkUtil.GetDefaultHostServer().Address;
+            // ClientTabServerPortNum.Value = !String.IsNullOrWhiteSpace(selectedHost.Port) ? Int16.Parse(selectedHost.Port) : Int16.Parse(NetworkUtil.GetDefaultHostServer().Port);
         }
 
         private void Update_ClientTabHostServersComboBox(int selectedIndex)
         {
             SetClientTabHostServersComboBoxDataSource();
-            ClientTabHostServersComboBox.SelectedIndex = selectedIndex;
+            // ClientTabHostServersComboBox.SelectedIndex = selectedIndex;
         }
 
         private void SetClientTabHostServersComboBoxDataSource()
         {
             // this is the name of the class/object in Hosts List, the combobox with will display a server "Address:Port", see class Server.toString() overwrite  
-            ClientTabHostServersComboBox.DisplayMember = "Server"; 
-            ClientTabHostServersComboBox.ValueMember = null;
+            // ClientTabHostServersComboBox.DisplayMember = "Server"; 
+            // ClientTabHostServersComboBox.ValueMember = null;
             // set new list instance as data source, otherwise the combobox won't react to items changed/added inside the hosts list(combobox)  
-            if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
-                ClientTabHostServersComboBox.DataSource = Config.Get().Hosts.ToList(); 
+            // if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
+                // ClientTabHostServersComboBox.DataSource = Config.Get().Hosts.ToList(); 
         }
 
         private void PatchTabPatchFileButton_Click(object sender, EventArgs e)
@@ -320,6 +320,52 @@ namespace BLRevive.Launcher
         {
             ServerTabGamemodesCombo.Enabled = ServerTabPlaylistsCombo.SelectedIndex == 0;
             ServerTabMapsCombo.Enabled = ServerTabPlaylistsCombo.SelectedIndex == 0;
+        }
+
+        private void ClientTabServerListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            // we don't want to allow users to resize the columns
+            // this is not a pretty fix and can probably be done better
+
+            e.Cancel = true;
+            e.NewWidth = ClientTabServerListView.Columns[e.ColumnIndex].Width;
+        }
+
+        private void ClientTabServerListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ClientTabServerListView.SelectedIndices.Count != 0)
+            {
+                if(ClientTabServerListView.SelectedItems[0].SubItems.Count >= 1)
+                {
+                    int port;
+                    if(int.TryParse(ClientTabServerListView.SelectedItems[0].SubItems[1].Text, out port))
+                    {
+                        if (port <= ClientTabServerPortNum.Maximum && port >= ClientTabServerPortNum.Minimum)
+                        {
+                            ClientTabServerPortNum.Value = port;
+                            ClientTabServerAddressTextBox.Text = ClientTabServerListView.SelectedItems[0].Text;
+                        }
+                        else
+                            MessageBox.Show($"Port value for server \"{ClientTabServerListView.SelectedItems[0].Text}\" out of range",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                        MessageBox.Show($"Invalid port value for server \"{ClientTabServerListView.SelectedItems[0].Text}\"",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ClientTabManageServersButton_Click(object sender, EventArgs e)
+        {
+            ServerListManager serverListManager = new ServerListManager();
+            serverListManager.Show();
+        }
+
+        private void ServerTabManageServersButton_Click(object sender, EventArgs e)
+        {
+            RegisteredListManager registeredListManager = new RegisteredListManager();
+            registeredListManager.Show();
         }
     }
 }

@@ -63,7 +63,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PreviousHost.cs" />
+    <Compile Include="RegisteredListManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisteredListManager.Designer.cs">
+      <DependentUpon>RegisteredListManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Server.cs" />
+    <Compile Include="ServerListManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerListManager.Designer.cs">
+      <DependentUpon>ServerListManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserUtil.cs" />
     <Compile Include="HostsConfig.cs" />
     <Compile Include="Config.cs" />
@@ -91,6 +103,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RegisteredListManager.resx">
+      <DependentUpon>RegisteredListManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerListManager.resx">
+      <DependentUpon>ServerListManager.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="LauncherConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

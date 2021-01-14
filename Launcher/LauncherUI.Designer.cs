@@ -40,13 +40,13 @@ namespace BLRevive.Launcher
             this.BGTabMapsCombo = new System.Windows.Forms.ComboBox();
             this.BGTabGamemodesCombo = new System.Windows.Forms.ComboBox();
             this.ClientTab = new System.Windows.Forms.TabPage();
+            this.ClientTabServerListView = new System.Windows.Forms.ListView();
+            this.serverIPColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.serverPortColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.serverNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.serverMaxPlayersColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.serverNumBotsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClientTabServerPortNum = new System.Windows.Forms.NumericUpDown();
-            this.ClientTabHostServersRestoreButton = new System.Windows.Forms.Button();
-            this.ClientTabHostServersBackupButton = new System.Windows.Forms.Button();
-            this.ClientTabServerAddressSaveButton = new System.Windows.Forms.Button();
-            this.ClientTabHostServersResetButton = new System.Windows.Forms.Button();
-            this.ClientTabHostServersComboBox = new System.Windows.Forms.ComboBox();
-            this.ClientTabHostServersLable = new System.Windows.Forms.Label();
             this.ClientTabCustomURLTextBox = new System.Windows.Forms.TextBox();
             this.ClientTabCustomURLCheckBox = new System.Windows.Forms.CheckBox();
             this.ClientTabLaunchOptionsLable = new System.Windows.Forms.Label();
@@ -93,6 +93,10 @@ namespace BLRevive.Launcher
             this.SettingsTabBlacklightDirectoryBrowseButton = new System.Windows.Forms.Button();
             this.SettingsTabBlacklightDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.SettingsTabGameFileLabel = new System.Windows.Forms.Label();
+            this.ClientTabManageServersButton = new System.Windows.Forms.Button();
+            this.ClientTabDirectIPCheckBox = new System.Windows.Forms.CheckBox();
+            this.ServerTabRegisterCheckBox = new System.Windows.Forms.CheckBox();
+            this.ServerTabManageServersButton = new System.Windows.Forms.Button();
             this.LauncherTabControl.SuspendLayout();
             this.BotMatchTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BGTabBotCountNum)).BeginInit();
@@ -224,13 +228,10 @@ namespace BLRevive.Launcher
             // 
             // ClientTab
             // 
+            this.ClientTab.Controls.Add(this.ClientTabDirectIPCheckBox);
+            this.ClientTab.Controls.Add(this.ClientTabManageServersButton);
+            this.ClientTab.Controls.Add(this.ClientTabServerListView);
             this.ClientTab.Controls.Add(this.ClientTabServerPortNum);
-            this.ClientTab.Controls.Add(this.ClientTabHostServersRestoreButton);
-            this.ClientTab.Controls.Add(this.ClientTabHostServersBackupButton);
-            this.ClientTab.Controls.Add(this.ClientTabServerAddressSaveButton);
-            this.ClientTab.Controls.Add(this.ClientTabHostServersResetButton);
-            this.ClientTab.Controls.Add(this.ClientTabHostServersComboBox);
-            this.ClientTab.Controls.Add(this.ClientTabHostServersLable);
             this.ClientTab.Controls.Add(this.ClientTabCustomURLTextBox);
             this.ClientTab.Controls.Add(this.ClientTabCustomURLCheckBox);
             this.ClientTab.Controls.Add(this.ClientTabLaunchOptionsLable);
@@ -248,16 +249,69 @@ namespace BLRevive.Launcher
             this.ClientTab.Text = "Client";
             this.ClientTab.UseVisualStyleBackColor = true;
             // 
+            // ClientTabServerListView
+            // 
+            this.ClientTabServerListView.AllowColumnReorder = true;
+            this.ClientTabServerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.serverIPColumnHeader,
+            this.serverPortColumnHeader,
+            this.serverNameColumnHeader,
+            this.serverMaxPlayersColumnHeader,
+            this.serverNumBotsColumnHeader});
+            this.ClientTabServerListView.FullRowSelect = true;
+            this.ClientTabServerListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ClientTabServerListView.HideSelection = false;
+            this.ClientTabServerListView.LabelWrap = false;
+            this.ClientTabServerListView.Location = new System.Drawing.Point(97, 44);
+            this.ClientTabServerListView.MultiSelect = false;
+            this.ClientTabServerListView.Name = "ClientTabServerListView";
+            this.ClientTabServerListView.Size = new System.Drawing.Size(510, 126);
+            this.ClientTabServerListView.TabIndex = 29;
+            this.ClientTabServerListView.TileSize = new System.Drawing.Size(168, 30);
+            this.ClientTabServerListView.UseCompatibleStateImageBehavior = false;
+            this.ClientTabServerListView.View = System.Windows.Forms.View.Details;
+            this.ClientTabServerListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.ClientTabServerListView_ColumnWidthChanging);
+            this.ClientTabServerListView.SelectedIndexChanged += new System.EventHandler(this.ClientTabServerListView_SelectedIndexChanged);
+            // 
+            // serverIPColumnHeader
+            // 
+            this.serverIPColumnHeader.DisplayIndex = 1;
+            this.serverIPColumnHeader.Text = "IP";
+            this.serverIPColumnHeader.Width = 138;
+            // 
+            // serverPortColumnHeader
+            // 
+            this.serverPortColumnHeader.DisplayIndex = 2;
+            this.serverPortColumnHeader.Text = "Port";
+            this.serverPortColumnHeader.Width = 44;
+            // 
+            // serverNameColumnHeader
+            // 
+            this.serverNameColumnHeader.DisplayIndex = 0;
+            this.serverNameColumnHeader.Text = "Server Name";
+            this.serverNameColumnHeader.Width = 192;
+            // 
+            // serverMaxPlayersColumnHeader
+            // 
+            this.serverMaxPlayersColumnHeader.Tag = "";
+            this.serverMaxPlayersColumnHeader.Text = "Max Players";
+            this.serverMaxPlayersColumnHeader.Width = 73;
+            // 
+            // serverNumBotsColumnHeader
+            // 
+            this.serverNumBotsColumnHeader.Text = "Bots";
+            this.serverNumBotsColumnHeader.Width = 42;
+            // 
             // ClientTabServerPortNum
             // 
-            this.ClientTabServerPortNum.Location = new System.Drawing.Point(418, 150);
+            this.ClientTabServerPortNum.Location = new System.Drawing.Point(451, 177);
             this.ClientTabServerPortNum.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
             this.ClientTabServerPortNum.Name = "ClientTabServerPortNum";
-            this.ClientTabServerPortNum.Size = new System.Drawing.Size(60, 20);
+            this.ClientTabServerPortNum.Size = new System.Drawing.Size(99, 20);
             this.ClientTabServerPortNum.TabIndex = 28;
             this.ClientTabServerPortNum.Value = new decimal(new int[] {
             7777,
@@ -265,77 +319,12 @@ namespace BLRevive.Launcher
             0,
             0});
             // 
-            // ClientTabHostServersRestoreButton
-            // 
-            this.ClientTabHostServersRestoreButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabHostServersRestoreButton.Location = new System.Drawing.Point(475, 121);
-            this.ClientTabHostServersRestoreButton.Name = "ClientTabHostServersRestoreButton";
-            this.ClientTabHostServersRestoreButton.Size = new System.Drawing.Size(80, 23);
-            this.ClientTabHostServersRestoreButton.TabIndex = 27;
-            this.ClientTabHostServersRestoreButton.Text = "Restore";
-            this.ClientTabHostServersRestoreButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersRestoreButton.Click += new System.EventHandler(this.ClientTabHostServersRestoreButton_Click);
-            // 
-            // ClientTabHostServersBackupButton
-            // 
-            this.ClientTabHostServersBackupButton.Location = new System.Drawing.Point(389, 121);
-            this.ClientTabHostServersBackupButton.Name = "ClientTabHostServersBackupButton";
-            this.ClientTabHostServersBackupButton.Size = new System.Drawing.Size(80, 23);
-            this.ClientTabHostServersBackupButton.TabIndex = 26;
-            this.ClientTabHostServersBackupButton.Text = "Backup";
-            this.ClientTabHostServersBackupButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersBackupButton.Click += new System.EventHandler(this.ClientTabHostServersBackupButton_Click);
-            // 
-            // ClientTabServerAddressSaveButton
-            // 
-            this.ClientTabServerAddressSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabServerAddressSaveButton.Location = new System.Drawing.Point(485, 148);
-            this.ClientTabServerAddressSaveButton.Name = "ClientTabServerAddressSaveButton";
-            this.ClientTabServerAddressSaveButton.Size = new System.Drawing.Size(70, 23);
-            this.ClientTabServerAddressSaveButton.TabIndex = 25;
-            this.ClientTabServerAddressSaveButton.Text = "Save";
-            this.ClientTabServerAddressSaveButton.UseVisualStyleBackColor = true;
-            this.ClientTabServerAddressSaveButton.Click += new System.EventHandler(this.ClientTabServerAddressSaveButton_Click);
-            // 
-            // ClientTabHostServersResetButton
-            // 
-            this.ClientTabHostServersResetButton.Location = new System.Drawing.Point(303, 121);
-            this.ClientTabHostServersResetButton.Name = "ClientTabHostServersResetButton";
-            this.ClientTabHostServersResetButton.Size = new System.Drawing.Size(80, 23);
-            this.ClientTabHostServersResetButton.TabIndex = 24;
-            this.ClientTabHostServersResetButton.Text = "Reset";
-            this.ClientTabHostServersResetButton.UseVisualStyleBackColor = true;
-            this.ClientTabHostServersResetButton.Click += new System.EventHandler(this.ClientTabHostServersResetButton_Click);
-            // 
-            // ClientTabHostServersComboBox
-            // 
-            this.ClientTabHostServersComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabHostServersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ClientTabHostServersComboBox.FormattingEnabled = true;
-            this.ClientTabHostServersComboBox.Location = new System.Drawing.Point(305, 94);
-            this.ClientTabHostServersComboBox.Name = "ClientTabHostServersComboBox";
-            this.ClientTabHostServersComboBox.Size = new System.Drawing.Size(250, 21);
-            this.ClientTabHostServersComboBox.TabIndex = 23;
-            this.ClientTabHostServersComboBox.SelectedIndexChanged += new System.EventHandler(this.ClientTabHostServersComboBox_SelectedIndexChanged);
-            // 
-            // ClientTabHostServersLable
-            // 
-            this.ClientTabHostServersLable.AutoSize = true;
-            this.ClientTabHostServersLable.Location = new System.Drawing.Point(144, 97);
-            this.ClientTabHostServersLable.Name = "ClientTabHostServersLable";
-            this.ClientTabHostServersLable.Size = new System.Drawing.Size(102, 13);
-            this.ClientTabHostServersLable.TabIndex = 22;
-            this.ClientTabHostServersLable.Text = "Saved Host Servers";
-            // 
             // ClientTabCustomURLTextBox
             // 
             this.ClientTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientTabCustomURLTextBox.Enabled = false;
-            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(303, 228);
+            this.ClientTabCustomURLTextBox.Location = new System.Drawing.Point(300, 260);
             this.ClientTabCustomURLTextBox.Name = "ClientTabCustomURLTextBox";
             this.ClientTabCustomURLTextBox.Size = new System.Drawing.Size(250, 20);
             this.ClientTabCustomURLTextBox.TabIndex = 21;
@@ -343,7 +332,7 @@ namespace BLRevive.Launcher
             // ClientTabCustomURLCheckBox
             // 
             this.ClientTabCustomURLCheckBox.AutoSize = true;
-            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(146, 230);
+            this.ClientTabCustomURLCheckBox.Location = new System.Drawing.Point(146, 262);
             this.ClientTabCustomURLCheckBox.Name = "ClientTabCustomURLCheckBox";
             this.ClientTabCustomURLCheckBox.Size = new System.Drawing.Size(86, 17);
             this.ClientTabCustomURLCheckBox.TabIndex = 20;
@@ -354,7 +343,7 @@ namespace BLRevive.Launcher
             // ClientTabLaunchOptionsLable
             // 
             this.ClientTabLaunchOptionsLable.AutoSize = true;
-            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(143, 205);
+            this.ClientTabLaunchOptionsLable.Location = new System.Drawing.Point(143, 237);
             this.ClientTabLaunchOptionsLable.Name = "ClientTabLaunchOptionsLable";
             this.ClientTabLaunchOptionsLable.Size = new System.Drawing.Size(109, 13);
             this.ClientTabLaunchOptionsLable.TabIndex = 19;
@@ -363,7 +352,7 @@ namespace BLRevive.Launcher
             // ClientTabPlayerNameLabel
             // 
             this.ClientTabPlayerNameLabel.AutoSize = true;
-            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(144, 179);
+            this.ClientTabPlayerNameLabel.Location = new System.Drawing.Point(143, 206);
             this.ClientTabPlayerNameLabel.Name = "ClientTabPlayerNameLabel";
             this.ClientTabPlayerNameLabel.Size = new System.Drawing.Size(67, 13);
             this.ClientTabPlayerNameLabel.TabIndex = 18;
@@ -372,7 +361,7 @@ namespace BLRevive.Launcher
             // ClientTabServerAddressLable
             // 
             this.ClientTabServerAddressLable.AutoSize = true;
-            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(143, 153);
+            this.ClientTabServerAddressLable.Location = new System.Drawing.Point(143, 179);
             this.ClientTabServerAddressLable.Name = "ClientTabServerAddressLable";
             this.ClientTabServerAddressLable.Size = new System.Drawing.Size(103, 13);
             this.ClientTabServerAddressLable.TabIndex = 17;
@@ -394,7 +383,7 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(303, 202);
+            this.ClientTabLaunchOptionsTextBox.Location = new System.Drawing.Point(300, 234);
             this.ClientTabLaunchOptionsTextBox.Name = "ClientTabLaunchOptionsTextBox";
             this.ClientTabLaunchOptionsTextBox.Size = new System.Drawing.Size(250, 20);
             this.ClientTabLaunchOptionsTextBox.TabIndex = 15;
@@ -403,23 +392,25 @@ namespace BLRevive.Launcher
             // 
             this.ClientTabPlayerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(303, 176);
+            this.ClientTabPlayerNameTextBox.Location = new System.Drawing.Point(300, 203);
             this.ClientTabPlayerNameTextBox.MaxLength = 20;
             this.ClientTabPlayerNameTextBox.Name = "ClientTabPlayerNameTextBox";
-            this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(250, 20);
+            this.ClientTabPlayerNameTextBox.Size = new System.Drawing.Size(145, 20);
             this.ClientTabPlayerNameTextBox.TabIndex = 14;
             this.ClientTabPlayerNameTextBox.Text = "Player";
             // 
             // ClientTabServerAddressTextBox
             // 
-            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(303, 150);
+            this.ClientTabServerAddressTextBox.Location = new System.Drawing.Point(300, 176);
             this.ClientTabServerAddressTextBox.Name = "ClientTabServerAddressTextBox";
-            this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(108, 20);
+            this.ClientTabServerAddressTextBox.Size = new System.Drawing.Size(145, 20);
             this.ClientTabServerAddressTextBox.TabIndex = 13;
             this.ClientTabServerAddressTextBox.Text = "127.0.0.1";
             // 
             // ServerTab
             // 
+            this.ServerTab.Controls.Add(this.ServerTabManageServersButton);
+            this.ServerTab.Controls.Add(this.ServerTabRegisterCheckBox);
             this.ServerTab.Controls.Add(this.ServerTabPlaylistLabel);
             this.ServerTab.Controls.Add(this.ServerTabPlaylistsCombo);
             this.ServerTab.Controls.Add(this.ServerTabNameLabel);
@@ -461,9 +452,9 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabPlaylistsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabPlaylistsCombo.FormattingEnabled = true;
-            this.ServerTabPlaylistsCombo.Location = new System.Drawing.Point(400, 45);
+            this.ServerTabPlaylistsCombo.Location = new System.Drawing.Point(402, 45);
             this.ServerTabPlaylistsCombo.Name = "ServerTabPlaylistsCombo";
-            this.ServerTabPlaylistsCombo.Size = new System.Drawing.Size(150, 21);
+            this.ServerTabPlaylistsCombo.Size = new System.Drawing.Size(148, 21);
             this.ServerTabPlaylistsCombo.TabIndex = 33;
             this.ServerTabPlaylistsCombo.SelectedIndexChanged += new System.EventHandler(this.ServerTabPlaylistsCombo_SelectedIndexChanged);
             // 
@@ -541,7 +532,7 @@ namespace BLRevive.Launcher
             // ServerTabCustomURLCheckbox
             // 
             this.ServerTabCustomURLCheckbox.AutoSize = true;
-            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(146, 262);
+            this.ServerTabCustomURLCheckbox.Location = new System.Drawing.Point(146, 288);
             this.ServerTabCustomURLCheckbox.Name = "ServerTabCustomURLCheckbox";
             this.ServerTabCustomURLCheckbox.Size = new System.Drawing.Size(86, 17);
             this.ServerTabCustomURLCheckbox.TabIndex = 24;
@@ -554,7 +545,7 @@ namespace BLRevive.Launcher
             this.ServerTabCustomURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabCustomURLTextBox.Enabled = false;
-            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(300, 260);
+            this.ServerTabCustomURLTextBox.Location = new System.Drawing.Point(300, 286);
             this.ServerTabCustomURLTextBox.Name = "ServerTabCustomURLTextBox";
             this.ServerTabCustomURLTextBox.Size = new System.Drawing.Size(250, 20);
             this.ServerTabCustomURLTextBox.TabIndex = 23;
@@ -562,7 +553,7 @@ namespace BLRevive.Launcher
             // ServerTabLaunchOptionsLabel
             // 
             this.ServerTabLaunchOptionsLabel.AutoSize = true;
-            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(143, 237);
+            this.ServerTabLaunchOptionsLabel.Location = new System.Drawing.Point(143, 263);
             this.ServerTabLaunchOptionsLabel.Name = "ServerTabLaunchOptionsLabel";
             this.ServerTabLaunchOptionsLabel.Size = new System.Drawing.Size(109, 13);
             this.ServerTabLaunchOptionsLabel.TabIndex = 22;
@@ -599,7 +590,7 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabLaunchOptionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(300, 234);
+            this.ServerTabLaunchOptionsTextBox.Location = new System.Drawing.Point(300, 260);
             this.ServerTabLaunchOptionsTextBox.Name = "ServerTabLaunchOptionsTextBox";
             this.ServerTabLaunchOptionsTextBox.Size = new System.Drawing.Size(250, 20);
             this.ServerTabLaunchOptionsTextBox.TabIndex = 18;
@@ -608,7 +599,7 @@ namespace BLRevive.Launcher
             // 
             this.ServerTabLaunchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerTabLaunchButton.Location = new System.Drawing.Point(270, 320);
+            this.ServerTabLaunchButton.Location = new System.Drawing.Point(268, 348);
             this.ServerTabLaunchButton.Name = "ServerTabLaunchButton";
             this.ServerTabLaunchButton.Size = new System.Drawing.Size(155, 25);
             this.ServerTabLaunchButton.TabIndex = 17;
@@ -636,9 +627,9 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabMapsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabMapsCombo.FormattingEnabled = true;
-            this.ServerTabMapsCombo.Location = new System.Drawing.Point(400, 100);
+            this.ServerTabMapsCombo.Location = new System.Drawing.Point(402, 100);
             this.ServerTabMapsCombo.Name = "ServerTabMapsCombo";
-            this.ServerTabMapsCombo.Size = new System.Drawing.Size(150, 21);
+            this.ServerTabMapsCombo.Size = new System.Drawing.Size(148, 21);
             this.ServerTabMapsCombo.TabIndex = 15;
             // 
             // ServerTabGamemodesCombo
@@ -647,9 +638,9 @@ namespace BLRevive.Launcher
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerTabGamemodesCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerTabGamemodesCombo.FormattingEnabled = true;
-            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(400, 72);
+            this.ServerTabGamemodesCombo.Location = new System.Drawing.Point(402, 72);
             this.ServerTabGamemodesCombo.Name = "ServerTabGamemodesCombo";
-            this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(150, 21);
+            this.ServerTabGamemodesCombo.Size = new System.Drawing.Size(148, 21);
             this.ServerTabGamemodesCombo.TabIndex = 14;
             // 
             // MasterServerTab
@@ -823,6 +814,49 @@ namespace BLRevive.Launcher
             this.SettingsTabGameFileLabel.TabIndex = 0;
             this.SettingsTabGameFileLabel.Text = "Blacklight Directory:";
             // 
+            // ClientTabManageServersButton
+            // 
+            this.ClientTabManageServersButton.Location = new System.Drawing.Point(451, 201);
+            this.ClientTabManageServersButton.Name = "ClientTabManageServersButton";
+            this.ClientTabManageServersButton.Size = new System.Drawing.Size(99, 23);
+            this.ClientTabManageServersButton.TabIndex = 30;
+            this.ClientTabManageServersButton.Text = "Manage Servers";
+            this.ClientTabManageServersButton.UseVisualStyleBackColor = true;
+            this.ClientTabManageServersButton.Click += new System.EventHandler(this.ClientTabManageServersButton_Click);
+            // 
+            // ClientTabDirectIPCheckBox
+            // 
+            this.ClientTabDirectIPCheckBox.AutoSize = true;
+            this.ClientTabDirectIPCheckBox.Enabled = false;
+            this.ClientTabDirectIPCheckBox.Location = new System.Drawing.Point(284, 297);
+            this.ClientTabDirectIPCheckBox.Name = "ClientTabDirectIPCheckBox";
+            this.ClientTabDirectIPCheckBox.Size = new System.Drawing.Size(134, 17);
+            this.ClientTabDirectIPCheckBox.TabIndex = 31;
+            this.ClientTabDirectIPCheckBox.Text = "Connet Using Direct IP";
+            this.ClientTabDirectIPCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ServerTabRegisterCheckBox
+            // 
+            this.ServerTabRegisterCheckBox.AutoSize = true;
+            this.ServerTabRegisterCheckBox.Location = new System.Drawing.Point(300, 232);
+            this.ServerTabRegisterCheckBox.Name = "ServerTabRegisterCheckBox";
+            this.ServerTabRegisterCheckBox.Size = new System.Drawing.Size(99, 17);
+            this.ServerTabRegisterCheckBox.TabIndex = 35;
+            this.ServerTabRegisterCheckBox.Text = "Register Server";
+            this.ServerTabRegisterCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ServerTabManageServersButton
+            // 
+            this.ServerTabManageServersButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ServerTabManageServersButton.Location = new System.Drawing.Point(402, 227);
+            this.ServerTabManageServersButton.Name = "ServerTabManageServersButton";
+            this.ServerTabManageServersButton.Size = new System.Drawing.Size(150, 25);
+            this.ServerTabManageServersButton.TabIndex = 36;
+            this.ServerTabManageServersButton.Text = "Manage Registered Servers";
+            this.ServerTabManageServersButton.UseVisualStyleBackColor = true;
+            this.ServerTabManageServersButton.Click += new System.EventHandler(this.ServerTabManageServersButton_Click);
+            // 
             // LauncherUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -890,12 +924,6 @@ namespace BLRevive.Launcher
         private System.Windows.Forms.NumericUpDown ServerTabBotCountNum;
         private System.Windows.Forms.ComboBox ServerTabMapsCombo;
         private System.Windows.Forms.ComboBox ServerTabGamemodesCombo;
-        private System.Windows.Forms.Label ClientTabHostServersLable;
-        private System.Windows.Forms.ComboBox ClientTabHostServersComboBox;
-        private System.Windows.Forms.Button ClientTabHostServersResetButton;
-        private System.Windows.Forms.Button ClientTabServerAddressSaveButton;
-        private System.Windows.Forms.Button ClientTabHostServersRestoreButton;
-        private System.Windows.Forms.Button ClientTabHostServersBackupButton;
         private System.Windows.Forms.NumericUpDown ClientTabServerPortNum;
         private System.Windows.Forms.NumericUpDown ServerTabPortNum;
         private System.Windows.Forms.Label ServerTabPortLable; 
@@ -921,5 +949,15 @@ namespace BLRevive.Launcher
         private System.Windows.Forms.ComboBox BGTabGamemodesCombo;
         private System.Windows.Forms.Label ServerTabPlaylistLabel;
         private System.Windows.Forms.ComboBox ServerTabPlaylistsCombo;
+        private System.Windows.Forms.ListView ClientTabServerListView;
+        private System.Windows.Forms.ColumnHeader serverIPColumnHeader;
+        private System.Windows.Forms.ColumnHeader serverNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader serverPortColumnHeader;
+        private System.Windows.Forms.ColumnHeader serverMaxPlayersColumnHeader;
+        private System.Windows.Forms.ColumnHeader serverNumBotsColumnHeader;
+        private System.Windows.Forms.Button ClientTabManageServersButton;
+        private System.Windows.Forms.CheckBox ClientTabDirectIPCheckBox;
+        private System.Windows.Forms.CheckBox ServerTabRegisterCheckBox;
+        private System.Windows.Forms.Button ServerTabManageServersButton;
     }
 }
