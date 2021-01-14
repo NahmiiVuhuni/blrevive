@@ -28,7 +28,7 @@ namespace BLRevive.Launcher
             try
             {
                 IPAddress ipAddress = Dns.GetHostAddresses(hostNameOrAddress).First();
-                hostIp = ipAddress.ToString();
+                hostIp = ipAddress.MapToIPv4().ToString();
             }
             catch (Exception exception)
             {
@@ -100,14 +100,17 @@ namespace BLRevive.Launcher
             {
                 List<Server> tempHostsList = hosts;
 
-                if (!hosts.Exists(item => item.Address.Equals(hostIp)))
+                // check pairs of DNS:Port or IP:Port
+                if (!hosts.Exists(item => ((GetHostIp(item.Address).Equals(hostIp) && item.Port.Equals(server.Port)) 
+                                                        || (item.Address.Equals(server.Address) && item.Port.Equals(server.Port)))))
                 {
-                    // add actual valid host representation (IP or name), as added by user 
+                    // add actual valid host representation (IP or name), as added by user with port
                     tempHostsList.Add(server);
-                } else if (hosts.Exists(item => item.Address.Equals(hostIp) && item.Port.Equals(server.Port)))
+                } else if (!NetworkUtil.IsValidIPv4(server.Address) 
+                           && hosts.Exists(item => GetHostIp(item.Address).Equals(hostIp) && item.Port.Equals(server.Port)))
                 {
                     // overwrite server IP representation with the DNS string representation 
-                    int existingHostWithIpIndex = hosts.FindIndex(item => item.Address.Equals(hostIp) && item.Port.Equals(server.Port));
+                    int existingHostWithIpIndex = hosts.FindIndex(item => GetHostIp(item.Address).Equals(hostIp) && item.Port.Equals(server.Port));
                     tempHostsList[existingHostWithIpIndex] = server;
                 }
 
