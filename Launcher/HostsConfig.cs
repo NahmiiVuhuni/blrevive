@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System.IO;
-using System.Windows.Forms;
 
 namespace BLRevive.Launcher
 {
@@ -25,20 +24,29 @@ namespace BLRevive.Launcher
         /// <returns>Instance of this class with parsed host config backup</returns>
         public static HostsConfig Get()
         {
+            var serializerOptions = new JsonSerializerOptions
+            {
+                IncludeFields = true,
+            };
+
             try
             {
                 if (File.Exists(HostsConfigFileName))
                 {
-                    _HostsConfig = JsonConvert.DeserializeObject<HostsConfig>(File.ReadAllText(HostsConfigFileName));
+                    _HostsConfig = JsonSerializer.Deserialize<HostsConfig>(File.ReadAllText(HostsConfigFileName), serializerOptions);
                 }
                 else
                 {
-                    MessageBox.Show($"Failed to parse {HostsConfigFileName}, there is no backup available!");
+                    MessageBox.Avalonia.MessageBoxManager.
+                    GetMessageBoxStandardWindow("Error", $"Failed to parse {HostsConfigFileName}, there is no backup available!")
+                    .Show();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to parse {HostsConfigFileName}!");
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", $"Failed to parse {HostsConfigFileName}!")
+                .Show();
             }
 
             return _HostsConfig ?? (_HostsConfig = new HostsConfig());
@@ -52,12 +60,20 @@ namespace BLRevive.Launcher
         /// <returns>whether saving succeeded</returns>
         public static bool Save()
         {
+            var serializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
             try
             {
                 List<Server> currentHosts = Config.Get().Hosts;
                 if (currentHosts == null || currentHosts.Count == 0)
                 {
-                    MessageBox.Show("There are no hosts servers available to save!");
+                    MessageBox.Avalonia.MessageBoxManager.
+                    GetMessageBoxStandardWindow("Error", "There are no hosts servers available to save!")
+                    .Show();
+
                     return false;
                 }
 
@@ -69,11 +85,14 @@ namespace BLRevive.Launcher
 
                 _HostsConfig = new HostsConfig { Hosts = currentHosts };
 
-                string jsonConfig = JsonConvert.SerializeObject(_HostsConfig, Formatting.Indented);
+                string jsonConfig = JsonSerializer.Serialize(_HostsConfig, serializerOptions);
                 File.WriteAllText(HostsConfigFileName, jsonConfig);
             } catch (Exception ex)
-            {
-                MessageBox.Show($"Error on writing hosts config backup: {ex.Message}");
+            {                    
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", $"Error on writing hosts config backup: {ex.Message}")
+                .Show();
+
                 return false;
             }
 

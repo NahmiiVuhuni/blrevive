@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System.IO;
-using System.Windows.Forms;
 
 namespace BLRevive.Launcher
 {
@@ -78,15 +77,23 @@ namespace BLRevive.Launcher
         /// <returns>Instance of this class with parsed config.</returns>
         public static Config Get()
         {
+            var serializerOptions = new JsonSerializerOptions
+            {
+                IncludeFields = true,
+            };
+
             try
             {
                 if (_Config == null)
-                    _Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(LauncherConfigFileName));
+                    _Config = JsonSerializer.Deserialize<Config>(File.ReadAllText(LauncherConfigFileName), serializerOptions);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to parse {LauncherConfigFileName}!");
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", $"Failed to parse {LauncherConfigFileName}!")
+                .Show();
                 //Log.Debug(ex.Message);
+
                 Environment.Exit(1);
             }
 
@@ -100,13 +107,20 @@ namespace BLRevive.Launcher
         /// <returns>Whether saving succeeded.</returns>
         public static bool Save()
         {
+            var serializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
             try
             {
-                string jsonConfig = JsonConvert.SerializeObject(Get(), Formatting.Indented);
+                string jsonConfig = JsonSerializer.Serialize(Get(), serializerOptions);
                 File.WriteAllText(LauncherConfigFileName, jsonConfig);
             } catch (Exception ex)
             {
-                MessageBox.Show($"Error writing config: {ex.Message}");
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", $"Error writing config: {ex.Message}")
+                .Show();
             }
 
             return true;

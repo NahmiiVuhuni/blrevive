@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using Serilog;
 using System.IO.Ports;
-using System.Windows.Forms;
 using System.Collections.Generic;
 
 namespace BLRevive.Launcher

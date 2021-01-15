@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Security.AccessControl;
 using Serilog;
 
 namespace BLRevive.Launcher
@@ -42,20 +42,33 @@ namespace BLRevive.Launcher
                     Directory.CreateDirectory(LogFileDirectoryAbs);
                 } catch (Exception ex)
                 {
-                    MessageBox.Show($"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!");
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Avalonia.MessageBoxManager.
+                    GetMessageBoxStandardWindow("Error", $"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!")
+                    .Show();
+
+                    MessageBox.Avalonia.MessageBoxManager.
+                    GetMessageBoxStandardWindow("Error", ex.Message)
+                    .Show();
+
                     Environment.Exit(1);
                 }
             }
 
             try
             {
-                System.Security.AccessControl.DirectorySecurity ds = Directory.GetAccessControl(LogFileDirectoryAbs);
+                FileSecurity fs = new FileSecurity(LogFileDirectoryAbs, 
+                AccessControlSections.Owner | AccessControlSections.Group | AccessControlSections.Access);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Logfile directory is not writable!");
-                MessageBox.Show(ex.Message);
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", $"Logfile directory is not writable!")
+                .Show();
+
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", ex.Message)
+                .Show();
+
                 Environment.Exit(1);
             }
 
@@ -88,8 +101,14 @@ namespace BLRevive.Launcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to initialize logging system!");
-                MessageBox.Show(ex.Message);
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", "Failed to initialize logging system!")
+                .Show();
+
+                MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Error", ex.Message)
+                .Show();
+
                 Environment.Exit(1);
             }
 
