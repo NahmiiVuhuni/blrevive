@@ -30,7 +30,7 @@ namespace BLRevive.Launcher
                 IPAddress ipAddress = Dns.GetHostAddresses(hostNameOrAddress).First();
                 hostIp = ipAddress.MapToIPv4().ToString();
             }
-            catch (Exception exception)
+            catch
             {
                 Log.Error("Could not resolve host name: {0}", hostNameOrAddress);
             }

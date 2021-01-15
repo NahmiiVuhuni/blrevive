@@ -240,7 +240,7 @@ namespace BLRevive.Launcher
 
                     if (isGameFolder(cutSteamPath))
                         return cutSteamPath;
-                } catch (Exception ex) {
+                } catch {
                     continue;
                 }
             }

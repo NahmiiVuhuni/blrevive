@@ -87,7 +87,7 @@ namespace BLRevive.Launcher
                 if (_Config == null)
                     _Config = JsonSerializer.Deserialize<Config>(File.ReadAllText(LauncherConfigFileName), serializerOptions);
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Avalonia.MessageBoxManager.
                 GetMessageBoxStandardWindow("Error", $"Failed to parse {LauncherConfigFileName}!")

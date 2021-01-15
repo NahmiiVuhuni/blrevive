@@ -42,7 +42,7 @@ namespace BLRevive.Launcher
                     .Show();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Avalonia.MessageBoxManager.
                 GetMessageBoxStandardWindow("Error", $"Failed to parse {HostsConfigFileName}!")
