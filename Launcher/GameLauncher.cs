@@ -59,7 +59,7 @@ namespace BLRevive.Launcher
 
                 process.Start();
 
-                if (process == null || process.StartTime == null)
+                if (process.HasExited)
                 {
                     Log.Error("Failed to launch process!");
                     Log.Debug("CLI: {0} {1} | WD: {2}", FileName, Args, WorkDir);
@@ -67,7 +67,8 @@ namespace BLRevive.Launcher
                 }
 
                 return process;
-            } catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 Log.Error("Exception on creating process!");
                 Log.Debug("CLI: {0} {1} | WD: {2}", FileName, Args, WorkDir);

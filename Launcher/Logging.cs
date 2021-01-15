@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Security.AccessControl;
 using Serilog;
 
 namespace BLRevive.Launcher
@@ -56,24 +55,6 @@ namespace BLRevive.Launcher
 
             try
             {
-                FileSecurity fs = new FileSecurity(LogFileDirectoryAbs, 
-                AccessControlSections.Owner | AccessControlSections.Group | AccessControlSections.Access);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", $"Logfile directory is not writable!")
-                .Show();
-
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", ex.Message)
-                .Show();
-
-                Environment.Exit(1);
-            }
-
-            try
-            {
                 LoggerConfiguration loggerConfig = new LoggerConfiguration();
                 loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
 
@@ -102,7 +83,7 @@ namespace BLRevive.Launcher
             catch (Exception ex)
             {
                 MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", "Failed to initialize logging system!")
+                GetMessageBoxStandardWindow("Error", "Failed to initialize logging system. Log file directory may not be writable.")
                 .Show();
 
                 MessageBox.Avalonia.MessageBoxManager.
