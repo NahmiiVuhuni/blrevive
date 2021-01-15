@@ -1,4 +1,6 @@
 .vs/
+.vscode/
 packages/
 Debug/
 Release/
+*.code-workspace
