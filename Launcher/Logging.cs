@@ -49,7 +49,7 @@ namespace BLRevive.Launcher
                     GetMessageBoxStandardWindow("Error", ex.Message)
                     .Show();
 
-                    Environment.Exit(1);
+                    Environment.Exit(2121800003);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace BLRevive.Launcher
                 GetMessageBoxStandardWindow("Error", ex.Message)
                 .Show();
 
-                Environment.Exit(1);
+                Environment.Exit(2121800004);
             }
 
             return true;

@@ -94,7 +94,7 @@ namespace BLRevive.Launcher
                 .Show();
                 //Log.Debug(ex.Message);
 
-                Environment.Exit(1);
+                Environment.Exit(2121800001);
             }
 
 

@@ -159,7 +159,7 @@ namespace BLRevive.Launcher
             if (LaunchServer(serverArgs) == null)
             {
                 Log.Error("Failed to start server!");
-                Environment.Exit(1);
+                Environment.Exit(2121800002);
             }
 
             Log.Information("Started game server.");
