@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Logging.Serilog;
 
-namespace Launcher
+namespace BLRevive.Launcher
 {
     class Program
     {

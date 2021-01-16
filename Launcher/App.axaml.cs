@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace Launcher
+namespace BLRevive.Launcher
 {
     public class App : Application
     {
@@ -15,7 +15,7 @@ namespace Launcher
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                desktop.MainWindow = new LauncherUI();
             }
 
             base.OnFrameworkInitializationCompleted();

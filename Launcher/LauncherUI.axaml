@@ -3,13 +3,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" CanResize="False" MaxHeight="600" MaxWidth="900"
-        x:Class="Launcher.MainWindow"
+        x:Class="BLRevive.Launcher.LauncherUI"
         Title="BLRevive Launcher">
     <Window.Styles>
-            <StyleInclude Source="/MainWindow.Styles.axaml" />
+            <StyleInclude Source="/LauncherUI.Styles.axaml" />
     </Window.Styles>
-    <TabControl Name="LauncherTabControl">
-        <TabItem Name="BotMatchTab">
+    <TabControl x:Name="LauncherTabControl">
+        <TabItem x:Name="BotMatchTab">
             <TabItem.Header>
                 <TextBlock>Bot Match</TextBlock>
             </TabItem.Header>
@@ -30,18 +30,18 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Name="BGTabGamemodeLabel" Grid.Column="0" Grid.Row="1" Text="Gamemode"/>
-                    <TextBlock Name="BGTabMapLabel" Grid.Column="0" Grid.Row="3" Text="Map"/>
-                    <TextBlock Name="BGTabBotCountLabel" Grid.Column="0" Grid.Row="5" Text="Bot Count"/>
-                    <ComboBox Name="BGTabGamemodesCombo" Grid.Column="2" Grid.Row="1" SelectedIndex="0">
+                    <TextBlock x:Name="BGTabGamemodeLabel" Grid.Column="0" Grid.Row="1" Text="Gamemode"/>
+                    <TextBlock x:Name="BGTabMapLabel" Grid.Column="0" Grid.Row="3" Text="Map"/>
+                    <TextBlock x:Name="BGTabBotCountLabel" Grid.Column="0" Grid.Row="5" Text="Bot Count"/>
+                    <ComboBox x:Name="BGTabGamemodesCombo" Grid.Column="2" Grid.Row="1" SelectedIndex="0">
                         <ComboBoxItem>TDM</ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Name="BGTabMapsCombo" Grid.Column="2" Grid.Row="3" SelectedIndex="0">
+                    <ComboBox x:Name="BGTabMapsCombo" Grid.Column="2" Grid.Row="3" SelectedIndex="0">
                         <ComboBoxItem>HeloDeck</ComboBoxItem>
                     </ComboBox>
-                    <NumericUpDown Name="BGTabBotCountNum" Grid.Column="2" Grid.Row="5" Value="10" Minimum="0" Maximum="16" Padding="0"/>
+                    <NumericUpDown x:Name="BGTabBotCountNum" Grid.Column="2" Grid.Row="5" Value="10" Minimum="0" Maximum="16" Padding="0"/>
                 </Grid>
-                <Button Name="BGTabLaunchButton"
+                <Button x:Name="BGTabLaunchButton"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,100"
                         MaxWidth="300"
@@ -50,7 +50,7 @@
             </DockPanel>
         </TabItem>
 
-        <TabItem Name="ClientTab">
+        <TabItem x:Name="ClientTab">
             <TabItem.Header>
                 <TextBlock>Client</TextBlock>
             </TabItem.Header>
@@ -81,19 +81,19 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Name="ClientTabHostServersLabel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Saved Host Servers</TextBlock>
-                    <TextBlock Name="ClientTabServerAddressLabel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">Server Address/Port</TextBlock>
-                    <TextBlock Name="ClientTabPlayerNameLabel" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">Player Name</TextBlock>
-                    <TextBlock Name="ClientTabLaunchOptionsLabel" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2">Additional Parameters</TextBlock>
-                    <CheckBox Name="ClientTabCustomURLCheckBox" Grid.Column="0" Grid.Row="11"/>
-                    <TextBlock Name="ClientTabCustomURLLabel" Grid.Column="1" Grid.Row="11">Custom URL</TextBlock>
+                    <TextBlock x:Name="ClientTabHostServersLabel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Saved Host Servers</TextBlock>
+                    <TextBlock x:Name="ClientTabServerAddressLabel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">Server Address/Port</TextBlock>
+                    <TextBlock x:Name="ClientTabPlayerNameLabel" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">Player Name</TextBlock>
+                    <TextBlock x:Name="ClientTabLaunchOptionsLabel" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2">Additional Parameters</TextBlock>
+                    <CheckBox x:Name="ClientTabCustomURLCheckBox" Grid.Column="0" Grid.Row="11"/>
+                    <TextBlock x:Name="ClientTabCustomURLLabel" Grid.Column="1" Grid.Row="11">Custom URL</TextBlock>
 
-                    <ComboBox Name="ClientTabHostServersComboBox" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="5" SelectedIndex="0">
+                    <ComboBox x:Name="ClientTabHostServersComboBox" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="5" SelectedIndex="0">
                         <ComboBoxItem>127.0.0.1:7777</ComboBoxItem>
                     </ComboBox>
-                    <Button Name="ClientTabHostServersResetButton" Grid.Column="2" Grid.Row="3">Reset</Button>
-                    <Button Name="ClientTabHostServersBackupButton" Grid.Column="4" Grid.Row="3">Backup</Button>
-                    <Button Name="ClientTabHostServersRestoreButton" Grid.Column="6" Grid.Row="3">Restore</Button>
+                    <Button x:Name="ClientTabHostServersResetButton" Grid.Column="2" Grid.Row="3">Reset</Button>
+                    <Button x:Name="ClientTabHostServersBackupButton" Grid.Column="4" Grid.Row="3">Backup</Button>
+                    <Button x:Name="ClientTabHostServersRestoreButton" Grid.Column="6" Grid.Row="3">Restore</Button>
 
                     <Grid Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="5">
                             <Grid.ColumnDefinitions>
@@ -106,16 +106,16 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                        <TextBox Name="ClientTabServerAddressTextBox" Grid.Column="0" Grid.Row="0">127.0.0.1</TextBox>
-                        <NumericUpDown Name="ClientTabServerPortNum" Grid.Column="2" Grid.Row="0" Value="7777" Minimum="1024" Maximum="49151" Padding="0"/>
-                        <Button Name="ClientTabServerAddressSaveButton" Grid.Column="4" Grid.Row="0">Save</Button>
+                        <TextBox x:Name="ClientTabServerAddressTextBox" Grid.Column="0" Grid.Row="0">127.0.0.1</TextBox>
+                        <NumericUpDown x:Name="ClientTabServerPortNum" Grid.Column="2" Grid.Row="0" Value="7777" Minimum="1024" Maximum="49151" Padding="0"/>
+                        <Button x:Name="ClientTabServerAddressSaveButton" Grid.Column="4" Grid.Row="0">Save</Button>
                     </Grid>
 
-                    <TextBox Name="ClientTabPlayerNameTextBox" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="5">Player</TextBox>
-                    <TextBox Name="ClientTabLaunchOptionsTextBox" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="5"/>
-                    <TextBox Name="ClientTabCustomURLTextBox" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="5" IsEnabled="False"/>
+                    <TextBox x:Name="ClientTabPlayerNameTextBox" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="5">Player</TextBox>
+                    <TextBox x:Name="ClientTabLaunchOptionsTextBox" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="5"/>
+                    <TextBox x:Name="ClientTabCustomURLTextBox" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="5" IsEnabled="False"/>
                 </Grid>
-                <Button Name="ClientTabLaunchButton"
+                <Button x:Name="ClientTabLaunchButton"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,100"
                         MaxWidth="300"
@@ -124,7 +124,7 @@
             </DockPanel>
         </TabItem>
 
-        <TabItem Name="ServerTab">
+        <TabItem x:Name="ServerTab">
             <TabItem.Header>
                 <TextBlock>Server</TextBlock>
             </TabItem.Header>
@@ -157,34 +157,34 @@
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Name="ServerTabPlaylistLabel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Playlist</TextBlock>
-                    <TextBlock Name="ServerTabGamemodeLabel" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">Gamemode</TextBlock>
-                    <TextBlock Name="ServerTabMapLabel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">Map</TextBlock>
-                    <TextBlock Name="ServerTabNameLabel" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">Server Name</TextBlock>
-                    <TextBlock Name="ServerTabMaxPlayersLabel" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2">Max Players</TextBlock>
-                    <TextBlock Name="ServerTabBotCountLabel" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2">Bot Count</TextBlock>
-                    <TextBlock Name="ServerTabPortLabel" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2">Port</TextBlock>
-                    <TextBlock Name="ServerTabLaunchOptionsLabel" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2">Additional Parameters</TextBlock>
-                    <CheckBox Name="ServerTabCustomURLCheckbox" Grid.Column="0" Grid.Row="17"/>
-                    <TextBlock Name="ServerTabCustomURLLabel" Grid.Column="1" Grid.Row="17">Custom URL</TextBlock>
+                    <TextBlock x:Name="ServerTabPlaylistLabel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">Playlist</TextBlock>
+                    <TextBlock x:Name="ServerTabGamemodeLabel" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">Gamemode</TextBlock>
+                    <TextBlock x:Name="ServerTabMapLabel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2">Map</TextBlock>
+                    <TextBlock x:Name="ServerTabNameLabel" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">Server Name</TextBlock>
+                    <TextBlock x:Name="ServerTabMaxPlayersLabel" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2">Max Players</TextBlock>
+                    <TextBlock x:Name="ServerTabBotCountLabel" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2">Bot Count</TextBlock>
+                    <TextBlock x:Name="ServerTabPortLabel" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2">Port</TextBlock>
+                    <TextBlock x:Name="ServerTabLaunchOptionsLabel" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2">Additional Parameters</TextBlock>
+                    <CheckBox x:Name="ServerTabCustomURLCheckbox" Grid.Column="0" Grid.Row="17"/>
+                    <TextBlock x:Name="ServerTabCustomURLLabel" Grid.Column="1" Grid.Row="17">Custom URL</TextBlock>
 
-                    <ComboBox Name="ServerTabPlaylistsCombo" Grid.Column="2" Grid.Row="1" SelectedIndex="0">
+                    <ComboBox x:Name="ServerTabPlaylistsCombo" Grid.Column="2" Grid.Row="1" SelectedIndex="0">
                         <ComboBoxItem>None</ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Name="ServerTabGamemodesCombo" Grid.Column="2" Grid.Row="3" SelectedIndex="0">
+                    <ComboBox x:Name="ServerTabGamemodesCombo" Grid.Column="2" Grid.Row="3" SelectedIndex="0">
                         <ComboBoxItem>TDM</ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Name="ServerTabMapsCombo" Grid.Column="2" Grid.Row="5" SelectedIndex="0">
+                    <ComboBox x:Name="ServerTabMapsCombo" Grid.Column="2" Grid.Row="5" SelectedIndex="0">
                         <ComboBoxItem>HeloDeck</ComboBoxItem>
                     </ComboBox>
-                    <TextBox Name="ServerTabNameTextBox" Grid.Column="2" Grid.Row="7">BLRevive Server</TextBox>
-                    <NumericUpDown Name="ServerTabPlayerCountNum" Grid.Column="2" Grid.Row="9" Value="16" Minimum="1" Maximum="16" Padding="0"/>
-                    <NumericUpDown Name="ServerTabBotCountNum" Grid.Column="2" Grid.Row="11" Value="0" Minimum="0" Maximum="16" Padding="0"/>
-                    <NumericUpDown Name="ServerTabPortNum" Grid.Column="2" Grid.Row="13" Value="7777" Minimum="1024" Maximum="49151" Padding="0"/>
-                    <TextBox Name="ServerTabLaunchOptionsTextBox" Grid.Column="2" Grid.Row="15"/>
-                    <TextBox Name="ServerTabCustomURLTextBox" Grid.Column="2" Grid.Row="17" IsEnabled="False"/>
+                    <TextBox x:Name="ServerTabNameTextBox" Grid.Column="2" Grid.Row="7">BLRevive Server</TextBox>
+                    <NumericUpDown x:Name="ServerTabPlayerCountNum" Grid.Column="2" Grid.Row="9" Value="16" Minimum="1" Maximum="16" Padding="0"/>
+                    <NumericUpDown x:Name="ServerTabBotCountNum" Grid.Column="2" Grid.Row="11" Value="0" Minimum="0" Maximum="16" Padding="0"/>
+                    <NumericUpDown x:Name="ServerTabPortNum" Grid.Column="2" Grid.Row="13" Value="7777" Minimum="1024" Maximum="49151" Padding="0"/>
+                    <TextBox x:Name="ServerTabLaunchOptionsTextBox" Grid.Column="2" Grid.Row="15"/>
+                    <TextBox x:Name="ServerTabCustomURLTextBox" Grid.Column="2" Grid.Row="17" IsEnabled="False"/>
                 </Grid>
-                <Button Name="ServerTabLaunchButton"
+                <Button x:Name="ServerTabLaunchButton"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,100"
                         MaxWidth="300"
@@ -193,17 +193,17 @@
             </DockPanel>
         </TabItem>
 
-        <TabItem Name="MasterServerTab">
+        <TabItem x:Name="MasterServerTab">
             <TabItem.Header>
                 <TextBlock>Master Server</TextBlock>
             </TabItem.Header>
-            <TextBlock Name="MSTabNotImplementedLabel"
+            <TextBlock x:Name="MSTabNotImplementedLabel"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"
                        Margin="0,200,0,0">Not implemented!</TextBlock>
         </TabItem>
 
-        <TabItem Name="PatchTab">
+        <TabItem x:Name="PatchTab">
             <TabItem.Header>
                 <TextBlock>Patcher</TextBlock>
             </TabItem.Header>
@@ -225,14 +225,14 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Name="PatchTabGameFileInputLabel" Grid.Column="0" Grid.Row="1">Input:</TextBlock>
-                        <TextBlock Name="PatchTabGameFileOutputLabel" Grid.Column="0" Grid.Row="3">Output:</TextBlock>
+                        <TextBlock x:Name="PatchTabGameFileInputLabel" Grid.Column="0" Grid.Row="1">Input:</TextBlock>
+                        <TextBlock x:Name="PatchTabGameFileOutputLabel" Grid.Column="0" Grid.Row="3">Output:</TextBlock>
 
-                        <TextBox Name="PatchTabGameFileInputTextBox" Grid.Column="2" Grid.Row="1"/>
-                        <TextBox Name="PatchTabGameFileOutputTextBox" Grid.Column="2" Grid.Row="3"/>
+                        <TextBox x:Name="PatchTabGameFileInputTextBox" Grid.Column="2" Grid.Row="1"/>
+                        <TextBox x:Name="PatchTabGameFileOutputTextBox" Grid.Column="2" Grid.Row="3"/>
 
-                        <Button Name="PatchTabOpenGameInputDialogButton" Grid.Column="4" Grid.Row="1">Browse</Button>
-                        <Button Name="PatchTabOpenGameOutputDialogButton" Grid.Column="4" Grid.Row="3">Browse</Button>
+                        <Button x:Name="PatchTabOpenGameInputDialogButton" Grid.Column="4" Grid.Row="1">Browse</Button>
+                        <Button x:Name="PatchTabOpenGameOutputDialogButton" Grid.Column="4" Grid.Row="3">Browse</Button>
                     </Grid>
                     <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -247,16 +247,16 @@
                             <RowDefinition Height="25"/>
                         </Grid.RowDefinitions>
 
-                        <CheckBox Name="PatchTabNoEmblemPatchCheckBox" Grid.Column="0" Grid.Row="0"/>
-                        <CheckBox Name="PatchTabASLROnlyCheckBox" Grid.Column="0" Grid.Row="2"/>
-                        <CheckBox Name="PatchTabNoProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
+                        <CheckBox x:Name="PatchTabNoEmblemPatchCheckBox" Grid.Column="0" Grid.Row="0"/>
+                        <CheckBox x:Name="PatchTabASLROnlyCheckBox" Grid.Column="0" Grid.Row="2"/>
+                        <CheckBox x:Name="PatchTabNoProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
 
-                        <TextBlock Name="PatchTabNoEmblemPatchLabel" Grid.Column="1" Grid.Row="0">No Emblem Patch</TextBlock>
-                        <TextBlock Name="PatchTabASLROnlyLabel" Grid.Column="1" Grid.Row="2">ASLR Only</TextBlock>
-                        <TextBlock Name="PatchTabNoProxyInjectionLabel" Grid.Column="1" Grid.Row="4">No Proxy Injection</TextBlock>
+                        <TextBlock x:Name="PatchTabNoEmblemPatchLabel" Grid.Column="1" Grid.Row="0">No Emblem Patch</TextBlock>
+                        <TextBlock x:Name="PatchTabASLROnlyLabel" Grid.Column="1" Grid.Row="2">ASLR Only</TextBlock>
+                        <TextBlock x:Name="PatchTabNoProxyInjectionLabel" Grid.Column="1" Grid.Row="4">No Proxy Injection</TextBlock>
                     </Grid>
                 </StackPanel>
-                <Button Name="PatchTabPatchFileButton"
+                <Button x:Name="PatchTabPatchFileButton"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,100"
                         MaxWidth="300"
@@ -265,7 +265,7 @@
             </DockPanel>
         </TabItem>
 
-        <TabItem Name="SettingsTab">
+        <TabItem x:Name="SettingsTab">
             <TabItem.Header>
                 <TextBlock>Settings</TextBlock>
             </TabItem.Header>
@@ -282,9 +282,9 @@
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Name="SettingsTabGameFileLabel" Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom">Blacklight Directory:</TextBlock>
-                <TextBox Name="SettingsTabBlacklightDirectoryTextBox" Grid.Column="0" Grid.Row="3"/>
-                <Button Name="SettingsTabBlacklightDirectoryBrowseButton" Grid.Column="2" Grid.Row="3">Browse</Button>
+                <TextBlock x:Name="SettingsTabGameFileLabel" Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom">Blacklight Directory:</TextBlock>
+                <TextBox x:Name="SettingsTabBlacklightDirectoryTextBox" Grid.Column="0" Grid.Row="3"/>
+                <Button x:Name="SettingsTabBlacklightDirectoryBrowseButton" Grid.Column="2" Grid.Row="3">Browse</Button>
             </Grid>
         </TabItem>
     </TabControl>
