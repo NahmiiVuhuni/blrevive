@@ -50,7 +50,7 @@ namespace BLRevive.Launcher
                 return false;
             }
 
-            return Regex.IsMatch(ipString, "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
+            return Regex.IsMatch(ipString, "^(?:[0-9]{1,3}{Path.DirectorySeparatorChar}.){3}[0-9]{1,3}$");
         }
 
         /// <summary>

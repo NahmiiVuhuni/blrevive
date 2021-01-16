@@ -313,18 +313,18 @@ namespace BLRevive.Launcher
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
                 PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabNoProxyInjectionCheckBox.IsChecked ?? false);
 
-            if(!Directory.GetCurrentDirectory().Contains("\\Binaries\\Win32"))
+            if(!Directory.GetCurrentDirectory().Contains("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"))
             {
-                File.Copy($"{Directory.GetCurrentDirectory()}\\Proxy.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\Proxy.dll", true);
+                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}Proxy.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}Proxy.dll", true);
 #if DEBUG
-                File.Copy($"{Directory.GetCurrentDirectory()}\\fmtd.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmtd.dll", true);
+                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}fmtd.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}fmtd.dll", true);
     #else
-                File.Copy($"{Directory.GetCurrentDirectory()}\\fmt.dll", $"{Config.Get().GameFolder}\\Binaries\\Win32\\fmt.dll", true);
+                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}fmt.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}fmt.dll", true);
     #endif
-                File.Copy($"{Directory.GetCurrentDirectory()}\\BLRevive.json", $"{Config.Get().GameFolder}\\Binaries\\Win32\\BLRevive.json", true);
+                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}BLRevive.json", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}BLRevive.json", true);
             }
             
-            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}\\Binaries\\Win32\\{GameLauncher.ServerExe}", true);
+            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}{GameLauncher.ServerExe}", true);
         }
 
         private void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)
@@ -333,7 +333,7 @@ namespace BLRevive.Launcher
             var PatchTabGameFileInputTextBox = this.Find<TextBox>("PatchTabGameFileInputTextBox");
 
             var fileDialog = new OpenFileDialog();
-            var folder = $"{Config.Get().GameFolder}\\Binaries\\Win32";
+            var folder = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32";
             if(Directory.Exists(folder))
                 fileDialog.Directory = folder;
             fileDialog.Filters = new List<FileDialogFilter> { new FileDialogFilter { Extensions = new List<string> {"exe"}}};
@@ -401,10 +401,10 @@ namespace BLRevive.Launcher
             SettingsTabBlacklightDirectoryTextBox.Text = path;
 
             if(String.IsNullOrWhiteSpace(PatchTabGameFileInputTextBox.Text))
-                PatchTabGameFileInputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping.exe";
+                PatchTabGameFileInputTextBox.Text = $"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}FoxGame-win32-Shipping.exe";
 
             if(String.IsNullOrWhiteSpace(PatchTabGameFileOutputTextBox.Text))
-                PatchTabGameFileOutputTextBox.Text = $"{path}\\Binaries\\Win32\\FoxGame-win32-Shipping-Patched.exe";
+                PatchTabGameFileOutputTextBox.Text = $"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}FoxGame-win32-Shipping-Patched.exe";
 
             return true;
         }

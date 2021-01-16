@@ -87,7 +87,7 @@ namespace BLRevive.Launcher
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
 
-            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            string binaryDir = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
             Process serverProcess = LaunchProcess($"{binaryDir}{ServerExe}", $"server {Options}", true, binaryDir);
 
             if (serverProcess == null)
@@ -126,7 +126,7 @@ namespace BLRevive.Launcher
         {
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
-            string binaryDir = $"{Config.Get().GameFolder}\\Binaries\\Win32\\";
+            string binaryDir = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
             Process clientProcess = LaunchProcess($"{binaryDir}{PatchedGameExe}", $"{IP}:{Port}{Options}", true, binaryDir);
 
             if(clientProcess == null)
@@ -219,10 +219,10 @@ namespace BLRevive.Launcher
         {
             Func<string, bool> isGameFolder = (string path) => { return Directory.Exists(path) && IsValidGameDirectory(path); };
 
-            if (Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32") != -1)
-                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("\\Binaries\\Win32"));
+            if (Directory.GetCurrentDirectory().IndexOf("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") != -1)
+                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"));
 
-            const string DefaultSteamGamePath = "\\Steam\\steamapps\\common\\blacklightretribution\\";
+            const string DefaultSteamGamePath = "{Path.DirectorySeparatorChar}Steam{Path.DirectorySeparatorChar}steamapps{Path.DirectorySeparatorChar}common{Path.DirectorySeparatorChar}blacklightretribution{Path.DirectorySeparatorChar}";
             const string DefaultSteamPath = @"Program Files (x86)";
 
             DriveInfo[] drives = DriveInfo.GetDrives();
@@ -251,8 +251,8 @@ namespace BLRevive.Launcher
 
         public static bool IsValidGameDirectory(string path)
         {
-            return Directory.Exists($"{path}\\Binaries\\Win32") ?
-                    Directory.Exists($"{path}\\FoxGame\\Logs") ? true : false : false;
+            return Directory.Exists($"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") ?
+                    Directory.Exists($"{path}{Path.DirectorySeparatorChar}FoxGame{Path.DirectorySeparatorChar}Logs") ? true : false : false;
         }
     }
 }

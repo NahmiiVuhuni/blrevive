@@ -16,12 +16,12 @@ namespace BLRevive.Launcher
         /// <summary>
         /// relative path to log directory
         /// </summary>
-        static string LogDirectory = "Logs\\";
+        static string LogDirectory = "Logs{Path.DirectorySeparatorChar}";
 
         /// <summary>
         /// absolute path to log directory
         /// </summary>
-        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}\\{LogDirectory}";
+        static string LogFileDirectoryAbs = $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}{LogDirectory}";
 
         /// <summary>
         /// log file name
