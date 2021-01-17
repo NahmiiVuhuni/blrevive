@@ -313,7 +313,7 @@ namespace BLRevive.Launcher
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
                 PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabNoProxyInjectionCheckBox.IsChecked ?? false);
 
-            if(!Directory.GetCurrentDirectory().Contains("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"))
+            if(!Directory.GetCurrentDirectory().Contains($"{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"))
             {
                 File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}Proxy.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}Proxy.dll", true);
 #if DEBUG

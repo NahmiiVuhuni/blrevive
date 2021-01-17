@@ -219,10 +219,10 @@ namespace BLRevive.Launcher
         {
             Func<string, bool> isGameFolder = (string path) => { return Directory.Exists(path) && IsValidGameDirectory(path); };
 
-            if (Directory.GetCurrentDirectory().IndexOf("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") != -1)
+            if (Directory.GetCurrentDirectory().IndexOf($"{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") != -1)
                 return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"));
 
-            const string DefaultSteamGamePath = "{Path.DirectorySeparatorChar}Steam{Path.DirectorySeparatorChar}steamapps{Path.DirectorySeparatorChar}common{Path.DirectorySeparatorChar}blacklightretribution{Path.DirectorySeparatorChar}";
+            string DefaultSteamGamePath = $"{Path.DirectorySeparatorChar}Steam{Path.DirectorySeparatorChar}steamapps{Path.DirectorySeparatorChar}common{Path.DirectorySeparatorChar}blacklightretribution{Path.DirectorySeparatorChar}";
             const string DefaultSteamPath = @"Program Files (x86)";
 
             DriveInfo[] drives = DriveInfo.GetDrives();
