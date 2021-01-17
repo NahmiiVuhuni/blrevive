@@ -327,7 +327,7 @@ namespace BLRevive.Launcher
             File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}{GameLauncher.ServerExe}", true);
         }
 
-        private void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)
+        private async void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)
         {
             var LauncherWindow = this.Find<Window>("LauncherWindow");
             var PatchTabGameFileInputTextBox = this.Find<TextBox>("PatchTabGameFileInputTextBox");
@@ -338,8 +338,8 @@ namespace BLRevive.Launcher
                 fileDialog.Directory = folder;
             fileDialog.Filters = new List<FileDialogFilter> { new FileDialogFilter { Extensions = new List<string> {"exe"}}};
 
-            var result = fileDialog.ShowAsync(LauncherWindow);
-            if (result.IsCompletedSuccessfully)
+            var result = await fileDialog.ShowAsync(LauncherWindow);
+            if (result != null)
             {
                 // Hubok: Changed because FileName doesn't exist. Might break things.
                 // http://reference.avaloniaui.net/api/Avalonia.Controls/OpenFileDialog/
@@ -355,15 +355,15 @@ namespace BLRevive.Launcher
             PatchTabNoProxyInjectionCheckBox.IsEnabled = !PatchTabASLROnlyCheckBox.IsChecked ?? false;
         }
 
-        private void SettingsTabBlacklightDirectoryBrowseButton_Click(object sender, RoutedEventArgs e)
+        private async void SettingsTabBlacklightDirectoryBrowseButton_Click(object sender, RoutedEventArgs e)
         {
             var LauncherWindow = this.Find<Window>("LauncherWindow");
 
             var folderDialog = new OpenFolderDialog();
             folderDialog.Directory = Config.Get().GameFolder;
 
-            var result = folderDialog.ShowAsync(LauncherWindow);
-            if (result.IsCompletedSuccessfully)
+            var result = await folderDialog.ShowAsync(LauncherWindow);
+            if (result != null)
             {
                 // http://reference.avaloniaui.net/api/Avalonia.Controls/OpenFolderDialog/
                 TrySetGameDirectory(folderDialog.Directory);
@@ -409,7 +409,7 @@ namespace BLRevive.Launcher
             return true;
         }
 
-        private void PatchTabOpenGameOutputDialogButton_Click(object sender, RoutedEventArgs e)
+        private async void PatchTabOpenGameOutputDialogButton_Click(object sender, RoutedEventArgs e)
         {
             var LauncherWindow = this.Find<Window>("LauncherWindow");
             var PatchTabGameFileOutputTextBox = this.Find<TextBox>("PatchTabGameFileOutputTextBox");
@@ -418,8 +418,8 @@ namespace BLRevive.Launcher
             fileDialog.Directory = Directory.GetCurrentDirectory();
             fileDialog.InitialFileName = "FoxGame-win32-Shipping-Patched.exe";
 
-            var result = fileDialog.ShowAsync(LauncherWindow);
-            if (result.IsCompletedSuccessfully)
+            var result = await fileDialog.ShowAsync(LauncherWindow);
+            if (result != null)
             {
                 // http://reference.avaloniaui.net/api/Avalonia.Controls/SaveFileDialog/
                 PatchTabGameFileOutputTextBox.Text = fileDialog.InitialFileName;
