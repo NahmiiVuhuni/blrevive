@@ -4,3 +4,5 @@ packages/
 Debug/
 Release/
 *.code-workspace
+bin/
+obj/
