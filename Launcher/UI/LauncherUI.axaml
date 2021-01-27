@@ -6,7 +6,7 @@
         x:Class="BLRevive.Launcher.LauncherUI" x:Name="LauncherWindow"
         Title="BLRevive Launcher" Opened="LauncherWindow_Opened">
     <Window.Styles>
-            <StyleInclude Source="/LauncherUI.Styles.axaml" />
+            <StyleInclude Source="/UI/LauncherUI.Styles.axaml" />
     </Window.Styles>
     <TabControl x:Name="LauncherTabControl">
         <TabItem x:Name="BotMatchTab">
