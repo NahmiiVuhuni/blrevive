@@ -36,6 +36,7 @@ namespace Launcher
             var ServerTabPlayerCountNum = this.Find<NumericUpDown>("ServerTabPlayerCountNum");
             var ClientTabServerAddressTextBox = this.Find<TextBox>("ClientTabServerAddressTextBox");
             var ClientTabServerPortNum = this.Find<NumericUpDown>("ClientTabServerPortNum");
+            var SettingsTabGamefolderTextbox = this.Find<TextBox>("SettingsTabBlacklightDirectoryTextBox");
             var LauncherTabControl = this.Find<TabControl>("LauncherTabControl");
 
             BGTabGamemodesCombo.Items = Config.Game.Gamemodes;
@@ -77,7 +78,8 @@ namespace Launcher
                     MessageBox.Avalonia.MessageBoxManager.
                     GetMessageBoxStandardWindow("Error", "Could not find a valid blacklight installation. Please head over to Settings and browse to your blacklight directory.")
                     .Show();
-                    LauncherTabControl.SelectedItem = "SettingsTab";
+                    LauncherTabControl.SelectedIndex = 5;
+                    SettingsTabGamefolderTextbox.Focus();
                 }
             } else
             {
