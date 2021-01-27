@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public class App : Application
     {

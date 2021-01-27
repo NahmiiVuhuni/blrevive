@@ -1,10 +1,7 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
+﻿using Avalonia;
 using Avalonia.Logging.Serilog;
-using BLRevive.Launcher;
-
+using Launcher;
+using Configuration;
 
 // Initialization code. Don't use any Avalonia, third-party APIs or any
 // SynchronizationContext-reliant code before AppMain is called: things aren't initialized

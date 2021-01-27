@@ -7,8 +7,9 @@ using Avalonia;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
+using Utils;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public partial class LauncherUI : Window
     {

@@ -5,8 +5,10 @@ using System.IO;
 using Serilog;
 using System.IO.Ports;
 using System.Collections.Generic;
+using Configuration;
+using Utils;
 
-namespace BLRevive.Launcher
+namespace Utils
 {
     /// <summary>
     /// Provides functionality for starting Server and Client.
@@ -86,8 +88,7 @@ namespace BLRevive.Launcher
         {
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
-
-            string binaryDir = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
+            string binaryDir = $"{Config.App.GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
             Process serverProcess = LaunchProcess($"{binaryDir}{ServerExe}", $"server {Options}", true, binaryDir);
 
             if (serverProcess == null)
@@ -126,7 +127,7 @@ namespace BLRevive.Launcher
         {
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
-            string binaryDir = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
+            string binaryDir = $"{Config.App.GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
             Process clientProcess = LaunchProcess($"{binaryDir}{PatchedGameExe}", $"{IP}:{Port}{Options}", true, binaryDir);
 
             if(clientProcess == null)
@@ -152,7 +153,7 @@ namespace BLRevive.Launcher
             Log.Information("Preparing local botgame.");
             Log.Debug("Map: {0} | GameMode: {1}", Map, GameMode);
             string serverArgs = $"{Map}?Game=FoxGame.FoxGameMP_{GameMode}?SingleMatch?NumBots={BotCount}";
-            string clientArgs = $"?Name={Config.Get().Username}";
+            string clientArgs = $"?Name={Config.User.Username}";
             Log.Debug("Server Args: {0} | Client Args: {1}", serverArgs, clientArgs);
 
 
@@ -163,11 +164,10 @@ namespace BLRevive.Launcher
             }
 
             Log.Information("Started game server.");
-            Log.Debug("Waiting {0} seconds for server to start", Config.Get().ServerStartupOffset);
-            Thread.Sleep(Config.Get().ServerStartupOffset);
+            Thread.Sleep(2000);
 
 
-            if (LaunchClient(NetworkUtil.GetDefaultHostServer().Address, $"{Config.DefaultLocalHostServer.Port}", clientArgs) == null)
+            if (LaunchClient(NetworkUtil.GetDefaultHostServer().Address, $"{Config.Defaults.LocalHostServer.Port}", clientArgs) == null)
             {
                 Log.Error("Failed to start client!");
             }

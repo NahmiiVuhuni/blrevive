@@ -3,8 +3,10 @@ using System.IO;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Configuration;
+using Utils;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public partial class LauncherUI : Window
     {
@@ -21,7 +23,7 @@ namespace BLRevive.Launcher
             var LauncherWindow = this.Find<Window>("LauncherWindow");
 
             var folderDialog = new OpenFolderDialog();
-            folderDialog.Directory = Config.Get().GameFolder;
+            folderDialog.Directory = Config.App.GameFolder;
 
             var result = await folderDialog.ShowAsync(LauncherWindow);
             if (result != null)
@@ -56,7 +58,7 @@ namespace BLRevive.Launcher
                 return false;
             }
 
-            Config.Get().GameFolder = path;
+            Config.App.GameFolder = path;
             Config.Save();
 
             SettingsTabBlacklightDirectoryTextBox.Text = path;

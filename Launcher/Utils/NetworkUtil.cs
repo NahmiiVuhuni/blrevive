@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using Serilog;
+using Configuration;
 
-namespace BLRevive.Launcher
+namespace Utils
 {
     /// <summary>
     /// Provides common network util functions
@@ -60,13 +61,13 @@ namespace BLRevive.Launcher
         /// <returns>First host server (defaulted as Local Host IP) in the Config Hosts List OR Default Local Host server</returns>
         public static Server GetDefaultHostServer()
         {
-            List<Server> hosts = Config.Get().Hosts;
+            List<Server> hosts = Config.ServerList.Hosts;
             if (hosts != null && hosts.Count > 0)
             {
                 return hosts[0];
             }
 
-            return Config.DefaultLocalHostServer;
+            return Config.Defaults.LocalHostServer;
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace BLRevive.Launcher
         /// </summary>
         public static void ResetHostsList()
         {
-            Config.Get().Hosts = new List<Server>() { Config.DefaultLocalHostServer };
+            Config.ServerList.Hosts = new List<Server>() { Config.Defaults.LocalHostServer };
             Config.Save();
         }
 
@@ -85,12 +86,12 @@ namespace BLRevive.Launcher
         /// <returns>True - if the host list was updated, False otherwise</returns>
         public static bool UpdateHostsList(Server server)
         {
-            List<Server> hosts = Config.Get().Hosts;
+            List<Server> hosts = Config.ServerList.Hosts;
             if (hosts == null 
                 || String.IsNullOrWhiteSpace(server.Address)
                 || String.IsNullOrWhiteSpace(server.Port)
                 || hosts.Exists(item => item.Address.Equals(server.Address) && item.Port.Equals(server.Port)) 
-                || hosts.Count >= Config.MaxClientHostListSize)
+                || hosts.Count >= Config.ServerList.MaxClientHostListSize)
             {
                 return false;
             }
@@ -115,12 +116,12 @@ namespace BLRevive.Launcher
                     tempHostsList[existingHostWithIpIndex] = server;
                 }
 
-                Config.Get().Hosts = tempHostsList;
+                Config.ServerList.Hosts = tempHostsList;
                 bool isSaved = Config.Save();
                 if (!isSaved)
                 {
                     // restore the old list in case Config JSON save has failed
-                    Config.Get().Hosts = hosts;
+                    Config.ServerList.Hosts = hosts;
                 }
                 return isSaved;
             }
@@ -130,31 +131,31 @@ namespace BLRevive.Launcher
 
         public static bool BackupHostsList()
         {
-            return HostsConfig.Save();
+            return Config.Save(Config.Hosts);
         } 
 
         public static bool RestoreHostsListFromBackup()
         {
-            List<Server> backupHosts = HostsConfig.Get().Hosts;
+            List<Server> backupHosts = Config.Hosts.Hosts;
             if (backupHosts == null || backupHosts.Count == 0)
             {
                 return false;
             }
 
-            List<Server> currentHosts = Config.Get().Hosts;
-            Config.Get().Hosts = backupHosts;
-            bool isSaved = Config.Save();
+            List<Server> currentHosts = Config.Hosts.Hosts;
+            Config.Hosts.Hosts = backupHosts;
+            bool isSaved = Config.Save(Config.Hosts);
             if (!isSaved)
             {
                 // fall back to existing hosts
-                Config.Get().Hosts = currentHosts;
+                Config.Hosts.Hosts = currentHosts;
             }
             return isSaved;
         }
 
         public static bool SaveAsPreviousServer(string hostIpOrAddress, string hostPort)
         {
-            Config.Get().PreviousHost = new PreviousHost() {Server = new Server() { Address = hostIpOrAddress, Port = hostPort}};
+            Config.Hosts.PreviousHost = new Server() { Address = hostIpOrAddress, Port = hostPort};
             return Config.Save();
         }
     }

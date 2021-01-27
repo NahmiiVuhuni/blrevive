@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Serilog;
+using Configuration;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     /// <summary>
     /// Logic for logging. Don't try to use this class directly, instead use the static instance of Serilog (just Log)
@@ -58,7 +59,7 @@ namespace BLRevive.Launcher
                 LoggerConfiguration loggerConfig = new LoggerConfiguration();
                 loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
 
-                switch (Config.Get().LogLevel)
+                switch (Config.App.LogLevel)
                 {
                     // verbose
                     case 0:

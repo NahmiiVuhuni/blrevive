@@ -3,8 +3,10 @@ using System.IO;
 using System.Collections.Generic;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
+using Utils;
+using Configuration;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public partial class LauncherUI : Window
     {
@@ -19,18 +21,21 @@ namespace BLRevive.Launcher
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
                 PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabNoProxyInjectionCheckBox.IsChecked ?? false);
 
-            if (!Directory.GetCurrentDirectory().Contains($"{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"))
+            string binPath = Path.Join(Config.App.GameFolder, "Binaries", "Win32");
+            if (!Directory.GetCurrentDirectory().Contains(Path.Join("Binaries", "Win32")))
             {
-                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}Proxy.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}Proxy.dll", true);
+                string fmtdll = null;
 #if DEBUG
-                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}fmtd.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}fmtd.dll", true);
+                fmtdll = "fmtd.dll";
 #else
-                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}fmt.dll", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}fmt.dll", true);
+                fmtdll = "fmt.dll";
 #endif
-                File.Copy($"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}BLRevive.json", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}BLRevive.json", true);
+                File.Copy(Path.Join(Directory.GetCurrentDirectory(), fmtdll), Path.Join(binPath, fmtdll));
+                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "Proxy.dll"), Path.Join(binPath, "Proxy.dll"));
+                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json"), Path.Join(binPath, "BLRevive.json"));
             }
 
-            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}{GameLauncher.ServerExe}", true);
+            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", Path.Join(binPath, GameLauncher.ServerExe));
         }
 
         private async void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +44,7 @@ namespace BLRevive.Launcher
             var PatchTabGameFileInputTextBox = this.Find<TextBox>("PatchTabGameFileInputTextBox");
 
             var fileDialog = new OpenFileDialog();
-            var folder = $"{Config.Get().GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32";
+            var folder = Path.Join(Config.App.GameFolder, "Binaries", "Win32");
             if (Directory.Exists(folder))
                 fileDialog.Directory = folder;
             fileDialog.Filters = new List<FileDialogFilter> { new FileDialogFilter { Extensions = new List<string> { "exe" } } };

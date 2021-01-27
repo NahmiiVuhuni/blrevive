@@ -2,16 +2,18 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Configuration;
+using Utils;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public partial class LauncherUI : Window
     {
         public LauncherUI()
         {
             // initialize app
+            Config.Load();
             Logging.Initialize();
-            Config.Get();
 
             InitializeComponent();
         }
@@ -36,39 +38,41 @@ namespace BLRevive.Launcher
             var ClientTabServerPortNum = this.Find<NumericUpDown>("ClientTabServerPortNum");
             var LauncherTabControl = this.Find<TabControl>("LauncherTabControl");
 
-            BGTabGamemodesCombo.Items = Config.Get().Gamemodes;
+            BGTabGamemodesCombo.Items = Config.Game.Gamemodes;
             BGTabGamemodesCombo.SelectedIndex = 1;
-            BGTabMapsCombo.Items = Config.Get().Maps;
+            BGTabMapsCombo.Items = Config.Game.Maps;
             BGTabMapsCombo.SelectedIndex = 9;
             BGTabBotCountNum.Value = 10;
 
             // don't select anything on initial load to prevent overwrite of PreviousServerAddress restore if exists
             SetClientTabHostServersComboBoxDataSource();
 
-            ClientTabPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.Get().Username) ? Config.Get().Username : Config.DefaultPlayerName;
+            ClientTabPlayerNameTextBox.Text = UserUtil.IsValidPlayerName(Config.User.Username) ? Config.User.Username : Config.Defaults.PlayerName;
 
-            ServerTabPlaylistsCombo.Items = Config.Get().Playlists;
+            ServerTabPlaylistsCombo.Items = Config.Game.Playlists;
             ServerTabPlaylistsCombo.SelectedIndex = 0;
-            ServerTabGamemodesCombo.Items = Config.Get().Gamemodes;
+            ServerTabGamemodesCombo.Items = Config.Game.Gamemodes;
             ServerTabGamemodesCombo.SelectedIndex = 1;
-            ServerTabMapsCombo.Items = Config.Get().Maps;
+            ServerTabMapsCombo.Items = Config.Game.Maps;
             ServerTabMapsCombo.SelectedIndex = 9;
             ServerTabBotCountNum.Value = 0;
             ServerTabPlayerCountNum.Value = 16;
 
-            if (Config.Get().PreviousHost != null && !String.IsNullOrWhiteSpace(Config.Get().PreviousHost.Server.Address))
-                ClientTabServerAddressTextBox.Text = Config.Get().PreviousHost.Server.Address;
-            else if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
-                Update_ClientTabServerAddressTextBox();
-            if (Config.Get().PreviousHost != null && Config.Get().PreviousHost.Server.Port != null)
-                ClientTabServerPortNum.Value = Int16.Parse(Config.Get().PreviousHost.Server.Port);
-            else
-                ClientTabServerPortNum.Value = Int16.Parse(Config.DefaultLocalHostServer.Port);
 
-            if(String.IsNullOrEmpty(Config.Get().GameFolder))
+            // TODO: refactor this config sectioc
+            if (Config.Hosts.PreviousHost != null && !String.IsNullOrWhiteSpace(Config.Hosts.PreviousHost.Address))
+                ClientTabServerAddressTextBox.Text = Config.Hosts.PreviousHost.Address;
+            else if (Config.ServerList.Hosts != null && Config.ServerList.Hosts.Count != 0)
+                Update_ClientTabServerAddressTextBox();
+            if (Config.Hosts.PreviousHost != null && Config.Hosts.PreviousHost.Port != null)
+                ClientTabServerPortNum.Value = Int16.Parse(Config.Hosts.PreviousHost.Port);
+            else
+                ClientTabServerPortNum.Value = Int16.Parse(Config.Defaults.LocalHostServer.Port);
+
+            if(String.IsNullOrEmpty(Config.App.GameFolder))
             {
                 string defaultPath = GameLauncher.GetDefaultGamePath();
-                if(String.IsNullOrWhiteSpace(Config.Get().GameFolder) || !TrySetGameDirectory(defaultPath, false))
+                if(String.IsNullOrWhiteSpace(Config.App.GameFolder) || !TrySetGameDirectory(defaultPath, false))
                 {
                     MessageBox.Avalonia.MessageBoxManager.
                     GetMessageBoxStandardWindow("Error", "Could not find a valid blacklight installation. Please head over to Settings and browse to your blacklight directory.")
@@ -77,7 +81,7 @@ namespace BLRevive.Launcher
                 }
             } else
             {
-                TrySetGameDirectory(Config.Get().GameFolder);
+                TrySetGameDirectory(Config.App.GameFolder);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
+using Configuration;
 
-namespace BLRevive.Launcher
+namespace Utils
 {
     /// <summary>
     /// Provides common user util functions
@@ -24,7 +25,7 @@ namespace BLRevive.Launcher
         /// <returns>True if the player name was successfully saved, False otherwise</returns>
         public static bool SavePlayerName(string currentPlayerName)
         {
-            Config.Get().Username = currentPlayerName;
+            Config.User.Username = currentPlayerName;
             return Config.Save();
         }
     }

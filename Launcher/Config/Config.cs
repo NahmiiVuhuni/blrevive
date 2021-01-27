@@ -2,125 +2,109 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
+using System.Reflection;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
 
-namespace BLRevive.Launcher
-{
+namespace Configuration
+{ 
     /// <summary>
     /// Provides read/write access to JSON configuration.
     /// </summary>
-    public class Config
+    public static class Config
     {
-        
-        public const string DefaultPlayerName = "Player";
-        
-        private const string DefaultLocalHostIP = "127.0.0.1";
-        private const string DefaultLocalHostPort = "7777";
-        public static Server DefaultLocalHostServer = new Server()
-        {
-            Address = DefaultLocalHostIP, 
-            Port = DefaultLocalHostPort
-        };
+        public static AppConfigProvider App;
+        public static UserConfigProvider User;
+        public static GameConfigProvider Game;
+        public static ServerConfigProvider Server;
+        public static ServerListConfigProvider ServerList;
+        public static HostsConfigProvider Hosts;
+        public static DefaultConfigProvider Defaults = new DefaultConfigProvider();
 
-        public const int MaxClientHostListSize = 50;
-
-        /// <summary>
-        /// The log level to use
-        /// </summary>
-        public int LogLevel;
-
-        /// <summary>
-        /// Delay between server and client startup.
-        /// </summary>
-        public int ServerStartupOffset;
-
-        /// <summary>
-        /// Saved username
-        /// </summary>
-        public string Username;
-
-        /// <summary>
-        /// Contains the server connected to in the previous session.
-        /// </summary>
-        public PreviousHost PreviousHost;
-
-        /// <summary>
-        /// Available Maps.
-        /// </summary>
-        public string[] Maps;
-
-        /// <summary>
-        /// Available Gamemodes.
-        /// </summary>
-        public string[] Gamemodes;
-
-        /// <summary>
-        /// Available Playlists.
-        /// </summary>
-        public string[] Playlists;
-
-        /// <summary>
-        /// Known Host Servers by IP or Name and port  
-        /// </summary>
-        public List<Server> Hosts;
-
-        /// <summary>
-        /// path to blacklight installation directory
-        /// </summary>
-        public string GameFolder;
-
-        private static Config _Config = null;
         private const string LauncherConfigFileName = "LauncherConfig.json";
 
-        /// <summary>
-        /// Get the configuration from JSON.
-        /// </summary>
-        /// <returns>Instance of this class with parsed config.</returns>
-        public static Config Get()
+        public static void Load()
         {
-            var serializerOptions = new JsonSerializerOptions
-            {
-                IncludeFields = true,
-            };
+            // get all config providers declared in this class
+            var confprop = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+            List<FieldInfo> providers = confprop.Where(prop => prop.FieldType.IsSubclassOf(typeof(IConfigProvider))).ToList();
 
-            try
+            // read config
+            var config = JsonDocument.Parse(File.ReadAllText(LauncherConfigFileName)).RootElement;
+
+            // initialize providers
+            foreach (var providerProp in providers)
             {
-                if (_Config == null)
-                    _Config = JsonSerializer.Deserialize<Config>(File.ReadAllText(LauncherConfigFileName), serializerOptions);
+                var staticProvider = providerProp.FieldType;
+                var customFileProp = staticProvider.GetField("FileName", BindingFlags.Public | BindingFlags.Static);
+
+                if ( customFileProp != null)
+                {
+                    var ownConfig = JsonSerializer.Deserialize(File.ReadAllText((string)customFileProp.GetValue(null)), providerProp.FieldType);
+                    providerProp.SetValue(null, ownConfig);
+                } else
+                {
+                    var json = config.GetProperty(providerProp.Name).ToString();
+                    IConfigProvider provider = (IConfigProvider)JsonSerializer.Deserialize(json, providerProp.FieldType);
+                    providerProp.SetValue(null, provider);
+                }
             }
-            catch
-            {
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", $"Failed to parse {LauncherConfigFileName}!")
-                .Show();
-                //Log.Debug(ex.Message);
-
-                Environment.Exit(2121800001);
-            }
-
-
-            return _Config;
         }
 
-        /// <summary>
-        /// Save the current config to JSON.
-        /// </summary>
-        /// <returns>Whether saving succeeded.</returns>
-        public static bool Save()
+        public static bool Save(IConfigProvider filter = null)
         {
-            var serializerOptions = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-            };
-
             try
             {
-                string jsonConfig = JsonSerializer.Serialize(Get(), serializerOptions);
-                File.WriteAllText(LauncherConfigFileName, jsonConfig);
-            } catch (Exception ex)
+                // get all config providers declared in this class
+                List<PropertyInfo> providers = new List<PropertyInfo>(typeof(Config).GetProperties(BindingFlags.Public | BindingFlags.Static).Where(prop => prop.PropertyType == typeof(IConfigProvider)));
+
+                Dictionary<PropertyInfo, string> sectionJson = new Dictionary<PropertyInfo, string>();
+
+                if(filter != null && filter.GetType().GetProperty("FileName") != null)
+                {
+                    PropertyInfo provider = providers.Where(prov => prov.PropertyType == filter.GetType()).FirstOrDefault();
+                    if (provider == null)
+                        return false;
+
+                    var json = JsonSerializer.Serialize(provider.GetValue(null), provider.PropertyType);
+                    File.WriteAllText((string)filter.GetType().GetProperty("FileName", BindingFlags.Public | BindingFlags.Static).GetValue(null), json);
+                    return true;
+                }
+
+                foreach(var providerProp in providers)
+                {
+                    var staticProvider = providerProp.PropertyType;
+                    var customFileProp = staticProvider.GetProperty("FileName", BindingFlags.Public | BindingFlags.Static);
+
+                    if (customFileProp != null && customFileProp.GetValue(null) != null)
+                    {
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.PropertyType);
+                        File.WriteAllText((string)customFileProp.GetValue(null), json);
+                    } else
+                    {
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.PropertyType);
+                        sectionJson.Add(providerProp, json);
+                    }
+                }
+
+                string mergedJson = "";
+                foreach(var section in sectionJson)
+                {
+                    mergedJson += $"\t\"{section.Key.Name}\": {section.Value},\n";
+                }
+                mergedJson = $"{{\n{mergedJson}\n}}";
+                File.WriteAllText(LauncherConfigFileName, mergedJson);
+            }
+            catch (JsonException ex)
             {
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", $"Error writing config: {ex.Message}")
-                .Show();
+                // TODO: error handling
+                return false;
+            }
+            catch (IOException ex)
+            {
+                // TODO: error handling
+                return false;
             }
 
             return true;

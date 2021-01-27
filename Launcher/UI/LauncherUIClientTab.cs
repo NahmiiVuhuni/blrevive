@@ -2,8 +2,10 @@
 using System.Linq;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
+using Utils;
+using Configuration;
 
-namespace BLRevive.Launcher
+namespace Launcher
 {
     public partial class LauncherUI : Window
     {
@@ -18,7 +20,7 @@ namespace BLRevive.Launcher
 
             if (ClientTabCustomURLCheckBox.IsChecked ?? false)
             {
-                GameLauncher.LaunchClient("", $"{Config.DefaultLocalHostServer.Port}", ClientTabCustomURLTextBox.Text);
+                GameLauncher.LaunchClient("", $"{Config.Defaults.LocalHostServer.Port}", ClientTabCustomURLTextBox.Text);
             }
             else
             {
@@ -107,8 +109,8 @@ namespace BLRevive.Launcher
             if (isUpdated)
             {
                 int lastAddedHostSelectionIndex;
-                if (Config.Get().Hosts.Count > 0)
-                    lastAddedHostSelectionIndex = Config.Get().Hosts.Count - 1;
+                if (Config.ServerList.Hosts.Count > 0)
+                    lastAddedHostSelectionIndex = Config.ServerList.Hosts.Count - 1;
                 else
                     lastAddedHostSelectionIndex = 0;
                 Update_ClientTabHostServersComboBox(lastAddedHostSelectionIndex);
@@ -121,7 +123,7 @@ namespace BLRevive.Launcher
             {
                 Update_ClientTabHostServersComboBox(0);
                 MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Notice", $"Restored hosts list from: {HostsConfig.HostsConfigFileName}!")
+                    GetMessageBoxStandardWindow("Notice", $"Restored hosts list from: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
                     .Show();
             }
         }
@@ -131,7 +133,7 @@ namespace BLRevive.Launcher
             if (isSaved)
             {
                 MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Notice", $"Hosts backed-up to: {HostsConfig.HostsConfigFileName}!")
+                    GetMessageBoxStandardWindow("Notice", $"Hosts backed-up to: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
                     .Show();
             }
         }
@@ -164,8 +166,8 @@ namespace BLRevive.Launcher
             //ClientTabHostServersComboBox.DisplayMember = "Server"; 
             //ClientTabHostServersComboBox.ValueMember = null;
             // set new list instance as data source, otherwise the combobox won't react to items changed/added inside the hosts list(combobox)  
-            if (Config.Get().Hosts != null && Config.Get().Hosts.Count != 0)
-                ClientTabHostServersComboBox.Items = Config.Get().Hosts.ToList();
+            if (Config.ServerList.Hosts != null && Config.ServerList.Hosts.Count != 0)
+                ClientTabHostServersComboBox.Items = Config.ServerList.Hosts.ToList();
         }
     }
 }
