@@ -29,7 +29,9 @@ namespace Launcher
             if (result != null)
             {
                 // http://reference.avaloniaui.net/api/Avalonia.Controls/OpenFolderDialog/
-                TrySetGameDirectory(folderDialog.Directory);
+                
+                var path = Path.GetFullPath(result);
+                TrySetGameDirectory(path);
             }
         }
 
