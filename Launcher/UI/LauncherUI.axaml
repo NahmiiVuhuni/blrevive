@@ -241,11 +241,11 @@
 
                         <CheckBox x:Name="PatchTabNoEmblemPatchCheckBox" Grid.Column="0" Grid.Row="0"/>
                         <CheckBox x:Name="PatchTabASLROnlyCheckBox" Click="PatchTabASLROnlyCheckBox_Click" Grid.Column="0" Grid.Row="2"/>
-                        <CheckBox x:Name="PatchTabNoProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
+                        <CheckBox x:Name="PatchTabProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
 
                         <TextBlock x:Name="PatchTabNoEmblemPatchLabel" Grid.Column="1" Grid.Row="0">No Emblem Patch</TextBlock>
                         <TextBlock x:Name="PatchTabASLROnlyLabel" Grid.Column="1" Grid.Row="2">ASLR Only</TextBlock>
-                        <TextBlock x:Name="PatchTabNoProxyInjectionLabel" Grid.Column="1" Grid.Row="4">No Proxy Injection</TextBlock>
+                        <TextBlock x:Name="PatchTabProxyInjectionLabel" Grid.Column="1" Grid.Row="4">Inject Proxy</TextBlock>
                     </Grid>
                 </StackPanel>
                 <Button x:Name="PatchTabPatchFileButton"

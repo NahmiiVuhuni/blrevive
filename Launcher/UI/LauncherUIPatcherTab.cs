@@ -16,10 +16,10 @@ namespace Launcher
             var PatchTabGameFileOutputTextBox = this.Find<TextBox>("PatchTabGameFileOutputTextBox");
             var PatchTabASLROnlyCheckBox = this.Find<CheckBox>("PatchTabASLROnlyCheckBox");
             var PatchTabNoEmblemPatchCheckBox = this.Find<CheckBox>("PatchTabNoEmblemPatchCheckBox");
-            var PatchTabNoProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabNoProxyInjectionCheckBox");
+            var PatchTabProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabProxyInjectionCheckBox");
 
             GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
-                PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabNoProxyInjectionCheckBox.IsChecked ?? false);
+                PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabProxyInjectionCheckBox.IsChecked ?? true);
 
             string binPath = Path.Join(Config.App.GameFolder, "Binaries", "Win32");
             if (!Directory.GetCurrentDirectory().Contains(Path.Join("Binaries", "Win32")))
@@ -59,10 +59,10 @@ namespace Launcher
 
         private void PatchTabASLROnlyCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            var PatchTabNoProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabNoProxyInjectionCheckBox");
+            var PatchTabProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabProxyInjectionCheckBox");
             var PatchTabASLROnlyCheckBox = this.Find<CheckBox>("PatchTabASLROnlyCheckBox");
 
-            PatchTabNoProxyInjectionCheckBox.IsEnabled = !PatchTabASLROnlyCheckBox.IsChecked ?? false;
+            PatchTabProxyInjectionCheckBox.IsEnabled = !PatchTabASLROnlyCheckBox.IsChecked ?? false;
         }
 
         private async void PatchTabOpenGameOutputDialogButton_Click(object sender, RoutedEventArgs e)

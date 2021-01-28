@@ -182,7 +182,7 @@ namespace Utils
             LaunchFinishedAction.Invoke();
         }
 
-        public static bool LaunchPatcher(string GameInputFile, string GameOutputFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = false)
+        public static bool LaunchPatcher(string GameInputFile, string GameOutputFile, bool AslrOnly = false, bool NoEmblemPatch = false, bool NoProxyInjection = true)
         {
             Log.Information("Starting patcher.");
             Log.Debug("GameFile: {0} | AslrOnly: {1} | NoEmblemPatch: {2} | NoProxyInjection: {3}", GameInputFile, AslrOnly, NoEmblemPatch, NoProxyInjection);
