@@ -40,7 +40,7 @@ namespace Utils
         /// <param name="ShowWindow">show the window for the process ?</param>
         /// <param name="WorkDir">workdir of process (defaults to current workdir)</param>
         /// <returns>process handle</returns>
-        protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "")
+        protected static Process LaunchProcess(string FileName, string Args, bool ShowWindow = true, string WorkDir = "", bool IsNative = true)
         {
             Log.Debug("Launching process {0} \"{1}\"", FileName, Args);
 
@@ -50,9 +50,14 @@ namespace Utils
                     WorkDir = Directory.GetCurrentDirectory();
 
                 Process process = new Process();
+#if LINUX
+                process.StartInfo.FileName = Config.Game.LinuxExecPrefix != "" ? Config.Game.LinuxExecPrefix : FileName;
+                process.StartInfo.Arguments =  Config.Game.LinuxExecPrefix != "" ? $"\"{FileName}\" {Args}" : Args;
+#elif WINDOWS
                 process.StartInfo.FileName = FileName;
-                process.StartInfo.WorkingDirectory = WorkDir;
                 process.StartInfo.Arguments = Args;
+#endif
+                process.StartInfo.WorkingDirectory = WorkDir;
                 process.StartInfo.CreateNoWindow = !ShowWindow;
                 process.StartInfo.UseShellExecute = false;
 
@@ -61,7 +66,7 @@ namespace Utils
                 if (process.HasExited)
                 {
                     Log.Error("Failed to launch process!");
-                    Log.Debug("CLI: {0} {1} | WD: {2}", FileName, Args, WorkDir);
+                    Log.Debug("CLI: {0} {1} | WD: {2}", process.StartInfo.FileName, process.StartInfo.Arguments, WorkDir);
                     return null;
                 }
 
@@ -85,7 +90,9 @@ namespace Utils
         {
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
-            Process serverProcess = LaunchProcess(Path.Join(BinaryFolder, PatchedGameExe), $"server {Options}", true, BinaryFolder);
+            
+            string args = $"server {Options}";
+            Process serverProcess = LaunchProcess(PatchedGameExe, args, true, BinaryFolder);
 
             if (serverProcess == null)
                 return null;
@@ -124,14 +131,9 @@ namespace Utils
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
 
-            string crossPlatformExec = null;
-#if WINDOWS
-            crossPlatformExec = "";
-#elif LINUX
-            crossPlatformExec = "wine ";
-#endif
+            string args = $"{IP}:{Port}{Options}";
 
-            Process clientProcess = LaunchProcess(crossPlatformExec + Path.Join(BinaryFolder, PatchedGameExe), $"{IP}:{Port}{Options}", true, BinaryFolder);
+            Process clientProcess = LaunchProcess(PatchedGameExe, args,true, BinaryFolder);
 
             if(clientProcess == null)
             {
@@ -195,10 +197,12 @@ namespace Utils
 
             Log.Debug("Args: {0}", args);
 
+            Process patcherProcess = null;
+            
 #if WINDOWS
-            var patcherProcess = LaunchProcess("Patcher.exe", args, false);
+            patcherProcess = LaunchProcess("Patcher.exe", args, false, "", false);
 #elif LINUX
-            var patcherProcess = LaunchProcess("Patcher", args, false);
+            patcherProcess = LaunchProcess("Patcher", args, false, "", false);
 #endif
             if(patcherProcess != null)
             {

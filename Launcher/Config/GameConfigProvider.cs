@@ -22,5 +22,10 @@ namespace Configuration
         /// Available Playlists.
         /// </summary>
         public string[] Playlists { get; set; }
+
+        /// <summary>
+        /// Custom cli prefix when running on linux.
+        /// </summary>
+        public string LinuxExecPrefix { get; set; }
     }
 }
