@@ -9,13 +9,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Linux'">
 	  <DefineConstants>LINUX;X64;DEBUG</DefineConstants>
-    <OutputPath>..\Bin\Linux\Debug</OutputPath>
+    <OutputPath>..\bin\Linux\Debug</OutputPath>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Linux'">
 	  <DefineConstants>LINUX;X64;RELEASE</DefineConstants>
-    <OutputPath>..\Bin\Linux\Release</OutputPath>
+    <OutputPath>..\bin\Linux\Release</OutputPath>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <PlatformTarget>x64</PlatformTarget>
 	  <PublishSingleFile>true</PublishSingleFile>
@@ -26,13 +26,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows'">
 	  <DefineConstants>WINDOWS;X64;DEBUG</DefineConstants>
-    <OutputPath>..\Bin\Windows\Debug</OutputPath>
+    <OutputPath>..\bin\Windows\Debug</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Windows'">
 		<DefineConstants>WINDOWS;X64;DEBUG</DefineConstants>
-    <OutputPath>..\Bin\Windows\Release</OutputPath>
+    <OutputPath>..\bin\Windows\Release</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<PublishSingleFile>true</PublishSingleFile>

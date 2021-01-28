@@ -5,14 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Launcher (Debug)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "requireExactSource": false,
-            "program": "${workspaceFolder}/Bin/Linux/Debug/Launcher.dll",
+            "program": "${workspaceFolder}/bin/Linux/Debug/Launcher.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Bin/Linux/Debug",
+            "cwd": "${workspaceFolder}/bin/Linux/Debug",
             "console": "integratedTerminal",
             "stopAtEntry": false
         },

@@ -12,12 +12,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Linux'">
   	<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
   	<PlatformTarget>x64</PlatformTarget>
-	<OutputPath>..\Bin\Linux\Debug</OutputPath>
+	<OutputPath>..\bin\Linux\Debug</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Linux'">
   	<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
   	<PlatformTarget>x64</PlatformTarget>
-	<OutputPath>..\Bin\Linux\Release</OutputPath>
+	<OutputPath>..\bin\Linux\Release</OutputPath>
 	<PublishSingleFile>true</PublishSingleFile>
 	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <PublishTrimmed>true</PublishTrimmed>
@@ -27,7 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows'">
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <PlatformTarget>x64</PlatformTarget>
-	  <OutputPath>..\Bin\Windows\Debug</OutputPath>
+	  <OutputPath>..\bin\Windows\Debug</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Windows'">
 	  <PublishSingleFile>true</PublishSingleFile>
@@ -37,6 +37,6 @@
     <PublishReadyToRun>true</PublishReadyToRun>
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <PlatformTarget>x64</PlatformTarget>
-	  <OutputPath>..\Bin\Windows\Release</OutputPath>
+	  <OutputPath>..\bin\Windows\Release</OutputPath>
   </PropertyGroup>
 </Project>

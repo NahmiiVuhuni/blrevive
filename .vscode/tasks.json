@@ -10,6 +10,7 @@
                 "${workspaceFolder}/Launcher/Launcher.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c Debug",
                 "-p:Platform=Linux"
             ],
             "problemMatcher": "$msCompile"
@@ -22,7 +23,9 @@
                 "publish",
                 "${workspaceFolder}/Launcher/Launcher.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "-c Release",
+                "-p:Platform=Linux"
             ],
             "problemMatcher": "$msCompile"
         },
