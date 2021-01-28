@@ -12,13 +12,28 @@ namespace Configuration
     /// <summary>
     /// Provides read/write access to JSON configuration.
     /// </summary>
-    public static class Config
+    public class Config
     {
         public static AppConfigProvider App;
+        [JsonPropertyName("App")]
+        public AppConfigProvider _AppShallow { get { return Config.App; } }
+
         public static UserConfigProvider User;
+        [JsonPropertyName("User")]
+        public UserConfigProvider _UserShallow { get { return Config.User; } }
+
         public static GameConfigProvider Game;
+        [JsonPropertyName("Game")]
+        public GameConfigProvider _GameShallow { get { return Config.Game; } }
+
         public static ServerConfigProvider Server;
+        [JsonPropertyName("Server")]
+        public ServerConfigProvider _ServerShallow { get { return Config.Server; } }
+
         public static ServerListConfigProvider ServerList;
+        [JsonPropertyName("ServerList")]
+        public ServerListConfigProvider _ServerListShallow { get { return Config.ServerList; } }
+
         public static HostsConfigProvider Hosts;
         public static DefaultConfigProvider Defaults = new DefaultConfigProvider();
 
@@ -57,44 +72,41 @@ namespace Configuration
             try
             {
                 // get all config providers declared in this class
-                List<PropertyInfo> providers = new List<PropertyInfo>(typeof(Config).GetProperties(BindingFlags.Public | BindingFlags.Static).Where(prop => prop.PropertyType == typeof(IConfigProvider)));
+                var confprop = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+                List<FieldInfo> providers = confprop.Where(prop => prop.FieldType.IsSubclassOf(typeof(IConfigProvider))).ToList();
 
-                Dictionary<PropertyInfo, string> sectionJson = new Dictionary<PropertyInfo, string>();
+                var sectionJson = new Dictionary<FieldInfo, string>();
 
                 if(filter != null && filter.GetType().GetProperty("FileName") != null)
                 {
-                    PropertyInfo provider = providers.Where(prov => prov.PropertyType == filter.GetType()).FirstOrDefault();
+                    FieldInfo provider = providers.Where(prov => prov.FieldType == filter.GetType()).FirstOrDefault();
                     if (provider == null)
                         return false;
 
-                    var json = JsonSerializer.Serialize(provider.GetValue(null), provider.PropertyType);
+                    var json = JsonSerializer.Serialize(provider.GetValue(null), provider.FieldType);
                     File.WriteAllText((string)filter.GetType().GetProperty("FileName", BindingFlags.Public | BindingFlags.Static).GetValue(null), json);
                     return true;
                 }
 
                 foreach(var providerProp in providers)
                 {
-                    var staticProvider = providerProp.PropertyType;
+                    var staticProvider = providerProp.FieldType;
                     var customFileProp = staticProvider.GetProperty("FileName", BindingFlags.Public | BindingFlags.Static);
 
                     if (customFileProp != null && customFileProp.GetValue(null) != null)
                     {
-                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.PropertyType);
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType);
                         File.WriteAllText((string)customFileProp.GetValue(null), json);
                     } else
                     {
-                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.PropertyType);
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType);
                         sectionJson.Add(providerProp, json);
                     }
                 }
 
-                string mergedJson = "";
-                foreach(var section in sectionJson)
-                {
-                    mergedJson += $"\t\"{section.Key.Name}\": {section.Value},\n";
-                }
-                mergedJson = $"{{\n{mergedJson}\n}}";
-                File.WriteAllText(LauncherConfigFileName, mergedJson);
+
+                string fulljson = JsonSerializer.Serialize<Config>(new Config(), new JsonSerializerOptions() { WriteIndented = true});
+                File.WriteAllText(LauncherConfigFileName, fulljson);
             }
             catch (JsonException ex)
             {
