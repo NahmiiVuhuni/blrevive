@@ -141,8 +141,8 @@ namespace BLRevive.Launcher
             var ServerTabCustomURLTextBox = this.Find<TextBox>("ServerTabCustomURLTextBox");
 
             ServerTabPlaylistsCombo.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false;
-            ServerTabGamemodesCombo.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false && ServerTabPlaylistsCombo.SelectedIndex == 0;
-            ServerTabMapsCombo.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabGamemodesCombo.IsEnabled = (!ServerTabCustomURLCheckbox.IsChecked ?? false) && ServerTabPlaylistsCombo.SelectedIndex == 0;
+            ServerTabMapsCombo.IsEnabled = (!ServerTabCustomURLCheckbox.IsChecked ?? false) && ServerTabPlaylistsCombo.SelectedIndex == 0;
             ServerTabNameTextBox.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false;
             ServerTabBotCountNum.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false;
             ServerTabPlayerCountNum.IsEnabled = !ServerTabCustomURLCheckbox.IsChecked ?? false;
