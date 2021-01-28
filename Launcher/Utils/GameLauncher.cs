@@ -51,8 +51,8 @@ namespace Utils
 
                 Process process = new Process();
 #if LINUX
-                process.StartInfo.FileName = Config.Game.LinuxExecPrefix != "" ? Config.Game.LinuxExecPrefix : FileName;
-                process.StartInfo.Arguments =  Config.Game.LinuxExecPrefix != "" ? $"\"{FileName}\" {Args}" : Args;
+                process.StartInfo.FileName = "wine";
+                process.StartInfo.Arguments =  $"\"{FileName}\" {Args}";
 #elif WINDOWS
                 process.StartInfo.FileName = FileName;
                 process.StartInfo.Arguments = Args;

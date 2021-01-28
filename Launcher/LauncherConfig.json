@@ -1,4 +1,4 @@
-﻿{
+{
   "App": {
     "LogLevel": 1,
     "GameFolder": ""
@@ -7,7 +7,6 @@
     "Username": "Player"
   },
   "Game": {
-    "LinuxExecPrefix": "wine",
     "Maps": [
       "Centre",
       "Containment",
@@ -60,7 +59,8 @@
       "KOTH",
       "DOM",
       "SND"
-    ]
+    ],
+    "LinuxExecPrefix": "wine"
   },
   "Server": {
     "ServerStartupOffset": 5000

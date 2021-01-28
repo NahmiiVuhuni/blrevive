@@ -1,8 +1,13 @@
 .vs/
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.jsons
 packages/
 Debug/
 Release/
 *.code-workspace
 bin/
 obj/
+Logs/
