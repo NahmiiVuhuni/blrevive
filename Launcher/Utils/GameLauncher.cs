@@ -30,10 +30,7 @@ namespace Utils
         /// </summary>
         public static string PatchedGameExe = $"{GameFile}-Patched.exe";
 
-        /// <summary>
-        /// name of server copy of patched game file
-        /// </summary>
-        public static string ServerExe = $"{GameFile}-Patched-Server.exe";
+        public static string BinaryFolder = Path.Join(Config.App.GameFolder, "Binaries", "Win32");
 
         /// <summary>
         /// Starts a process with the given attributes.
@@ -88,8 +85,7 @@ namespace Utils
         {
             Log.Information("Launching Server");
             Log.Debug("Options: {0}", Options);
-            string binaryDir = $"{Config.App.GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
-            Process serverProcess = LaunchProcess($"{binaryDir}{ServerExe}", $"server {Options}", true, binaryDir);
+            Process serverProcess = LaunchProcess(Path.Join(BinaryFolder, PatchedGameExe), $"server {Options}", true, BinaryFolder);
 
             if (serverProcess == null)
                 return null;
@@ -127,8 +123,15 @@ namespace Utils
         {
             Log.Information("Launching Client");
             Log.Debug("IP: {0} | Options: {1}", IP, Port, Options);
-            string binaryDir = $"{Config.App.GameFolder}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}";
-            Process clientProcess = LaunchProcess($"{binaryDir}{PatchedGameExe}", $"{IP}:{Port}{Options}", true, binaryDir);
+
+            string crossPlatformExec = null;
+#if WINDOWS
+            crossPlatformExec = "";
+#elif LINUX
+            crossPlatformExec = "wine ";
+#endif
+
+            Process clientProcess = LaunchProcess(crossPlatformExec + Path.Join(BinaryFolder, PatchedGameExe), $"{IP}:{Port}{Options}", true, BinaryFolder);
 
             if(clientProcess == null)
             {
@@ -192,7 +195,11 @@ namespace Utils
 
             Log.Debug("Args: {0}", args);
 
+#if WINDOWS
             var patcherProcess = LaunchProcess("Patcher.exe", args, false);
+#elif LINUX
+            var patcherProcess = LaunchProcess("Patcher", args, false);
+#endif
             if(patcherProcess != null)
             {
                 string patcherProcessOutput = "";
@@ -219,12 +226,12 @@ namespace Utils
         {
             Func<string, bool> isGameFolder = (string path) => { return Directory.Exists(path) && IsValidGameDirectory(path); };
 
-            if (Directory.GetCurrentDirectory().IndexOf($"{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") != -1)
-                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf("{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32"));
+            string BinarySubDir = Path.Join("Binaries", "Win32");
 
-            string DefaultSteamGamePath = $"{Path.DirectorySeparatorChar}Steam{Path.DirectorySeparatorChar}steamapps{Path.DirectorySeparatorChar}common{Path.DirectorySeparatorChar}blacklightretribution{Path.DirectorySeparatorChar}";
-            const string DefaultSteamPath = @"Program Files (x86)";
+            if (Directory.GetCurrentDirectory().IndexOf(BinarySubDir) != -1)
+                return Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().IndexOf(BinarySubDir));
 
+            string DefaultSteamGamePath = Path.Join("Program Files (x86)", "Steam", "steamapps", "common", "blacklightretribution");
             DriveInfo[] drives = DriveInfo.GetDrives();
 
             foreach(DriveInfo drive in drives)
@@ -232,15 +239,8 @@ namespace Utils
                 try {
                     if(!drive.IsReady)
                         continue;
-
-                    string fullSteamPath = $"{drive.Name}{DefaultSteamPath}{DefaultSteamGamePath}";
-                    string cutSteamPath = $"{drive.Name}{DefaultSteamGamePath}";
-
-                    if (isGameFolder(fullSteamPath))
-                        return fullSteamPath;
-
-                    if (isGameFolder(cutSteamPath))
-                        return cutSteamPath;
+                    if (isGameFolder(Path.Join(drive.Name, DefaultSteamGamePath)))
+                        return Path.Join(drive.Name, DefaultSteamGamePath);
                 } catch {
                     continue;
                 }
@@ -251,8 +251,8 @@ namespace Utils
 
         public static bool IsValidGameDirectory(string path)
         {
-            return Directory.Exists($"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32") ?
-                    Directory.Exists($"{path}{Path.DirectorySeparatorChar}FoxGame{Path.DirectorySeparatorChar}Logs") ? true : false : false;
+            return Directory.Exists(Path.Join(path, "Binaries", "Win32")) ?
+                    Directory.Exists(Path.Join(path, "FoxGame", "Logs")) ? true : false : false;
         }
     }
 }

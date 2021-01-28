@@ -30,12 +30,11 @@ namespace Launcher
 #else
                 fmtdll = "fmt.dll";
 #endif
-                File.Copy(Path.Join(Directory.GetCurrentDirectory(), fmtdll), Path.Join(binPath, fmtdll));
-                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "Proxy.dll"), Path.Join(binPath, "Proxy.dll"));
-                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json"), Path.Join(binPath, "BLRevive.json"));
+                File.Copy(Path.Join(Directory.GetCurrentDirectory(), fmtdll), Path.Join(binPath, fmtdll), true);
+                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "Proxy.dll"), Path.Join(binPath, "Proxy.dll"), true);
+                if(!File.Exists(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json")))
+                    File.Copy(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json"), Path.Join(binPath, "BLRevive.json"), true);
             }
-
-            File.Copy($"{PatchTabGameFileOutputTextBox.Text}", Path.Join(binPath, GameLauncher.ServerExe));
         }
 
         private async void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)
