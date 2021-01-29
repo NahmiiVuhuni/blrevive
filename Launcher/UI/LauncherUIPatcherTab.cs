@@ -18,23 +18,8 @@ namespace Launcher
             var PatchTabNoEmblemPatchCheckBox = this.Find<CheckBox>("PatchTabNoEmblemPatchCheckBox");
             var PatchTabProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabProxyInjectionCheckBox");
 
-            GameLauncher.LaunchPatcher(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
-                PatchTabASLROnlyCheckBox.IsChecked ?? false, PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabProxyInjectionCheckBox.IsChecked ?? true);
-
-            string binPath = Path.Join(Config.App.GameFolder, "Binaries", "Win32");
-            if (!Directory.GetCurrentDirectory().Contains(Path.Join("Binaries", "Win32")))
-            {
-                string fmtdll = null;
-#if DEBUG
-                fmtdll = "fmtd.dll";
-#else
-                fmtdll = "fmt.dll";
-#endif
-                File.Copy(Path.Join(Directory.GetCurrentDirectory(), fmtdll), Path.Join(binPath, fmtdll), true);
-                File.Copy(Path.Join(Directory.GetCurrentDirectory(), "Proxy.dll"), Path.Join(binPath, "Proxy.dll"), true);
-                if(!File.Exists(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json")))
-                    File.Copy(Path.Join(Directory.GetCurrentDirectory(), "BLRevive.json"), Path.Join(binPath, "BLRevive.json"), true);
-            }
+            Patcher.PatchGameFile(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
+                PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabProxyInjectionCheckBox.IsChecked ?? true);
         }
 
         private async void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)

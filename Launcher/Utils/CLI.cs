@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using CommandLine;
 using Configuration;
 using Utils;
@@ -9,6 +10,20 @@ namespace Utils
     {
         public class CliPatchOptions
         {
+            [Option('i', "input", Required = true, HelpText = "Input file to patch")]
+            public string Input {get; set;}
+
+            [Option('o', "output", Required = true, HelpText = "Output filename")]
+            public string Output {get; set;}
+
+            [Option('f', "gamefolder", Required = false,  HelpText = "Path to game directory")]
+            public string Gamefolder {get; set;}
+
+            [Option('e', "no-patches", Required = false, Default = false, HelpText = "Dont apply any game patches")]
+            public bool NoGamePatches {get; set;}
+
+            [Option('p', "inject-proxy", Required = false, Default = false, HelpText = "Enable the proxy debugging tool")]
+            public bool ProxyInjection {get; set;}
         }
 
         public class CliLaunchOptions
@@ -74,7 +89,14 @@ namespace Utils
             if(args.Length <= 2)
                 Exit("patch needs at least two arguments", 0x10003);
             opts.WithParsed<CliPatchOptions>(o => {
-                GameLauncher.LaunchPatcher(args[1], args[2]);
+                string inputPath = o.Input;
+                string outputPath = o.Output;
+                if(!String.IsNullOrEmpty(o.Gamefolder)) 
+                {
+                    inputPath = Path.Join(o.Gamefolder, o.Input);
+                    outputPath = Path.Join(o.Gamefolder, o.Output);
+                }
+                Patcher.PatchGameFile(inputPath, outputPath, !o.NoGamePatches, o.ProxyInjection);
             }).WithNotParsed<CliPatchOptions>(e => {
                 Exit("Error while parsing options: " + e.ToString());
             });
@@ -95,7 +117,7 @@ namespace Utils
             });
         }
 
-        private static void Exit(string message = "", int code = 0, bool waitForInput = true)
+        private static void Exit(string message = "", int code = 0, bool waitForInput = false)
         {
             Console.WriteLine(message);
             if(waitForInput)
