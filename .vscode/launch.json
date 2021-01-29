@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             "requireExactSource": false,
             "program": "${workspaceFolder}/bin/Linux/Debug/Launcher.dll",
-            "args": [],
+            "args": [""],
             "cwd": "${workspaceFolder}/bin/Linux/Debug",
             "console": "integratedTerminal",
             "stopAtEntry": false

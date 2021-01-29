@@ -10,7 +10,7 @@
                 "${workspaceFolder}/Launcher/Launcher.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c Debug",
+                //"-c Debug",
                 "-p:Platform=Linux"
             ],
             "problemMatcher": "$msCompile"
