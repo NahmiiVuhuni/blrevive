@@ -64,10 +64,10 @@ namespace Launcher
             SettingsTabBlacklightDirectoryTextBox.Text = path;
 
             if (String.IsNullOrWhiteSpace(PatchTabGameFileInputTextBox.Text))
-                PatchTabGameFileInputTextBox.Text = $"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}FoxGame-win32-Shipping.exe";
+                PatchTabGameFileInputTextBox.Text = Path.Join(path, "Binaries", "Win32", "FoxGame-win32-Shipping.exe");
 
             if (String.IsNullOrWhiteSpace(PatchTabGameFileOutputTextBox.Text))
-                PatchTabGameFileOutputTextBox.Text = $"{path}{Path.DirectorySeparatorChar}Binaries{Path.DirectorySeparatorChar}Win32{Path.DirectorySeparatorChar}FoxGame-win32-Shipping-Patched.exe";
+                PatchTabGameFileOutputTextBox.Text = Path.Join(path, "Binaries", "Win32", "FoxGame-win32-Shipping-Patched.exe");
 
             return true;
         }

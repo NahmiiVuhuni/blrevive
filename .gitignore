@@ -11,3 +11,4 @@ Release/
 bin/
 obj/
 Logs/
+inspectcode.xml

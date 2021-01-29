@@ -2,12 +2,18 @@ using System;
 using System.IO;
 using CommandLine;
 using Configuration;
-using Utils;
+using Serilog;
 
 namespace Utils
 {
-    public class CLI
+    /// <summary>
+    /// CLI app entry point to provide features without GUI.
+    /// </summary>
+    public static class CLI
     {
+        /// <summary>
+        /// cli options for `patch`
+        /// </summary>
         public class CliPatchOptions
         {
             [Option('i', "input", Required = true, HelpText = "Input file to patch")]
@@ -26,6 +32,9 @@ namespace Utils
             public bool ProxyInjection {get; set;}
         }
 
+        /// <summary>
+        /// cli options for `launch`
+        /// </summary>
         public class CliLaunchOptions
         {
             [Option('u', "url", Required = true, HelpText = "The URL that is passed to the game cli.")]
@@ -41,6 +50,10 @@ namespace Utils
             public string Port {get; set;}
         }
 
+        /// <summary>
+        /// App entry point
+        /// </summary>
+        /// <param name="args">arguments passed from command line</param>
         public static void Run(string[] args)
         {
             if(args.Length <= 0)
@@ -52,13 +65,13 @@ namespace Utils
             switch(args[0])
             {
                 case "registry":
-                    HandleRegistryCLI(args);
+                    HandleRegistryCli(args);
                     break;
                 case "patch":
-                    HandlePatchCLI(args, Parser.Default.ParseArguments<CliPatchOptions>(args));
+                    HandlePatchCli(args, Parser.Default.ParseArguments<CliPatchOptions>(args));
                     break;
                 case "launch":
-                    HandleLaunchCLI(args, Parser.Default.ParseArguments<CliLaunchOptions>(args));
+                    HandleLaunchCli(args, Parser.Default.ParseArguments<CliLaunchOptions>(args));
                     break;
                 default:
                     Exit("command not recognized.", 0x10002);
@@ -66,7 +79,11 @@ namespace Utils
             }
         }
 
-        public static void HandleRegistryCLI(string[] args)
+        /// <summary>
+        /// Add/Remove new game folders to config.
+        /// </summary>
+        /// <param name="args"></param>
+        private static void HandleRegistryCli(string[] args)
         {
             if(args.Length == 1)
                 Exit(Config.App.GameFolder);
@@ -84,7 +101,12 @@ namespace Utils
             Exit("Not implemented yet");
         }
 
-        public static void HandlePatchCLI(string[] args, ParserResult<CliPatchOptions> opts)
+        /// <summary>
+        /// Patch game application.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="opts"></param>
+        private static void HandlePatchCli(string[] args, ParserResult<CliPatchOptions> opts)
         {
             if(args.Length <= 2)
                 Exit("patch needs at least two arguments", 0x10003);
@@ -98,11 +120,16 @@ namespace Utils
                 }
                 Patcher.PatchGameFile(inputPath, outputPath, !o.NoGamePatches, o.ProxyInjection);
             }).WithNotParsed<CliPatchOptions>(e => {
-                Exit("Error while parsing options: " + e.ToString());
+                Exit($"Error while parsing options: {e}");
             });
         }
 
-        public static void HandleLaunchCLI(string[] args, ParserResult<CliLaunchOptions> opts)
+        /// <summary>
+        /// Launch game instance.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="opts"></param>
+        private static void HandleLaunchCli(string[] args, ParserResult<CliLaunchOptions> opts)
         {
             if(args.Length <= 1)
                 Exit("Missing arguments", 0x10006);
@@ -113,12 +140,20 @@ namespace Utils
                 else
                     GameLauncher.LaunchClient(o.IP, o.Port, o.URL);
             }).WithNotParsed<CliLaunchOptions>(e => {
-                Exit($"Error while parsing options: " + e.ToString());
+                Exit($"Error while parsing options: {e}");
             });
         }
 
+        /// <summary>
+        /// Exit the application.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="code"></param>
+        /// <param name="waitForInput"></param>
         private static void Exit(string message = "", int code = 0, bool waitForInput = false)
         {
+            if(code == 0)
+                
             Console.WriteLine(message);
             if(waitForInput)
                 Console.Read();
