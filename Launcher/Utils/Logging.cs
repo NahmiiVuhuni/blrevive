@@ -35,37 +35,13 @@ namespace Utils
         /// <returns>wether setup succeeded</returns>
         public static bool Initialize(bool logToConsole = false)
         {
+            LoggerConfiguration loggerConfig = new LoggerConfiguration();
+
             if(logToConsole)
             {
-                LoggerConfiguration loggerConfig = new LoggerConfiguration();
                 loggerConfig.WriteTo.Console();
-
-                switch (Config.App.LogLevel)
-                {
-                    // verbose
-                    case 0:
-                        loggerConfig.MinimumLevel.Verbose();
-                        break;
-                    case 1:
-                        loggerConfig.MinimumLevel.Debug();
-                        break;
-                    case 2:
-                        loggerConfig.MinimumLevel.Warning();
-                        break;
-                    case 3:
-                        loggerConfig.MinimumLevel.Error();
-                        break;
-                    case 4:
-                        loggerConfig.MinimumLevel.Fatal();
-                        break;
-                }
-
-                Log.Logger = loggerConfig.CreateLogger();
-
-                return true;
             }
-
-            if (!Directory.Exists(LogFileDirectoryAbs))
+            else if (!Directory.Exists(LogFileDirectoryAbs))
             {
                 try
                 {
@@ -82,13 +58,12 @@ namespace Utils
 
                     Environment.Exit(2121800003);
                 }
+                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
             }
 
             try
             {
-                LoggerConfiguration loggerConfig = new LoggerConfiguration();
-                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
-
+                int LogLevel = Config.App == null ? 0 : Config.App.LogLevel;
                 switch (Config.App.LogLevel)
                 {
                     // verbose
