@@ -29,40 +29,27 @@ namespace Utils
         /// </summary>
         static string LogFileName = Path.Join(LogFileDirectoryAbs, "BLReviveLauncher.log"); 
 
+        public static bool IsInitialized = false;
+
         /// <summary>
         /// Setup Serilog.
         /// </summary>
-        /// <returns>wether setup succeeded</returns>
-        public static bool Initialize(bool logToConsole = false)
+        public static void Initialize(bool logToConsole = false)
         {
-            LoggerConfiguration loggerConfig = new LoggerConfiguration();
+            try 
+            {
+                LoggerConfiguration loggerConfig = new LoggerConfiguration();
 
-            if(logToConsole)
-            {
-                loggerConfig.WriteTo.Console();
-            }
-            else if (!Directory.Exists(LogFileDirectoryAbs))
-            {
-                try
+                if(logToConsole)
+                {
+                    loggerConfig.WriteTo.Console();
+                }
+                else if (!Directory.Exists(LogFileDirectoryAbs))
                 {
                     Directory.CreateDirectory(LogFileDirectoryAbs);
-                } catch (Exception ex)
-                {
-                    MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Error", $"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!")
-                    .Show();
-
-                    MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Error", ex.Message)
-                    .Show();
-
-                    Environment.Exit(2121800003);
+                    loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
                 }
-                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
-            }
 
-            try
-            {
                 int LogLevel = Config.App == null ? 0 : Config.App.LogLevel;
                 switch (Config.App.LogLevel)
                 {
@@ -85,21 +72,18 @@ namespace Utils
                 }
 
                 Log.Logger = loggerConfig.CreateLogger();
-            }
-            catch (Exception ex)
+
+                IsInitialized = true;
+            } catch (Exception ex) when (
+                ex.GetType() == typeof(IOException) || ex.GetType() == typeof(DirectoryNotFoundException) ||
+                ex.GetType() == typeof(UnauthorizedAccessException))
             {
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", "Failed to initialize logging system. Log file directory may not be writable.")
-                .Show();
-
-                MessageBox.Avalonia.MessageBoxManager.
-                GetMessageBoxStandardWindow("Error", ex.Message)
-                .Show();
-
-                Environment.Exit(2121800004);
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                            Exit = true,
+                            UserMessage = $"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!",
+                            ErrorCode = 2121800003
+                        });
             }
-
-            return true;
         }
     }
 }

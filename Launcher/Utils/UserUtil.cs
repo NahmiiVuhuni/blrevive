@@ -22,11 +22,10 @@ namespace Utils
         /// Saves current player name to JSON config
         /// </summary>
         /// <param name="currentPlayerName"></param>
-        /// <returns>True if the player name was successfully saved, False otherwise</returns>
-        public static bool SavePlayerName(string currentPlayerName)
+        public static void SavePlayerName(string currentPlayerName)
         {
             Config.User.Username = currentPlayerName;
-            return Config.Save();
+            Config.Save();
         }
     }
 }

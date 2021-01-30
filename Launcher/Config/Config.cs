@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
+using System;
 using System.Reflection;
 using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
+using Utils;
 
 namespace Configuration
-{ 
+{
     /// <summary>
     /// Provides read/write access to JSON configuration.
     /// </summary>
@@ -41,33 +41,53 @@ namespace Configuration
 
         public static void Load()
         {
-            // get all config providers declared in this class
-            var confprop = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
-            List<FieldInfo> providers = confprop.Where(prop => prop.FieldType.IsSubclassOf(typeof(IConfigProvider))).ToList();
-
-            // read config
-            var config = JsonDocument.Parse(File.ReadAllText(LauncherConfigFileName)).RootElement;
-
-            // initialize providers
-            foreach (var providerProp in providers)
+            try 
             {
-                var staticProvider = providerProp.FieldType;
-                var customFileProp = staticProvider.GetField("FileName", BindingFlags.Public | BindingFlags.Static);
+                // get all config providers declared in this class
+                var confprop = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+                List<FieldInfo> providers = confprop.Where(prop => prop.FieldType.IsSubclassOf(typeof(IConfigProvider))).ToList();
 
-                if ( customFileProp != null)
+                // read config
+                var config = JsonDocument.Parse(File.ReadAllText(LauncherConfigFileName)).RootElement;
+
+                // initialize providers
+                foreach (var providerProp in providers)
                 {
-                    var ownConfig = JsonSerializer.Deserialize(File.ReadAllText((string)customFileProp.GetValue(null)), providerProp.FieldType);
-                    providerProp.SetValue(null, ownConfig);
-                } else
-                {
-                    var json = config.GetProperty(providerProp.Name).ToString();
-                    IConfigProvider provider = (IConfigProvider)JsonSerializer.Deserialize(json, providerProp.FieldType);
-                    providerProp.SetValue(null, provider);
+                    var staticProvider = providerProp.FieldType;
+                    var customFileProp = staticProvider.GetField("FileName", BindingFlags.Public | BindingFlags.Static);
+
+                    if ( customFileProp != null)
+                    {
+                        var ownConfig = JsonSerializer.Deserialize(File.ReadAllText((string)customFileProp.GetValue(null)), providerProp.FieldType);
+                        providerProp.SetValue(null, ownConfig);
+                    } else
+                    {
+                        var json = config.GetProperty(providerProp.Name).ToString();
+                        IConfigProvider provider = (IConfigProvider)JsonSerializer.Deserialize(json, providerProp.FieldType);
+                        providerProp.SetValue(null, provider);
+                    }
                 }
+            } 
+            catch(JsonException ex)
+            {
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                    Exit = false,
+                    UserMessage = $"Tried to load invalid JSON configuration! {ex.Message}"
+                });
+            } catch (Exception ex) when (
+                ex.GetType() == typeof(FileNotFoundException) ||
+                ex.GetType() == typeof(DirectoryNotFoundException) ||
+                ex.GetType() == typeof(AccessViolationException)
+            )
+            {
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                    Exit = false,
+                    UserMessage = $"Error while reading config file! {ex.Message}"
+                });
             }
         }
 
-        public static bool Save(IConfigProvider filter = null)
+        public static void Save(IConfigProvider filter = null)
         {
             try
             {
@@ -81,11 +101,11 @@ namespace Configuration
                 {
                     FieldInfo provider = providers.Where(prov => prov.FieldType == filter.GetType()).FirstOrDefault();
                     if (provider == null)
-                        return false;
+                        throw new ArgumentNullException("filter");
 
                     var json = JsonSerializer.Serialize(provider.GetValue(null), provider.FieldType);
                     File.WriteAllText((string)filter.GetType().GetProperty("FileName", BindingFlags.Public | BindingFlags.Static).GetValue(null), json);
-                    return true;
+                    return;
                 }
 
                 foreach(var providerProp in providers)
@@ -108,18 +128,31 @@ namespace Configuration
                 string fulljson = JsonSerializer.Serialize<Config>(new Config(), new JsonSerializerOptions() { WriteIndented = true});
                 File.WriteAllText(LauncherConfigFileName, fulljson);
             }
+            catch (ArgumentNullException ex) 
+            {
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                    Exit = false,
+                    UserMessage = $"Failed to save config. {ex.Message}"
+                });
+            }
             catch (JsonException ex)
             {
-                // TODO: error handling
-                return false;
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                    Exit = false,
+                    UserMessage = "Failed to save config. JSON is invalid."
+                });
             }
-            catch (IOException ex)
+            catch (Exception ex) when (
+                ex.GetType() == typeof(FileNotFoundException) ||
+                ex.GetType() == typeof(DirectoryNotFoundException) ||
+                ex.GetType() == typeof(AccessViolationException)
+            )
             {
-                // TODO: error handling
-                return false;
+                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
+                    Exit = false,
+                    UserMessage = "Failed to save config, exception on writing file."
+                });
             }
-
-            return true;
         }
     }
 }

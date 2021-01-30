@@ -15,6 +15,8 @@ namespace Utils
         public static bool PatchGameFile(string Input, string Output,
              bool ApplyPatches = true, bool injectProxy = false)
         {
+            Log.Debug("Trying to patch {0} (ApplyPatches = {1}; InjectProxy = {2})", 
+                Path.GetFileName(Input), ApplyPatches, injectProxy);
             try
             {
                 // we cant patch files that dont exist!
@@ -36,6 +38,7 @@ namespace Utils
                 Bin.Close();
                 patchedFile.Close();
 
+                Log.Information("Succesfully patched and saved to {0}", Output);
                 return true;
             }
             catch (Exception ex)
@@ -92,6 +95,7 @@ namespace Utils
             };
             Bin.Write(payload);
 
+            Log.Debug("Succesfully injected Proxy detour.");
             return true;
         }
 
@@ -114,6 +118,7 @@ namespace Utils
                 return false;
             }
 
+            Log.Debug("Succesfully applied patches");
             return true;            
         }
         
@@ -122,6 +127,7 @@ namespace Utils
             // disable aslr :)
             Bin.Seek(0x1FE, SeekOrigin.Begin);
             Bin.Write((byte)0x00);
+            Log.Debug("Disabled ASLR");
         }
     }
 }

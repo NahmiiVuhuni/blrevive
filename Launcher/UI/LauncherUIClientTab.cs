@@ -100,42 +100,33 @@ namespace Launcher
             var ClientTabServerAddressTextBox = this.Find<TextBox>("ClientTabServerAddressTextBox");
             var ClientTabServerPortNum = this.Find<NumericUpDown>("ClientTabServerPortNum");
 
-            bool isUpdated = NetworkUtil.UpdateHostsList(new Server()
+            NetworkUtil.UpdateHostsList(new Server()
             {
                 Address = ClientTabServerAddressTextBox.Text,
                 Port = ClientTabServerPortNum.Value.ToString()
             });
 
-            if (isUpdated)
-            {
-                int lastAddedHostSelectionIndex;
-                if (Config.ServerList.Hosts.Count > 0)
-                    lastAddedHostSelectionIndex = Config.ServerList.Hosts.Count - 1;
-                else
-                    lastAddedHostSelectionIndex = 0;
-                Update_ClientTabHostServersComboBox(lastAddedHostSelectionIndex);
-            }
+            int lastAddedHostSelectionIndex;
+            if (Config.ServerList.Hosts.Count > 0)
+                lastAddedHostSelectionIndex = Config.ServerList.Hosts.Count - 1;
+            else
+                lastAddedHostSelectionIndex = 0;
+            Update_ClientTabHostServersComboBox(lastAddedHostSelectionIndex);
         }
         private void ClientTabHostServersRestoreButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isRestored = NetworkUtil.RestoreHostsListFromBackup();
-            if (isRestored)
-            {
-                Update_ClientTabHostServersComboBox(0);
-                MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Notice", $"Restored hosts list from: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
-                    .Show();
-            }
+            NetworkUtil.RestoreHostsListFromBackup();
+            Update_ClientTabHostServersComboBox(0);
+            MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Notice", $"Restored hosts list from: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
+                .Show();
         }
         private void ClientTabHostServersBackupButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isSaved = NetworkUtil.BackupHostsList();
-            if (isSaved)
-            {
-                MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Notice", $"Hosts backed-up to: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
-                    .Show();
-            }
+            NetworkUtil.BackupHostsList();
+            MessageBox.Avalonia.MessageBoxManager.
+                GetMessageBoxStandardWindow("Notice", $"Hosts backed-up to: {(string)Config.Hosts.GetType().GetProperty("FileName").GetValue(null)}!")
+                .Show();
         }
 
         private void Update_ClientTabServerAddressTextBox()

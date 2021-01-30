@@ -83,8 +83,7 @@ namespace Utils
         /// Update the Host Servers list only with uniques Host IP/Server Name and saves it in Config JSON 
         /// </summary>
         /// <param name="server"></param>
-        /// <returns>True - if the host list was updated, False otherwise</returns>
-        public static bool UpdateHostsList(Server server)
+        public static void UpdateHostsList(Server server)
         {
             List<Server> hosts = Config.ServerList.Hosts;
             if (hosts == null 
@@ -93,7 +92,7 @@ namespace Utils
                 || hosts.Exists(item => item.Address.Equals(server.Address) && item.Port.Equals(server.Port)) 
                 || hosts.Count >= Config.ServerList.MaxClientHostListSize)
             {
-                return false;
+                throw new ArgumentException("Server contains invalid values!");
             }
 
             // check if the host name is already in the list with it's equivalent IP
@@ -117,46 +116,32 @@ namespace Utils
                 }
 
                 Config.ServerList.Hosts = tempHostsList;
-                bool isSaved = Config.Save();
-                if (!isSaved)
-                {
-                    // restore the old list in case Config JSON save has failed
-                    Config.ServerList.Hosts = hosts;
-                }
-                return isSaved;
+                Config.Save();
             }
-
-            return false;
         }
 
-        public static bool BackupHostsList()
+        public static void BackupHostsList()
         {
-            return Config.Save(Config.Hosts);
+            Config.Save(Config.Hosts);
         } 
 
-        public static bool RestoreHostsListFromBackup()
+        public static void RestoreHostsListFromBackup()
         {
             List<Server> backupHosts = Config.Hosts.Hosts;
             if (backupHosts == null || backupHosts.Count == 0)
             {
-                return false;
+                throw new FormatException("No backup specified");
             }
 
             List<Server> currentHosts = Config.Hosts.Hosts;
             Config.Hosts.Hosts = backupHosts;
-            bool isSaved = Config.Save(Config.Hosts);
-            if (!isSaved)
-            {
-                // fall back to existing hosts
-                Config.Hosts.Hosts = currentHosts;
-            }
-            return isSaved;
+            Config.Save(Config.Hosts);
         }
 
-        public static bool SaveAsPreviousServer(string hostIpOrAddress, string hostPort)
+        public static void SaveAsPreviousServer(string hostIpOrAddress, string hostPort)
         {
             Config.Hosts.PreviousHost = new Server() { Address = hostIpOrAddress, Port = hostPort};
-            return Config.Save();
+            Config.Save();
         }
     }
 }
