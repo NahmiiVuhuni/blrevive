@@ -49,7 +49,7 @@ namespace Launcher.UI
             }
 
 
-            if (!GameLauncher.IsValidGameDirectory(path))
+            if (!GameInstanceManager.IsValidGameDirectory(path))
             {
                 if (displayErrors)
                     MessageBox.Avalonia.MessageBoxManager.

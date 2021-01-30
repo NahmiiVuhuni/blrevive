@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using Avalonia.Controls;
 using Launcher.Utils;
 using Launcher.Configuration;
+using Serilog;
 
 namespace Launcher.UI
 {
@@ -20,12 +21,31 @@ namespace Launcher.UI
             var ServerTabPlayerCountNum = this.Find<NumericUpDown>("ServerTabPlayerCountNum");
             var ServerTabGamemodesCombo = this.Find<ComboBox>("ServerTabGamemodesCombo");
 
-            if (ServerTabCustomURLCheckbox.IsChecked ?? false)
-                GameLauncher.LaunchServer(ServerTabLaunchOptionsTextBox.Text);
-            else if (ServerTabPlaylistsCombo.SelectedIndex != 0)
-                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabLaunchOptionsTextBox.Text);
-            else
-                GameLauncher.LaunchServer((string)ServerTabMapsCombo.SelectedItem, (string)ServerTabGamemodesCombo.SelectedItem, ServerTabNameTextBox.Text, (int)ServerTabPortNum.Value, (int)ServerTabBotCountNum.Value, (int)ServerTabPlayerCountNum.Value, (string)ServerTabPlaylistsCombo.SelectedItem, ServerTabLaunchOptionsTextBox.Text);
+            try
+            {
+                if (ServerTabCustomURLCheckbox.IsChecked ?? false)
+                {
+                    GameInstanceManager.StartServer(cfg => cfg.CustomParams = ServerTabLaunchOptionsTextBox.Text);
+                }
+                else if (ServerTabPlaylistsCombo.SelectedIndex != 0)
+                {
+                    GameInstanceManager.StartServer(cfg => {
+                        cfg.Map = (string)ServerTabMapsCombo.SelectedItem;
+                        cfg.Playlist = (string)ServerTabPlaylistsCombo.SelectedItem;
+                        cfg.Gamemode = (string)ServerTabGamemodesCombo.SelectedItem;
+                        cfg.Servername = ServerTabNameTextBox.Text;
+                        cfg.Port = (int)ServerTabPortNum.Value;
+                        cfg.BotCount = (int)ServerTabBotCountNum.Value;
+                        cfg.MaxPlayers = (int)ServerTabPlayerCountNum.Value;
+                    });
+                }
+            } catch(UserInputException ex) {
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message);
+            } catch(Exception ex)
+            {
+                Log.Fatal(ex, "Unhandled exception while starting process");
+                throw;
+            }
         }
 
         private void ServerTabCustomURLCheckbox_Click(object sender, RoutedEventArgs e)

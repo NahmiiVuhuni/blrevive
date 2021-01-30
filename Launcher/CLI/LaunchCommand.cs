@@ -30,9 +30,15 @@ namespace Launcher.CLI.Commands
             ClientIdentifier = App.ParseClientIdentifier(ClientIdentifier, Gamefolder);
 
             if(LaunchServer)
-                GameLauncher.LaunchServer(URL);
+                GameInstanceManager.StartServer(cfg => cfg.CustomParams = URL);
             else
-                GameLauncher.LaunchClient(IP, Port.ToString(), URL);
+                GameInstanceManager.StartClient(cfg => {
+                    cfg.IP = IP;
+                    cfg.Port = Port;
+                    cfg.Filename = ClientIdentifier;
+                    cfg.BinaryPath = Gamefolder;
+                    cfg.CustomParams = URL;
+                });
         }
     }
 }

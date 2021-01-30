@@ -4,6 +4,8 @@ using Avalonia.Interactivity;
 using Avalonia.Controls;
 using Launcher.Utils;
 using Launcher.Configuration;
+using Serilog;
+
 
 namespace Launcher.UI
 {
@@ -18,43 +20,31 @@ namespace Launcher.UI
             var ClientTabServerPortNum = this.Find<NumericUpDown>("ClientTabServerPortNum");
             var ClientTabLaunchOptionsTextBox = this.Find<TextBox>("ClientTabLaunchOptionsTextBox");
 
-            if (ClientTabCustomURLCheckBox.IsChecked ?? false)
+            try
             {
-                GameLauncher.LaunchClient("", $"{Config.Defaults.LocalHostServer.Port}", ClientTabCustomURLTextBox.Text);
-            }
-            else
-            {
-                string currentPlayerName = ClientTabPlayerNameTextBox.Text;
-                if (!UserUtil.IsValidPlayerName(currentPlayerName))
+                if (ClientTabCustomURLCheckBox.IsChecked ?? false)
                 {
-                    MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Error", "Missing or invalid Player Name!")
-                    .Show();
-                    return;
+                    GameInstanceManager.StartClient(cfg => cfg.CustomParams = ClientTabCustomURLTextBox.Text);
                 }
                 else
                 {
-                    UserUtil.SavePlayerName(currentPlayerName);
+                    NetworkUtil.SaveAsPreviousServer(ClientTabServerAddressTextBox.Text, ClientTabServerPortNum.Text);
+                    GameInstanceManager.StartClient(cfg => {
+                        cfg.IP = ClientTabServerAddressTextBox.Text;
+                        cfg.Port = (int)ClientTabServerPortNum.Value;
+                        cfg.Playername = ClientTabPlayerNameTextBox.Text;
+                        cfg.CustomParams = ClientTabLaunchOptionsTextBox.Text;
+                    });
                 }
-
-                string currentServerAddress = ClientTabServerAddressTextBox.Text;
-                string currentServerPort = ClientTabServerPortNum.Value.ToString();
-                string options = $"?Name={currentPlayerName}{ClientTabLaunchOptionsTextBox.Text}";
-
-                string ipString = NetworkUtil.GetHostIp(currentServerAddress);
-                // check if the address is valid either by IP or IP resolved from server name
-                if (!NetworkUtil.IsValidIPv4(ipString))
-                {
-                    MessageBox.Avalonia.MessageBoxManager.
-                    GetMessageBoxStandardWindow("Error", "Could not resolve host name!")
-                    .Show();
-                    return;
-                }
-
-                // use valid server name or IP, the way the user added it 
-                NetworkUtil.SaveAsPreviousServer(currentServerAddress, currentServerPort);
-                // always use the IP for client cmd, DNS is not supported in the cmd 
-                GameLauncher.LaunchClient(ipString, currentServerPort, options);
+            } 
+            catch(UserInputException ex)
+            {
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message);
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal(ex, "Unhandled exception when starting client!");
+                throw;
             }
         }
 

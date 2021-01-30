@@ -1,6 +1,8 @@
 ﻿using Avalonia.Interactivity;
 using Avalonia.Controls;
 using Launcher.Utils;
+using System;
+using Serilog;
 
 namespace Launcher.UI
 {
@@ -12,7 +14,27 @@ namespace Launcher.UI
             var BGTabGamemodesCombo = this.Find<ComboBox>("BGTabGamemodesCombo");
             var BGTabBotCountNum = this.Find<NumericUpDown>("BGTabBotCountNum");
 
-            GameLauncher.LaunchBotgame((string)BGTabMapsCombo.SelectedItem, (string)BGTabGamemodesCombo.SelectedItem, (int)BGTabBotCountNum.Value, () => this.Close());
+            try
+            {
+                GameInstanceManager.StartServer( cfg => {
+                    cfg.Map = (string)BGTabMapsCombo.SelectedItem;
+                    cfg.Gamemode = (string)BGTabGamemodesCombo.SelectedItem;
+                    cfg.BotCount = (int)BGTabBotCountNum.Value;
+                });
+
+                GameInstanceManager.StartClient( cfg => {
+                    cfg.IP = "127.0.0.1";
+                    cfg.Playername = "Player";
+                });
+            } 
+            catch(UserInputException ex) 
+            {
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message).Show();
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal(ex, "Unhandled exception while starting botgame!");
+            }
         }
     }
 }

@@ -78,7 +78,7 @@ namespace Launcher.UI
 
             if(String.IsNullOrEmpty(Config.App.GameFolder))
             {
-                string defaultPath = GameLauncher.GetDefaultGamePath();
+                string defaultPath = GameInstanceManager.GetDefaultGamePath();
                 if(String.IsNullOrWhiteSpace(Config.App.GameFolder) || !TrySetGameDirectory(defaultPath, false))
                 {
                     MessageBox.Avalonia.MessageBoxManager.
