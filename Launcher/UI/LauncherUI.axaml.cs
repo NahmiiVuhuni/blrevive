@@ -11,9 +11,15 @@ namespace Launcher.UI
     {
         public MainWindow()
         {
-            // initialize app
-            Config.Load();
-            Logging.Initialize();
+            try
+            {
+                // initialize app
+                Config.Load();
+                Logging.Initialize();
+            } catch(Exception ex) {
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", $"Error while initializing app: {ex.Message}").Show();
+                Environment.Exit(0x10001);
+            }
 
             InitializeComponent();
         }

@@ -11,44 +11,68 @@ namespace Launcher.Utils
         /// <summary>
         /// Create patched game file;
         /// </summary>
-        /// <returns>wether patching suceeded</returns>
-        public static bool PatchGameFile(string Input, string Output,
+        public static void PatchGameFile(string Input, string Output,
              bool ApplyPatches = true, bool injectProxy = false)
         {
             Log.Debug("Trying to patch {0} (ApplyPatches = {1}; InjectProxy = {2})", 
-                Path.GetFileName(Input), ApplyPatches, injectProxy);
-            try
+            Path.GetFileName(Input), ApplyPatches, injectProxy);
+
+            FileStream patchedFile = null;
+            BinaryWriter Bin = null;
+            try 
             {
                 // we cant patch files that dont exist!
                 if (!File.Exists(Input))
                 {
                     Log.Error($"Cannot find game file ({Input})");
-                    Environment.Exit(1);
+                    throw new UserInputException("Input file not found", new FileNotFoundException("", Input));
                 }
 
                 // patching file
                 File.Copy(Input, Output, true);
-                FileStream patchedFile = new FileStream(Output, FileMode.Open);
-                BinaryWriter Bin = new BinaryWriter(patchedFile);
+                patchedFile = new FileStream(Output, FileMode.Open);
+                Bin = new BinaryWriter(patchedFile);
+
                 DisableASLR(Bin);
                 if(ApplyPatches)
                     Patch(Bin);
                 if(injectProxy)
                     InjectProxy(Bin, Path.GetDirectoryName(Output));
-                Bin.Close();
-                patchedFile.Close();
 
                 Log.Information("Succesfully patched and saved to {0}", Output);
-                return true;
-            }
-            catch (Exception ex)
+            } catch(Exception ex) when(
+                ex.GetType() == typeof(FileNotFoundException) ||
+                ex.GetType() == typeof(AccessViolationException)
+            )
             {
-                Log.Error($"Error while patching gamefiles: {ex.Message}");
-                return false;
+                Log.Debug(ex, "Patching failed due to missing file (rights)");
+                throw new UserInputException("Patching failed: either game file or directory is not readable/writable", ex);
+            } catch(Exception ex) when(
+                ex.GetType() == typeof(IOException) ||
+                ex.GetType() == typeof(ArgumentException)
+            )
+            {
+                Log.Debug(ex, "Patching failed due to input binary missmatch");
+                throw new UserInputException("Patching failed: The specified file does not provide valid offsets!", ex);
+            }
+            catch(Exception ex) when(ex.GetType() != typeof(UserInputException))
+            {
+                Log.Fatal(ex, "Unhandled exception occured while patching!");
+                throw;
+            } finally {
+                if(Bin != null)
+                    Bin.Close();
+                if(patchedFile != null)
+                    patchedFile.Close();
             }
         }
 
-        public static bool InjectProxy(BinaryWriter Bin, string path)
+        /// <summary>
+        /// Create a static trampoline inside game file to inject proxy.dll and copy dependencies to gamefolder.
+        /// </summary>
+        /// <param name="Bin">file to patch</param>
+        /// <param name="path">gamefolder</param>
+        public static void InjectProxy(BinaryWriter Bin, string path)
         {
             if (!Directory.GetCurrentDirectory().Equals(path))
             {
@@ -58,18 +82,14 @@ namespace Launcher.Utils
 #else
                     {"fmt.dll", false},
 #endif
-                    {"Proxy.dll", false}, { "BLRevive.json", true}
+                    {"Proxy.dll", false}, 
+                    { "BLRevive.json", true}
                 };
 
                 // ensure all dependencies for injection exist
                 foreach(var dep in deps)
-                {
                     if(!File.Exists(Path.Join(Directory.GetCurrentDirectory(), dep.Key)))
-                    {
-                        Log.Error($"{dep} was not found!");
-                        return false;
-                    }
-                }
+                        throw new UserInputException("Missing file for injecting proxy! Game file will still be patched but without proxy.", new FileNotFoundException("", dep.Key));
 
                 // copy dependencies
                 foreach(var dep in deps)
@@ -94,36 +114,27 @@ namespace Launcher.Utils
                 0x5F, 0x5E, 0x8B, 0xE5, 0x5D, 0xC2, 0x0C, 0x00
             };
             Bin.Write(payload);
-
+            
             Log.Debug("Succesfully injected Proxy detour.");
-            return true;
         }
 
         /// <summary>
         /// Write the patches to the stream.
         /// </summary>
         /// <param name="fs">file stream to write in</param>
-        /// <returns>wether patching succeeded</returns>
-        protected static bool Patch(BinaryWriter Bin)
+        protected static void Patch(BinaryWriter Bin)
         {
-            try
-            {
-                // patch crash issue (setemblem patch)
-                byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
-                Bin.Seek(0xB38BA6, SeekOrigin.Begin);
-                Bin.Write(patch);
-            } catch(Exception ex)
-            {
-                Log.Error($"Applying patches failed: {ex.Message}");
-                return false;
-            }
+            // patch crash issue (setemblem patch)
+            byte[] patch = { 0x90, 0x90, 0x90, 0x90 };
+            Bin.Seek(0xB38BA6, SeekOrigin.Begin);
+            Bin.Write(patch);
 
             Log.Debug("Succesfully applied patches");
-            return true;            
         }
         
         protected static void DisableASLR(BinaryWriter Bin)
         {
+
             // disable aslr :)
             Bin.Seek(0x1FE, SeekOrigin.Begin);
             Bin.Write((byte)0x00);

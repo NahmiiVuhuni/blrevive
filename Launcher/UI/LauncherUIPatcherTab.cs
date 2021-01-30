@@ -18,8 +18,13 @@ namespace Launcher.UI
             var PatchTabNoEmblemPatchCheckBox = this.Find<CheckBox>("PatchTabNoEmblemPatchCheckBox");
             var PatchTabProxyInjectionCheckBox = this.Find<CheckBox>("PatchTabProxyInjectionCheckBox");
 
-            Patcher.PatchGameFile(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
-                PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabProxyInjectionCheckBox.IsChecked ?? true);
+            try {
+                Patcher.PatchGameFile(PatchTabGameFileInputTextBox.Text, PatchTabGameFileOutputTextBox.Text,
+                    PatchTabNoEmblemPatchCheckBox.IsChecked ?? false, PatchTabProxyInjectionCheckBox.IsChecked ?? true);
+            } catch(UserInputException ex)
+            {
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message).Show();
+            }
         }
 
         private async void PatchTabOpenGameInputDialogButton_Click(object sender, RoutedEventArgs e)

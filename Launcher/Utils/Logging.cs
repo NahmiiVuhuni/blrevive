@@ -36,54 +36,42 @@ namespace Launcher.Utils
         /// </summary>
         public static void Initialize(bool logToConsole = false)
         {
-            try 
+            LoggerConfiguration loggerConfig = new LoggerConfiguration();
+
+            if(logToConsole)
             {
-                LoggerConfiguration loggerConfig = new LoggerConfiguration();
-
-                if(logToConsole)
-                {
-                    loggerConfig.WriteTo.Console();
-                }
-                else if (!Directory.Exists(LogFileDirectoryAbs))
-                {
-                    Directory.CreateDirectory(LogFileDirectoryAbs);
-                    loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
-                }
-
-                int LogLevel = Config.App == null ? 0 : Config.App.LogLevel;
-                switch (Config.App.LogLevel)
-                {
-                    // verbose
-                    case 0:
-                        loggerConfig.MinimumLevel.Verbose();
-                        break;
-                    case 1:
-                        loggerConfig.MinimumLevel.Debug();
-                        break;
-                    case 2:
-                        loggerConfig.MinimumLevel.Warning();
-                        break;
-                    case 3:
-                        loggerConfig.MinimumLevel.Error();
-                        break;
-                    case 4:
-                        loggerConfig.MinimumLevel.Fatal();
-                        break;
-                }
-
-                Log.Logger = loggerConfig.CreateLogger();
-
-                IsInitialized = true;
-            } catch (Exception ex) when (
-                ex.GetType() == typeof(IOException) || ex.GetType() == typeof(DirectoryNotFoundException) ||
-                ex.GetType() == typeof(UnauthorizedAccessException))
-            {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                            Exit = true,
-                            UserMessage = $"Logfile directory ({LogFileDirectoryAbs}) doesn't exist and failed to create!",
-                            ErrorCode = 2121800003
-                        });
+                loggerConfig.WriteTo.Console();
             }
+            else if (!Directory.Exists(LogFileDirectoryAbs))
+            {
+                Directory.CreateDirectory(LogFileDirectoryAbs);
+                loggerConfig.WriteTo.File(LogFileName, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+            }
+
+            int LogLevel = Config.App == null ? 0 : Config.App.LogLevel;
+            switch (Config.App.LogLevel)
+            {
+                // verbose
+                case 0:
+                    loggerConfig.MinimumLevel.Verbose();
+                    break;
+                case 1:
+                    loggerConfig.MinimumLevel.Debug();
+                    break;
+                case 2:
+                    loggerConfig.MinimumLevel.Warning();
+                    break;
+                case 3:
+                    loggerConfig.MinimumLevel.Error();
+                    break;
+                case 4:
+                    loggerConfig.MinimumLevel.Fatal();
+                    break;
+            }
+
+            Log.Logger = loggerConfig.CreateLogger();
+
+            IsInitialized = true;
         }
     }
 }

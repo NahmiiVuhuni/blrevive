@@ -11,34 +11,78 @@ namespace Launcher.Configuration
 {
     /// <summary>
     /// Provides read/write access to JSON configuration.
+    /// The config is devided into sections, each IConfigProvider represents a section. 
     /// </summary>
+    /// <example>
+    /// This example shows how to load, read, change and save the config.
+    /// <code>
+    /// // load config from file (must have been called at least once before accessing config vars)
+    /// Config.Load();
+    /// // get config var
+    /// string name = Config.User.Username;
+    /// // set config var (temporary)
+    /// Config.User.Username = "NewName";
+    /// // save changes to file
+    /// Config.Save();
+    /// </code>
+    /// </example>
     public class Config
     {
+        #region Provider
+        /// <summary>
+        /// app configuration
+        /// </summary>
         public static AppConfigProvider App;
         [JsonPropertyName("App")]
         public AppConfigProvider _AppShallow { get { return Config.App; } }
 
+        /// <summary>
+        /// user configuration
+        /// </summary>
         public static UserConfigProvider User;
         [JsonPropertyName("User")]
         public UserConfigProvider _UserShallow { get { return Config.User; } }
 
+        /// <summary>
+        /// game configuration
+        /// </summary>
         public static GameConfigProvider Game;
         [JsonPropertyName("Game")]
         public GameConfigProvider _GameShallow { get { return Config.Game; } }
 
+        /// <summary>
+        /// server configuration
+        /// </summary>
         public static ServerConfigProvider Server;
         [JsonPropertyName("Server")]
         public ServerConfigProvider _ServerShallow { get { return Config.Server; } }
 
+        /// <summary>
+        /// server list configuration
+        /// </summary>
         public static ServerListConfigProvider ServerList;
         [JsonPropertyName("ServerList")]
         public ServerListConfigProvider _ServerListShallow { get { return Config.ServerList; } }
 
+        /// <summary>
+        /// host list
+        /// </summary>
         public static HostsConfigProvider Hosts;
-        public static DefaultConfigProvider Defaults = new DefaultConfigProvider();
 
+        /// <summary>
+        /// default configuration
+        /// </summary>
+        public static DefaultConfigProvider Defaults = new DefaultConfigProvider();
+        #endregion
+
+        /// <summary>
+        /// Filename of configuration
+        /// </summary>
         private const string LauncherConfigFileName = "LauncherConfig.json";
 
+        /// <summary>
+        /// Load configuration from file.
+        /// </summary>
         public static void Load()
         {
             try 
@@ -70,23 +114,21 @@ namespace Launcher.Configuration
             } 
             catch(JsonException ex)
             {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                    Exit = false,
-                    UserMessage = $"Tried to load invalid JSON configuration! {ex.Message}"
-                });
+                throw new Exception("Config JSON is invalid!", ex);
             } catch (Exception ex) when (
                 ex.GetType() == typeof(FileNotFoundException) ||
                 ex.GetType() == typeof(DirectoryNotFoundException) ||
                 ex.GetType() == typeof(AccessViolationException)
             )
             {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                    Exit = false,
-                    UserMessage = $"Error while reading config file! {ex.Message}"
-                });
+                throw new Exception("Config file is missing or not accessable!", ex);
             }
         }
 
+        /// <summary>
+        /// Save configuraiton to file.
+        /// </summary>
+        /// <param name="filter">section override for faster saving</param>
         public static void Save(IConfigProvider filter = null)
         {
             try
@@ -101,7 +143,7 @@ namespace Launcher.Configuration
                 {
                     FieldInfo provider = providers.Where(prov => prov.FieldType == filter.GetType()).FirstOrDefault();
                     if (provider == null)
-                        throw new ArgumentNullException("filter");
+                        throw new Exception("No provider for such filter was found.");
 
                     var json = JsonSerializer.Serialize(provider.GetValue(null), provider.FieldType);
                     File.WriteAllText((string)filter.GetType().GetProperty("FileName", BindingFlags.Public | BindingFlags.Static).GetValue(null), json);
@@ -128,19 +170,9 @@ namespace Launcher.Configuration
                 string fulljson = JsonSerializer.Serialize<Config>(new Config(), new JsonSerializerOptions() { WriteIndented = true});
                 File.WriteAllText(LauncherConfigFileName, fulljson);
             }
-            catch (ArgumentNullException ex) 
-            {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                    Exit = false,
-                    UserMessage = $"Failed to save config. {ex.Message}"
-                });
-            }
             catch (JsonException ex)
             {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                    Exit = false,
-                    UserMessage = "Failed to save config. JSON is invalid."
-                });
+                throw new Exception("Failed saving config: JSON is invalid!", ex);
             }
             catch (Exception ex) when (
                 ex.GetType() == typeof(FileNotFoundException) ||
@@ -148,10 +180,7 @@ namespace Launcher.Configuration
                 ex.GetType() == typeof(AccessViolationException)
             )
             {
-                ExceptionHandler.Handle(ex, new ExceptionHandler.HandleConfig(){
-                    Exit = false,
-                    UserMessage = "Failed to save config, exception on writing file."
-                });
+                throw new Exception("Failed saving config: file is missing or not accessable!", ex);
             }
         }
     }

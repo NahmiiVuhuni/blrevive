@@ -20,15 +20,19 @@ namespace Launcher.CLI
         /// <param name="args">arguments passed from command line</param>
         public static void Run(string[] args)
         {
-            Config.Load();
-            Logging.Initialize(true);
+            try {
+                Config.Load();
+                Logging.Initialize(true);
+            } catch(Exception ex) {
+                Console.WriteLine($"Error while initializing application: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                Environment.Exit(1);
+            }
 
             try
             {
                 if(args.Length <= 0 || String.IsNullOrWhiteSpace(args[0]))
                     throw new UserInputException("Arguments must be provided!");
-
-                ExceptionHandler.IsGui = false;
 
                 var verbs = LoadVerbs();
                 var parser = new Parser(cfg => {
@@ -47,7 +51,10 @@ namespace Launcher.CLI
             )
             {
                 string msg = ex.GetType() == typeof(UserInputException) ? ex.Message : ex.InnerException.Message;
-                Log.Error(msg, ex);
+                Log.Error(msg);
+            } catch(Exception ex) {
+                Log.Error(ex, "Unhandled exception while running app");
+                throw;
             }
         }
 
