@@ -1,27 +1,19 @@
 using System;
 using System.IO;
 using CommandLine;
-using Configuration;
 using Serilog;
-using Utils;
 using System.Reflection;
 using System.Linq;
-using CommandLine.Text;
+using Launcher.Configuration;
+using Launcher.Utils;
 
 namespace Launcher.CLI
 {
     /// <summary>
     /// CLI app entry point to provide features without GUI.
     /// </summary>
-    public static class Handler
+    public static class App
     {
-
-        private	static Type[] LoadVerbs()
-        {
-        return Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.GetCustomAttribute<VerbAttribute>() != null).ToArray();		 
-        }
-
         /// <summary>
         /// App entry point
         /// </summary>
@@ -59,6 +51,12 @@ namespace Launcher.CLI
             }
         }
 
+        /// <summary>
+        /// Parse identifier for game clients.
+        /// </summary>
+        /// <param name="identifier">either a filename, path or id</param>
+        /// <param name="path">gamefolder param</param>
+        /// <returns></returns>
         public static string ParseClientIdentifier(string identifier, string path)
         {
 
@@ -78,6 +76,16 @@ namespace Launcher.CLI
             }
 
             return identifier;
+        }
+
+        /// <summary>
+        /// Load all Verbs by searching for classes with VerbAttribute.
+        /// </summary>
+        /// <returns>list of verbs</returns>
+        private	static Type[] LoadVerbs()
+        {
+        return Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => t.GetCustomAttribute<VerbAttribute>() != null).ToArray();		 
         }
     }
 }

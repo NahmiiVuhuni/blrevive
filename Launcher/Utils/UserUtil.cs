@@ -1,7 +1,7 @@
 ﻿using System;
-using Configuration;
+using Launcher.Configuration;
 
-namespace Utils
+namespace Launcher.Utils
 {
     /// <summary>
     /// Provides common user util functions

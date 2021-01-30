@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" CanResize="False" MaxHeight="600" MaxWidth="900"
-        x:Class="Launcher.LauncherUI" x:Name="LauncherWindow"
+        x:Class="Launcher.UI.MainWindow" x:Name="LauncherWindow"
         Title="BLRevive Launcher" Opened="LauncherWindow_Opened">
     <Window.Styles>
             <StyleInclude Source="/UI/LauncherUI.Styles.axaml" />

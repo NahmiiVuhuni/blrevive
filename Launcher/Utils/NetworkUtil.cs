@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using Serilog;
-using Configuration;
+using Launcher.Configuration;
 
-namespace Utils
+namespace Launcher.Utils
 {
     /// <summary>
     /// Provides common network util functions

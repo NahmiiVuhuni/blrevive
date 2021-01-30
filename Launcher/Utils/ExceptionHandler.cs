@@ -2,13 +2,8 @@ using System;
 using Serilog;
 using Avalonia;
 
-namespace Utils
+namespace Launcher.Utils
 {
-    enum ErrorCodes
-    {
-
-    }
-
     public class UserInputException : Exception
     {
         public UserInputException() : base() {}

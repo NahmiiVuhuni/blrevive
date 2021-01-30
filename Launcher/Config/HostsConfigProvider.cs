@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
 
-namespace Configuration
+namespace Launcher.Configuration
 {
     /// <summary>
     /// Provides read/write access to JSON hosts backup configuration.

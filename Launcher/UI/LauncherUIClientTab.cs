@@ -2,12 +2,12 @@
 using System.Linq;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
-using Utils;
-using Configuration;
+using Launcher.Utils;
+using Launcher.Configuration;
 
-namespace Launcher
+namespace Launcher.UI
 {
-    public partial class LauncherUI : Window
+    public partial class MainWindow : Window
     {
         private void ClientTabLaunchButton_Click(object sender, RoutedEventArgs e)
         {

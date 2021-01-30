@@ -1,6 +1,6 @@
 using System;
 using CommandLine;
-using Utils;
+using Launcher.Utils;
 
 namespace Launcher.CLI.Commands
 {
@@ -27,7 +27,7 @@ namespace Launcher.CLI.Commands
 
         public void Execute()
         {
-            ClientIdentifier = Handler.ParseClientIdentifier(ClientIdentifier, Gamefolder);
+            ClientIdentifier = App.ParseClientIdentifier(ClientIdentifier, Gamefolder);
 
             if(LaunchServer)
                 GameLauncher.LaunchServer(URL);

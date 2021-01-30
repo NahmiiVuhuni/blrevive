@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Serilog;
-using Configuration;
+using Launcher.Configuration;
 
-namespace Utils
+namespace Launcher.Utils
 {
     /// <summary>
     /// Logic for logging. Don't try to use this class directly, instead use the static instance of Serilog (just Log)

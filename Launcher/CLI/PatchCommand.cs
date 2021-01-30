@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using CommandLine;
-using Utils;
+using Launcher.Utils;
 
 namespace Launcher.CLI.Commands
 {
@@ -25,7 +25,7 @@ namespace Launcher.CLI.Commands
 
         public void Execute()
         {
-            Input = Handler.ParseClientIdentifier(Input, Gamefolder);
+            Input = App.ParseClientIdentifier(Input, Gamefolder);
 
             // set output to <input>-Patched if not specified
             if(String.IsNullOrWhiteSpace(Output))

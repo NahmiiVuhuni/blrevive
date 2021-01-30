@@ -3,12 +3,9 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Serilog;
-using System.IO.Ports;
-using System.Collections.Generic;
-using Configuration;
-using Utils;
+using Launcher.Configuration;
 
-namespace Utils
+namespace Launcher.Utils
 {
     /// <summary>
     /// Provides functionality for starting Server and Client.

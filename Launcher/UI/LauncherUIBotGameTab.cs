@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Avalonia;
-using Avalonia.Input;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
 using Avalonia.Controls;
-using Utils;
+using Launcher.Utils;
 
-namespace Launcher
+namespace Launcher.UI
 {
-    public partial class LauncherUI : Window
+    public partial class MainWindow : Window
     {
         public void BGTabLaunchButton_Click(object sender, RoutedEventArgs e)
         {

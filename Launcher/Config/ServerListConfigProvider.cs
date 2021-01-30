@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Configuration
+namespace Launcher.Configuration
 {
     public class ServerListConfigProvider : IConfigProvider
     {

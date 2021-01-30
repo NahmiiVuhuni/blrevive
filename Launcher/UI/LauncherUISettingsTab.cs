@@ -3,12 +3,12 @@ using System.IO;
 using Avalonia.Interactivity;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Configuration;
-using Utils;
+using Launcher.Configuration;
+using Launcher.Utils;
 
-namespace Launcher
+namespace Launcher.UI
 {
-    public partial class LauncherUI : Window
+    public partial class MainWindow : Window
     {
         private void SettingsTabBlacklightDirectoryTextBox_KeyDown(object sender, KeyEventArgs e)
         {

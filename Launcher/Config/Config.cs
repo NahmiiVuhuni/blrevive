@@ -5,9 +5,9 @@ using System;
 using System.Reflection;
 using System.Linq;
 using System.Text.Json.Serialization;
-using Utils;
+using Launcher.Utils;
 
-namespace Configuration
+namespace Launcher.Configuration
 {
     /// <summary>
     /// Provides read/write access to JSON configuration.

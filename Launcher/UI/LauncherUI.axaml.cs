@@ -2,14 +2,14 @@ using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Configuration;
-using Utils;
+using Launcher.Configuration;
+using Launcher.Utils;
 
-namespace Launcher
+namespace Launcher.UI
 {
-    public partial class LauncherUI : Window
+    public partial class MainWindow : Window
     {
-        public LauncherUI()
+        public MainWindow()
         {
             // initialize app
             Config.Load();

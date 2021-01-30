@@ -3,7 +3,7 @@ using System.IO;
 using Serilog;
 using System.Collections.Generic;
 
-namespace Utils
+namespace Launcher.Utils
 {
     public class Patcher
     {
