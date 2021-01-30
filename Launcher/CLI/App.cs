@@ -23,6 +23,7 @@ namespace Launcher.CLI
             try {
                 Config.Load();
                 Logging.Initialize(true);
+                GameRegistry.Initialize();
             } catch(Exception ex) {
                 Console.WriteLine($"Error while initializing application: {ex.Message}");
                 Console.WriteLine(ex.StackTrace);

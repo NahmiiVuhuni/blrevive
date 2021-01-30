@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Linq;
 using System.Text.Json.Serialization;
 using Launcher.Utils;
+using Serilog;
 
 namespace Launcher.Configuration
 {
@@ -64,6 +65,7 @@ namespace Launcher.Configuration
         [JsonPropertyName("ServerList")]
         public ServerListConfigProvider _ServerListShallow { get { return Config.ServerList; } }
 
+        public static GameRegistryProvider Registry;
         /// <summary>
         /// host list
         /// </summary>
@@ -153,7 +155,7 @@ namespace Launcher.Configuration
                 foreach(var providerProp in providers)
                 {
                     var staticProvider = providerProp.FieldType;
-                    var customFileProp = staticProvider.GetProperty("FileName", BindingFlags.Public | BindingFlags.Static);
+                    var customFileProp = staticProvider.GetField("FileName", BindingFlags.Public | BindingFlags.Static);
 
                     if (customFileProp != null && customFileProp.GetValue(null) != null)
                     {
