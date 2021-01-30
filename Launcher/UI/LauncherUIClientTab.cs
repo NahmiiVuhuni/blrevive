@@ -39,7 +39,7 @@ namespace Launcher.UI
             } 
             catch(UserInputException ex)
             {
-                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message);
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message).Show();
             }
             catch(Exception ex)
             {

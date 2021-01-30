@@ -27,11 +27,12 @@ namespace Launcher.UI
                 {
                     GameInstanceManager.StartServer(cfg => cfg.CustomParams = ServerTabLaunchOptionsTextBox.Text);
                 }
-                else if (ServerTabPlaylistsCombo.SelectedIndex != 0)
+                else
                 {
                     GameInstanceManager.StartServer(cfg => {
                         cfg.Map = (string)ServerTabMapsCombo.SelectedItem;
-                        cfg.Playlist = (string)ServerTabPlaylistsCombo.SelectedItem;
+                        if(ServerTabPlaylistsCombo.SelectedIndex != 0)
+                            cfg.Playlist = (string)ServerTabPlaylistsCombo.SelectedItem;
                         cfg.Gamemode = (string)ServerTabGamemodesCombo.SelectedItem;
                         cfg.Servername = ServerTabNameTextBox.Text;
                         cfg.Port = (int)ServerTabPortNum.Value;
@@ -40,7 +41,7 @@ namespace Launcher.UI
                     });
                 }
             } catch(UserInputException ex) {
-                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message);
+                MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow("Error", ex.Message).Show();
             } catch(Exception ex)
             {
                 Log.Fatal(ex, "Unhandled exception while starting process");
