@@ -3,10 +3,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" CanResize="False" MaxHeight="600" MaxWidth="900"
-        x:Class="BLRevive.Launcher.LauncherUI" x:Name="LauncherWindow"
+        x:Class="Launcher.UI.MainWindow" x:Name="LauncherWindow"
         Title="BLRevive Launcher" Opened="LauncherWindow_Opened">
     <Window.Styles>
-            <StyleInclude Source="/LauncherUI.Styles.axaml" />
+            <StyleInclude Source="/UI/LauncherUI.Styles.axaml" />
     </Window.Styles>
     <TabControl x:Name="LauncherTabControl">
         <TabItem x:Name="BotMatchTab">
@@ -241,11 +241,11 @@
 
                         <CheckBox x:Name="PatchTabNoEmblemPatchCheckBox" Grid.Column="0" Grid.Row="0"/>
                         <CheckBox x:Name="PatchTabASLROnlyCheckBox" Click="PatchTabASLROnlyCheckBox_Click" Grid.Column="0" Grid.Row="2"/>
-                        <CheckBox x:Name="PatchTabNoProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
+                        <CheckBox x:Name="PatchTabProxyInjectionCheckBox" Grid.Column="0" Grid.Row="4"/>
 
                         <TextBlock x:Name="PatchTabNoEmblemPatchLabel" Grid.Column="1" Grid.Row="0">No Emblem Patch</TextBlock>
                         <TextBlock x:Name="PatchTabASLROnlyLabel" Grid.Column="1" Grid.Row="2">ASLR Only</TextBlock>
-                        <TextBlock x:Name="PatchTabNoProxyInjectionLabel" Grid.Column="1" Grid.Row="4">No Proxy Injection</TextBlock>
+                        <TextBlock x:Name="PatchTabProxyInjectionLabel" Grid.Column="1" Grid.Row="4">Inject Proxy</TextBlock>
                     </Grid>
                 </StackPanel>
                 <Button x:Name="PatchTabPatchFileButton"

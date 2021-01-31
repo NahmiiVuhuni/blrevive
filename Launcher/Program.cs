@@ -1,23 +1,22 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
+﻿using Avalonia;
 using Avalonia.Logging.Serilog;
 
-namespace BLRevive.Launcher
-{
-    class Program
-    {
-        // Initialization code. Don't use any Avalonia, third-party APIs or any
-        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-        // yet and stuff might break.
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+// Avalonia configuration, don't remove; also used by visual designer.
+static AppBuilder BuildAvaloniaApp()
+    => AppBuilder.Configure<Launcher.UI.App>()
+        .UsePlatformDetect()
+        .LogToDebug();
 
-        // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .LogToDebug();
-    }
+// if cli arguments provided, run app in cli mode
+if(args.Length > 0)
+{
+    Launcher.CLI.App.Run(args);
+}
+// else start UI
+else
+{
+    // Initialization code. Don't use any Avalonia, third-party APIs or any
+    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+    // yet and stuff might break.
+    BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 }

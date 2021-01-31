@@ -1,6 +1,7 @@
 ﻿using System;
+using Launcher.Configuration;
 
-namespace BLRevive.Launcher
+namespace Launcher.Utils
 {
     /// <summary>
     /// Provides common user util functions
@@ -21,11 +22,10 @@ namespace BLRevive.Launcher
         /// Saves current player name to JSON config
         /// </summary>
         /// <param name="currentPlayerName"></param>
-        /// <returns>True if the player name was successfully saved, False otherwise</returns>
-        public static bool SavePlayerName(string currentPlayerName)
+        public static void SavePlayerName(string currentPlayerName)
         {
-            Config.Get().Username = currentPlayerName;
-            return Config.Save();
+            Config.User.Username = currentPlayerName;
+            Config.Save();
         }
     }
 }

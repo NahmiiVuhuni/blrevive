@@ -1,71 +1,80 @@
-﻿{
+{
+  "App": {
     "LogLevel": 1,
-    "ServerStartupOffset": 5000,
-    "Username": "Player",
-    "GameFolder": "",
-    "PreviousHost": {
-        "Server": {
-            "Address": "127.0.0.1",
-            "Port": "7777"
-        }
-    },
+    "GameFolder": "/media/superewald/6272931A7292F1D1/Program Files (x86)/BLR3.02"
+  },
+  "User": {
+    "Username": "Player"
+  },
+  "Game": {
     "Maps": [
-        "Centre",
-        "Containment",
-        "Convoy",
-        "Crashsite",
-        "Deadlock",
-        "DeathMetal",
-        "Decay",
-        "Evac",
-        "HeavyMetal",
-        "HeloDeck",
-        "Metro",
-        "Outpost",
-        "Piledriver",
-        "Rig",
-        "Safehold",
-        "SeaPort",
-        "Shelter",
-        "Terminus",
-        "Trench",
-        "Vertigo",
-        "Vortex"
+      "Centre",
+      "Containment",
+      "Convoy",
+      "Crashsite",
+      "Deadlock",
+      "DeathMetal",
+      "Decay",
+      "Evac",
+      "HeavyMetal",
+      "HeloDeck",
+      "Metro",
+      "Outpost",
+      "Piledriver",
+      "Rig",
+      "Safehold",
+      "SeaPort",
+      "Shelter",
+      "Terminus",
+      "Trench",
+      "Vertigo",
+      "Vortex"
     ],
     "Gamemodes": [
-        "DM",
-        "TDM",
-        "CP",
-        "TKOTH",
-        "CTF",
-        "CTDM",
-        "EOTS",
-        "PL",
-        "Detonate",
-        "BO",
-        "LMS",
-        "LTS",
-        "KC",
-        "OS",
-        "SND"
+      "DM",
+      "TDM",
+      "CP",
+      "TKOTH",
+      "CTF",
+      "CTDM",
+      "EOTS",
+      "PL",
+      "Detonate",
+      "BO",
+      "LMS",
+      "LTS",
+      "KC",
+      "OS",
+      "SND"
     ],
     "Playlists": [
-        "None",
-        "KC",
-        "TDM",
-        "DM",
-        "LMS",
-        "LTS",
-        "CTF",
-        "KC",
-        "KOTH",
-        "DOM",
-        "SND"
+      "None",
+      "KC",
+      "TDM",
+      "DM",
+      "LMS",
+      "LTS",
+      "CTF",
+      "KC",
+      "KOTH",
+      "DOM",
+      "SND"
     ],
+    "LinuxExecPrefix": "wine"
+  },
+  "Server": {
+    "ServerStartupOffset": 5000
+  },
+  "ServerList": {
+    "PreviousHost": {
+      "Address": "127.0.0.1",
+      "Port": "7777"
+    },
     "Hosts": [
-        {
-            "Address": "127.0.0.1",
-            "Port": "7777"
-        }
+      {
+        "Address": "127.0.0.1",
+        "Port": "7777"
+      }
     ]
+  }
 }

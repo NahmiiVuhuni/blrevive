@@ -15,12 +15,9 @@ std::shared_ptr<spdlog::logger> BLRevive::Logger::Get()
         std::wstring fileName(szExeFileName);
 
         std::string logFileName("../../FoxGame/Logs/");
-        logFileName.append(LogFileName);
-
-        if (fileName.find(L"Server") != std::wstring::npos) {
-            logFileName.append("-Server");
-        }
-        logFileName.append(".log");
+        logFileName.append(LogFileName)
+            .append("-" + std::to_string(std::time(nullptr)))
+            .append(".log");
 
         pInstance = spdlog::basic_logger_mt("BLR", logFileName.c_str());
         pInstance->set_level(spdlog::level::debug);

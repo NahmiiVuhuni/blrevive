@@ -1,5 +1,5 @@
 ﻿
-namespace BLRevive.Launcher
+namespace Launcher.Configuration
 {
     /// <summary>
     /// Object containing a host server representation for Config JSON and HostsConfig JSON 
