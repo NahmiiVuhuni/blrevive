@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using CommandLine;
 using Launcher.Utils;
 
@@ -7,8 +8,8 @@ namespace Launcher.CLI.Commands
     [Verb("launch", HelpText = "Launch game client or server")]
     public class LaunchCommand
     {
-        [Value(0, MetaName = "ClientIdentifier", HelpText = "Client identifier. Either name of game file or a registry ID", Required = true)]
-        public string ClientIdentifier { get; set; }
+        [Value(0, MetaName = "ClientPath", HelpText = "Path to game client. Required if -a not specified.")]
+        public string ClientPath { get; set; }
 
         [Option('u', "url", HelpText = "Unreal URL passed to game command line", Default = "localhost?Name=Player")]
         public string URL { get; set; }
@@ -25,9 +26,19 @@ namespace Launcher.CLI.Commands
         [Option('g', "gamefolder", HelpText = "Path to gamefolder. Required when launching with filename")]
         public string Gamefolder { get; set; }
 
+        [Option('a', "alias", HelpText = "Alias for game client to launch")]
+        public string Alias { get; set; }
+
         public void Execute()
         {
-            ClientIdentifier = App.ParseClientIdentifier(ClientIdentifier, Gamefolder);
+            if(!String.IsNullOrWhiteSpace(Alias))
+            {
+                var clientInfo = GameRegistry.GetClient(c => c.Alias == Alias);
+                ClientPath = clientInfo.OriginalGameFile;
+                Gamefolder = Path.Join(clientInfo.InstallPath, clientInfo.BinaryDir);
+            } else {
+                ClientPath = App.ParseClientIdentifier(ClientPath, Gamefolder);
+            }
 
             if(LaunchServer)
                 GameInstanceManager.StartServer(cfg => cfg.CustomParams = URL);
@@ -35,7 +46,7 @@ namespace Launcher.CLI.Commands
                 GameInstanceManager.StartClient(cfg => {
                     cfg.IP = IP;
                     cfg.Port = Port;
-                    cfg.Filename = ClientIdentifier;
+                    cfg.Filename = ClientPath;
                     cfg.BinaryPath = Gamefolder;
                     cfg.CustomParams = URL;
                 });

@@ -22,20 +22,27 @@ namespace Launcher.Utils
             public string OriginalGameFile = "FoxGame-win32-Shipping.exe";
             public string PatchedGameFile = "FoxGame-win32-Shipping-Patched.exe";
 
-            public bool Validate(bool checkForPatched = false)
+            public void Validate(bool checkForPatched = false)
             {
+                if(String.IsNullOrWhiteSpace(Alias))
+                    throw new UserInputException("Alias must be specified");
+
                 if(!Directory.Exists(InstallPath))
-                    return false; //throw new UserInputException($"Install path ({InstallPath})does not exist!");
+                    throw new UserInputException($"Install path ({InstallPath})does not exist!");
                 
                 if(!Directory.Exists(Path.Join(InstallPath, BinaryDir)))
-                    return false; //throw new UserInputException("Binary directory does not exist!");
+                    throw new UserInputException("Binary directory does not exist!");
                 
                 if(!File.Exists(Path.Join(InstallPath, BinaryDir, OriginalGameFile)))
-                    return false; //throw new UserInputException("Game file does not exist!");
+                    throw new UserInputException("Game file does not exist!");
                 
                 if(checkForPatched && !File.Exists(Path.Join(InstallPath, BinaryDir, PatchedGameFile)))
-                    return false; //throw new UserInputException("Patched game file does not exist");
+                    throw new UserInputException("Patched game file does not exist");
+            }
 
+            public bool TryValidate(bool checkForPatched = false, Action<UserInputException> onError = null)
+            {
+                try { Validate(); } catch (UserInputException ex) { onError(ex); return false; };
                 return true;
             }
         }
@@ -46,14 +53,18 @@ namespace Launcher.Utils
             public int InstanceProcessID { get; set; }
             public ClientInfo Client { get; set; }
 
-            public bool Validate()
+            public void Validate()
             {
                 try {
                     Process instance = Process.GetProcessById(InstanceProcessID);
                 } catch(Exception) {
-                    return false; //throw new UserInputException("Process does not exist anymore");
+                    throw new UserInputException("Process does not exist anymore");
                 }
+            }
 
+            public bool TryValidate(Action<UserInputException> OnError)
+            {
+                try { Validate(); } catch(UserInputException ex) { OnError(ex); return false; }
                 return true;
             }
         }
@@ -68,19 +79,19 @@ namespace Launcher.Utils
 
         public static void Load()
         {
+            // load client infos from config and validate them
             var tempClients = Config.Registry.Clients;
-            clients = tempClients.Where(c => c.Validate()).ToList();
-
-            // log client errors
-            if(tempClients.Count() != clients.Count())
-                tempClients.ForEach(c => { if(!c.Validate()) Log.Error($"Failed to load client from registry"); });
+            clients = tempClients.Where(c => 
+                c.TryValidate(false, err => { 
+                    Log.Error($"Failed to parse client info: {err.Message}"); 
+                })).ToList();
             
+            // load instance infos from config and validate them
             var tempInstances = Config.Registry.Instances;
-            instances = tempInstances.Where(i => i.Validate()).ToList();
-
-            // log instance errors
-            if(tempInstances.Count() != instances.Count())
-                tempInstances.ForEach(i => { if(!i.Validate()) Log.Error($"Failed to load instance {i.InstanceProcessID}"); });
+            instances = tempInstances.Where(i => 
+                i.TryValidate( err => {
+                    Log.Error($"Failed to parse instance info: {err.Message}"); 
+                })).ToList();
         }
 
         public static void Save()
@@ -92,6 +103,17 @@ namespace Launcher.Utils
 
         public static void AddClient(ClientInfo client)
         {
+            if(!client.TryValidate( false, err => { Log.Error($"Failed to validate client: {err.Message}"); }))
+                return;
+
+            if(GetClients(c => c.Alias == client.Alias).Count() > 0)
+                throw new UserInputException($"Alias {client.Alias} has already been registered.");
+            if(GetClients(c => c.InstallPath == client.InstallPath).Count() > 0)
+                throw new UserInputException($"Client with same install path has already been registered.");
+            
+            if(client.ClientVersion == 0)
+                throw new UserInputException("ClientVersion is required!");
+
             clients.Add(client);
             Save();
             Log.Debug("Client added to registry");

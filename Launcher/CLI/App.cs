@@ -66,14 +66,8 @@ namespace Launcher.CLI
         /// <param name="path">gamefolder param</param>
         /// <returns></returns>
         public static string ParseClientIdentifier(string identifier, string path)
-        {
-
-            int registryID;
-            if(Int32.TryParse(identifier, out registryID))
-            {
-                // Todo: get game filepath from registry
-            } 
-            else if(!Path.IsPathFullyQualified(identifier))
+        {            
+            if(!Path.IsPathFullyQualified(identifier))
             {
                 if(String.IsNullOrWhiteSpace(path))
                     throw new UserInputException("Input file path must be absolute if no gamefolder is specified");

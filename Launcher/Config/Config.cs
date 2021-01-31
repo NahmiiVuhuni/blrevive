@@ -133,6 +133,8 @@ namespace Launcher.Configuration
         /// <param name="filter">section override for faster saving</param>
         public static void Save(IConfigProvider filter = null)
         {
+            JsonSerializerOptions jsonOpts = new JsonSerializerOptions(){ WriteIndented = true };
+
             try
             {
                 // get all config providers declared in this class
@@ -147,7 +149,7 @@ namespace Launcher.Configuration
                     if (provider == null)
                         throw new Exception("No provider for such filter was found.");
 
-                    var json = JsonSerializer.Serialize(provider.GetValue(null), provider.FieldType);
+                    var json = JsonSerializer.Serialize(provider.GetValue(null), provider.FieldType, jsonOpts);
                     File.WriteAllText((string)filter.GetType().GetProperty("FileName", BindingFlags.Public | BindingFlags.Static).GetValue(null), json);
                     return;
                 }
@@ -159,17 +161,17 @@ namespace Launcher.Configuration
 
                     if (customFileProp != null && customFileProp.GetValue(null) != null)
                     {
-                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType);
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType, jsonOpts);
                         File.WriteAllText((string)customFileProp.GetValue(null), json);
                     } else
                     {
-                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType);
+                        var json = JsonSerializer.Serialize(providerProp.GetValue(null), providerProp.FieldType, jsonOpts);
                         sectionJson.Add(providerProp, json);
                     }
                 }
 
 
-                string fulljson = JsonSerializer.Serialize<Config>(new Config(), new JsonSerializerOptions() { WriteIndented = true});
+                string fulljson = JsonSerializer.Serialize<Config>(new Config(), jsonOpts);
                 File.WriteAllText(LauncherConfigFileName, fulljson);
             }
             catch (JsonException ex)

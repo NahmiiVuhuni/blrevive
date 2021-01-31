@@ -25,6 +25,9 @@ namespace Launcher.CLI.Commands
         [Option('a', "alias", HelpText = "Alias for game client")]
         public string Alias { get; set; }
 
+        [Option('c', "client-version", HelpText = "Version of client")]
+        public int ClientVersion { get; set; }
+
         public void Execute()
         {
             switch(Task)
@@ -53,6 +56,7 @@ namespace Launcher.CLI.Commands
             {
                 GameRegistry.AddClient(c => {
                     c.Alias = Alias;
+                    c.ClientVersion = ClientVersion;
                     c.InstallPath = Path.GetDirectoryName(Target).Replace(c.BinaryDir, "");
                     c.OriginalGameFile = Path.GetFileName(Target);
                 });

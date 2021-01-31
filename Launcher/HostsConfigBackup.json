@@ -1,1 +1,12 @@
-{"Hosts":[{"Address":"127.0.0.1","Port":"7777"}],"PreviousHost":{"Address":"127.0.0.1","Port":"7777"}}
+{
+  "Hosts": [
+    {
+      "Address": "127.0.0.1",
+      "Port": "7777"
+    }
+  ],
+  "PreviousHost": {
+    "Address": "127.0.0.1",
+    "Port": "7777"
+  }
+}
